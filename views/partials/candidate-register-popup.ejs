@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="/styles/candidate-register-popup.css">
+<div class="register-popup-overlay" id="register-popup-overlay">
+  <div class="register-popup-content" id="register-popup">
+    <h2>Register</h2>
+    <form>
+      <label for="register-email">Email</label>
+      <input
+        type="email"
+        id="register-email"
+        name="email"
+        required
+        placeholder="Enter your email"
+      />
+      <label for="register-password">Password</label>
+      <input
+        type="password"
+        id="register-password"
+        name="password"
+        required
+        placeholder="Enter your password"
+      />
+      <label for="register-confirm-password">Confirm Password</label>
+      <input
+        type="password"
+        id="register-confirm-password"
+        name="confirm-password"
+        required
+        placeholder="Confirm your password"
+      />
+      <button type="submit">Register</button>
+    </form>
+    <p class="register-switch-text">
+      Already have an account? 
+      <span class="register-switch-link" id="switch-to-login">Login</span>
+    </p>
+    <span class="register-close-popup" id="register-close-popup">&times;</span>
+  </div>
+</div>
