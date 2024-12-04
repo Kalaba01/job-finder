@@ -1,8 +1,26 @@
-<link rel="stylesheet" href="/styles/candidate-register-popup.css">
+<head>
+  <link rel="stylesheet" href="/styles/candidate-register-popup.css" />
+</head>
 <div class="register-popup-overlay" id="register-popup-overlay">
   <div class="register-popup-content" id="register-popup">
     <h2>Register</h2>
-    <form>
+    <form id="register-form">
+      <label for="register-first-name">First Name</label>
+      <input
+        type="text"
+        id="register-first-name"
+        name="first_name"
+        required
+        placeholder="Enter your first name"
+      />
+      <label for="register-last-name">Last Name</label>
+      <input
+        type="text"
+        id="register-last-name"
+        name="last_name"
+        required
+        placeholder="Enter your last name"
+      />
       <label for="register-email">Email</label>
       <input
         type="email"
@@ -23,14 +41,14 @@
       <input
         type="password"
         id="register-confirm-password"
-        name="confirm-password"
+        name="confirm_password"
         required
         placeholder="Confirm your password"
       />
       <button type="submit">Register</button>
     </form>
     <p class="register-switch-text">
-      Already have an account? 
+      Already have an account?
       <span class="register-switch-link" id="switch-to-login">Login</span>
     </p>
     <span class="register-close-popup" id="register-close-popup">&times;</span>
