@@ -1,0 +1,76 @@
+/* Login Popup Overlay */
+.login-popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Login Popup Content */
+.login-popup-content {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+    position: relative;
+}
+
+/* Close Button */
+.login-close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Form Styles */
+.login-popup-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.login-popup-content form input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-popup-content button {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    background: #007BFF;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.login-popup-content button:hover {
+    background: #0056b3;
+}
+
+/* Switch to Register Text */
+.login-switch-text {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.login-switch-link {
+    color: #007BFF;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-switch-link:hover {
+    text-decoration: underline;
+}

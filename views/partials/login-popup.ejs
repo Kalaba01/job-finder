@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/styles/login-popup.css">
+<div class="login-popup-overlay" id="login-popup-overlay">
+  <div class="login-popup-content" id="login-popup">
+    <h2>Login</h2>
+    <form>
+      <label for="login-email">Email</label>
+      <input
+        type="email"
+        id="login-email"
+        name="email"
+        required
+        placeholder="Enter your email"
+      />
+      <label for="login-password">Password</label>
+      <input
+        type="password"
+        id="login-password"
+        name="password"
+        required
+        placeholder="Enter your password"
+      />
+      <button type="submit">Login</button>
+    </form>
+    <p class="login-switch-text">
+      Don't have an account? 
+      <span class="login-switch-link" id="switch-to-register">Register</span>
+    </p>
+    <span class="login-close-popup" id="login-close-popup">&times;</span>
+  </div>
+</div>
