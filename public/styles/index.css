@@ -12,13 +12,15 @@ body {
   justify-content: center;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #FFFFFF;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(0, 0, 0, 0.15));
   position: relative;
 }
 
 .top-bar .logo {
-  font-size: 1.8rem;
+  font-family: 'Roboto', sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 2rem;
   color: #007BFF;
   display: flex;
   align-items: center;
@@ -29,6 +31,8 @@ body {
   width: 60px;
   height: auto;
   max-width: 100%;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .top-bar .icons {
@@ -41,12 +45,12 @@ body {
 
 .top-bar .icons .icon {
   cursor: pointer;
-  font-size: 1.4rem;
-  color: #343A40;
+  font-size: 1.6rem;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .top-bar .icons .icon:hover {
-  color: #007BFF;
+  transform: scale(1.2);
 }
 
 /* Hero Section */
@@ -159,7 +163,6 @@ body {
 .section-register-firm .btn-register-firm:hover {
   background-color: #0056b3;
 }
-
 
 /* FAQ Section */
 .faq {
