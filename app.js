@@ -1,8 +1,8 @@
 require("dotenv").config();
 const express = require("express");
-const path = require('path');
 const initDatabase = require('./config/initDatabase');
 const authRoutes = require('./routes/authRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
 
@@ -11,8 +11,6 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-app.use('/auth', authRoutes);
-
 // Setting EJS as view engine
 app.set("view engine", "ejs");
 app.set("views", "./views");
@@ -20,12 +18,14 @@ app.set("views", "./views");
 // Database initialization
 initDatabase();
 
+app.use('/auth', authRoutes);
+
+app.use('/admin', adminRoutes);
+
+
 // Routes
 app.get("/", (req, res) => {
-  res.render("index", {
-    title: "Home Page",
-    message: "Welcome to Job Finder!",
-  });
+  res.render("index");
 });
 
 // Server
