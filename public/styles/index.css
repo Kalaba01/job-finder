@@ -1,5 +1,5 @@
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   background-color: #F8F9FA;
   margin: 0;
   padding: 0;
@@ -17,9 +17,10 @@ body {
 }
 
 .top-bar .logo {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-style: italic;
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: 0.15rem;
   font-size: 2rem;
   color: #007BFF;
   display: flex;
@@ -56,7 +57,7 @@ body {
 /* Hero Section */
 .hero {
   position: relative;
-  background: url('/images/background.jpg') center/cover no-repeat;
+  background: url("/images/background.jpg") center/cover no-repeat;
   height: 100vh;
   display: flex;
   justify-content: center;

@@ -37,6 +37,11 @@ function resetRegisterForm() {
 registerForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  if (registerPasswordInput.value.length < 6) {
+    console.error("Password must be at least 6 characters long!");
+    return;
+  }
+
   if (registerPasswordInput.value !== registerConfirmPasswordInput.value) {
     console.error("Passwords do not match!");
     return;
