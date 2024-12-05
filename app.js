@@ -1,8 +1,9 @@
 require("dotenv").config();
 const express = require("express");
-const initDatabase = require('./config/initDatabase');
-const authRoutes = require('./routes/authRoutes');
-const adminRoutes = require('./routes/adminRoutes');
+const initDatabase = require("./config/initDatabase");
+const authRoutes = require("./routes/authRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+const firmRoutes = require("./routes/firmRoutes");
 
 const app = express();
 
@@ -18,10 +19,11 @@ app.set("views", "./views");
 // Database initialization
 initDatabase();
 
-app.use('/auth', authRoutes);
+app.use("/auth", authRoutes);
 
-app.use('/admin', adminRoutes);
-
+// User routes
+app.use("/admin", adminRoutes);
+app.use("/firm", firmRoutes);
 
 // Routes
 app.get("/", (req, res) => {
