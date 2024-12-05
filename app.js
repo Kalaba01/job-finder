@@ -4,6 +4,7 @@ const initDatabase = require("./config/initDatabase");
 const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const firmRoutes = require("./routes/firmRoutes");
+const candidateRoutes = require('./routes/candidateRoutes');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use("/auth", authRoutes);
 // User routes
 app.use("/admin", adminRoutes);
 app.use("/firm", firmRoutes);
+app.use('/candidate', candidateRoutes);
 
 // Routes
 app.get("/", (req, res) => {
