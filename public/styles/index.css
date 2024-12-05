@@ -112,6 +112,54 @@ body {
   line-height: 1.6;
 }
 
+/* Firm Registration Section */
+.section-register-firm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 0;
+  background-color: #f1f8ff;
+}
+
+.section-register-firm .firm-image {
+  width: 95%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section-register-firm .register-text h2 {
+  font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 1rem;
+}
+
+.section-register-firm .register-text p {
+  font-size: 1.2rem;
+  color: #343a40;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+.section-register-firm .btn-register-firm {
+  padding: 0.8rem 2rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+}
+
+.section-register-firm .btn-register-firm:hover {
+  background-color: #0056b3;
+}
+
 
 /* FAQ Section */
 .faq {

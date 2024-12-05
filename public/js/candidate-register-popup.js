@@ -12,7 +12,7 @@ const registerForm = document.getElementById("register-form");
 
 export function openRegisterPopup() {
   registerPopupOverlay.style.display = "flex";
-  registerEmailInput.focus();
+  registerFirstNameInput.focus();
 }
 
 closeRegisterPopup.addEventListener("click", () => {

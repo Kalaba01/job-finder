@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { User, Candidate } = require('../models');
+const { User, Candidate, FirmRequest } = require('../models');
 
 exports.registerCandidate = async (candidateData) => {
   const { email, password, first_name, last_name } = candidateData;
@@ -23,6 +23,24 @@ exports.registerCandidate = async (candidateData) => {
   });
 
   return candidate;
+};
+
+exports.createFirmRequest = async (firmData) => {
+  const { email, name, address, employees_range } = firmData;
+
+  const existingRequest = await FirmRequest.findOne({ where: { email } });
+  if (existingRequest) {
+    throw new Error('A registration request for this email already exists');
+  }
+
+  const newRequest = await FirmRequest.create({
+    email,
+    name,
+    address,
+    employees_range,
+  });
+
+  return newRequest;
 };
 
 exports.authenticateUser = async (email, password) => {

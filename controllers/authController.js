@@ -11,6 +11,17 @@ exports.registerCandidate = async (req, res) => {
   }
 };
 
+exports.registerFirmRequest = async (req, res) => {
+  try {
+    const firmData = req.body;
+    const newRequest = await authService.createFirmRequest(firmData);
+    res.status(201).json({ message: 'Firm registration request submitted successfully' });
+  } catch (error) {
+    console.error('Error submitting firm registration request:', error);
+    res.status(500).json({ error: 'Failed to submit firm registration request' });
+  }
+};
+
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 

@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const path = require('path');
 const initDatabase = require("./config/initDatabase");
 const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
@@ -12,6 +13,7 @@ const app = express();
 app.use(express.json());
 
 app.use(express.static("public"));
+app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
 
 // Setting EJS as view engine
 app.set("view engine", "ejs");

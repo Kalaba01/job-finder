@@ -16,6 +16,21 @@ exports.validateCandidateRegistration = [
   },
 ];
 
+exports.validateFirmRequest = (req, res, next) => {
+  const { email, name, address, employees_range } = req.body;
+
+  if (!email || !name || !address || !employees_range) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
+  const employeeRangeRegex = /^\d+-\d+$/;
+  if (!employeeRangeRegex.test(employees_range)) {
+    return res.status(400).json({ error: 'Invalid employees range format. Use format like "10-50"' });
+  }
+
+  next();
+};
+
 exports.validateLogin = [
   body("email").isEmail().withMessage("Invalid email format"),
   body("password")

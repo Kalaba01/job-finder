@@ -1,10 +1,11 @@
-const sequelize = require('../config/sequelize');
+const sequelize = require("../config/sequelize");
 
-const User = require('./User');
-const Admin = require('./Admin');
-const Firm = require('./Firm');
-const Candidate = require('./Candidate');
-const Review = require('./Review');
+const User = require("./User");
+const Admin = require("./Admin");
+const Firm = require("./Firm");
+const Candidate = require("./Candidate");
+const Review = require("./Review");
+const FirmRequest = require("./FirmRequest");
 
 module.exports = {
   sequelize,
@@ -13,4 +14,5 @@ module.exports = {
   Firm,
   Candidate,
   Review,
+  FirmRequest
 };
