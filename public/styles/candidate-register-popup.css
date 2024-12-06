@@ -1,3 +1,35 @@
+/* Light Mode */
+:root {
+    --background-color: #ffffff;
+    --overlay-color: rgba(0, 0, 0, 0.5);
+    --text-color: #343a40;
+    --input-background: #ffffff;
+    --input-border: #ccc;
+    --input-placeholder: #555;
+    --button-background: #28a745;
+    --button-hover: #218838;
+    --link-color: #007bff;
+    --link-hover-color: #0056b3;
+    --close-icon-color: #343a40;
+    --popup-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --background-color: #1e1e1e;
+    --overlay-color: rgba(0, 0, 0, 0.7);
+    --text-color: #ffffff;
+    --input-background: #333333;
+    --input-border: #555555;
+    --input-placeholder: #bbbbbb;
+    --button-background: #00a65a;
+    --button-hover: #007b4f;
+    --link-color: #6699ff;
+    --link-hover-color: #99ccff;
+    --close-icon-color: #ffffff;
+    --popup-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
 /* Register Popup Overlay */
 .register-popup-overlay {
     display: none;
@@ -6,7 +38,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: var(--overlay-color);
     z-index: 999;
     justify-content: center;
     align-items: center;
@@ -14,13 +46,14 @@
 
 /* Register Popup Content */
 .register-popup-content {
-    background: #ffffff;
+    background: var(--background-color);
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--popup-shadow);
     text-align: center;
     width: 300px;
     position: relative;
+    color: var(--text-color);
 }
 
 /* Close Button */
@@ -30,6 +63,7 @@
     right: 10px;
     font-size: 1.5rem;
     cursor: pointer;
+    color: var(--close-icon-color);
 }
 
 /* Form Styles */
@@ -41,36 +75,44 @@
 
 .register-popup-content form input {
     padding: 0.5rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--input-border);
     border-radius: 5px;
+    background: var(--input-background);
+    color: var(--text-color);
+}
+
+.register-popup-content form input::placeholder {
+    color: var(--input-placeholder);
 }
 
 .register-popup-content button {
     padding: 0.5rem;
     border: none;
     border-radius: 5px;
-    background: #28A745;
+    background: var(--button-background);
     color: #ffffff;
     cursor: pointer;
+    transition: background 0.3s ease;
 }
 
 .register-popup-content button:hover {
-    background: #218838;
+    background: var(--button-hover);
 }
 
 /* Switch to Login Text */
 .register-switch-text {
     margin-top: 1rem;
     font-size: 0.9rem;
-    color: #555;
+    color: var(--input-placeholder);
 }
 
 .register-switch-link {
-    color: #007BFF;
+    color: var(--link-color);
     font-weight: bold;
     cursor: pointer;
 }
 
 .register-switch-link:hover {
     text-decoration: underline;
+    color: var(--link-hover-color);
 }

@@ -1,9 +1,44 @@
+/* Light Mode */
+:root {
+  --background-color: #f8f9fa;
+  --text-color: #343a40;
+  --top-bar-bg: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(0, 0, 0, 0.15));
+  --logo-color: #007bff;
+  --icon-color: #343a40;
+  --icon-hover-color: #007bff;
+  --section-bg: #ffffff;
+  --section-text: #343a40;
+  --btn-bg: #007bff;
+  --btn-text: #ffffff;
+  --btn-hover-bg: #0056b3;
+  --faq-header-bg: #007bff;
+  --faq-header-text: #ffffff;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+  --top-bar-bg: linear-gradient(to bottom, rgba(34, 34, 34, 1), rgba(0, 0, 0, 0.5));
+  --logo-color: #ffa500;
+  --icon-color: #e0e0e0;
+  --icon-hover-color: #ff9800;
+  --section-bg: #1e1e1e;
+  --section-text: #e0e0e0;
+  --btn-bg: #ffa500;
+  --btn-text: #121212;
+  --btn-hover-bg: #ff9800;
+  --faq-header-bg: #ffa500;
+  --faq-header-text: #121212;
+}
+
 body {
   font-family: "Arial", sans-serif;
-  background-color: #F8F9FA;
+  background-color: var(--background-color);
+  color: var(--text-color);
   margin: 0;
   padding: 0;
-  color: #343A40;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 /* Top Bar */
@@ -12,7 +47,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 1rem 2rem;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(0, 0, 0, 0.15));
+  background: var(--top-bar-bg);
   position: relative;
 }
 
@@ -57,23 +92,26 @@ body {
 /* Hero Section */
 .hero {
   position: relative;
-  background: url("/images/background.jpg") center/cover no-repeat;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
-.hero-overlay {
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(2px);
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  z-index: -1;
+}
+
+.hero-overlay {
+  position: relative;
   text-align: center;
 }
 
@@ -100,6 +138,8 @@ body {
   align-items: center;
   padding: 2rem;
   gap: 2rem;
+  background-color: var(--section-bg);
+  color: var(--section-text);
 }
 
 .section img {
@@ -113,7 +153,7 @@ body {
   width: 50%;
   padding: 1rem;
   font-size: 1.2rem;
-  color: #343A40;
+  color: var(--text-color);
   line-height: 1.6;
 }
 
@@ -124,7 +164,7 @@ body {
   align-items: center;
   text-align: center;
   padding: 3rem 0;
-  background-color: #f1f8ff;
+  background-color: var(--faq-header-text);
 }
 
 .section-register-firm .firm-image {
@@ -139,21 +179,21 @@ body {
 
 .section-register-firm .register-text h2 {
   font-size: 2.5rem;
-  color: #007bff;
+  color: var(--logo-color);
   margin-bottom: 1rem;
 }
 
 .section-register-firm .register-text p {
   font-size: 1.2rem;
-  color: #343a40;
+  color: var(--text-color);
   margin-bottom: 2rem;
   line-height: 1.8;
 }
 
 .section-register-firm .btn-register-firm {
   padding: 0.8rem 2rem;
-  background-color: #007bff;
-  color: white;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -162,23 +202,24 @@ body {
 }
 
 .section-register-firm .btn-register-firm:hover {
-  background-color: #0056b3;
+  background-color: var(--btn-hover-bg);
 }
 
 /* FAQ Section */
 .faq {
-  background-color: #f8f9fa;
+  background-color: var(--section-bg);
+  color: var(--section-text);
   padding: 2rem;
   border-radius: 10px;
 }
 
 .faq .faq-card {
-  border: 1px solid #0056b3;
+  border: 1px solid var(--btn-bg);
   border-radius: 5px;
   margin-bottom: 1rem;
   overflow: hidden;
   transition: all 0.3s ease;
-  background-color: #ffffff;
+  background-color: var(--section-bg);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -187,8 +228,8 @@ body {
 }
 
 .faq .faq-header {
-  background-color: #007bff;
-  color: #ffffff;
+  background-color: var(--faq-header-bg);
+  color: var(--faq-header-text);
   padding: 1rem;
   cursor: pointer;
   display: flex;
@@ -213,7 +254,7 @@ body {
   overflow: hidden;
   padding: 0 1rem;
   font-size: 1rem;
-  color: #343a40;
+  color: var(--text-color);
   transition: max-height 0.3s ease, padding 0.3s ease;
 }
 

@@ -1,3 +1,33 @@
+/* Light Mode */
+:root {
+    --background-color: #ffffff;
+    --overlay-color: rgba(0, 0, 0, 0.5);
+    --text-color: #343a40;
+    --input-background: #ffffff;
+    --input-border: #ccc;
+    --input-border-focus: #007bff;
+    --button-background: #007bff;
+    --button-hover: #0056b3;
+    --close-icon-color: #343a40;
+    --popup-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    --employees-output-color: #343a40;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --background-color: #1e1e1e;
+    --overlay-color: rgba(0, 0, 0, 0.7);
+    --text-color: #ffffff;
+    --input-background: #333333;
+    --input-border: #555555;
+    --input-border-focus: #66b3ff;
+    --button-background: #6699ff;
+    --button-hover: #3366cc;
+    --close-icon-color: #ffffff;
+    --popup-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    --employees-output-color: #ffffff;
+}
+
 /* Popup Overlay */
 .firm-register-popup-overlay {
     display: none;
@@ -6,7 +36,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: var(--overlay-color);
     z-index: 9999;
     justify-content: center;
     align-items: center;
@@ -14,13 +44,14 @@
 
 /* Popup Content */
 .firm-register-popup-content {
-    background: #ffffff;
+    background: var(--background-color);
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--popup-shadow);
     width: 400px;
     text-align: center;
     position: relative;
+    color: var(--text-color);
 }
 
 /* Close Button */
@@ -30,6 +61,7 @@
     right: 10px;
     font-size: 1.5rem;
     cursor: pointer;
+    color: var(--close-icon-color);
 }
 
 /* Form Styles */
@@ -42,28 +74,32 @@
 .firm-register-popup-content form input,
 .firm-register-popup-content form button {
     padding: 0.8rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--input-border);
     border-radius: 5px;
     font-size: 1rem;
+    background: var(--input-background);
+    color: var(--text-color);
 }
 
 .firm-register-popup-content form input:focus,
 .firm-register-popup-content form button:hover {
-    border-color: #007bff;
+    border-color: var(--input-border-focus);
     outline: none;
 }
 
 .firm-register-popup-content form button {
-    background: #007bff;
+    background: var(--button-background);
     color: white;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .firm-register-popup-content form button:hover {
-    background: #0056b3;
+    background: var(--button-hover);
 }
 
 #firm-register-employees-output {
     font-weight: bold;
+    color: var(--employees-output-color);
 }
