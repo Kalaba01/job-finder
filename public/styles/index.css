@@ -85,9 +85,46 @@ body {
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.top-bar .icons .icon:hover {
-  transform: scale(1.2);
+.language-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--background-color);
+  box-shadow: var(--popup-shadow);
+  border-radius: 5px;
+  z-index: 10;
+  padding: 0.5rem 1rem;
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
+.language-dropdown.show {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.language-dropdown .language-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+/* .language-dropdown .language-option:hover {
+  background: var(--input-background);
+  border-radius: 5px;
+}
+
+.flag-icon {
+  width: 20px;
+  height: 15px;
+  border: 1px solid var(--input-border);
+} */
 
 /* Hero Section */
 .hero {

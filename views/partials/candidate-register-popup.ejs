@@ -3,53 +3,53 @@
 </head>
 <div class="register-popup-overlay" id="register-popup-overlay">
   <div class="register-popup-content" id="register-popup">
-    <h2>Register</h2>
+    <h2><%= __("CandidateRegisterPopup.title") %></h2>
     <form id="register-form">
-      <label for="register-first-name">First Name</label>
+      <label for="register-first-name"><%= __("CandidateRegisterPopup.firstNameLabel") %></label>
       <input
         type="text"
         id="register-first-name"
         name="first_name"
         required
-        placeholder="Enter your first name"
+        placeholder="<%= __("CandidateRegisterPopup.firstNamePlaceholder") %>"
       />
-      <label for="register-last-name">Last Name</label>
+      <label for="register-last-name"><%= __("CandidateRegisterPopup.lastNameLabel") %></label>
       <input
         type="text"
         id="register-last-name"
         name="last_name"
         required
-        placeholder="Enter your last name"
+        placeholder="<%= __("CandidateRegisterPopup.lastNamePlaceholder") %>"
       />
-      <label for="register-email">Email</label>
+      <label for="register-email"><%= __("CandidateRegisterPopup.emailLabel") %></label>
       <input
         type="email"
         id="register-email"
         name="email"
         required
-        placeholder="Enter your email"
+        placeholder="<%= __("CandidateRegisterPopup.emailPlaceholder") %>"
       />
-      <label for="register-password">Password</label>
+      <label for="register-password"><%= __("CandidateRegisterPopup.passwordLabel") %></label>
       <input
         type="password"
         id="register-password"
         name="password"
         required
-        placeholder="Enter your password"
+        placeholder="<%= __("CandidateRegisterPopup.passwordPlaceholder") %>"
       />
-      <label for="register-confirm-password">Confirm Password</label>
+      <label for="register-confirm-password"><%= __("CandidateRegisterPopup.confirmPasswordLabel") %></label>
       <input
         type="password"
         id="register-confirm-password"
         name="confirm_password"
         required
-        placeholder="Confirm your password"
+        placeholder="<%= __("CandidateRegisterPopup.confirmPasswordPlaceholder") %>"
       />
-      <button type="submit">Register</button>
+      <button type="submit"><%= __("CandidateRegisterPopup.registerButton") %></button>
     </form>
     <p class="register-switch-text">
-      Already have an account?
-      <span class="register-switch-link" id="switch-to-login">Login</span>
+      <%= __("CandidateRegisterPopup.alreadyHaveAccount") %>
+      <span class="register-switch-link" id="switch-to-login"><%= __("CandidateRegisterPopup.loginLink") %></span>
     </p>
     <span class="register-close-popup" id="register-close-popup">&times;</span>
   </div>

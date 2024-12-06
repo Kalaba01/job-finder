@@ -1,29 +1,29 @@
 <link rel="stylesheet" href="/styles/login-popup.css">
 <div class="login-popup-overlay" id="login-popup-overlay">
   <div class="login-popup-content" id="login-popup">
-    <h2>Login</h2>
+    <h2><%= __("LoginPopup.title") %></h2>
     <form id="login-form">
-      <label for="login-email">Email</label>
+      <label for="login-email"><%= __("LoginPopup.emailLabel") %></label>
       <input
         type="email"
         id="login-email"
         name="email"
         required
-        placeholder="Enter your email"
+        placeholder="<%= __("LoginPopup.emailPlaceholder") %>"
       />
-      <label for="login-password">Password</label>
+      <label for="login-password"><%= __("LoginPopup.passwordLabel") %></label>
       <input
         type="password"
         id="login-password"
         name="password"
         required
-        placeholder="Enter your password"
+        placeholder="<%= __("LoginPopup.passwordPlaceholder") %>"
       />
-      <button type="submit">Login</button>
+      <button type="submit"><%= __("LoginPopup.loginButton") %></button>
     </form>
     <p class="login-switch-text">
-      Don't have an account? 
-      <span class="login-switch-link" id="switch-to-register">Register</span>
+      <%= __("LoginPopup.dontHaveAccount") %>
+      <span class="login-switch-link" id="switch-to-register"><%= __("LoginPopup.registerLink") %></span>
     </p>
     <span class="login-close-popup" id="login-close-popup">&times;</span>
   </div>

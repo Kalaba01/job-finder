@@ -6,43 +6,40 @@
 <script src="/node_modules/nouislider/dist/nouislider.min.js"></script>
 <div class="firm-register-popup-overlay" id="firm-register-popup-overlay">
   <div class="firm-register-popup-content" id="firm-register-popup">
-    <h2>Register Your Company</h2>
+    <h2><%= __("FirmRegisterPopup.title") %></h2>
     <form id="firm-register-form">
-      <label for="firm-register-email">Email</label>
+      <label for="firm-register-email"><%= __("FirmRegisterPopup.emailLabel") %></label>
       <input
         type="email"
         id="firm-register-email"
         name="email"
         required
-        placeholder="Enter your email"
+        placeholder="<%= __("FirmRegisterPopup.emailPlaceholder") %>"
       />
-      <label for="firm-register-name">Company Name</label>
+      <label for="firm-register-name"><%= __("FirmRegisterPopup.companyNameLabel") %></label>
       <input
         type="text"
         id="firm-register-name"
         name="name"
         required
-        placeholder="Enter your company name"
+        placeholder="<%= __("FirmRegisterPopup.companyNamePlaceholder") %>"
       />
-      <label for="firm-register-address">Address</label>
+      <label for="firm-register-address"><%= __("FirmRegisterPopup.addressLabel") %></label>
       <input
         type="text"
         id="firm-register-address"
         name="address"
         required
-        placeholder="Enter your address"
+        placeholder="<%= __("FirmRegisterPopup.addressPlaceholder") %>"
       />
-      <label for="firm-register-range">Number of Employees</label>
+      <label for="firm-register-range"><%= __("FirmRegisterPopup.employeesRangeLabel") %></label>
       <div id="employee-range-slider"></div>
       <p>
-        Selected Range:
+        <%= __("FirmRegisterPopup.selectedRange") %>: 
         <span id="firm-register-range-output">1 - 100</span>
       </p>
-
-      <button type="submit">Submit Request</button>
+      <button type="submit"><%= __("FirmRegisterPopup.submitButton") %></button>
     </form>
-    <span class="firm-register-close-popup" id="firm-register-close-popup"
-      >&times;</span
-    >
+    <span class="firm-register-close-popup" id="firm-register-close-popup">&times;</span>
   </div>
 </div>

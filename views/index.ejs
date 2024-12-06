@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="<%= locale %>" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,15 +17,19 @@
         Job Finder
       </div>
       <div class="icons">
-        <span class="icon" id="user-icon">
+        <span class="icon" id="user-icon" title="<%= __("TopBar.userIcon") %>">
           <i class="fa-solid fa-user"></i>
         </span>
-        <span class="icon" id="theme-icon">
+        <span class="icon" id="theme-icon" title="<%= __("TopBar.themeIcon") %>">
           <i class="fas fa-moon"></i>
         </span>        
         <span class="icon" id="language-icon">
           <i class="fa-solid fa-globe"></i>
-        </span>
+          <div class="language-dropdown" id="language-dropdown">
+            <div class="language-option" data-lang="en">English</div>
+            <div class="language-option" data-lang="bs">Bosnian</div>
+          </div>
+        </span>               
       </div>
     </div>
 
@@ -38,44 +42,27 @@
       <img src="/images/background.jpg" alt="Hero Background" class="hero-image">
       <div class="hero-overlay">
         <h1>
-          <span id="typing-text"></span>
+          <span id="typing-text" data-typing-text="<%= __('HeroSection.title') %>"></span>
         </h1>
       </div>
-    </div>
+    </div>    
 
     <!-- Content Section -->
     <div class="section">
       <img src="/images/sec1.jpg" alt="Image 1" />
       <div class="text">
-        <h2>Streamline Recruitment</h2>
+        <h2><%= __("ContentSection.streamlineRecruitment.title") %></h2>
         <p>
-          In today’s fast-paced job market, recruitment requires more than just
-          posting job openings. It demands a strategic approach that connects
-          top talent with the right opportunities. By leveraging advanced tools
-          and technology, companies can not only simplify their hiring processes
-          but also build a strong and diverse workforce. From initial
-          applications to final onboarding, effective recruitment ensures that
-          every candidate experiences a seamless and professional journey,
-          fostering trust and building a positive employer brand. Embrace a
-          smarter recruitment strategy that prioritizes efficiency,
-          transparency, and human connection.
+          <%= __("ContentSection.streamlineRecruitment.text") %>
         </p>
       </div>
     </div>
 
     <div class="section">
       <div class="text">
-        <h2>Boost Productivity</h2>
+        <h2><%= __("ContentSection.boostProductivity.title") %></h2>
         <p>
-          In a competitive business landscape, productivity is the cornerstone
-          of success. Empower your team with cutting-edge tools designed to
-          simplify complex hiring processes and eliminate bottlenecks. By
-          automating repetitive tasks, you can free up valuable time for HR
-          professionals to focus on building meaningful connections with
-          candidates. Drive productivity by making data-driven decisions,
-          optimizing workflows, and delivering a faster, more effective
-          recruitment experience that benefits both your organization and job
-          seekers.
+          <%= __("ContentSection.boostProductivity.text") %>
         </p>
       </div>
       <img src="/images/sec2.jpg" alt="Boost Productivity Tools" />
@@ -84,21 +71,14 @@
     <div class="section-register-firm">
       <img src="/images/sec3.jpg" alt="Register Your Company" class="firm-image" />
       <div class="register-text">
-        <h2>Register Your Company</h2>
+        <h2><%= __("RegisterSection.title") %></h2>
         <p>
-          Take the next step in streamlining your recruitment process by registering your company on our platform. 
-          By submitting a registration request, you'll gain access to a suite of tools designed to help you connect with top-tier talent, 
-          manage job postings, and oversee candidate applications efficiently. 
-          Our admin team will review your request to ensure all necessary information is provided. 
-          Upon approval, you'll unlock a dedicated dashboard tailored to meet your recruitment and organizational needs, 
-          providing transparency, ease of management, and opportunities for growth.
+          <%= __("RegisterSection.text1") %>
         </p>
         <p>
-          Empower your business with advanced features and a seamless user experience. 
-          Join our growing network of industry leaders who are transforming the way they recruit and retain exceptional talent. 
-          Submit your request today and let us help you find the right people to drive your company forward.
+          <%= __("RegisterSection.text2") %>
         </p>
-        <button class="btn-register-firm">Register Your Company</button>
+        <button class="btn-register-firm"><%= __("RegisterSection.button") %></button>
       </div>
     </div>
 
@@ -106,66 +86,18 @@
 
     <!-- FAQ Section -->
     <div class="faq">
-      <div class="faq-card">
-        <div class="faq-header">
-          What is Job Finder?
-          <span class="arrow">▼</span>
+      <% const questions = __("FAQSection.questions"); %>
+      <% questions.forEach(question => { %>
+        <div class="faq-card">
+          <div class="faq-header">
+            <%= question.title %>
+            <span class="arrow">▼</span>
+          </div>
+          <div class="faq-content">
+            <%= question.content %>
+          </div>
         </div>
-        <div class="faq-content">
-          Job Finder is a comprehensive platform designed to bridge the gap
-          between job seekers and employers. It empowers organizations to find
-          top-tier talent while providing candidates with the tools and
-          resources needed to land their dream jobs. With features like
-          automated job postings, real-time application tracking, and
-          personalized candidate experiences, Job Finder simplifies the
-          recruitment process for both employers and job seekers.
-        </div>
-      </div>
-      <div class="faq-card">
-        <div class="faq-header">
-          How does Job Finder work?
-          <span class="arrow">▼</span>
-        </div>
-        <div class="faq-content">
-          Job Finder operates as a dual-sided platform. Employers can create
-          detailed job postings, manage applications, and communicate directly
-          with candidates. On the other hand, job seekers can browse
-          opportunities, apply seamlessly, and track their application status in
-          real time. The platform also leverages advanced filtering and matching
-          algorithms to ensure that employers and candidates find the perfect
-          fit, saving time and effort for everyone involved.
-        </div>
-      </div>
-      <div class="faq-card">
-        <div class="faq-header">
-          What features does Job Finder offer to employers?
-          <span class="arrow">▼</span>
-        </div>
-        <div class="faq-content">
-          Employers gain access to a suite of tools that streamline the hiring
-          process. These include dynamic job posting templates, automated email
-          notifications, interview scheduling, candidate ranking, and real-time
-          analytics dashboards. Additionally, the platform provides insightful
-          reports to help organizations evaluate the success of their
-          recruitment campaigns and make data-driven decisions for future hiring
-          strategies.
-        </div>
-      </div>
-      <div class="faq-card">
-        <div class="faq-header">
-          What benefits does Job Finder provide to job seekers?
-          <span class="arrow">▼</span>
-        </div>
-        <div class="faq-content">
-          Job Finder offers job seekers a user-friendly interface to create
-          professional profiles, upload resumes, and showcase their skills. The
-          platform provides real-time updates on application statuses,
-          personalized job recommendations based on their preferences and
-          qualifications, and access to valuable resources like interview tips
-          and career guidance. With Job Finder, candidates can navigate the job
-          market with confidence and ease.
-        </div>
-      </div>
+      <% }) %>
     </div>
 
     <!-- Footer -->
@@ -177,6 +109,7 @@
     <script type="module" src="/js/login-popup.js"></script>
     <script type="module" src="/js/candidate-register-popup.js"></script>
     <script type="module" src="/js/firm-register-popup.js"></script>
+    <script src="/js/language.js"></script>
     <script src="/js/theme.js"></script>
     <script src="/js/typing.js"></script>
     <script src="/js/faq.js"></script>
