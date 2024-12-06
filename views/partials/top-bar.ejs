@@ -1,9 +1,13 @@
 <link rel="stylesheet" href="/styles/top-bar.css" />
+<link rel="stylesheet" href="/styles/hamburger-menu.css" />
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 />
 <div class="top-bar">
+  <div class="hamburger-menu" id="hamburger-menu">
+    <i class="fa-solid fa-bars"></i>
+  </div>
   <div class="logo">
     <img src="/images/logo.png" alt="Logo" />
     <span>Job Finder</span>
@@ -24,3 +28,15 @@
     </span>
   </div>
 </div>
+
+<!-- Hamburger Sidebar -->
+<div class="hamburger-sidebar" id="hamburger-sidebar">
+  <ul>
+    <% menuOptions.forEach(option => { %>
+    <li>
+      <a href="<%= option.link %>"><%= option.name %></a>
+    </li>
+    <% }); %>
+  </ul>
+</div>
+<script src="/js/hamburger-menu.js"></script>

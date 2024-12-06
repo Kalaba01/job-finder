@@ -1,0 +1,38 @@
+/* Sidebar */
+.hamburger-sidebar {
+    position: fixed;
+    top: 1;
+    left: -250px;
+    width: 200px;
+    height: 100vh;
+    background-color: var(--top-bar-bg);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    z-index: 100;
+    transition: left 0.3s ease;
+}
+
+.hamburger-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.hamburger-sidebar ul li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.hamburger-sidebar ul li a {
+    text-decoration: none;
+    color: var(--icon-color);
+    font-size: 1rem;
+}
+
+.hamburger-sidebar ul li a:hover {
+    color: var(--icon-hover-color);
+}
+
+.hamburger-sidebar.open {
+    left: 0;
+}
