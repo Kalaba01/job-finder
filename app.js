@@ -8,6 +8,7 @@ const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const firmRoutes = require("./routes/firmRoutes");
 const candidateRoutes = require('./routes/candidateRoutes');
+const languageMiddleware = require("./middleware/languageMiddleware");
 
 const app = express();
 
@@ -21,13 +22,7 @@ app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
 app.use('/locales', express.static(path.join(__dirname, 'config/locales')));
 
 // Middleware for reading language from cookie
-app.use((req, res, next) => {
-  const lang = req.cookies.lang || "en";
-  if (["en", "bs"].includes(lang)) {
-    res.setLocale(lang);
-  }
-  next();
-});
+app.use(languageMiddleware);
 
 // Middleware for link redirections
 app.use((req, res, next) => {
