@@ -8,6 +8,7 @@ const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const firmRoutes = require("./routes/firmRoutes");
 const candidateRoutes = require("./routes/candidateRoutes");
+const languageRoutes = require("./routes/languageRoutes");
 const languageMiddleware = require("./middleware/languageMiddleware");
 const sessionConfig = require("./config/sessionConfig");
 const passport = require("./config/passport");
@@ -63,17 +64,7 @@ app.use("/firm", firmRoutes);
 app.use("/candidate", candidateRoutes);
 
 // Route for language change
-app.get("/set-language/:lang", (req, res) => {
-  const lang = req.params.lang;
-  if (["en", "bs"].includes(lang)) {
-    res.cookie("lang", lang, { maxAge: 30 * 24 * 60 * 60 * 1000 });
-    res.json({ success: true });
-  } else {
-    res
-      .status(400)
-      .json({ success: false, message: "Invalid language selected" });
-  }
-});
+app.use("/", languageRoutes);
 
 // Glavna ruta
 app.get("/", (req, res) => {
