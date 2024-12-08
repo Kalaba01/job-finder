@@ -10,6 +10,7 @@ const firmRoutes = require("./routes/firmRoutes");
 const candidateRoutes = require("./routes/candidateRoutes");
 const languageRoutes = require("./routes/languageRoutes");
 const languageMiddleware = require("./middleware/languageMiddleware");
+const userRedirectMiddleware = require("./middleware/userRedirectMiddleware");
 const sessionConfig = require("./config/sessionConfig");
 const passport = require("./config/passport");
 
@@ -34,20 +35,7 @@ app.use("/locales", express.static(path.join(__dirname, "config/locales")));
 app.use(languageMiddleware);
 
 // Middleware for link redirections
-app.use((req, res, next) => {
-  const userType = req.user?.type;
-
-  if (userType === "admin") {
-    res.locals.homeUrl = "/admin";
-  } else if (userType === "firm") {
-    res.locals.homeUrl = "/firm";
-  } else if (userType === "candidate") {
-    res.locals.homeUrl = "/candidate";
-  } else {
-    res.locals.homeUrl = "/";
-  }
-  next();
-});
+app.use(userRedirectMiddleware);
 
 // Setting EJS as view engine
 app.set("view engine", "ejs");
