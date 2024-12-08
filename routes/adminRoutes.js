@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { isAuthenticated, isAdmin } = require("../middleware/authMiddleware");
+const { authMiddleware } = require("../middleware");
 
-router.get("/", isAuthenticated, isAdmin, (req, res) => {
+router.get("/", authMiddleware.isAuthenticated, authMiddleware.isAdmin, (req, res) => {
   const menuOptions = [
     { name: "User Management", link: "/admin/users" },
     { name: "Company Approvals", link: "/admin/company-approvals" },

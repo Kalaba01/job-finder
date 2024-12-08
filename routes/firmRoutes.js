@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { isAuthenticated, isFirm } = require("../middleware/authMiddleware");
+const { authMiddleware } = require("../middleware");
 
-router.get("/", isAuthenticated, isFirm, (req, res) => {
+router.get("/", authMiddleware.isAuthenticated, authMiddleware.isFirm, (req, res) => {
   const menuOptions = [
     { name: "Create Job Ad", link: "/firm/create-job-ad" },
     { name: "My Job Ads", link: "/firm/job-ads" },

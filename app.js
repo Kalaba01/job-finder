@@ -4,13 +4,12 @@ const path = require("path");
 const initDatabase = require("./config/initDatabase");
 const cookieParser = require("cookie-parser");
 const i18n = require("./config/i18nConfig");
+const { languageMiddleware, userRedirectMiddleware } = require("./middleware");
 const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const firmRoutes = require("./routes/firmRoutes");
 const candidateRoutes = require("./routes/candidateRoutes");
 const languageRoutes = require("./routes/languageRoutes");
-const languageMiddleware = require("./middleware/languageMiddleware");
-const userRedirectMiddleware = require("./middleware/userRedirectMiddleware");
 const sessionConfig = require("./config/sessionConfig");
 const passport = require("./config/passport");
 
