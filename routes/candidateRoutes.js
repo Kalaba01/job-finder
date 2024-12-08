@@ -1,7 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+const { isAuthenticated, isCandidate } = require("../middleware/authMiddleware");
 
-router.get('/', (req, res) => {
+router.get("/", isAuthenticated, isCandidate, (req, res) => {
   const menuOptions = [
     { name: "My Profile", link: "/candidate/profile" },
     { name: "Job Ads", link: "/candidate/job-ads" },

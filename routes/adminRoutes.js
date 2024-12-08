@@ -1,7 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+const { isAuthenticated, isAdmin } = require("../middleware/authMiddleware");
 
-router.get('/', (req, res) => {
+router.get("/", isAuthenticated, isAdmin, (req, res) => {
   const menuOptions = [
     { name: "User Management", link: "/admin/users" },
     { name: "Company Approvals", link: "/admin/company-approvals" },
@@ -9,9 +10,9 @@ router.get('/', (req, res) => {
     { name: "Reports", link: "/admin/reports" },
     { name: "Reviews Management", link: "/admin/reviews" },
     { name: "Mass Notifications", link: "/admin/notifications" },
-    { name: "Ticket Management", link: "/admin/tickets" },
+    { name: "Ticket Management", link: "/admin/tickets" }
   ];
-  
+
   res.render("admin", { menuOptions, locale: req.getLocale() });
 });
 
