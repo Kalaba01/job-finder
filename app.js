@@ -1,25 +1,33 @@
 require("dotenv").config();
 const express = require("express");
-const path = require('path');
+const path = require("path");
 const initDatabase = require("./config/initDatabase");
 const cookieParser = require("cookie-parser");
 const i18n = require("./config/i18nConfig");
 const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const firmRoutes = require("./routes/firmRoutes");
-const candidateRoutes = require('./routes/candidateRoutes');
+const candidateRoutes = require("./routes/candidateRoutes");
 const languageMiddleware = require("./middleware/languageMiddleware");
+const sessionConfig = require("./config/sessionConfig");
+const passport = require("./config/passport");
 
 const app = express();
+
+app.use(sessionConfig);
 
 // Middleware
 app.use(express.json());
 app.use(i18n.init);
 app.use(cookieParser());
 
+// Passport.js middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static("public"));
 app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
-app.use('/locales', express.static(path.join(__dirname, 'config/locales')));
+app.use("/locales", express.static(path.join(__dirname, "config/locales")));
 
 // Middleware for reading language from cookie
 app.use(languageMiddleware);
@@ -52,7 +60,7 @@ app.use("/auth", authRoutes);
 // User routes
 app.use("/admin", adminRoutes);
 app.use("/firm", firmRoutes);
-app.use('/candidate', candidateRoutes);
+app.use("/candidate", candidateRoutes);
 
 // Route for language change
 app.get("/set-language/:lang", (req, res) => {
@@ -61,7 +69,9 @@ app.get("/set-language/:lang", (req, res) => {
     res.cookie("lang", lang, { maxAge: 30 * 24 * 60 * 60 * 1000 });
     res.json({ success: true });
   } else {
-    res.status(400).json({ success: false, message: "Invalid language selected" });
+    res
+      .status(400)
+      .json({ success: false, message: "Invalid language selected" });
   }
 });
 

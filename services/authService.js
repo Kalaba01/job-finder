@@ -37,7 +37,7 @@ exports.createFirmRequest = async (firmData) => {
     email,
     name,
     address,
-    employees_range,
+    employees_range
   });
 
   return newRequest;
@@ -55,6 +55,16 @@ exports.authenticateUser = async (email, password) => {
     return user;
   } catch (error) {
     console.error("Authentication error:", error);
+    throw error;
+  }
+};
+
+exports.findUserById = async (id) => {
+  try {
+    const user = await User.findByPk(id);
+    return user;
+  } catch (error) {
+    console.error("Error finding user by ID:", error);
     throw error;
   }
 };

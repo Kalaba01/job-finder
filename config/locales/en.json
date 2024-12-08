@@ -2,7 +2,10 @@
 	"TopBar": {
 		"userIcon": "Profile",
 		"themeIcon": "Change Theme",
-		"languageIcon": "Change Language"
+		"languageIcon": "Change Language",
+		"notifications": "TopBar.notifications",
+		"chat": "TopBar.chat",
+		"logout": "TopBar.logout"
 	},
 	"HeroSection": {
 		"title": "Find Your Dream Job Today"
@@ -44,47 +47,47 @@
 		]
 	},
 	"CandidateRegisterPopup": {
-    "title": "Register",
-    "firstNameLabel": "First Name",
-    "firstNamePlaceholder": "Enter your first name",
-    "lastNameLabel": "Last Name",
-    "lastNamePlaceholder": "Enter your last name",
-    "emailLabel": "Email",
-    "emailPlaceholder": "Enter your email",
-    "passwordLabel": "Password",
-    "passwordPlaceholder": "Enter your password",
-    "confirmPasswordLabel": "Confirm Password",
-    "confirmPasswordPlaceholder": "Confirm your password",
-    "registerButton": "Register",
-    "alreadyHaveAccount": "Already have an account?",
-    "loginLink": "Login",
-    "closePopup": "Close"
-  },
-  "FirmRegisterPopup": {
-    "title": "Register Your Company",
-    "emailLabel": "Email",
-    "emailPlaceholder": "Enter your email",
-    "companyNameLabel": "Company Name",
-    "companyNamePlaceholder": "Enter your company name",
-    "addressLabel": "Address",
-    "addressPlaceholder": "Enter your address",
-    "employeesRangeLabel": "Number of Employees",
-    "selectedRange": "Selected Range",
-    "submitButton": "Submit Request",
-    "closePopup": "Close"
-  },
-  "Footer": {
-    "text": "© 2024 Job Finder - All Rights Reserved"
-  },
-  "LoginPopup": {
-    "title": "Login",
-    "emailLabel": "Email",
-    "emailPlaceholder": "Enter your email",
-    "passwordLabel": "Password",
-    "passwordPlaceholder": "Enter your password",
-    "loginButton": "Login",
-    "dontHaveAccount": "Don't have an account?",
-    "registerLink": "Register",
-    "closePopup": "Close"
-  }
+		"title": "Register",
+		"firstNameLabel": "First Name",
+		"firstNamePlaceholder": "Enter your first name",
+		"lastNameLabel": "Last Name",
+		"lastNamePlaceholder": "Enter your last name",
+		"emailLabel": "Email",
+		"emailPlaceholder": "Enter your email",
+		"passwordLabel": "Password",
+		"passwordPlaceholder": "Enter your password",
+		"confirmPasswordLabel": "Confirm Password",
+		"confirmPasswordPlaceholder": "Confirm your password",
+		"registerButton": "Register",
+		"alreadyHaveAccount": "Already have an account?",
+		"loginLink": "Login",
+		"closePopup": "Close"
+	},
+	"FirmRegisterPopup": {
+		"title": "Register Your Company",
+		"emailLabel": "Email",
+		"emailPlaceholder": "Enter your email",
+		"companyNameLabel": "Company Name",
+		"companyNamePlaceholder": "Enter your company name",
+		"addressLabel": "Address",
+		"addressPlaceholder": "Enter your address",
+		"employeesRangeLabel": "Number of Employees",
+		"selectedRange": "Selected Range",
+		"submitButton": "Submit Request",
+		"closePopup": "Close"
+	},
+	"Footer": {
+		"text": "© 2024 Job Finder - All Rights Reserved"
+	},
+	"LoginPopup": {
+		"title": "Login",
+		"emailLabel": "Email",
+		"emailPlaceholder": "Enter your email",
+		"passwordLabel": "Password",
+		"passwordPlaceholder": "Enter your password",
+		"loginButton": "Login",
+		"dontHaveAccount": "Don't have an account?",
+		"registerLink": "Register",
+		"closePopup": "Close"
+	}
 }

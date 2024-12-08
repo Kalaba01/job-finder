@@ -1,4 +1,5 @@
 const authService = require('../services/authService');
+const passport = require("passport");
 
 exports.registerCandidate = async (req, res) => {
   try {
@@ -22,13 +23,21 @@ exports.registerFirmRequest = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
-  const { email, password } = req.body;
+exports.login = (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
 
-  try {
-    const user = await authService.authenticateUser(email, password);
+    if (!user) {
+      return res.status(401).json({ error: info.message });
+    }
 
-    if (user) {
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+
       let redirectUrl;
       switch (user.role) {
         case "admin":
@@ -41,14 +50,10 @@ exports.login = async (req, res) => {
           redirectUrl = "/candidate/";
           break;
         default:
-          return res.status(400).json({ error: "Invalid user role" });
+          redirectUrl = "/";
       }
+
       res.json({ redirectUrl });
-    } else {
-      res.status(401).json({ error: "Invalid email or password" });
-    }
-  } catch (error) {
-    console.error("Login error:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
+    });
+  })(req, res, next);
 };
