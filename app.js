@@ -2,10 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
-const i18n = require("./config/i18nConfig");
-const initDatabase = require("./config/initDatabase");
-const sessionConfig = require("./config/sessionConfig");
-const passport = require("./config/passport");
+const { i18n, initDatabase, passport, sessionConfig } = require("./config");
 const { languageMiddleware, userRedirectMiddleware } = require("./middleware");
 const { adminRoutes, authRoutes, candidateRoutes, firmRoutes, languageRoutes } = require("./routes");
 
