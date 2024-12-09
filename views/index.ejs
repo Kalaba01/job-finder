@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Job Finder</title>
     <link rel="stylesheet" href="/styles/index.css" />
+    <link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="icon" type="image/png" href="/images/logo.png" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&family=Source+Code+Pro:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
   </head>
   <body>
     <!-- Top Bar -->
@@ -20,9 +20,7 @@
         <span class="icon" id="user-icon" title="<%= __("TopBar.userIcon") %>">
           <i class="fa-solid fa-user"></i>
         </span>
-        <span class="icon" id="theme-icon" title="<%= __("TopBar.themeIcon") %>">
-          <i class="fas fa-moon"></i>
-        </span>        
+        <%- include('partials/theme') %>      
         <span class="icon" id="language-icon">
           <i class="fa-solid fa-globe"></i>
           <div class="language-dropdown" id="language-dropdown">
@@ -110,7 +108,6 @@
     <script type="module" src="/js/candidate-register-popup.js"></script>
     <script type="module" src="/js/firm-register-popup.js"></script>
     <script src="/js/language.js"></script>
-    <script src="/js/theme.js"></script>
     <script src="/js/typing.js"></script>
     <script src="/js/faq.js"></script>
   </body>
