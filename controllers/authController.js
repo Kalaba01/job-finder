@@ -57,3 +57,16 @@ exports.login = (req, res, next) => {
     });
   })(req, res, next);
 };
+
+exports.logout = (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      console.error("Error during logout:", err);
+      return res.status(500).json({ success: false, message: "Logout failed" });
+    }
+    req.session.destroy(() => {
+      res.clearCookie("connect.sid");
+      res.status(200).json({ success: true, message: "Logged out successfully" });
+    });
+  });
+};
