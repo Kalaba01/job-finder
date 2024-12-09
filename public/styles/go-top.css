@@ -1,37 +1,54 @@
+/* Definicije varijabli za Light Mode */
+:root {
+    --btn-bg: #007bff;
+    --btn-text: #ffffff;
+    --btn-hover-bg: #0056b3;
+}
+
+/* Definicije varijabli za Dark Mode */
+[data-theme="dark"] {
+    --btn-bg: #ffa500;
+    --btn-text: #121212;
+    --btn-hover-bg: #ff9800;
+}
+
 .go-top {
     position: fixed;
     bottom: 20px;
     right: 20px;
     width: 50px;
     height: 50px;
-    background-color: #007BFF;
+    background-color: var(--btn-bg);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
 }
 
 .go-top span {
     font-size: 1.5rem;
-    color: #ffffff;
+    color: var(--btn-text);
+    transition: color 0.3s ease;
 }
 
 .go-top:hover {
     transform: scale(1.1);
-    background-color: #0056b3;
+    background-color: var(--btn-hover-bg);
 }
 
 .hidden {
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .visible {
     opacity: 1;
     pointer-events: all;
     visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
