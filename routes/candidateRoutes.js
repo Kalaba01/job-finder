@@ -3,7 +3,6 @@ const router = express.Router();
 const { authMiddleware } = require("../middleware");
 
 router.get("/", authMiddleware.isAuthenticated, authMiddleware.isCandidate, (req, res) => {
-  console.log("Radi!!!")
   const menuOptions = [
     { name: "My Profile", link: "/candidate/profile" },
     { name: "Job Ads", link: "/candidate/job-ads" },
