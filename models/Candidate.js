@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/sequelize');
-const User = require('./User');
+const User = require("./User");
+const Image = require("./Image");
 
 const Candidate = sequelize.define('Candidate', {
   user_id: {
@@ -35,8 +36,17 @@ const Candidate = sequelize.define('Candidate', {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  profile_picture_id: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    references: {
+      model: Image,
+      key: 'id',
+    },
+  }
 });
 
 Candidate.belongsTo(User, { foreignKey: 'user_id' });
+Candidate.belongsTo(Image, { foreignKey: 'profile_picture_id' });
 
 module.exports = Candidate;

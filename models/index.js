@@ -6,6 +6,7 @@ const Firm = require("./Firm");
 const Candidate = require("./Candidate");
 const Review = require("./Review");
 const FirmRequest = require("./FirmRequest");
+const Image = require("./Image");
 
 module.exports = {
   sequelize,
@@ -14,5 +15,6 @@ module.exports = {
   Firm,
   Candidate,
   Review,
-  FirmRequest
+  FirmRequest,
+  Image
 };

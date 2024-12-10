@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
+const fs = require('fs');
 const path = require("path");
-const { User, Candidate, FirmRequest } = require('../models');
+const { User, Candidate, FirmRequest, Image } = require('../models');
 const emailService = require("../services/emailService");
 
 exports.registerCandidate = async (candidateData) => {
@@ -15,13 +16,22 @@ exports.registerCandidate = async (candidateData) => {
   const user = await User.create({
     email,
     password: hashedPassword,
-    role: 'candidate',
+    role: 'candidate'
+  });
+
+  const imagePath = path.join(__dirname, '../public/images/default-candidate.jpg');
+  const imageData = fs.readFileSync(imagePath);
+
+  const newImage = await Image.create({
+    data: imageData,
+    mime_type: 'image/jpeg'
   });
 
   const candidate = await Candidate.create({
     user_id: user.id,
     first_name,
     last_name,
+    profile_picture_id: newImage.id
   });
 
   const subject = "Welcome to Job Finder!";
