@@ -3,7 +3,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const { i18n, initDatabase, passport, sessionConfig } = require("./config");
-const { languageMiddleware, userRedirectMiddleware } = require("./middleware");
+const { languageMiddleware, userRedirectMiddleware, authMiddleware } = require("./middleware");
 const { adminRoutes, authRoutes, candidateRoutes, firmRoutes, languageRoutes } = require("./routes");
 
 const app = express();
@@ -47,7 +47,7 @@ app.use("/candidate", candidateRoutes);
 app.use("/", languageRoutes);
 
 // Glavna ruta
-app.get("/", (req, res) => {
+app.get("/", authMiddleware.redirectAuthenticatedUser, (req, res) => {
   res.render("index", { locale: req.getLocale() });
 });
 
