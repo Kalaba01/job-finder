@@ -1,5 +1,7 @@
 const bcrypt = require('bcrypt');
+const path = require("path");
 const { User, Candidate, FirmRequest } = require('../models');
+const emailService = require("../services/emailService");
 
 exports.registerCandidate = async (candidateData) => {
   const { email, password, first_name, last_name } = candidateData;
@@ -21,6 +23,13 @@ exports.registerCandidate = async (candidateData) => {
     first_name,
     last_name,
   });
+
+  const subject = "Welcome to Job Finder!";
+  const templatePath = path.join(__dirname, "../views/emails/welcome.ejs");
+  const cssPath = path.join(__dirname, "../public/styles/emails/welcome.css");
+  const templateData = { first_name };
+
+  await emailService.sendEmail(email, subject, templatePath, templateData, cssPath);
 
   return candidate;
 };

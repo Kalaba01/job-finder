@@ -1,11 +1,11 @@
-/* Definicije varijabli za Light Mode */
+/* Light Mode */
 :root {
     --btn-bg: #007bff;
     --btn-text: #ffffff;
     --btn-hover-bg: #0056b3;
 }
 
-/* Definicije varijabli za Dark Mode */
+/* Dark Mode */
 [data-theme="dark"] {
     --btn-bg: #ffa500;
     --btn-text: #121212;
