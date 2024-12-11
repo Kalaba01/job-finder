@@ -89,5 +89,27 @@
 		"dontHaveAccount": "Nemate račun?",
 		"registerLink": "Registrujte se",
 		"closePopup": "Zatvori"
-	}
+	},
+	"CompanyApprovals": {
+    "title": "Odobrenje Kompanija",
+    "header": "Odobrenje Kompanija",
+    "searchPlaceholder": "Pretraži po imenu...",
+    "filterLabel": "Filtriraj po statusu",
+    "filterAll": "Svi Zahtjevi",
+    "filterPending": "Na čekanju",
+    "filterApproved": "Odobreno",
+    "filterRejected": "Odbijeno",
+    "status": {
+      "pending": "Na čekanju",
+      "approved": "Odobren",
+      "rejected": "Odbijen"
+    },
+    "email": "Email",
+    "address": "Adresa",
+    "employees": "Broj Zaposlenih",
+    "createdAt": "Kreirano",
+    "approve": "Odobri",
+    "reject": "Odbij",
+    "already": "Ovaj zahtjev je već"
+  }
 }

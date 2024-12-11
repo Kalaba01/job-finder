@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="<%= locale %>" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Company Approvals</title>
+    <title><%= __('CompanyApprovals.title') %></title>
     <link rel="stylesheet" href="/styles/company-approvals.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
@@ -12,22 +12,22 @@
 
     <div class="container">
       <header class="page-header">
-        <h1>Company Approvals</h1>
+        <h1><%= __('CompanyApprovals.header') %></h1>
         <div class="filters">
           <!-- Search Input -->
           <input
             type="text"
             id="search-input"
-            placeholder="Search by name..."
-            aria-label="Search by name"
+            placeholder="<%= __('CompanyApprovals.searchPlaceholder') %>"
+            aria-label="<%= __('CompanyApprovals.searchPlaceholder') %>"
           />
 
           <!-- Dropdown Filter -->
-          <select id="status-filter" aria-label="Filter by status">
-            <option value="all">All Requests</option>
-            <option value="pending">Pending</option>
-            <option value="approved">Approved</option>
-            <option value="rejected">Rejected</option>
+          <select id="status-filter" aria-label="<%= __('CompanyApprovals.filterLabel') %>">
+            <option value="all"><%= __('CompanyApprovals.filterAll') %></option>
+            <option value="pending"><%= __('CompanyApprovals.filterPending') %></option>
+            <option value="approved"><%= __('CompanyApprovals.filterApproved') %></option>
+            <option value="rejected"><%= __('CompanyApprovals.filterRejected') %></option>
           </select>
         </div>
       </header>
@@ -36,31 +36,30 @@
         <% firmRequests.forEach(request => { %>
         <div class="card" data-status="<%= request.status %>">
           <div class="card-header">
-            <span class="badge <%= request.status %>"
-              ><%= request.status.toUpperCase() %></span
-            >
+            <span class="badge <%= request.status %>">
+              <%= __('CompanyApprovals.status.' + request.status) %>
+            </span>
             <h3><%= request.name %></h3>
           </div>
           <div class="card-body">
-            <p><strong>Email:</strong> <%= request.email %></p>
-            <p><strong>Address:</strong> <%= request.address %></p>
-            <p><strong>Employees:</strong> <%= request.employees_range %></p>
+            <p><strong><%= __('CompanyApprovals.email') %>:</strong> <%= request.email %></p>
+            <p><strong><%= __('CompanyApprovals.address') %>:</strong> <%= request.address %></p>
+            <p><strong><%= __('CompanyApprovals.employees') %>:</strong> <%= request.employees_range %></p>
             <p>
-              <strong>Created At:</strong> <%= request.createdAt.toDateString()
-              %>
+              <strong><%= __('CompanyApprovals.createdAt') %>:</strong> <%= request.createdAt.toDateString() %>
             </p>
           </div>
           <div class="card-footer">
             <% if (request.status === 'pending') { %>
               <button class="btn approve-btn" data-id="<%= request.id %>">
-                ✔ Approve
+                ✔ <%= __('CompanyApprovals.approve') %>
               </button>
               <button class="btn reject-btn" data-id="<%= request.id %>">
-                ✘ Reject
+                ✘ <%= __('CompanyApprovals.reject') %>
               </button>
             <% } else { %>
               <span class="status-info">
-                This request has already been <%= request.status %>.
+                <%= __('CompanyApprovals.already') %> <%= __('CompanyApprovals.status.' + request.status) %>.
               </span>
             <% } %>
           </div>          
