@@ -17,17 +17,11 @@
         Job Finder
       </div>
       <div class="icons">
-        <span class="icon" id="user-icon" title="<%= __("TopBar.userIcon") %>">
-          <i class="fa-solid fa-user"></i>
-        </span>
+        <%- include('partials/login-register') %>
         <%- include('partials/theme') %>      
         <%- include('partials/language') %>             
       </div>
     </div>
-
-    <!-- Login and Register Popups -->
-    <%- include('partials/login-popup') %>
-    <%- include('partials/candidate-register-popup') %>
 
     <!-- Hero Section -->
     <div class="hero">

@@ -4,11 +4,11 @@
     top: 1;
     left: -250px;
     width: 200px;
-    height: 100vh;
+    margin-top: 70px;
+    height: calc(100vh - 70px);
     background-color: var(--top-bar-bg);
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
     overflow-y: auto;
-    z-index: 100;
     transition: left 0.3s ease;
 }
 
