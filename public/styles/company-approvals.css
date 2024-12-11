@@ -1,7 +1,47 @@
+/* Light Mode */
+:root {
+    --background-color: #f4f5f7;
+    --text-color: #333;
+    --header-color: #007bff;
+    --filter-bg-color: #fff;
+    --filter-border-color: #ccc;
+    --filter-placeholder-color: #999;
+    --card-bg-color: #fff;
+    --card-border-color: #ddd;
+    --card-shadow-color: rgba(0, 0, 0, 0.1);
+    --card-hover-shadow-color: rgba(0, 0, 0, 0.15);
+    --badge-pending-bg-color: #ffc107;
+    --badge-approved-bg-color: #28a745;
+    --badge-rejected-bg-color: #dc3545;
+    --footer-bg-color: #f8f9fa;
+    --footer-border-color: #ddd;
+    --no-results-color: #999;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --background-color: #1e1e1e;
+    --text-color: #e0e0e0;
+    --header-color: #1a73e8;
+    --filter-bg-color: #2a2a2a;
+    --filter-border-color: #444;
+    --filter-placeholder-color: #bbb;
+    --card-bg-color: #2a2a2a;
+    --card-border-color: #444;
+    --card-shadow-color: rgba(0, 0, 0, 0.4);
+    --card-hover-shadow-color: rgba(0, 0, 0, 0.5);
+    --badge-pending-bg-color: #d39e00;
+    --badge-approved-bg-color: #218838;
+    --badge-rejected-bg-color: #c82333;
+    --footer-bg-color: #2a2a2a;
+    --footer-border-color: #444;
+    --no-results-color: #bbb;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f4f5f7;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
     margin: 0;
     padding: 0;
 }
@@ -22,7 +62,7 @@ body {
 .page-header h1 {
     font-size: 2rem;
     font-weight: bold;
-    color: #007bff;
+    color: var(--header-color);
 }
 
 .filters {
@@ -33,13 +73,14 @@ body {
 .filters input,
 .filters select {
     padding: 0.7rem 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--filter-border-color);
     border-radius: 30px;
     font-size: 1rem;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: var(--filter-bg-color);
+    box-shadow: 0 2px 5px var(--card-shadow-color);
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
     outline: none;
+    color: var(--text-color);
 }
 
 .filters input:focus,
@@ -49,7 +90,7 @@ body {
 }
 
 .filters input::placeholder {
-    color: #999;
+    color: var(--filter-placeholder-color);
     font-style: italic;
 }
 
@@ -68,9 +109,9 @@ body {
 }
 
 .card {
-    background-color: #fff;
+    background-color: var(--card-bg-color);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--card-shadow-color);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     flex: 1 1 350px;
@@ -79,17 +120,17 @@ body {
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 12px var(--card-hover-shadow-color);
 }
 
 .card-header {
-    background-color: #007bff;
+    background-color: var(--header-color);
     color: #fff;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--card-border-color);
 }
 
 .card-header h3 {
@@ -106,7 +147,7 @@ body {
 }
 
 .badge.pending {
-    background-color: #ffc107;
+    background-color: var(--badge-pending-bg-color);
     color: #fff;
 }
 
@@ -116,7 +157,7 @@ body {
 }
 
 .badge.rejected {
-    background-color: #dc3545;
+    background-color: var(--badge-approved-bg-color);
     color: #fff;
 }
 
@@ -143,8 +184,8 @@ body {
     padding: 1rem;
     display: flex;
     justify-content: space-between;
-    background-color: #f8f9fa;
-    border-top: 1px solid #ddd;
+    background-color: var(--footer-bg-color);
+    border-top: 1px solid var(--footer-border-color);
 }
 
 .card-footer .btn {
@@ -182,7 +223,7 @@ body {
     text-align: center;
     font-size: 1.25rem;
     font-weight: bold;
-    color: #999;
+    color: var(--no-results-color);
     padding: 2rem;
     width: 100%;
     margin-top: 1.5rem;
