@@ -7,7 +7,6 @@ exports.isAuthenticated = (req, res, next) => {
 
 exports.redirectAuthenticatedUser = (req, res, next) => {
   if (req.isAuthenticated()) {
-    // Proveravamo ulogu korisnika i preusmeravamo ga na odgovarajuću rutu
     if (req.user.role === "admin") {
       return res.redirect("/admin");
     } else if (req.user.role === "firm") {
@@ -16,7 +15,7 @@ exports.redirectAuthenticatedUser = (req, res, next) => {
       return res.redirect("/candidate");
     }
   }
-  next(); // Ako korisnik nije autentifikovan, dozvoljavamo pristup / ruti
+  next();
 };
 
 exports.isAdmin = (req, res, next) => {

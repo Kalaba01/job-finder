@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Approvals</title>
+    <link rel="stylesheet" href="/styles/company-approvals.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+  <body>
+    <%- include('../partials/top-bar') %>
+
+    <div class="container">
+      <header class="page-header">
+        <h1>Company Approvals</h1>
+        <div class="filters">
+          <!-- Search Input -->
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search by name..."
+            aria-label="Search by name"
+          />
+
+          <!-- Dropdown Filter -->
+          <select id="status-filter" aria-label="Filter by status">
+            <option value="all">All Requests</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
+        </div>
+      </header>
+
+      <div class="request-grid">
+        <% firmRequests.forEach(request => { %>
+        <div class="card" data-status="<%= request.status %>">
+          <div class="card-header">
+            <span class="badge <%= request.status %>"
+              ><%= request.status.toUpperCase() %></span
+            >
+            <h3><%= request.name %></h3>
+          </div>
+          <div class="card-body">
+            <p><strong>Email:</strong> <%= request.email %></p>
+            <p><strong>Address:</strong> <%= request.address %></p>
+            <p><strong>Employees:</strong> <%= request.employees_range %></p>
+            <p>
+              <strong>Created At:</strong> <%= request.createdAt.toDateString()
+              %>
+            </p>
+          </div>
+          <div class="card-footer">
+            <% if (request.status === 'pending') { %>
+              <button class="btn approve-btn" data-id="<%= request.id %>">
+                ✔ Approve
+              </button>
+              <button class="btn reject-btn" data-id="<%= request.id %>">
+                ✘ Reject
+              </button>
+            <% } else { %>
+              <span class="status-info">
+                This request has already been <%= request.status %>.
+              </span>
+            <% } %>
+          </div>          
+        </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <script src="/js/company-approvals.js"></script>
+  </body>
+</html>
