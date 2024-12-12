@@ -111,5 +111,31 @@
     "approve": "Approve",
     "reject": "Reject",
     "already": "This request has already been"
+  },
+  "AdminMenu": {
+    "userManagement": "User Management",
+    "companyApprovals": "Company Approvals",
+    "jobAds": "Job Ads",
+    "reports": "Reports",
+    "reviewsManagement": "Reviews Management",
+    "massNotifications": "Mass Notifications",
+    "ticketManagement": "Ticket Management"
+  },
+  "FirmMenu": {
+    "createJobAd": "Create Job Ad",
+    "myJobAds": "My Job Ads",
+    "candidates": "Candidates",
+    "interviewCalendar": "Interview Calendar",
+    "reports": "Reports",
+    "reviews": "Reviews",
+    "tickets": "Tickets"
+  },
+  "CandidateMenu": {
+    "myProfile": "My Profile",
+    "jobAds": "Job Ads",
+    "myApplications": "My Applications",
+    "interviewCalendar": "Interview Calendar",
+    "tickets": "Tickets",
+    "companyReviews": "Company Reviews"
   }
 }

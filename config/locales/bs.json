@@ -77,7 +77,7 @@
 		"closePopup": "Zatvori"
 	},
 	"Footer": {
-		"text": "© 2024 Job Finder - Sva Prava Pridržana"
+		"text": "© 2024 Job Finder - Sva Prava Zadržana"
 	},
 	"LoginPopup": {
 		"title": "Prijava",
@@ -111,5 +111,31 @@
     "approve": "Odobri",
     "reject": "Odbij",
     "already": "Ovaj zahtjev je već"
+  },
+  "AdminMenu": {
+    "userManagement": "Upravljanje korisnicima",
+    "companyApprovals": "Odobrenje kompanija",
+    "jobAds": "Oglasi za posao",
+    "reports": "Izvještaji",
+    "reviewsManagement": "Upravljanje recenzijama",
+    "massNotifications": "Masovne obavijesti",
+    "ticketManagement": "Upravljanje tiketima"
+  },
+  "FirmMenu": {
+    "createJobAd": "Kreiraj oglas za posao",
+    "myJobAds": "Moji oglasi za posao",
+    "candidates": "Kandidati",
+    "interviewCalendar": "Kalendar intervjua",
+    "reports": "Izvještaji",
+    "reviews": "Recenzije",
+    "tickets": "Tiketi"
+  },
+  "CandidateMenu": {
+    "myProfile": "Moj profil",
+    "jobAds": "Oglasi za posao",
+    "myApplications": "Moje prijave",
+    "interviewCalendar": "Kalendar intervjua",
+    "tickets": "Tiketi",
+    "companyReviews": "Recenzije kompanija"
   }
 }
