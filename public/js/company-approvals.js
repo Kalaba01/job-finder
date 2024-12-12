@@ -34,12 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify({ id, status: action }),
         });
 
-        if (response.ok) {
-          alert("Action completed successfully!");
-          location.reload();
-        } else {
-          alert("Action failed.");
-        }
       } catch (error) {
         console.error("Error:", error);
       } finally {
