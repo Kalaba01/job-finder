@@ -91,51 +91,59 @@
 		"closePopup": "Zatvori"
 	},
 	"CompanyApprovals": {
-    "title": "Odobrenje Kompanija",
-    "header": "Odobrenje Kompanija",
-    "searchPlaceholder": "Pretraži po imenu...",
-    "filterLabel": "Filtriraj po statusu",
-    "filterAll": "Svi Zahtjevi",
-    "filterPending": "Na čekanju",
-    "filterApproved": "Odobreno",
-    "filterRejected": "Odbijeno",
-    "status": {
-      "pending": "Na čekanju",
-      "approved": "Odobren",
-      "rejected": "Odbijen"
-    },
-    "email": "Email",
-    "address": "Adresa",
-    "employees": "Broj Zaposlenih",
-    "createdAt": "Kreirano",
-    "approve": "Odobri",
-    "reject": "Odbij",
-    "already": "Ovaj zahtjev je već"
-  },
-  "AdminMenu": {
-    "userManagement": "Upravljanje korisnicima",
-    "companyApprovals": "Odobrenje kompanija",
-    "jobAds": "Oglasi za posao",
-    "reports": "Izvještaji",
-    "reviewsManagement": "Upravljanje recenzijama",
-    "massNotifications": "Masovne obavijesti",
-    "ticketManagement": "Upravljanje tiketima"
-  },
-  "FirmMenu": {
-    "createJobAd": "Kreiraj oglas za posao",
-    "myJobAds": "Moji oglasi za posao",
-    "candidates": "Kandidati",
-    "interviewCalendar": "Kalendar intervjua",
-    "reports": "Izvještaji",
-    "reviews": "Recenzije",
-    "tickets": "Tiketi"
-  },
-  "CandidateMenu": {
-    "myProfile": "Moj profil",
-    "jobAds": "Oglasi za posao",
-    "myApplications": "Moje prijave",
-    "interviewCalendar": "Kalendar intervjua",
-    "tickets": "Tiketi",
-    "companyReviews": "Recenzije kompanija"
-  }
+		"title": "Odobrenje Kompanija",
+		"header": "Odobrenje Kompanija",
+		"searchPlaceholder": "Pretraži po imenu...",
+		"filterLabel": "Filtriraj po statusu",
+		"filterAll": "Svi Zahtjevi",
+		"filterPending": "Na čekanju",
+		"filterApproved": "Odobreno",
+		"filterRejected": "Odbijeno",
+		"status": {
+			"pending": "Na čekanju",
+			"approved": "Odobren",
+			"rejected": "Odbijen"
+		},
+		"email": "Email",
+		"address": "Adresa",
+		"employees": "Broj Zaposlenih",
+		"createdAt": "Kreirano",
+		"approve": "Odobri",
+		"reject": "Odbij",
+		"already": "Ovaj zahtjev je već",
+		"approveTitle": "Odobri zahtjev",
+		"approveMessage": "Jeste li sigurni da želite odobriti ovaj zahtjev?",
+		"rejectTitle": "Odbij zahtjev",
+		"rejectMessage": "Jeste li sigurni da želite odbiti ovaj zahtjev?"
+	},
+	"AdminMenu": {
+		"userManagement": "Upravljanje korisnicima",
+		"companyApprovals": "Odobrenje kompanija",
+		"jobAds": "Oglasi za posao",
+		"reports": "Izvještaji",
+		"reviewsManagement": "Upravljanje recenzijama",
+		"massNotifications": "Masovne obavijesti",
+		"ticketManagement": "Upravljanje tiketima"
+	},
+	"FirmMenu": {
+		"createJobAd": "Kreiraj oglas za posao",
+		"myJobAds": "Moji oglasi za posao",
+		"candidates": "Kandidati",
+		"interviewCalendar": "Kalendar intervjua",
+		"reports": "Izvještaji",
+		"reviews": "Recenzije",
+		"tickets": "Tiketi"
+	},
+	"CandidateMenu": {
+		"myProfile": "Moj profil",
+		"jobAds": "Oglasi za posao",
+		"myApplications": "Moje prijave",
+		"interviewCalendar": "Kalendar intervjua",
+		"tickets": "Tiketi",
+		"companyReviews": "Recenzije kompanija"
+	},
+	"ConfirmModal": {
+		"yes": "Da",
+		"no": "Ne"
+	}
 }

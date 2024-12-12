@@ -8,7 +8,14 @@
     <link rel="stylesheet" href="/styles/confirm.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
-  <body>
+  <body
+    data-approve-title="<%= __('CompanyApprovals.approveTitle') %>"
+    data-approve-message="<%= __('CompanyApprovals.approveMessage') %>"
+    data-reject-title="<%= __('CompanyApprovals.rejectTitle') %>"
+    data-reject-message="<%= __('CompanyApprovals.rejectMessage') %>"
+    data-yes="<%= __('ConfirmModal.yes') %>"
+    data-no="<%= __('ConfirmModal.no') %>"
+  >
     <%- include('../partials/top-bar') %>
 
     <div class="container">
@@ -24,11 +31,20 @@
           />
 
           <!-- Dropdown Filter -->
-          <select id="status-filter" aria-label="<%= __('CompanyApprovals.filterLabel') %>">
+          <select
+            id="status-filter"
+            aria-label="<%= __('CompanyApprovals.filterLabel') %>"
+          >
             <option value="all"><%= __('CompanyApprovals.filterAll') %></option>
-            <option value="pending"><%= __('CompanyApprovals.filterPending') %></option>
-            <option value="approved"><%= __('CompanyApprovals.filterApproved') %></option>
-            <option value="rejected"><%= __('CompanyApprovals.filterRejected') %></option>
+            <option value="pending">
+              <%= __('CompanyApprovals.filterPending') %>
+            </option>
+            <option value="approved">
+              <%= __('CompanyApprovals.filterApproved') %>
+            </option>
+            <option value="rejected">
+              <%= __('CompanyApprovals.filterRejected') %>
+            </option>
           </select>
         </div>
       </header>
@@ -43,34 +59,52 @@
             <h3><%= request.name %></h3>
           </div>
           <div class="card-body">
-            <p><strong><%= __('CompanyApprovals.email') %>:</strong> <%= request.email %></p>
-            <p><strong><%= __('CompanyApprovals.address') %>:</strong> <%= request.address %></p>
-            <p><strong><%= __('CompanyApprovals.employees') %>:</strong> <%= request.employees_range %></p>
             <p>
-              <strong><%= __('CompanyApprovals.createdAt') %>:</strong> <%= request.createdAt.toDateString() %>
+              <strong><%= __('CompanyApprovals.email') %>:</strong> <%=
+              request.email %>
+            </p>
+            <p>
+              <strong><%= __('CompanyApprovals.address') %>:</strong> <%=
+              request.address %>
+            </p>
+            <p>
+              <strong><%= __('CompanyApprovals.employees') %>:</strong> <%=
+              request.employees_range %>
+            </p>
+            <p>
+              <strong><%= __('CompanyApprovals.createdAt') %>:</strong> <%=
+              request.createdAt.toDateString() %>
             </p>
           </div>
           <div class="card-footer">
             <% if (request.status === 'pending') { %>
-              <button class="btn approve-btn" data-id="<%= request.id %>" data-action="approved">
-                ✔ <%= __('CompanyApprovals.approve') %>
-              </button>
-              <button class="btn reject-btn" data-id="<%= request.id %>" data-action="rejected">
-                ✘ <%= __('CompanyApprovals.reject') %>
-              </button>              
+            <button
+              class="btn approve-btn"
+              data-id="<%= request.id %>"
+              data-action="approved"
+            >
+              ✔ <%= __('CompanyApprovals.approve') %>
+            </button>
+            <button
+              class="btn reject-btn"
+              data-id="<%= request.id %>"
+              data-action="rejected"
+            >
+              ✘ <%= __('CompanyApprovals.reject') %>
+            </button>
             <% } else { %>
-              <span class="status-info">
-                <%= __('CompanyApprovals.already') %> <%= __('CompanyApprovals.status.' + request.status) %>.
-              </span>
+            <span class="status-info">
+              <%= __('CompanyApprovals.already') %> <%=
+              __('CompanyApprovals.status.' + request.status) %>.
+            </span>
             <% } %>
-          </div>          
+          </div>
         </div>
         <% }) %>
       </div>
     </div>
 
-    <%- include('../partials/footer') %>
-    <%- include('../partials/confirm') %>
+    <%- include('../partials/footer') %> <%- include('../partials/confirm') %>
 
     <script src="/js/company-approvals.js"></script>
   </body>

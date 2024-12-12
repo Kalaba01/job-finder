@@ -4,16 +4,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("search-input");
   const requestGrid = document.querySelector(".request-grid");
 
+  // Preuzimanje lokalizacija iz `data-` atributa
+  const localizations = {
+    approveTitle: document.body.dataset.approveTitle,
+    approveMessage: document.body.dataset.approveMessage,
+    rejectTitle: document.body.dataset.rejectTitle,
+    rejectMessage: document.body.dataset.rejectMessage,
+    yes: document.body.dataset.yes,
+    no: document.body.dataset.no,
+  };
+
   // Otvori univerzalni modal
-  const openConfirmModal = ({ title, message, action, id }) => {
+  const openConfirmModal = ({ titleKey, messageKey, action, id }) => {
     const confirmModal = document.getElementById("confirm-modal");
     const confirmTitle = document.getElementById("confirm-modal-title");
     const confirmMessage = document.getElementById("confirm-modal-message");
     const confirmYes = document.getElementById("confirm-modal-confirm");
     const confirmNo = document.getElementById("confirm-modal-cancel");
 
-    confirmTitle.textContent = title || "Are you sure?";
-    confirmMessage.textContent = message || "This action cannot be undone.";
+    confirmTitle.textContent = localizations[titleKey] || "Are you sure?";
+    confirmMessage.textContent = localizations[messageKey] || "This action cannot be undone.";
+
+    // Postavi tekst za "Yes" i "No" dugmad
+    confirmYes.textContent = localizations.yes || "Yes";
+    confirmNo.textContent = localizations.no || "No";
 
     // Postavi akciju na "Yes" dugme
     confirmYes.onclick = async () => {
@@ -58,11 +72,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const action = button.dataset.action;
 
       openConfirmModal({
-        title: action === "approved" ? "Approve Request" : "Reject Request",
-        message:
-          action === "approved"
-            ? "Are you sure you want to approve this request?"
-            : "Are you sure you want to reject this request?",
+        titleKey: action === "approved" ? "approveTitle" : "rejectTitle",
+        messageKey: action === "approved" ? "approveMessage" : "rejectMessage",
         action,
         id,
       });

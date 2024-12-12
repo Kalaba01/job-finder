@@ -114,8 +114,10 @@ body {
     box-shadow: 0 4px 8px var(--card-shadow-color);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    flex: 1 1 350px;
-    max-width: 400px;
+    flex: 1 1 300px;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
@@ -136,6 +138,9 @@ body {
 .card-header h3 {
     font-size: 1.25rem;
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .badge {
