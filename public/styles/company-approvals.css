@@ -157,7 +157,7 @@ body {
 }
 
 .badge.rejected {
-    background-color: var(--badge-approved-bg-color);
+    background-color: var(--badge-rejected-bg-color);
     color: #fff;
 }
 

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= __('CompanyApprovals.title') %></title>
     <link rel="stylesheet" href="/styles/company-approvals.css" />
+    <link rel="stylesheet" href="/styles/confirm.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
   <body>
@@ -51,12 +52,12 @@
           </div>
           <div class="card-footer">
             <% if (request.status === 'pending') { %>
-              <button class="btn approve-btn" data-id="<%= request.id %>">
+              <button class="btn approve-btn" data-id="<%= request.id %>" data-action="approved">
                 ✔ <%= __('CompanyApprovals.approve') %>
               </button>
-              <button class="btn reject-btn" data-id="<%= request.id %>">
+              <button class="btn reject-btn" data-id="<%= request.id %>" data-action="rejected">
                 ✘ <%= __('CompanyApprovals.reject') %>
-              </button>
+              </button>              
             <% } else { %>
               <span class="status-info">
                 <%= __('CompanyApprovals.already') %> <%= __('CompanyApprovals.status.' + request.status) %>.
@@ -69,6 +70,7 @@
     </div>
 
     <%- include('../partials/footer') %>
+    <%- include('../partials/confirm') %>
 
     <script src="/js/company-approvals.js"></script>
   </body>
