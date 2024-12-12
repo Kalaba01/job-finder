@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("search-input");
   const requestGrid = document.querySelector(".request-grid");
 
-  // Preuzimanje lokalizacija iz `data-` atributa
   const localizations = {
     approveTitle: document.body.dataset.approveTitle,
     approveMessage: document.body.dataset.approveMessage,
@@ -14,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     no: document.body.dataset.no,
   };
 
-  // Otvori univerzalni modal
   const openConfirmModal = ({ titleKey, messageKey, action, id }) => {
     const confirmModal = document.getElementById("confirm-modal");
     const confirmTitle = document.getElementById("confirm-modal-title");
@@ -25,11 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
     confirmTitle.textContent = localizations[titleKey] || "Are you sure?";
     confirmMessage.textContent = localizations[messageKey] || "This action cannot be undone.";
 
-    // Postavi tekst za "Yes" i "No" dugmad
     confirmYes.textContent = localizations.yes || "Yes";
     confirmNo.textContent = localizations.no || "No";
 
-    // Postavi akciju na "Yes" dugme
     confirmYes.onclick = async () => {
       try {
         const response = await fetch("/admin/company-approvals/update", {
@@ -51,21 +47,18 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
 
-    // Zatvori modal na "No" klik
     confirmNo.onclick = closeConfirmModal;
 
     confirmModal.classList.remove("hidden");
     confirmModal.classList.add("show");
   };
 
-  // Zatvori modal
   const closeConfirmModal = () => {
     const confirmModal = document.getElementById("confirm-modal");
     confirmModal.classList.remove("show");
     confirmModal.classList.add("hidden");
   };
 
-  // Obradi klikove na dugmad za "Approve" i "Reject"
   document.querySelectorAll(".approve-btn, .reject-btn").forEach((button) => {
     button.addEventListener("click", () => {
       const id = button.dataset.id;
@@ -80,7 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Funkcija za filtriranje zahtjeva
   const filterRequests = () => {
     const searchValue = searchInput.value.toLowerCase();
     const statusValue = filterSelect.value;
@@ -118,7 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Dodaj event listener za pretragu i filter
   searchInput.addEventListener("input", filterRequests);
   filterSelect.addEventListener("change", filterRequests);
 });

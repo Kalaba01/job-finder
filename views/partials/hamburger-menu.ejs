@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="/styles/hamburger-menu.css" />
+<div class="hamburger-sidebar" id="hamburger-sidebar">
+  <ul>
+    <% menuOptions.forEach(option => { %>
+    <li>
+      <a href="<%= option.link %>"><%= option.name %></a>
+    </li>
+    <% }); %>
+  </ul>
+</div>
+<script src="/js/hamburger-menu.js"></script>

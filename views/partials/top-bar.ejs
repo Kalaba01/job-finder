@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="/styles/top-bar.css" />
-<link rel="stylesheet" href="/styles/hamburger-menu.css" />
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -31,14 +30,4 @@
   </div>
 </div>
 
-<!-- Hamburger Sidebar -->
-<div class="hamburger-sidebar" id="hamburger-sidebar">
-  <ul>
-    <% menuOptions.forEach(option => { %>
-    <li>
-      <a href="<%= option.link %>"><%= option.name %></a>
-    </li>
-    <% }); %>
-  </ul>
-</div>
-<script src="/js/hamburger-menu.js"></script>
+<%- include('./hamburger-menu') %>
