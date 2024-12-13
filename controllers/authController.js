@@ -1,5 +1,4 @@
 const authService = require('../services/authService');
-const passport = require("passport");
 
 exports.registerCandidate = async (req, res) => {
   try {
@@ -23,39 +22,14 @@ exports.registerFirmRequest = async (req, res) => {
   }
 };
 
-exports.login = (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
-    if (err) {
-      return next(err);
-    }
-
-    if (!user) {
-      return res.status(401).json({ error: info.message });
-    }
-
-    req.logIn(user, (err) => {
-      if (err) {
-        return next(err);
-      }
-
-      let redirectUrl;
-      switch (user.role) {
-        case "admin":
-          redirectUrl = "/admin/";
-          break;
-        case "firm":
-          redirectUrl = "/firm/";
-          break;
-        case "candidate":
-          redirectUrl = "/candidate/";
-          break;
-        default:
-          redirectUrl = "/";
-      }
-
-      res.json({ redirectUrl });
-    });
-  })(req, res, next);
+exports.login = async (req, res, next) => {
+  try {
+    const { redirectUrl } = await authService.login(req, res, next);
+    res.json({ redirectUrl });
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(401).json({ error: error.message });
+  }
 };
 
 exports.logout = (req, res) => {

@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const fs = require("fs");
 const path = require("path");
+const passport = require("passport");
 const { User, Candidate, FirmRequest, Image } = require("../models");
 const emailService = require("../services/emailService");
 
@@ -93,6 +94,43 @@ exports.authenticateUser = async (email, password) => {
     console.error("Authentication error:", error);
     throw error;
   }
+};
+
+exports.login = (req, res, next) => {
+  return new Promise((resolve, reject) => {
+    passport.authenticate("local", (err, user, info) => {
+      if (err) {
+        return reject(err);
+      }
+
+      if (!user) {
+        return reject(new Error(info.message));
+      }
+
+      req.logIn(user, (err) => {
+        if (err) {
+          return reject(err);
+        }
+
+        let redirectUrl;
+        switch (user.role) {
+          case "admin":
+            redirectUrl = "/admin/";
+            break;
+          case "firm":
+            redirectUrl = "/firm/";
+            break;
+          case "candidate":
+            redirectUrl = "/candidate/";
+            break;
+          default:
+            redirectUrl = "/";
+        }
+
+        resolve({ redirectUrl });
+      });
+    })(req, res, next);
+  });
 };
 
 exports.findUserById = async (id) => {
