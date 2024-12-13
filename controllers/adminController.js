@@ -14,9 +14,10 @@ exports.updateFirmRequest = async (req, res) => {
   const { id, status } = req.body;
 
   try {
-    await firmRequestService.updateFirmRequestStatus(id, status);
-    res.status(200).json({ message: "Request updated successfully!" });
+    const result = await firmRequestService.handleFirmRequestUpdate(id, status);
+    res.status(200).json(result);
   } catch (error) {
-    res.status(500).json({ message: "Failed to update request." });
+    console.error("Error updating firm request:", error);
+    res.status(500).json({ message: error.message });
   }
 };

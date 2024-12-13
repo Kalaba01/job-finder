@@ -34,6 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify({ id, status: action }),
         });
 
+        if (response.ok) {
+          location.reload();
+        }
+
       } catch (error) {
         console.error("Error:", error);
       } finally {

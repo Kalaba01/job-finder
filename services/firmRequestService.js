@@ -1,4 +1,6 @@
-const { FirmRequest } = require("../models");
+const { FirmRequest, User, Firm } = require("../models");
+const bcrypt = require("bcrypt");
+const sequelize = require("../config/sequelize");
 
 exports.getAllFirmRequests = async () => {
   try {
@@ -9,11 +11,126 @@ exports.getAllFirmRequests = async () => {
   }
 };
 
+exports.getFirmRequestById = async (id) => {
+  try {
+    return await FirmRequest.findByPk(id);
+  } catch (error) {
+    console.error("Error fetching firm request by ID:", error);
+    throw new Error("Error fetching firm request by ID.");
+  }
+};
+
+exports.firmExistsByEmail = async (email) => {
+  try {
+    const userExists = await User.findOne({ where: { email } });
+
+    if (userExists) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.error("Error checking if firm exists by email:", error);
+    throw new Error("Error checking if firm exists by email.");
+  }
+};
+
+exports.firmExistsByName = async (name) => {
+  try {
+    const firmExists = await Firm.findOne({ where: { name } });
+
+    if (firmExists) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.error("Error checking if firm exists by name:", error);
+    throw new Error("Error checking if firm exists by name.");
+  }
+};
+
 exports.updateFirmRequestStatus = async (id, status) => {
   try {
     return await FirmRequest.update({ status }, { where: { id } });
   } catch (error) {
     console.error("Error updating firm request:", error);
     throw new Error("Error updating firm request.");
+  }
+};
+
+exports.createFirmAccount = async ({ email, password, name, address, employees }) => {
+  const transaction = await sequelize.transaction();
+  try {
+     // Provjera da li već postoji korisnik sa istim e-mailom
+     const emailExists = await this.firmExistsByEmail(email);
+     if (emailExists) {
+       throw new Error("A user with this email already exists.");
+     }
+ 
+     // Provjera da li već postoji firma sa istim imenom
+     const nameExists = await this.firmExistsByName(name);
+     if (nameExists) {
+       throw new Error("A firm with this name already exists.");
+     }
+     
+    const user = await User.create(
+      { email, password, role: "firm" },
+      { transaction }
+    );
+
+    const firm = await Firm.create(
+      { user_id: user.id, name, address, employees },
+      { transaction }
+    );
+
+    await transaction.commit();
+    return { user, firm };
+  } catch (error) {
+    await transaction.rollback();
+    console.error("Error creating firm account:", error);
+    throw new Error("Error creating firm account.");
+  }
+};
+
+exports.handleFirmRequestUpdate = async (id, status) => {
+  const firmRequest = await this.getFirmRequestById(id);
+
+  if (!firmRequest) {
+    throw new Error("Firm request not found.");
+  }
+
+  if (status === "approved") {
+    const tempPassword = Date.now().toString();
+    console.log("Temp password is: ", tempPassword)
+    const hashedPassword = await bcrypt.hash(tempPassword, 10);
+
+    const { user, firm } = await this.createFirmAccount({
+      email: firmRequest.email,
+      password: hashedPassword,
+      name: firmRequest.name,
+      address: firmRequest.address,
+      employees: firmRequest.employees_range,
+    });
+
+    await this.updateFirmRequestStatus(id, "approved");
+
+    return {
+      message: "Firm approved and account created.",
+      user: {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+      },
+      firm: {
+        id: firm.user_id,
+        name: firm.name,
+        address: firm.address,
+        employees: firm.employees,
+      }
+    };
+  } else if (status === "rejected") {
+    await this.updateFirmRequestStatus(id, "rejected");
+    return { message: "Firm request rejected." };
+  } else {
+    throw new Error("Invalid status provided.");
   }
 };
