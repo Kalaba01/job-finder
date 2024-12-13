@@ -13,12 +13,8 @@ exports.showResetPasswordForm = async (req, res) => {
 
 exports.handlePasswordReset = async (req, res) => {
   try {
-    if (!token || !newPassword) {
-      throw new Error("Token and new password are required");
-    }
-    const { token, newPassword } = req.body;
+    const result = await passwordResetService.resetPassword(req.body);
 
-    const result = await passwordResetService.resetPassword(token, newPassword);
     res.status(200).render("success", result);
   } catch (error) {
     console.error("Password reset error:", error);
