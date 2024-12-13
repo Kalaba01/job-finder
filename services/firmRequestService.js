@@ -1,9 +1,10 @@
+const fs = require("fs");
 const path = require("path");
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
 const sequelize = require("../config/sequelize");
 const emailService = require("./emailService");
-const { FirmRequest, User, Firm, PasswordResetToken } = require("../models");
+const { FirmRequest, User, Firm, PasswordResetToken, Image } = require("../models");
 
 exports.getAllFirmRequests = async () => {
   try {
@@ -78,8 +79,21 @@ exports.createFirmAccount = async ({ email, password, name, address, employees }
       { transaction }
     );
 
-    const firm = await Firm.create(
-      { user_id: user.id, name, address, employees },
+     const imagePath = path.join(__dirname, "../public/images/default-firm.jpg");
+     const imageData = fs.readFileSync(imagePath);
+     const defaultImage = await Image.create(
+       { data: imageData, mime_type: "image/jpeg" },
+       { transaction }
+     );
+
+     const firm = await Firm.create(
+      {
+        user_id: user.id,
+        name,
+        address,
+        employees,
+        profile_picture_id: defaultImage.id
+      },
       { transaction }
     );
 
