@@ -3,11 +3,13 @@ const authRoutes = require("./authRoutes");
 const candidateRoutes = require("./candidateRoutes");
 const firmRoutes = require("./firmRoutes");
 const languageRoutes = require("./languageRoutes");
+const passwordResetRoutes = require("./passwordResetRoutes");
 
 module.exports = {
     adminRoutes,
     authRoutes,
     candidateRoutes,
     firmRoutes,
-    languageRoutes
+    languageRoutes,
+    passwordResetRoutes
 }

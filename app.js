@@ -4,13 +4,14 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const { i18n, initDatabase, passport, sessionConfig } = require("./config");
 const { languageMiddleware, userRedirectMiddleware, authMiddleware, notFoundMiddleware } = require("./middleware");
-const { adminRoutes, authRoutes, candidateRoutes, firmRoutes, languageRoutes } = require("./routes");
+const { adminRoutes, authRoutes, candidateRoutes, firmRoutes, languageRoutes, passwordResetRoutes } = require("./routes");
 
 const app = express();
 
 app.use(sessionConfig);
 
 // Middleware
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(i18n.init);
 app.use(cookieParser());
@@ -37,6 +38,7 @@ app.set("views", "./views");
 initDatabase();
 
 app.use("/auth", authRoutes);
+app.use("/", passwordResetRoutes);
 
 // User routes
 app.use("/admin", adminRoutes);

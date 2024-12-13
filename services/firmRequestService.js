@@ -1,6 +1,9 @@
-const { FirmRequest, User, Firm } = require("../models");
+const path = require("path");
 const bcrypt = require("bcrypt");
+const { v4: uuidv4 } = require("uuid");
 const sequelize = require("../config/sequelize");
+const emailService = require("./emailService");
+const { FirmRequest, User, Firm, PasswordResetToken } = require("../models");
 
 exports.getAllFirmRequests = async () => {
   try {
@@ -60,13 +63,11 @@ exports.updateFirmRequestStatus = async (id, status) => {
 exports.createFirmAccount = async ({ email, password, name, address, employees }) => {
   const transaction = await sequelize.transaction();
   try {
-     // Provjera da li već postoji korisnik sa istim e-mailom
      const emailExists = await this.firmExistsByEmail(email);
      if (emailExists) {
        throw new Error("A user with this email already exists.");
      }
  
-     // Provjera da li već postoji firma sa istim imenom
      const nameExists = await this.firmExistsByName(name);
      if (nameExists) {
        throw new Error("A firm with this name already exists.");
@@ -108,27 +109,57 @@ exports.handleFirmRequestUpdate = async (id, status) => {
       password: hashedPassword,
       name: firmRequest.name,
       address: firmRequest.address,
-      employees: firmRequest.employees_range,
+      employees: firmRequest.employees_range
+    });
+
+    const token = uuidv4();
+    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24h
+
+    await PasswordResetToken.create({
+      user_id: user.id,
+      token,
+      expires_at: expiresAt
     });
 
     await this.updateFirmRequestStatus(id, "approved");
+
+    const resetPasswordLink = `http://localhost:3000/reset-password?token=${token}`;
+    const subject = "Welcome to Job Finder!";
+    const templatePath = path.join(__dirname, "../views/emails/firm-approved.ejs");
+    const cssPath = path.join(__dirname, "../public/styles/emails/firm-approved.css");
+    const templateData = {
+      firmName: firm.name,
+      resetPasswordLink
+    };
+
+    await emailService.sendEmail(firmRequest.email, subject, templatePath, templateData, cssPath);
 
     return {
       message: "Firm approved and account created.",
       user: {
         id: user.id,
         email: user.email,
-        role: user.role,
+        role: user.role
       },
       firm: {
         id: firm.user_id,
         name: firm.name,
         address: firm.address,
-        employees: firm.employees,
+        employees: firm.employees
       }
     };
   } else if (status === "rejected") {
     await this.updateFirmRequestStatus(id, "rejected");
+
+    const subject = "Firm Registration Rejected";
+    const templatePath = path.join(__dirname, "../views/emails/firm-rejected.ejs");
+    const cssPath = path.join(__dirname, "../public/styles/emails/firm-rejected.css");
+    const templateData = {
+      firmName: firmRequest.name,
+    };
+
+    await emailService.sendEmail(firmRequest.email, subject, templatePath, templateData, cssPath);
+
     return { message: "Firm request rejected." };
   } else {
     throw new Error("Invalid status provided.");

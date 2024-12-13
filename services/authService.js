@@ -81,6 +81,9 @@ exports.authenticateUser = async (email, password) => {
 exports.findUserById = async (id) => {
   try {
     const user = await User.findByPk(id);
+    if (!user) {
+      throw new Error("User not found");
+    }
     return user;
   } catch (error) {
     console.error("Error finding user by ID:", error);
