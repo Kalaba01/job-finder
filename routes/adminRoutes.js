@@ -16,4 +16,10 @@ router.get("/company-approvals", adminController.getFirmRequests);
 // Ruta za ažuriranje statusa zahteva
 router.post("/company-approvals/update", adminController.updateFirmRequest);
 
+// User Management rute
+router.get("/users", adminController.getUsers);
+router.post("/users/add", adminController.addUser);
+router.put("/users/edit/:id", adminController.editUser);
+router.delete("/users/delete/:id", adminController.deleteUser);
+
 module.exports = router;

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Management</title>
+    <link rel="stylesheet" href="/styles/users.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+  <body>
+    <%- include('../partials/top-bar') %>
+    <div class="container">
+      <h1>User Management</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach(user => { %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.email %></td>
+            <td><%= user.role %></td>
+            <td><%= user.createdAt.toLocaleString() %></td>
+            <td><%= user.updatedAt.toLocaleString() %></td>
+            <td class="action-buttons">
+              <button class="edit-btn">Edit</button>
+              <button class="delete-btn">Delete</button>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <div class="add-user">
+        <button class="add-btn" id="open-modal-btn">Add New User</button>
+      </div>
+    </div>
+
+    <!-- Modal for Adding User -->
+    <div id="user-modal" class="modal">
+        <div class="modal-content">
+          <span class="close-btn" id="close-modal-btn">&times;</span>
+          <h2>Add New User</h2>
+          <hr class="modal-divider" />
+          <form id="add-user-form">
+            <div class="form-group">
+              <label for="role-select">Select Role:</label>
+              <select id="role-select" name="role" required>
+                <option value="" disabled selected>Choose a role</option>
+                <option value="admin">Admin</option>
+                <option value="firm">Firm</option>
+                <option value="candidate">Candidate</option>
+              </select>
+            </div>
+            <div id="role-specific-fields">
+              <!-- Dynamic fields will be inserted here -->
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="save-btn">Save</button>
+              <button type="button" class="cancel-btn" id="close-modal-btn">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>      
+
+    <script src="/js/users.js"></script>
+  </body>
+</html>
