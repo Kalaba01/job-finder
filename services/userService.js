@@ -3,7 +3,7 @@ const firmService = require("./firmService");
 const adminService = require("./adminService");
 const candidateService = require("./candidateService");
 const sequelize = require("../config/sequelize");
-const { User, Firm, Candidate } = require("../models");
+const { User, Firm, Candidate, Admin, Image } = require("../models");
 
 exports.checkIfUserWithEmailExists = async (email) => {
   if (!email) {
@@ -54,14 +54,12 @@ exports.getAllUsers = async () => {
 
 exports.getUserDetails = async (userId) => {
   try {
-    // Pronađi osnovne informacije o korisniku
     const user = await User.findByPk(userId);
 
     if (!user) {
       throw new Error("User not found.");
     }
 
-    // Osnovni podaci zajednički za sve korisnike
     const userDetails = {
       id: user.id,
       email: user.email,
@@ -70,7 +68,6 @@ exports.getUserDetails = async (userId) => {
       updatedAt: user.updatedAt,
     };
 
-    // Dohvati specifične podatke na osnovu uloge korisnika
     if (user.role === "firm") {
       const firm = await Firm.findOne({ where: { user_id: user.id } });
       if (firm) {
@@ -86,7 +83,6 @@ exports.getUserDetails = async (userId) => {
       }
     }
 
-    // Vraćamo kompletne detalje korisnika
     return userDetails;
   } catch (error) {
     console.error("Error fetching user details:", error.message || error);
@@ -141,10 +137,8 @@ exports.updateUser = async (userId, updatedData) => {
       throw new Error("User not found.");
     }
 
-    // Ažuriraj podatke korisnika u tabeli Users
     await user.update(updatedData);
 
-    // Ažuriraj podatke specifične za ulogu korisnika
     if (user.role === "firm") {
       const { name, address, employees_range } = updatedData;
 
@@ -172,7 +166,7 @@ exports.updateUser = async (userId, updatedData) => {
       });
     }
 
-    return user; // Vraća ažuriranog korisnika
+    return user;
   } catch (error) {
     console.error("Error updating user:", error);
     throw new Error("Error updating user.");
@@ -184,6 +178,22 @@ exports.deleteUser = async (userId) => {
     const user = await User.findByPk(userId);
     if (!user) {
       throw new Error("User not found.");
+    }
+
+    if (user.role === "admin") {
+      await Admin.destroy({ where: { user_id: userId } });
+    } else if (user.role === "firm") {
+      const firm = await Firm.findOne({ where: { user_id: userId } });
+      if (firm && firm.profile_picture_id) {
+        await Image.destroy({ where: { id: firm.profile_picture_id } });
+      }
+      await Firm.destroy({ where: { user_id: userId } });
+    } else if (user.role === "candidate") {
+      const candidate = await Candidate.findOne({ where: { user_id: userId } });
+      if (candidate && candidate.profile_picture_id) {
+        await Image.destroy({ where: { id: candidate.profile_picture_id } });
+      }
+      await Candidate.destroy({ where: { user_id: userId } });
     }
 
     await user.destroy();

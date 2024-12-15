@@ -151,6 +151,39 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Dodavanje EventListener-a na Delete dugmad
+  document.querySelectorAll(".delete-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const userId = btn.getAttribute("data-id");
+
+      openConfirmModal({
+        title: "Delete User",
+        message:
+          "Are you sure you want to delete this user? This action cannot be undone.",
+        action: "delete",
+        id: userId,
+        onConfirm: async (id) => {
+          try {
+            const response = await fetch(`/admin/users/delete/${id}`, {
+              method: "DELETE",
+            });
+
+            if (response.ok) {
+              alert("User deleted successfully!");
+              location.reload();
+            } else {
+              const error = await response.json();
+              alert(`Failed to delete user: ${error.message}`);
+            }
+          } catch (error) {
+            console.error("Error deleting user:", error);
+            alert("An error occurred while deleting the user.");
+          }
+        },
+      });
+    });
+  });
+
   const populateRoleSpecificFields = (userData) => {
     const {
       id,
