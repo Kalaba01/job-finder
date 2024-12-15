@@ -36,8 +36,17 @@
             <td><%= user.createdAt.toLocaleString() %></td>
             <td><%= user.updatedAt.toLocaleString() %></td>
             <td class="action-buttons">
-              <button class="edit-btn">Edit</button>
-              <button class="delete-btn">Delete</button>
+              <button
+                class="edit-btn"
+                data-id="<%= user.id %>"
+                data-email="<%= user.email %>"
+                data-role="<%= user.role %>"
+              >
+                Edit
+              </button>
+              <button class="delete-btn" data-id="<%= user.id %>">
+                Delete
+              </button>
             </td>
           </tr>
           <% }) %>
@@ -48,14 +57,14 @@
       </div>
     </div>
 
-    <!-- Modal for Adding User -->
+    <!-- Modal for Adding/Editing User -->
     <div id="user-modal" class="modal">
       <div class="modal-content">
         <span class="close-btn" id="close-modal-btn">&times;</span>
-        <h2>Add New User</h2>
+        <h2 id="modal-title">Add New User</h2>
         <hr class="modal-divider" />
         <form id="add-user-form">
-          <div class="form-group">
+          <div id="role-select-container" class="form-group">
             <label for="role-select">Select Role:</label>
             <select id="role-select" name="role" required>
               <option value="" disabled selected>Choose a role</option>

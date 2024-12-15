@@ -3,7 +3,7 @@ const firmService = require("./firmService");
 const adminService = require("./adminService");
 const candidateService = require("./candidateService");
 const sequelize = require("../config/sequelize");
-const { User } = require("../models");
+const { User, Firm, Candidate } = require("../models");
 
 exports.checkIfUserWithEmailExists = async (email) => {
   if (!email) {
@@ -49,6 +49,48 @@ exports.getAllUsers = async () => {
   } catch (error) {
     console.error("Error fetching users:", error);
     throw new Error("Error fetching users.");
+  }
+};
+
+exports.getUserDetails = async (userId) => {
+  try {
+    // Pronađi osnovne informacije o korisniku
+    const user = await User.findByPk(userId);
+
+    if (!user) {
+      throw new Error("User not found.");
+    }
+
+    // Osnovni podaci zajednički za sve korisnike
+    const userDetails = {
+      id: user.id,
+      email: user.email,
+      role: user.role,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+    };
+
+    // Dohvati specifične podatke na osnovu uloge korisnika
+    if (user.role === "firm") {
+      const firm = await Firm.findOne({ where: { user_id: user.id } });
+      if (firm) {
+        userDetails.name = firm.name;
+        userDetails.address = firm.address;
+        userDetails.employees_range = firm.employees;
+      }
+    } else if (user.role === "candidate") {
+      const candidate = await Candidate.findOne({ where: { user_id: user.id } });
+      if (candidate) {
+        userDetails.first_name = candidate.first_name;
+        userDetails.last_name = candidate.last_name;
+      }
+    }
+
+    // Vraćamo kompletne detalje korisnika
+    return userDetails;
+  } catch (error) {
+    console.error("Error fetching user details:", error.message || error);
+    throw new Error("Error fetching user details.");
   }
 };
 
@@ -99,7 +141,38 @@ exports.updateUser = async (userId, updatedData) => {
       throw new Error("User not found.");
     }
 
-    return await user.update(updatedData);
+    // Ažuriraj podatke korisnika u tabeli Users
+    await user.update(updatedData);
+
+    // Ažuriraj podatke specifične za ulogu korisnika
+    if (user.role === "firm") {
+      const { name, address, employees_range } = updatedData;
+
+      const firm = await Firm.findOne({ where: { user_id: userId } });
+      if (!firm) {
+        throw new Error("Firm details not found.");
+      }
+
+      await firm.update({
+        name: name || firm.name,
+        address: address || firm.address,
+        employees: employees_range || firm.employees,
+      });
+    } else if (user.role === "candidate") {
+      const { first_name, last_name } = updatedData;
+
+      const candidate = await Candidate.findOne({ where: { user_id: userId } });
+      if (!candidate) {
+        throw new Error("Candidate details not found.");
+      }
+
+      await candidate.update({
+        first_name: first_name || candidate.first_name,
+        last_name: last_name || candidate.last_name,
+      });
+    }
+
+    return user; // Vraća ažuriranog korisnika
   } catch (error) {
     console.error("Error updating user:", error);
     throw new Error("Error updating user.");

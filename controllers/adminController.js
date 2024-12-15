@@ -53,9 +53,25 @@ exports.addUser = async (req, res) => {
   }
 };
 
-exports.editUser = async (req, res) => {
+exports.getUserDetails = async (req, res) => {
   try {
     const userId = req.params.id;
+    const userDetails = await userService.getUserDetails(userId);
+
+    res.status(200).json(userDetails);
+  } catch (error) {
+    console.error("Error fetching user details:", error.message || error);
+    res.status(500).json({ message: error.message || "Error fetching user details." });
+  }
+};
+
+exports.editUser = async (req, res) => {
+  try {
+    const userId = req.body.id;
+    if (!userId) {
+      throw new Error("User ID is required.");
+    }
+
     const updatedData = req.body;
     const updatedUser = await userService.updateUser(userId, updatedData);
     res.status(200).json({ message: "User updated successfully", updatedUser });

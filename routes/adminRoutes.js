@@ -19,6 +19,7 @@ router.post("/company-approvals/update", adminController.updateFirmRequest);
 // User Management rute
 router.get("/users", adminController.getUsers);
 router.post("/users/add", adminController.addUser);
+router.get("/users/details/:id", adminController.getUserDetails);
 router.put("/users/edit/:id", adminController.editUser);
 router.delete("/users/delete/:id", adminController.deleteUser);
 
