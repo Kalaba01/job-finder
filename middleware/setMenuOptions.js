@@ -5,7 +5,6 @@ module.exports = (req, res, next) => {
     }
   
     const role = req.user.role;
-  
     const translate = res.__.bind(res);
   
     switch (role) {
@@ -23,6 +22,7 @@ module.exports = (req, res, next) => {
   
       case "firm":
         res.locals.menuOptions = [
+          { name: translate("CommonMenu.profile"), link: "/firm/profile" },
           { name: translate("FirmMenu.createJobAd"), link: "/firm/create-job-ad" },
           { name: translate("FirmMenu.myJobAds"), link: "/firm/job-ads" },
           { name: translate("FirmMenu.candidates"), link: "/firm/candidates" },
@@ -35,6 +35,7 @@ module.exports = (req, res, next) => {
   
       case "candidate":
         res.locals.menuOptions = [
+          { name: translate("CommonMenu.profile"), link: "/candidate/profile" },
           { name: translate("CandidateMenu.myProfile"), link: "/candidate/profile" },
           { name: translate("CandidateMenu.jobAds"), link: "/candidate/job-ads" },
           { name: translate("CandidateMenu.myApplications"), link: "/candidate/applications" },

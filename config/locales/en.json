@@ -126,6 +126,7 @@
 		"ticketManagement": "Ticket Management"
 	},
 	"FirmMenu": {
+		"profile": "Profile",
 		"createJobAd": "Create Job Ad",
 		"myJobAds": "My Job Ads",
 		"candidates": "Candidates",
@@ -135,6 +136,7 @@
 		"tickets": "Tickets"
 	},
 	"CandidateMenu": {
+		"profile": "Profile",
 		"myProfile": "My Profile",
 		"jobAds": "Job Ads",
 		"myApplications": "My Applications",

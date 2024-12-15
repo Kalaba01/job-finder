@@ -126,6 +126,7 @@
 		"ticketManagement": "Upravljanje tiketima"
 	},
 	"FirmMenu": {
+		"profile": "Profil",
 		"createJobAd": "Kreiraj oglas za posao",
 		"myJobAds": "Moji oglasi za posao",
 		"candidates": "Kandidati",
@@ -135,6 +136,7 @@
 		"tickets": "Tiketi"
 	},
 	"CandidateMenu": {
+		"profile": "Profil",
 		"myProfile": "Moj profil",
 		"jobAds": "Oglasi za posao",
 		"myApplications": "Moje prijave",
