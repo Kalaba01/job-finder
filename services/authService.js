@@ -1,84 +1,6 @@
 const bcrypt = require("bcrypt");
-const fs = require("fs");
-const path = require("path");
 const passport = require("passport");
-const { User, Candidate, FirmRequest, Image } = require("../models");
-const emailService = require("../services/emailService");
-
-exports.registerCandidate = async (candidateData) => {
-  const { email, password, first_name, last_name } = candidateData;
-
-  const existingUser = await User.findOne({ where: { email } });
-  if (existingUser) {
-    throw new Error("Email is already in use");
-  }
-
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const user = await User.create({
-    email,
-    password: hashedPassword,
-    role: "candidate",
-  });
-
-  const imagePath = path.join(
-    __dirname,
-    "../public/images/default-candidate.jpg"
-  );
-  const imageData = fs.readFileSync(imagePath);
-
-  const newImage = await Image.create({
-    data: imageData,
-    mime_type: "image/jpeg",
-  });
-
-  const candidate = await Candidate.create({
-    user_id: user.id,
-    first_name,
-    last_name,
-    profile_picture_id: newImage.id,
-  });
-
-  const subject = "Welcome to Job Finder!";
-  const templatePath = path.join(__dirname, "../views/emails/welcome.ejs");
-  const cssPath = path.join(__dirname, "../public/styles/emails/welcome.css");
-  const templateData = { first_name };
-
-  await emailService.sendEmail(
-    email,
-    subject,
-    templatePath,
-    templateData,
-    cssPath
-  );
-
-  return candidate;
-};
-
-exports.createFirmRequest = async (firmData) => {
-  try {
-    const { email, name, address, employees_range } = firmData;
-
-    const existingPendingRequest = await FirmRequest.findOne({
-      where: { email, status: "pending" },
-    });
-
-    if (existingPendingRequest) {
-      throw new Error("You already have a pending registration request.");
-    }
-
-    const newRequest = await FirmRequest.create({
-      email,
-      name,
-      address,
-      employees_range
-    });
-
-    return newRequest;
-  } catch (error) {
-    console.error("Error creating firm request:", error);
-    throw error;
-  }
-};
+const { User } = require("../models");
 
 exports.authenticateUser = async (email, password) => {
   try {
@@ -131,17 +53,4 @@ exports.login = (req, res, next) => {
       });
     })(req, res, next);
   });
-};
-
-exports.findUserById = async (id) => {
-  try {
-    const user = await User.findByPk(id);
-    if (!user) {
-      throw new Error("User not found");
-    }
-    return user;
-  } catch (error) {
-    console.error("Error finding user by ID:", error);
-    throw error;
-  }
 };

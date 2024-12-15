@@ -1,10 +1,59 @@
-const fs = require("fs");
-const path = require("path");
 const bcrypt = require("bcrypt");
-const { v4: uuidv4 } = require("uuid");
-const sequelize = require("../config/sequelize");
 const emailService = require("./emailService");
-const { FirmRequest, User, Firm, PasswordResetToken, Image } = require("../models");
+const firmService = require("./firmService");
+const passwordResetService = require("./passwordResetService");
+const { sequelize } = require("../models");
+const { FirmRequest } = require("../models");
+
+exports.checkPendingFirmRequest = async (email) => {
+  try {
+    const existingPendingRequest = await FirmRequest.findOne({
+      where: { email, status: "pending" },
+    });
+
+    if (existingPendingRequest) {
+      throw new Error("You already have a pending registration request.");
+    }
+  } catch (error) {
+    console.error("Error checking pending firm request:", error.message || error);
+    throw new Error("Failed to check pending registration request.");
+  }
+};
+
+exports.getFirmRequestById = async (id) => {
+  try {
+    const firmRequest = await FirmRequest.findByPk(id);
+
+    if (!firmRequest) {
+      throw new Error(`Firm request with ID ${id} not found.`);
+    }
+
+    return firmRequest;
+  } catch (error) {
+    console.error("Error fetching firm request by ID:", error.message || error);
+    throw new Error("Error fetching firm request by ID.");
+  }
+};
+
+exports.createFirmRequest = async (firmData) => {
+  try {
+    const { email, name, address, employees_range } = firmData;
+
+    await this.checkPendingFirmRequest(email);
+
+    const newRequest = await FirmRequest.create({
+      email,
+      name,
+      address,
+      employees_range
+    });
+
+    return newRequest;
+  } catch (error) {
+    console.error("Error creating firm request:", error);
+    throw error;
+  }
+};
 
 exports.getAllFirmRequests = async () => {
   try {
@@ -15,167 +64,67 @@ exports.getAllFirmRequests = async () => {
   }
 };
 
-exports.getFirmRequestById = async (id) => {
+exports.updateFirmRequestStatus = async (id, status, transaction = null) => {
   try {
-    return await FirmRequest.findByPk(id);
+    return await FirmRequest.update(
+      { status },
+      { where: { id }, transaction }
+    );
   } catch (error) {
-    console.error("Error fetching firm request by ID:", error);
-    throw new Error("Error fetching firm request by ID.");
-  }
-};
-
-exports.firmExistsByEmail = async (email) => {
-  try {
-    const userExists = await User.findOne({ where: { email } });
-
-    if (userExists) {
-      return true;
-    }
-    return false;
-  } catch (error) {
-    console.error("Error checking if firm exists by email:", error);
-    throw new Error("Error checking if firm exists by email.");
-  }
-};
-
-exports.firmExistsByName = async (name) => {
-  try {
-    const firmExists = await Firm.findOne({ where: { name } });
-
-    if (firmExists) {
-      return true;
-    }
-    return false;
-  } catch (error) {
-    console.error("Error checking if firm exists by name:", error);
-    throw new Error("Error checking if firm exists by name.");
-  }
-};
-
-exports.updateFirmRequestStatus = async (id, status) => {
-  try {
-    return await FirmRequest.update({ status }, { where: { id } });
-  } catch (error) {
-    console.error("Error updating firm request:", error);
+    console.error("Error updating firm request:", error.message || error);
     throw new Error("Error updating firm request.");
   }
 };
 
-exports.createFirmAccount = async ({ email, password, name, address, employees }) => {
+exports.handleFirmRequestUpdate = async (id, status) => {
   const transaction = await sequelize.transaction();
   try {
-     const emailExists = await this.firmExistsByEmail(email);
-     if (emailExists) {
-       throw new Error("A user with this email already exists.");
-     }
- 
-     const nameExists = await this.firmExistsByName(name);
-     if (nameExists) {
-       throw new Error("A firm with this name already exists.");
-     }
-     
-    const user = await User.create(
-      { email, password, role: "firm" },
-      { transaction }
-    );
+    const firmRequest = await this.getFirmRequestById(id);
 
-     const imagePath = path.join(__dirname, "../public/images/default-firm.jpg");
-     const imageData = fs.readFileSync(imagePath);
-     const defaultImage = await Image.create(
-       { data: imageData, mime_type: "image/jpeg" },
-       { transaction }
-     );
+    if (status === "approved") {
+      const tempPassword = Date.now().toString();
+      const hashedPassword = await bcrypt.hash(tempPassword, 10);
 
-     const firm = await Firm.create(
-      {
-        user_id: user.id,
-        name,
-        address,
-        employees,
-        profile_picture_id: defaultImage.id
-      },
-      { transaction }
-    );
+      const { user, firm } = await firmService.createFirmAccount(
+        firmRequest.email,
+        hashedPassword,
+        firmRequest.name,
+        firmRequest.address,
+        firmRequest.employees_range,
+        transaction
+      );
 
-    await transaction.commit();
-    return { user, firm };
+      const { token } = await passwordResetService.createPasswordResetToken(user.id, transaction);
+      await this.updateFirmRequestStatus(id, "approved", transaction);
+      await transaction.commit();
+
+      await emailService.sendFirmApprovedEmail(firmRequest.email, firmRequest.name, token);
+      return {
+        message: "Firm approved and account created.",
+        user: {
+          id: user.id,
+          email: user.email,
+          role: user.role,
+        },
+        firm: {
+          id: firm.user_id,
+          name: firm.name,
+          address: firm.address,
+          employees: firm.employees,
+        },
+      };
+    } else if (status === "rejected") {
+      await this.updateFirmRequestStatus(id, "rejected", transaction);
+      await transaction.commit();
+
+      await emailService.sendFirmRejectEmail(firmRequest.email, firmRequest.name);
+      return { message: "Firm request rejected." };
+    } else {
+      throw new Error("Invalid status provided.");
+    }
   } catch (error) {
     await transaction.rollback();
-    console.error("Error creating firm account:", error);
-    throw new Error("Error creating firm account.");
-  }
-};
-
-exports.handleFirmRequestUpdate = async (id, status) => {
-  const firmRequest = await this.getFirmRequestById(id);
-
-  if (!firmRequest) {
-    throw new Error("Firm request not found.");
-  }
-
-  if (status === "approved") {
-    const tempPassword = Date.now().toString();
-    console.log("Temp password is: ", tempPassword)
-    const hashedPassword = await bcrypt.hash(tempPassword, 10);
-
-    const { user, firm } = await this.createFirmAccount({
-      email: firmRequest.email,
-      password: hashedPassword,
-      name: firmRequest.name,
-      address: firmRequest.address,
-      employees: firmRequest.employees_range
-    });
-
-    const token = uuidv4();
-    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24h
-
-    await PasswordResetToken.create({
-      user_id: user.id,
-      token,
-      expires_at: expiresAt
-    });
-
-    await this.updateFirmRequestStatus(id, "approved");
-
-    const resetPasswordLink = `http://localhost:3000/reset-password?token=${token}`;
-    const subject = "Welcome to Job Finder!";
-    const templatePath = path.join(__dirname, "../views/emails/firm-approved.ejs");
-    const cssPath = path.join(__dirname, "../public/styles/emails/firm-approved.css");
-    const templateData = {
-      firmName: firm.name,
-      resetPasswordLink
-    };
-
-    await emailService.sendEmail(firmRequest.email, subject, templatePath, templateData, cssPath);
-
-    return {
-      message: "Firm approved and account created.",
-      user: {
-        id: user.id,
-        email: user.email,
-        role: user.role
-      },
-      firm: {
-        id: firm.user_id,
-        name: firm.name,
-        address: firm.address,
-        employees: firm.employees
-      }
-    };
-  } else if (status === "rejected") {
-    await this.updateFirmRequestStatus(id, "rejected");
-
-    const subject = "Firm Registration Rejected";
-    const templatePath = path.join(__dirname, "../views/emails/firm-rejected.ejs");
-    const cssPath = path.join(__dirname, "../public/styles/emails/firm-rejected.css");
-    const templateData = {
-      firmName: firmRequest.name,
-    };
-
-    await emailService.sendEmail(firmRequest.email, subject, templatePath, templateData, cssPath);
-
-    return { message: "Firm request rejected." };
-  } else {
-    throw new Error("Invalid status provided.");
+    console.error("Error handling firm request update:", error.message || error);
+    throw new Error("Failed to handle firm request update.");
   }
 };

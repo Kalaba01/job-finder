@@ -35,17 +35,17 @@ exports.getUsers = async (req, res) => {
 
 exports.addUser = async (req, res) => {
   try {
-    const { email, password, role, ...extraData } = req.body;
+    const { email, password, role, employees_range, ...extraData } = req.body;
 
-    if (role === "firm" && !extraData.name) {
+    if (role === "firm" && (!extraData.name || !employees_range)) {
       throw new Error("Firm name is required for firms.");
     }
     if (role === "candidate" && (!extraData.first_name || !extraData.last_name)) {
       throw new Error("First name and last name are required for candidates.");
     }
 
-    const userData = { email, password, role, ...extraData };
-    const newUser = await userService.createUser(userData);
+    const userData = { email, password, role, employees_range, ...extraData };
+    const newUser = await userService.addUser(userData);
     res.status(201).json({ message: "User added successfully", newUser });
   } catch (error) {
     console.error("Error adding user:", error);

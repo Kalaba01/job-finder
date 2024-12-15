@@ -1,6 +1,7 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const authService = require("../services/authService");
+const userService = require("../services/userService");
 
 passport.use(
   new LocalStrategy(
@@ -30,7 +31,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const user = await authService.findUserById(id);
+    const user = await userService.findUserById(id);
     done(null, user);
   } catch (error) {
     done(error, null);

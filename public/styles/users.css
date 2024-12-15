@@ -227,3 +227,8 @@ tbody tr:hover {
     background-color: #b02a37;
     transform: scale(1.05);
 }
+
+.slider-values {
+    padding-top: 1.5rem;
+    text-align: center;
+}

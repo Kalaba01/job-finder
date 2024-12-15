@@ -1,9 +1,11 @@
 const authService = require('../services/authService');
+const candidateService = require("../services/candidateService");
+const firmRequestService = require("../services/firmRequestService");
 
 exports.registerCandidate = async (req, res) => {
   try {
-    const candidateData = req.body;
-    const newCandidate = await authService.registerCandidate(candidateData);
+    const { email, password, first_name, last_name } = req.body;
+    const newCandidate = await candidateService.registerCandidate(email, password, first_name, last_name);
     res.status(201).json({ message: "Candidate registered successfully" });
   } catch (error) {
     console.error("Error registering candidate:", error);
@@ -14,7 +16,7 @@ exports.registerCandidate = async (req, res) => {
 exports.registerFirmRequest = async (req, res) => {
   try {
     const firmData = req.body;
-    const newRequest = await authService.createFirmRequest(firmData);
+    const newRequest = await firmRequestService.createFirmRequest(firmData);
     res.status(201).json({ message: 'Firm registration request submitted successfully' });
   } catch (error) {
     console.error('Error submitting firm registration request:', error);

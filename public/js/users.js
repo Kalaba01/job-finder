@@ -46,23 +46,56 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     } else if (role === "firm") {
       roleSpecificFields.innerHTML = `
-          <div class="form-group">
-            <label for="firm-email">Email:</label>
-            <input type="email" id="firm-email" name="email" required />
+        <div class="form-group">
+          <label for="firm-email">Email:</label>
+          <input type="email" id="firm-email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="firm-password">Password:</label>
+          <input type="password" id="firm-password" name="password" required />
+        </div>
+        <div class="form-group">
+          <label for="firm-name">Firm Name:</label>
+          <input type="text" id="firm-name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="firm-address">Firm Address:</label>
+          <input type="text" id="firm-address" name="address" required />
+        </div>
+        <div class="form-group">
+          <label for="firm-employees">Number of Employees:</label>
+          <div id="firm-employees-slider"></div>
+          <input type="hidden" id="firm-employees-range" name="employees_range" />
+          <div class="slider-values"> Selected Range:
+            <span id="min-employees">0</span>
+            <span> - </span>
+            <span id="max-employees">100</span>
           </div>
-          <div class="form-group">
-            <label for="firm-password">Password:</label>
-            <input type="password" id="firm-password" name="password" required />
-          </div>
-          <div class="form-group">
-            <label for="firm-name">Firm Name:</label>
-            <input type="text" id="firm-name" name="name" required />
-          </div>
-          <div class="form-group">
-            <label for="firm-address">Firm Address:</label>
-            <input type="text" id="firm-address" name="address" required />
-          </div>
-        `;
+        </div>
+      `;
+  
+      // Initialize noUiSlider
+      const slider = document.getElementById("firm-employees-slider");
+      const rangeInput = document.getElementById("firm-employees-range");
+      const minLabel = document.getElementById("min-employees");
+      const maxLabel = document.getElementById("max-employees");
+  
+      noUiSlider.create(slider, {
+        start: [10, 50],
+        connect: true,
+        range: {
+          min: 0,
+          max: 500,
+        },
+        step: 1,
+      });
+  
+      slider.noUiSlider.on("update", (values) => {
+        const [min, max] = values.map(Math.round);
+        rangeInput.value = `${min}-${max}`;
+        minLabel.textContent = min;
+        maxLabel.textContent = max;
+      });
     } else if (role === "candidate") {
       roleSpecificFields.innerHTML = `
           <div class="form-group">
