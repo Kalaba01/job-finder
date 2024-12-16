@@ -1,7 +1,7 @@
 const emailService = require("../services/emailService");
 const userService = require("./userService");
 const imageService = require("./imageService");
-const { Candidate } = require("../models");
+const { Candidate, Image } = require("../models");
 
 exports.findCandidateByUserId = async(userId) => {
   try {
@@ -38,16 +38,33 @@ exports.registerCandidate = async (email, password, first_name, last_name, trans
 
 exports.updateCandidate = async (candidate, updatedData) => {
   try {
-    const { first_name, last_name } = updatedData;
+    const { email, first_name, last_name } = updatedData;
 
     await candidate.update({
       first_name: first_name || candidate.first_name,
       last_name: last_name || candidate.last_name,
     });
 
+    const user = await userService.findUserByEmail(email);
+
+    await user.update({ email: email || user.email })
+
     return candidate;
   } catch (error) {
     console.error("Error updating candidate details:", error);
     throw new Error("Error updating candidate details.");
+  }
+};
+
+exports.deleteCandidate = async (userId) => {
+  try {
+    const candidate = await Candidate.findOne({ where: { user_id: userId } });
+    if (candidate && candidate.profile_picture_id) {
+      await Image.destroy({ where: { id: candidate.profile_picture_id } });
+    }
+    await Candidate.destroy({ where: { user_id: userId } });
+  } catch (error) {
+    console.error("Error deleting candidate:", error);
+    throw new Error("Error deleting candidate.");
   }
 };

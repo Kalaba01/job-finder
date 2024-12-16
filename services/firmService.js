@@ -1,6 +1,6 @@
 const imageService = require("./imageService");
 const userService = require("./userService");
-const { User, Firm } = require("../models");
+const { User, Firm, Image } = require("../models");
 
 exports.firmExistsByEmail = async (email) => {
   try {
@@ -76,5 +76,18 @@ exports.updateFirm = async (firm, updatedData) => {
   } catch (error) {
     console.error("Error updating firm details:", error);
     throw new Error("Error updating firm details.");
+  }
+};
+
+exports.deleteFirm = async (userId) => {
+  try {
+    const firm = await Firm.findOne({ where: { user_id: userId } });
+    if (firm && firm.profile_picture_id) {
+      await Image.destroy({ where: { id: firm.profile_picture_id } });
+    }
+    await Firm.destroy({ where: { user_id: userId } });
+  } catch (error) {
+    console.error("Error deleting firm:", error);
+    throw new Error("Error deleting firm.");
   }
 };

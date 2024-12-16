@@ -12,3 +12,12 @@ exports.createAdminAccount = async (email, password, transaction=null) => {
     throw new Error("Failed to create admin account.");
   }
 };
+
+exports.deleteAdmin = async (userId) => {
+  try {
+    await Admin.destroy({ where: { user_id: userId } });
+  } catch (error) {
+    console.error("Error deleting admin:", error);
+    throw new Error("Error deleting admin.");
+  }
+};

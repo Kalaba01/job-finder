@@ -3,22 +3,23 @@ const firmService = require("./firmService");
 const adminService = require("./adminService");
 const candidateService = require("./candidateService");
 const sequelize = require("../config/sequelize");
-const { User, Firm, Candidate, Admin, Image } = require("../models");
+const { User, Firm, Candidate } = require("../models");
 
-exports.checkIfUserWithEmailExists = async (email) => {
-  if (!email) {
-    throw new Error("Email is required for verification.");
-  }
+exports.findUserByEmail = async (email) => {
+  try {
+    if (!email) throw new Error("Email is required for verification.");
 
-  const existingUser = await User.findOne({ where: { email } });
-  if (existingUser) {
-    throw new Error("Email is already in use.");
+    const user = await User.findOne({ where: { email } });
+    return user;
+  } catch (error) {
+    console.error("Error finding user by email:", error);
+    throw new Error("An error occurred while verifying the email.");
   }
 };
 
 exports.createUser = async (email, password, role, transaction = null) => {
   try {
-    await this.checkIfUserWithEmailExists(email);
+    if (await this.findUserByEmail(email)) throw new Error("Email is already in use.");
 
     const hashedPassword = await bcrypt.hash(password, 10);
     return await User.create({ email, password: hashedPassword, role }, { transaction });
@@ -95,7 +96,7 @@ exports.addUser = async (userData) => {
   try {
     const { email, password, role, name, address, employees_range, first_name, last_name } = userData;
 
-    await this.checkIfUserWithEmailExists(email);
+    if (await this.findUserByEmail(email)) throw new Error("Email is already in use.");
     let newUser;
 
     switch (role) {
@@ -158,26 +159,12 @@ exports.updateUser = async (userId, updatedData) => {
 
 exports.deleteUser = async (userId) => {
   try {
-    const user = await User.findByPk(userId);
-    if (!user) {
-      throw new Error("User not found.");
-    }
-
-    if (user.role === "admin") {
-      await Admin.destroy({ where: { user_id: userId } });
-    } else if (user.role === "firm") {
-      const firm = await Firm.findOne({ where: { user_id: userId } });
-      if (firm && firm.profile_picture_id) {
-        await Image.destroy({ where: { id: firm.profile_picture_id } });
-      }
-      await Firm.destroy({ where: { user_id: userId } });
-    } else if (user.role === "candidate") {
-      const candidate = await Candidate.findOne({ where: { user_id: userId } });
-      if (candidate && candidate.profile_picture_id) {
-        await Image.destroy({ where: { id: candidate.profile_picture_id } });
-      }
-      await Candidate.destroy({ where: { user_id: userId } });
-    }
+    const user = await this.findUserById(userId);
+    if (!user) throw new Error("User not found.");
+    
+    if (user.role === "admin") await adminService.deleteAdmin(userId); 
+    else if (user.role === "firm") await firmService.deleteFirm(userId);
+    else if (user.role === "candidate") await candidateService.deleteCandidate(userId);
 
     await user.destroy();
   } catch (error) {
