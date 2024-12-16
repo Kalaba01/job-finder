@@ -137,12 +137,12 @@
 	},
 	"CandidateMenu": {
 		"profile": "Profil",
-		"myProfile": "Moj profil",
 		"jobAds": "Oglasi za posao",
 		"myApplications": "Moje prijave",
 		"interviewCalendar": "Kalendar intervjua",
 		"tickets": "Tiketi",
-		"companyReviews": "Recenzije kompanija"
+		"companyReviews": "Recenzije kompanija",
+		"myProfile": "CandidateMenu.myProfile"
 	},
 	"ConfirmModal": {
 		"yes": "Da",

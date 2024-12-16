@@ -137,7 +137,6 @@
 	},
 	"CandidateMenu": {
 		"profile": "Profile",
-		"myProfile": "My Profile",
 		"jobAds": "Job Ads",
 		"myApplications": "My Applications",
 		"interviewCalendar": "Interview Calendar",

@@ -22,7 +22,7 @@ module.exports = (req, res, next) => {
   
       case "firm":
         res.locals.menuOptions = [
-          { name: translate("CommonMenu.profile"), link: "/firm/profile" },
+          { name: translate("FirmMenu.profile"), link: "/firm/profile" },
           { name: translate("FirmMenu.createJobAd"), link: "/firm/create-job-ad" },
           { name: translate("FirmMenu.myJobAds"), link: "/firm/job-ads" },
           { name: translate("FirmMenu.candidates"), link: "/firm/candidates" },
@@ -35,8 +35,7 @@ module.exports = (req, res, next) => {
   
       case "candidate":
         res.locals.menuOptions = [
-          { name: translate("CommonMenu.profile"), link: "/candidate/profile" },
-          { name: translate("CandidateMenu.myProfile"), link: "/candidate/profile" },
+          { name: translate("CandidateMenu.profile"), link: "/candidate/profile" },
           { name: translate("CandidateMenu.jobAds"), link: "/candidate/job-ads" },
           { name: translate("CandidateMenu.myApplications"), link: "/candidate/applications" },
           { name: translate("CandidateMenu.interviewCalendar"), link: "/candidate/calendar" },
