@@ -4,16 +4,9 @@ const { User, Firm } = require("../models");
 
 exports.firmExistsByEmail = async (email) => {
   try {
-    const userExists = await User.findOne({
-      where: {
-        email,
-        role: "firm",
-      },
-    });
+    const user = await User.findOne({ where: { email, role: "firm" } });
 
-    if (userExists) {
-      throw new Error("A user with this email already exists.");
-    }
+    return user;
   } catch (error) {
     console.error("Error checking if firm exists by email:", error);
     throw error;
@@ -22,21 +15,31 @@ exports.firmExistsByEmail = async (email) => {
 
 exports.firmExistsByName = async (name) => {
   try {
-    const firmExists = await Firm.findOne({ where: { name } });
+    const firm = await Firm.findOne({ where: { name } });
 
-    if (firmExists) {
-      throw new Error("A firm with this name already exists.");
-    }
+    return firm;
   } catch (error) {
     console.error("Error checking if firm exists by name:", error);
     throw error;
   }
 };
 
+exports.firmExistsByUserId = async(userId) => {
+  try {
+    const firm = await Firm.findOne({ where: { user_id: userId } });
+
+    return firm;
+  } catch (error) {
+    console.error("Error checking if firm exists by user id:", error);
+    throw error;
+  }
+}
+
 exports.createFirmAccount = async ( email, password, name, address, employees, transaction = null ) => {
   try {
-    await this.firmExistsByEmail(email);
-    await this.firmExistsByName(name);
+    if (await this.firmExistsByEmail(email)) throw new Error("A user with this email already exists.");
+
+    if (await this.firmExistsByName(name)) throw new Error("A firm with this name already exists.");
 
     const user = await userService.createUser(email, password, "firm", transaction);
     const defaultImage = await imageService.setDefaultPicture("firm", transaction);
@@ -56,5 +59,22 @@ exports.createFirmAccount = async ( email, password, name, address, employees, t
   } catch (error) {
     console.error("Error creating firm account:", error);
     throw new Error("Error creating firm account.");
+  }
+};
+
+exports.updateFirm = async (firm, updatedData) => {
+  try {
+    const { name, address, employees_range } = updatedData;
+
+    await firm.update({
+      name: name || firm.name,
+      address: address || firm.address,
+      employees: employees_range || firm.employees,
+    });
+
+    return firm;
+  } catch (error) {
+    console.error("Error updating firm details:", error);
+    throw new Error("Error updating firm details.");
   }
 };

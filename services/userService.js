@@ -132,38 +132,21 @@ exports.addUser = async (userData) => {
 
 exports.updateUser = async (userId, updatedData) => {
   try {
-    const user = await User.findByPk(userId);
-    if (!user) {
-      throw new Error("User not found.");
-    }
+    const user = await this.findUserById(userId);
+    if (!user) throw new Error("User not found.");
 
     await user.update(updatedData);
 
     if (user.role === "firm") {
-      const { name, address, employees_range } = updatedData;
+      const firm = await firmService.firmExistsByUserId(userId);
+      if (!firm) throw new Error("Firm details not found.");
 
-      const firm = await Firm.findOne({ where: { user_id: userId } });
-      if (!firm) {
-        throw new Error("Firm details not found.");
-      }
-
-      await firm.update({
-        name: name || firm.name,
-        address: address || firm.address,
-        employees: employees_range || firm.employees,
-      });
+      await firmService.updateFirm(firm, updatedData);
     } else if (user.role === "candidate") {
-      const { first_name, last_name } = updatedData;
+      const candidate = await candidateService.findCandidateByUserId(userId);
+      if (!candidate) throw new Error("Candidate details not found.");
 
-      const candidate = await Candidate.findOne({ where: { user_id: userId } });
-      if (!candidate) {
-        throw new Error("Candidate details not found.");
-      }
-
-      await candidate.update({
-        first_name: first_name || candidate.first_name,
-        last_name: last_name || candidate.last_name,
-      });
+      await candidateService.updateCandidate(candidate, updatedData);
     }
 
     return user;
