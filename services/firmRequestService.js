@@ -11,9 +11,7 @@ exports.checkPendingFirmRequest = async (email) => {
       where: { email, status: "pending" },
     });
 
-    if (existingPendingRequest) {
-      throw new Error("You already have a pending registration request.");
-    }
+    if (existingPendingRequest) throw new Error("You already have a pending registration request.");
   } catch (error) {
     console.error("Error checking pending firm request:", error.message || error);
     throw new Error("Failed to check pending registration request.");
@@ -24,9 +22,7 @@ exports.getFirmRequestById = async (id) => {
   try {
     const firmRequest = await FirmRequest.findByPk(id);
 
-    if (!firmRequest) {
-      throw new Error(`Firm request with ID ${id} not found.`);
-    }
+    if (!firmRequest) throw new Error(`Firm request with ID ${id} not found.`);
 
     return firmRequest;
   } catch (error) {
@@ -119,9 +115,7 @@ exports.handleFirmRequestUpdate = async (id, status) => {
 
       await emailService.sendFirmRejectEmail(firmRequest.email, firmRequest.name);
       return { message: "Firm request rejected." };
-    } else {
-      throw new Error("Invalid status provided.");
-    }
+    } else throw new Error("Invalid status provided.");
   } catch (error) {
     await transaction.rollback();
     console.error("Error handling firm request update:", error.message || error);

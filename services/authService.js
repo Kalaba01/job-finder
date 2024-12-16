@@ -1,11 +1,10 @@
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-const { User } = require("../models");
+const userService = require("./userService");
 
 exports.authenticateUser = async (email, password) => {
   try {
-    const user = await User.findOne({ where: { email } });
-
+    const user = await userService.findUserByEmail(email);
     if (!user) return null;
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -21,18 +20,12 @@ exports.authenticateUser = async (email, password) => {
 exports.login = (req, res, next) => {
   return new Promise((resolve, reject) => {
     passport.authenticate("local", (err, user, info) => {
-      if (err) {
-        return reject(err);
-      }
+      if (err) return reject(err);
 
-      if (!user) {
-        return reject(new Error(info.message));
-      }
+      if (!user) return reject(new Error(info.message));
 
       req.logIn(user, (err) => {
-        if (err) {
-          return reject(err);
-        }
+        if (err) return reject(err);
 
         let redirectUrl;
         switch (user.role) {

@@ -36,6 +36,20 @@ exports.registerCandidate = async (email, password, first_name, last_name, trans
   }
 };
 
+exports.getCandidateDetails = async (userId, userDetails) => {
+  try {
+    const candidate = await this.findCandidateByUserId(userId);
+    if (candidate) {
+      userDetails.first_name = candidate.first_name;
+      userDetails.last_name = candidate.last_name;
+    }
+    return userDetails;
+  } catch (error) {
+    console.error("Error fetching candidate details:", error);
+    throw new Error("Error fetching candidate details.");
+  }
+};
+
 exports.updateCandidate = async (candidate, updatedData) => {
   try {
     const { email, first_name, last_name } = updatedData;
@@ -46,7 +60,6 @@ exports.updateCandidate = async (candidate, updatedData) => {
     });
 
     const user = await userService.findUserByEmail(email);
-
     await user.update({ email: email || user.email })
 
     return candidate;

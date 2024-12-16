@@ -62,6 +62,21 @@ exports.createFirmAccount = async ( email, password, name, address, employees, t
   }
 };
 
+exports.getFirmDetails = async (userId, userDetails) => {
+  try {
+    const firm = await this.firmExistsByUserId(userId);
+    if (firm) {
+      userDetails.name = firm.name;
+      userDetails.address = firm.address;
+      userDetails.employees_range = firm.employees;
+    }
+    return userDetails;
+  } catch (error) {
+    console.error("Error fetching firm details:", error);
+    throw new Error("Error fetching firm details.");
+  }
+};
+
 exports.updateFirm = async (firm, updatedData) => {
   try {
     const { name, address, employees_range } = updatedData;
