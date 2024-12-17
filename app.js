@@ -4,7 +4,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const { i18n, initDatabase, passport, sessionConfig } = require("./config");
 const { languageMiddleware, userRedirectMiddleware, authMiddleware, notFoundMiddleware } = require("./middleware");
-const { adminRoutes, authRoutes, candidateRoutes, firmRoutes, languageRoutes, passwordResetRoutes } = require("./routes");
+const { adminRoutes, authRoutes, candidateRoutes, firmRoutes, languageRoutes, passwordResetRoutes, imageRoutes } = require("./routes");
 
 const app = express();
 
@@ -39,6 +39,7 @@ initDatabase();
 
 app.use("/auth", authRoutes);
 app.use("/password", passwordResetRoutes);
+app.use("/images", imageRoutes);
 
 // User routes
 app.use("/admin", adminRoutes);

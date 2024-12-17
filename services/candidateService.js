@@ -86,13 +86,6 @@ exports.getCandidateProfile = async (userId) => {
   try {
     const candidate = await this.findCandidateByUserId(userId);
 
-    let profilePictureBase64 = null;
-
-    if (candidate?.profile_picture_id) {
-      const image = await imageService.findImageById(candidate.profile_picture_id);
-      profilePictureBase64 = imageService.convertImageToBase64(image);
-    }
-
     const candidateData = {
       first_name: candidate?.first_name || "N/A",
       last_name: candidate?.last_name || "N/A",
@@ -100,7 +93,7 @@ exports.getCandidateProfile = async (userId) => {
       cv: candidate?.cv || "N/A",
       motivation_letter: candidate?.motivation_letter || "N/A",
       recommendations: candidate?.recommendations || "N/A",
-      profile_picture: profilePictureBase64,
+      profile_picture_id: candidate?.profile_picture_id || null
     };
 
     return candidateData;

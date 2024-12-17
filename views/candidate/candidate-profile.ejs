@@ -13,9 +13,9 @@
     <div class="profile-container">
       <div class="profile-header">
         <div class="profile-image-container">
-          <% if (candidate.profile_picture) { %>
+          <% if (candidate.profile_picture_id) { %>
           <img
-            src="<%= candidate.profile_picture %>"
+            src="/images/<%= candidate.profile_picture_id %>"
             alt="<%= __('CandidateProfile.profilePictureAlt') %>"
             class="profile-picture"
           />

@@ -12,18 +12,6 @@ exports.findImageById = async (imageId) => {
   }
 };
 
-exports.convertImageToBase64 = (image) => {
-  try {
-    if (!image) return null;
-
-    const base64String = `data:${image.mime_type};base64,${image.data.toString("base64")}`;
-    return base64String;
-  } catch (error) {
-    console.error("Error converting image to Base64:", error);
-    throw new Error("Failed to convert image to Base64.");
-  }
-};
-
 exports.setDefaultPicture = async (type, transaction = null) => {
   const validTypes = ["candidate", "firm", "admin"];
   if (!validTypes.includes(type)) throw new Error(`Invalid type provided for default picture: ${type}`);
