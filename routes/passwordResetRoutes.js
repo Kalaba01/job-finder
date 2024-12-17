@@ -5,6 +5,9 @@ const router = express.Router();
 // Route for showing password reset form
 router.get("/reset-password", passwordResetController.showResetPasswordForm);
 
+// Route for forgot password form
+router.post("/request", passwordResetController.requestPasswordReset);
+
 // Route for processing password reset form
 router.post("/reset-password", passwordResetController.handlePasswordReset);
 

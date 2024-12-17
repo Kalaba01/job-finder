@@ -38,7 +38,7 @@ app.set("views", "./views");
 initDatabase();
 
 app.use("/auth", authRoutes);
-app.use("/", passwordResetRoutes);
+app.use("/password", passwordResetRoutes);
 
 // User routes
 app.use("/admin", adminRoutes);

@@ -116,3 +116,15 @@
     text-decoration: underline;
     color: var(--link-hover-color);
 }
+
+/* Forgot Password Link */
+.forgot-password-text a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.forgot-password-text a:hover {
+    text-decoration: underline;
+    color: var(--link-hover-color);
+}

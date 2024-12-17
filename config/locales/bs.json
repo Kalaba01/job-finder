@@ -88,7 +88,8 @@
     "loginButton": "Prijavite se",
     "dontHaveAccount": "Nemate račun?",
     "registerLink": "Registrujte se",
-    "closePopup": "Zatvori"
+    "closePopup": "Zatvori",
+    "forgotPassword": "Zaboravili ste lozinku?"
   },
   "CompanyApprovals": {
     "title": "Odobrenje Kompanija",
@@ -178,7 +179,7 @@
       "firmName": "Ime Firme",
       "firmAddress": "Adresa Firme",
       "numberOfEmployees": "Broj Zaposlenih",
-	  "selectedRange": "Izabrani Opseg",
+      "selectedRange": "Izabrani Opseg",
       "firstName": "Ime",
       "lastName": "Prezime",
       "save": "Sačuvaj",
@@ -190,5 +191,11 @@
       "yes": "Da",
       "no": "Ne"
     }
+  },
+  "ForgotPasswordPopup": {
+    "title": "Zaboravili ste lozinku?",
+    "emailLabel": "Unesite vašu email adresu",
+    "emailPlaceholder": "Vaša email adresa",
+    "submitButton": "Pošalji link za resetovanje"
   }
 }

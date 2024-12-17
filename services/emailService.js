@@ -43,6 +43,24 @@ exports.sendCandidateWelcomeEmail = async (email, first_name) => {
   }
 };
 
+exports.sendPasswordResetEmail = async (email, token) => {
+  try {
+    const resetPasswordLink = `http://localhost:3000/password/reset-password?token=${token}`;
+    const subject = "Reset Your Password";
+    const templatePath = path.join(__dirname, "../views/emails/password-reset.ejs");
+    const cssPath = path.join(__dirname, "../public/styles/password-reset.css");
+    const templateData = {
+      resetPasswordLink
+    };
+
+    await this.sendEmail(email, subject, templatePath, templateData, cssPath);
+    console.log(`Password reset email sent to ${email}`);
+  } catch (error) {
+    console.error(`Error sending password reset email to ${email}:`, error.message || error);
+    throw new Error("Failed to send password reset email.");
+  }
+};
+
 exports.sendFirmApprovedEmail = async (email, firm_name, token) => {
   try {
     const resetPasswordLink = `http://localhost:3000/reset-password?token=${token}`;

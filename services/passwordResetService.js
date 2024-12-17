@@ -2,6 +2,8 @@ const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
 const { Op } = require("sequelize");
 const { User, PasswordResetToken } = require("../models");
+const userService = require("./userService");
+const emailService = require("./emailService");
 
 exports.createPasswordResetToken = async (userId, transaction = null) => {
   try {
@@ -32,6 +34,17 @@ exports.validateResetPasswordToken = async (token) => {
   if (!resetToken) throw new Error("Invalid or expired token");
 
   return resetToken;
+};
+
+exports.sendResetPasswordLink = async (email) => {
+  const user = await userService.findUserByEmail(email);
+  if (!user) throw new Error("No account found with that email.");
+
+  const { token } = await this.createPasswordResetToken(user.id);
+
+  await emailService.sendPasswordResetEmail(email, token);
+
+  return { message: "Password reset link sent successfully" };
 };
 
 exports.resetPassword = async ({ token, newPassword, confirmPassword }) => {

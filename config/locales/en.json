@@ -88,7 +88,8 @@
     "loginButton": "Login",
     "dontHaveAccount": "Don't have an account?",
     "registerLink": "Register",
-    "closePopup": "Close"
+    "closePopup": "Close",
+    "forgotPassword": "Forgot Password?"
   },
   "CompanyApprovals": {
     "title": "Company Approvals",
@@ -177,7 +178,7 @@
       "firmName": "Firm Name",
       "firmAddress": "Firm Address",
       "numberOfEmployees": "Number of Employees",
-	  "selectedRange": "Selected Range",
+      "selectedRange": "Selected Range",
       "firstName": "First Name",
       "lastName": "Last Name",
       "save": "Save",
@@ -189,5 +190,11 @@
       "yes": "Yes",
       "no": "No"
     }
+  },
+  "ForgotPasswordPopup": {
+    "title": "Forgot Password?",
+    "emailLabel": "Enter your email",
+    "emailPlaceholder": "Your email address",
+    "submitButton": "Send Reset Link"
   }
 }

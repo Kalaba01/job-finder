@@ -1,4 +1,5 @@
 import { openRegisterPopup } from "./candidate-register-popup.js";
+import { openForgotPasswordPopup } from "./forgot-password-popup.js";
 
 const userIcon = document.getElementById("user-icon");
 const loginPopupOverlay = document.getElementById("login-popup-overlay");
@@ -7,6 +8,7 @@ const closeLoginPopup = document.getElementById("login-close-popup");
 const loginEmailInput = document.getElementById("login-email");
 const loginPasswordInput = document.getElementById("login-password");
 const switchToRegister = document.getElementById("switch-to-register");
+const forgotPasswordLink = document.getElementById("forgot-password-link");
 
 export function openLoginPopup() {
   loginPopupOverlay.style.display = "flex";
@@ -32,6 +34,12 @@ switchToRegister.addEventListener("click", () => {
   loginPopupOverlay.style.display = "none";
   resetLoginForm();
   openRegisterPopup();
+});
+
+forgotPasswordLink.addEventListener("click", (e) => {
+  e.preventDefault();
+  loginPopupOverlay.style.display = "none";
+  openForgotPasswordPopup();
 });
 
 loginForm.addEventListener("submit", async (e) => {

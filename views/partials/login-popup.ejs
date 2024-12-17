@@ -19,6 +19,9 @@
         required
         placeholder="<%= __("LoginPopup.passwordPlaceholder") %>"
       />
+      <p class="forgot-password-text">
+        <a href="#" id="forgot-password-link"><%= __("LoginPopup.forgotPassword") %></a>
+      </p>     
       <button type="submit"><%= __("LoginPopup.loginButton") %></button>
     </form>
     <p class="login-switch-text">
@@ -28,3 +31,6 @@
     <span class="login-close-popup" id="login-close-popup">&times;</span>
   </div>
 </div>
+
+
+<%- include("./forgot-password-popup") %>
