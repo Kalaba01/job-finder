@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="<%= locale %>" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Management</title>
+    <title><%= __("UserManagement.title") %></title>
     <link rel="stylesheet" href="/styles/users.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
     <link
@@ -12,19 +12,39 @@
     />
     <script src="/node_modules/nouislider/dist/nouislider.min.js"></script>
   </head>
-  <body>
+  <body
+    data-title="<%= __('UserManagement.title') %>"
+    data-add-user-title="<%= __('UserManagement.modal.addUserTitle') %>"
+    data-edit-user-title="<%= __('UserManagement.modal.editUserTitle') %>"
+    data-select-role="<%= __('UserManagement.modal.selectRole') %>"
+    data-choose-role="<%= __('UserManagement.modal.chooseRole') %>"
+    data-email-label="<%= __('UserManagement.modal.email') %>"
+    data-password-label="<%= __('UserManagement.modal.password') %>"
+    data-firm-name-label="<%= __('UserManagement.modal.firmName') %>"
+    data-firm-address-label="<%= __('UserManagement.modal.firmAddress') %>"
+    data-number-of-employees-label="<%= __('UserManagement.modal.numberOfEmployees') %>"
+    data-selected-range="<%= __('UserManagement.modal.selectedRange') %>"
+    data-first-name-label="<%= __('UserManagement.modal.firstName') %>"
+    data-last-name-label="<%= __('UserManagement.modal.lastName') %>"
+    data-save="<%= __('UserManagement.modal.save') %>"
+    data-cancel="<%= __('UserManagement.modal.cancel') %>"
+    data-delete-user-title="<%= __('UserManagement.confirmModal.title') %>"
+    data-delete-user-message="<%= __('UserManagement.confirmModal.message') %>"
+    data-yes="<%= __('UserManagement.confirmModal.yes') %>"
+    data-no="<%= __('UserManagement.confirmModal.no') %>"
+  >
     <%- include('../partials/top-bar') %>
     <div class="container">
-      <h1>User Management</h1>
+      <h1><%= __("UserManagement.title") %></h1>
       <table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Created At</th>
-            <th>Updated At</th>
-            <th>Actions</th>
+            <th><%= __("UserManagement.tableHeaders.id") %></th>
+            <th><%= __("UserManagement.tableHeaders.email") %></th>
+            <th><%= __("UserManagement.tableHeaders.role") %></th>
+            <th><%= __("UserManagement.tableHeaders.createdAt") %></th>
+            <th><%= __("UserManagement.tableHeaders.updatedAt") %></th>
+            <th><%= __("UserManagement.tableHeaders.actions") %></th>
           </tr>
         </thead>
         <tbody>
@@ -32,7 +52,7 @@
           <tr>
             <td><%= user.id %></td>
             <td><%= user.email %></td>
-            <td><%= user.role %></td>
+            <td><%= __("UserManagement.roles." + user.role) %></td>
             <td><%= user.createdAt.toLocaleString() %></td>
             <td><%= user.updatedAt.toLocaleString() %></td>
             <td class="action-buttons">
@@ -42,10 +62,10 @@
                 data-email="<%= user.email %>"
                 data-role="<%= user.role %>"
               >
-                Edit
+                <%= __("UserManagement.buttons.edit") %>
               </button>
               <button class="delete-btn" data-id="<%= user.id %>">
-                Delete
+                <%= __("UserManagement.buttons.delete") %>
               </button>
             </td>
           </tr>
@@ -53,7 +73,9 @@
         </tbody>
       </table>
       <div class="add-user">
-        <button class="add-btn" id="open-modal-btn">Add New User</button>
+        <button class="add-btn" id="open-modal-btn">
+          <%= __("UserManagement.buttons.addUser") %>
+        </button>
       </div>
     </div>
 
@@ -61,25 +83,37 @@
     <div id="user-modal" class="modal">
       <div class="modal-content">
         <span class="close-btn" id="close-modal-btn">&times;</span>
-        <h2 id="modal-title">Add New User</h2>
+        <h2 id="modal-title"><%= __("UserManagement.modal.addUserTitle") %></h2>
         <hr class="modal-divider" />
         <form id="add-user-form">
           <div id="role-select-container" class="form-group">
-            <label for="role-select">Select Role:</label>
+            <label for="role-select"
+              ><%= __("UserManagement.modal.selectRole") %></label
+            >
             <select id="role-select" name="role" required>
-              <option value="" disabled selected>Choose a role</option>
-              <option value="admin">Admin</option>
-              <option value="firm">Firm</option>
-              <option value="candidate">Candidate</option>
+              <option value="" disabled selected>
+                <%= __("UserManagement.modal.chooseRole") %>
+              </option>
+              <option value="admin">
+                <%= __("UserManagement.roles.admin") %>
+              </option>
+              <option value="firm">
+                <%= __("UserManagement.roles.firm") %>
+              </option>
+              <option value="candidate">
+                <%= __("UserManagement.roles.candidate") %>
+              </option>
             </select>
           </div>
           <div id="role-specific-fields">
             <!-- Dynamic fields will be inserted here -->
           </div>
           <div class="modal-footer">
-            <button type="submit" class="save-btn">Save</button>
+            <button type="submit" class="save-btn">
+              <%= __("UserManagement.modal.save") %>
+            </button>
             <button type="button" class="cancel-btn" id="close-modal-btn">
-              Cancel
+              <%= __("UserManagement.modal.cancel") %>
             </button>
           </div>
         </form>

@@ -1,151 +1,194 @@
 {
-	"TopBar": {
-		"userIcon": "Profil",
-		"themeIcon": "Promijeni temu",
-		"languageIcon": "Promijeni jezik",
-		"notifications": "TopBar.notifications",
-		"chat": "TopBar.chat",
-		"logout": "TopBar.logout"
-	},
-	"HeroSection": {
-		"title": "Pronađite svoj posao iz snova već danas"
-	},
-	"ContentSection": {
-		"streamlineRecruitment": {
-			"title": "Optimizirajte regrutaciju",
-			"text": "U današnjem dinamičnom tržištu rada, regrutacija zahtijeva više od samog objavljivanja oglasa za posao. Potrebno je strateško pristupanje koje povezuje vrhunske talente s pravim prilikama. Korištenjem naprednih alata i tehnologija, kompanije ne samo da mogu pojednostaviti procese zapošljavanja već i izgraditi snažnu i raznoliku radnu snagu. Od početnih prijava do konačnog onboardinga, efikasna regrutacija osigurava da svaki kandidat doživi besprijekorno i profesionalno iskustvo, jačajući povjerenje i gradeći pozitivnu sliku poslodavca. Usvojite pametniju strategiju regrutacije koja daje prioritet efikasnosti, transparentnosti i ljudskoj povezanosti."
-		},
-		"boostProductivity": {
-			"title": "Povećajte produktivnost",
-			"text": "U konkurentskom poslovnom okruženju, produktivnost je temelj uspjeha. Obezbijedite svom timu najmodernije alate dizajnirane za pojednostavljenje složenih procesa zapošljavanja i uklanjanje zastoja. Automatizacijom ponavljajućih zadataka možete osloboditi dragocjeno vrijeme HR profesionalcima da se fokusiraju na izgradnju značajnih veza s kandidatima. Povećajte produktivnost donošenjem odluka na osnovu podataka, optimizacijom radnih tokova i pružanjem bržeg i efikasnijeg iskustva regrutacije koje koristi i vašoj organizaciji i tražiteljima posla."
-		}
-	},
-	"RegisterSection": {
-		"title": "Registrujte svoju firmu",
-		"text1": "Napravite sljedeći korak u optimizaciji procesa regrutacije registracijom vaše kompanije na našoj platformi. Podnošenjem zahtjeva za registraciju dobit ćete pristup nizu alata dizajniranih za povezivanje s vrhunskim talentima, upravljanje objavama poslova i efikasno praćenje prijava kandidata. Naš administrativni tim pregledat će vaš zahtjev kako bi se osiguralo da su svi potrebni podaci dostavljeni. Nakon odobrenja, otključat ćete posvećenu kontrolnu tablu prilagođenu vašim potrebama regrutacije i organizacije, osiguravajući transparentnost, jednostavnost upravljanja i prilike za rast.",
-		"text2": "Osnažite svoje poslovanje naprednim funkcijama i besprijekornim korisničkim iskustvom. Pridružite se našoj rastućoj mreži lidera u industriji koji transformišu način na koji regrutuju i zadržavaju izuzetan talenat. Pošaljite svoj zahtjev već danas i dopustite nam da vam pomognemo pronaći prave ljude koji će unaprijediti vašu kompaniju.",
-		"button": "Registrujte firmu"
-	},
-	"FAQSection": {
-		"questions": [
-			{
-				"title": "Šta je Job Finder?",
-				"content": "Job Finder je sveobuhvatna platforma dizajnirana da premosti jaz između tražilaca posla i poslodavaca. Omogućava organizacijama da pronađu vrhunski talenat dok kandidatima pruža alate i resurse potrebne za pronalazak posla iz snova. Sa funkcijama poput automatskog objavljivanja poslova, praćenja aplikacija u stvarnom vremenu i personalizovanog korisničkog iskustva, Job Finder pojednostavljuje proces regrutovanja za poslodavce i tražioce posla."
-			},
-			{
-				"title": "Kako funkcioniše Job Finder?",
-				"content": "Job Finder djeluje kao dvostrana platforma. Poslodavci mogu kreirati detaljne oglase za poslove, upravljati aplikacijama i komunicirati direktno s kandidatima. S druge strane, tražioci posla mogu pregledavati mogućnosti, aplicirati besprijekorno i pratiti status svojih aplikacija u stvarnom vremenu. Platforma također koristi napredne algoritme za filtriranje i usklađivanje kako bi osigurala da poslodavci i kandidati pronađu savršeno podudaranje, štedeći vrijeme i trud svih uključenih."
-			},
-			{
-				"title": "Koje funkcije Job Finder nudi poslodavcima?",
-				"content": "Poslodavci imaju pristup nizu alata koji pojednostavljuju proces zapošljavanja. Ovo uključuje dinamičke predloške za oglase za posao, automatske e-mail obavijesti, zakazivanje intervjua, rangiranje kandidata i analitičke nadzorne ploče u stvarnom vremenu. Osim toga, platforma pruža korisne izvještaje koji pomažu organizacijama da procijene uspjeh svojih kampanja zapošljavanja i donesu odluke temeljene na podacima za buduće strategije zapošljavanja."
-			},
-			{
-				"title": "Koje prednosti Job Finder nudi tražiocima posla?",
-				"content": "Job Finder tražiocima posla nudi korisnički prilagođen interfejs za kreiranje profesionalnih profila, postavljanje životopisa i prikazivanje svojih vještina. Platforma pruža ažuriranja u stvarnom vremenu o statusima aplikacija, personalizovane preporuke poslova na osnovu njihovih preferencija i kvalifikacija, te pristup vrijednim resursima poput savjeta za intervjue i vodiča za karijeru. Sa Job Finderom, kandidati mogu s lakoćom i samopouzdanjem navigirati tržištem rada."
-			}
-		]
-	},
-	"CandidateRegisterPopup": {
-		"title": "Registracija",
-		"firstNameLabel": "Ime",
-		"firstNamePlaceholder": "Unesite vaše ime",
-		"lastNameLabel": "Prezime",
-		"lastNamePlaceholder": "Unesite vaše prezime",
-		"emailLabel": "Email",
-		"emailPlaceholder": "Unesite vaš email",
-		"passwordLabel": "Lozinka",
-		"passwordPlaceholder": "Unesite vašu lozinku",
-		"confirmPasswordLabel": "Potvrdite lozinku",
-		"confirmPasswordPlaceholder": "Potvrdite vašu lozinku",
-		"registerButton": "Registrujte se",
-		"alreadyHaveAccount": "Već imate račun?",
-		"loginLink": "Prijavite se",
-		"closePopup": "Zatvori"
-	},
-	"FirmRegisterPopup": {
-		"title": "Registracija Vaše Kompanije",
-		"emailLabel": "Email",
-		"emailPlaceholder": "Unesite vaš email",
-		"companyNameLabel": "Naziv Kompanije",
-		"companyNamePlaceholder": "Unesite naziv vaše kompanije",
-		"addressLabel": "Adresa",
-		"addressPlaceholder": "Unesite vašu adresu",
-		"employeesRangeLabel": "Broj Zaposlenih",
-		"selectedRange": "Odabrani Opseg",
-		"submitButton": "Pošalji Zahtjev",
-		"closePopup": "Zatvori"
-	},
-	"Footer": {
-		"text": "© 2024 Job Finder - Sva Prava Zadržana"
-	},
-	"LoginPopup": {
-		"title": "Prijava",
-		"emailLabel": "Email",
-		"emailPlaceholder": "Unesite vaš email",
-		"passwordLabel": "Lozinka",
-		"passwordPlaceholder": "Unesite vašu lozinku",
-		"loginButton": "Prijavite se",
-		"dontHaveAccount": "Nemate račun?",
-		"registerLink": "Registrujte se",
-		"closePopup": "Zatvori"
-	},
-	"CompanyApprovals": {
-		"title": "Odobrenje Kompanija",
-		"header": "Odobrenje Kompanija",
-		"searchPlaceholder": "Pretraži po imenu...",
-		"filterLabel": "Filtriraj po statusu",
-		"filterAll": "Svi Zahtjevi",
-		"filterPending": "Na čekanju",
-		"filterApproved": "Odobreno",
-		"filterRejected": "Odbijeno",
-		"status": {
-			"pending": "Na čekanju",
-			"approved": "Odobren",
-			"rejected": "Odbijen"
-		},
-		"email": "Email",
-		"address": "Adresa",
-		"employees": "Broj Zaposlenih",
-		"createdAt": "Kreirano",
-		"approve": "Odobri",
-		"reject": "Odbij",
-		"already": "Ovaj zahtjev je već",
-		"approveTitle": "Odobri zahtjev",
-		"approveMessage": "Jeste li sigurni da želite odobriti ovaj zahtjev?",
-		"rejectTitle": "Odbij zahtjev",
-		"rejectMessage": "Jeste li sigurni da želite odbiti ovaj zahtjev?"
-	},
-	"AdminMenu": {
-		"userManagement": "Upravljanje korisnicima",
-		"companyApprovals": "Odobrenje kompanija",
-		"jobAds": "Oglasi za posao",
-		"reports": "Izvještaji",
-		"reviewsManagement": "Upravljanje recenzijama",
-		"massNotifications": "Masovne obavijesti",
-		"ticketManagement": "Upravljanje tiketima"
-	},
-	"FirmMenu": {
-		"profile": "Profil",
-		"createJobAd": "Kreiraj oglas za posao",
-		"myJobAds": "Moji oglasi za posao",
-		"candidates": "Kandidati",
-		"interviewCalendar": "Kalendar intervjua",
-		"reports": "Izvještaji",
-		"reviews": "Recenzije",
-		"tickets": "Tiketi"
-	},
-	"CandidateMenu": {
-		"profile": "Profil",
-		"jobAds": "Oglasi za posao",
-		"myApplications": "Moje prijave",
-		"interviewCalendar": "Kalendar intervjua",
-		"tickets": "Tiketi",
-		"companyReviews": "Recenzije kompanija",
-		"myProfile": "CandidateMenu.myProfile"
-	},
-	"ConfirmModal": {
-		"yes": "Da",
-		"no": "Ne"
-	}
+  "TopBar": {
+    "userIcon": "Profil",
+    "themeIcon": "Promijeni temu",
+    "languageIcon": "Promijeni jezik",
+    "notifications": "TopBar.notifications",
+    "chat": "TopBar.chat",
+    "logout": "TopBar.logout"
+  },
+  "HeroSection": {
+    "title": "Pronađite svoj posao iz snova već danas"
+  },
+  "ContentSection": {
+    "streamlineRecruitment": {
+      "title": "Optimizirajte regrutaciju",
+      "text": "U današnjem dinamičnom tržištu rada, regrutacija zahtijeva više od samog objavljivanja oglasa za posao. Potrebno je strateško pristupanje koje povezuje vrhunske talente s pravim prilikama. Korištenjem naprednih alata i tehnologija, kompanije ne samo da mogu pojednostaviti procese zapošljavanja već i izgraditi snažnu i raznoliku radnu snagu. Od početnih prijava do konačnog onboardinga, efikasna regrutacija osigurava da svaki kandidat doživi besprijekorno i profesionalno iskustvo, jačajući povjerenje i gradeći pozitivnu sliku poslodavca. Usvojite pametniju strategiju regrutacije koja daje prioritet efikasnosti, transparentnosti i ljudskoj povezanosti."
+    },
+    "boostProductivity": {
+      "title": "Povećajte produktivnost",
+      "text": "U konkurentskom poslovnom okruženju, produktivnost je temelj uspjeha. Obezbijedite svom timu najmodernije alate dizajnirane za pojednostavljenje složenih procesa zapošljavanja i uklanjanje zastoja. Automatizacijom ponavljajućih zadataka možete osloboditi dragocjeno vrijeme HR profesionalcima da se fokusiraju na izgradnju značajnih veza s kandidatima. Povećajte produktivnost donošenjem odluka na osnovu podataka, optimizacijom radnih tokova i pružanjem bržeg i efikasnijeg iskustva regrutacije koje koristi i vašoj organizaciji i tražiteljima posla."
+    }
+  },
+  "RegisterSection": {
+    "title": "Registrujte svoju firmu",
+    "text1": "Napravite sljedeći korak u optimizaciji procesa regrutacije registracijom vaše kompanije na našoj platformi. Podnošenjem zahtjeva za registraciju dobit ćete pristup nizu alata dizajniranih za povezivanje s vrhunskim talentima, upravljanje objavama poslova i efikasno praćenje prijava kandidata. Naš administrativni tim pregledat će vaš zahtjev kako bi se osiguralo da su svi potrebni podaci dostavljeni. Nakon odobrenja, otključat ćete posvećenu kontrolnu tablu prilagođenu vašim potrebama regrutacije i organizacije, osiguravajući transparentnost, jednostavnost upravljanja i prilike za rast.",
+    "text2": "Osnažite svoje poslovanje naprednim funkcijama i besprijekornim korisničkim iskustvom. Pridružite se našoj rastućoj mreži lidera u industriji koji transformišu način na koji regrutuju i zadržavaju izuzetan talenat. Pošaljite svoj zahtjev već danas i dopustite nam da vam pomognemo pronaći prave ljude koji će unaprijediti vašu kompaniju.",
+    "button": "Registrujte firmu"
+  },
+  "FAQSection": {
+    "questions": [
+      {
+        "title": "Šta je Job Finder?",
+        "content": "Job Finder je sveobuhvatna platforma dizajnirana da premosti jaz između tražilaca posla i poslodavaca. Omogućava organizacijama da pronađu vrhunski talenat dok kandidatima pruža alate i resurse potrebne za pronalazak posla iz snova. Sa funkcijama poput automatskog objavljivanja poslova, praćenja aplikacija u stvarnom vremenu i personalizovanog korisničkog iskustva, Job Finder pojednostavljuje proces regrutovanja za poslodavce i tražioce posla."
+      },
+      {
+        "title": "Kako funkcioniše Job Finder?",
+        "content": "Job Finder djeluje kao dvostrana platforma. Poslodavci mogu kreirati detaljne oglase za poslove, upravljati aplikacijama i komunicirati direktno s kandidatima. S druge strane, tražioci posla mogu pregledavati mogućnosti, aplicirati besprijekorno i pratiti status svojih aplikacija u stvarnom vremenu. Platforma također koristi napredne algoritme za filtriranje i usklađivanje kako bi osigurala da poslodavci i kandidati pronađu savršeno podudaranje, štedeći vrijeme i trud svih uključenih."
+      },
+      {
+        "title": "Koje funkcije Job Finder nudi poslodavcima?",
+        "content": "Poslodavci imaju pristup nizu alata koji pojednostavljuju proces zapošljavanja. Ovo uključuje dinamičke predloške za oglase za posao, automatske e-mail obavijesti, zakazivanje intervjua, rangiranje kandidata i analitičke nadzorne ploče u stvarnom vremenu. Osim toga, platforma pruža korisne izvještaje koji pomažu organizacijama da procijene uspjeh svojih kampanja zapošljavanja i donesu odluke temeljene na podacima za buduće strategije zapošljavanja."
+      },
+      {
+        "title": "Koje prednosti Job Finder nudi tražiocima posla?",
+        "content": "Job Finder tražiocima posla nudi korisnički prilagođen interfejs za kreiranje profesionalnih profila, postavljanje životopisa i prikazivanje svojih vještina. Platforma pruža ažuriranja u stvarnom vremenu o statusima aplikacija, personalizovane preporuke poslova na osnovu njihovih preferencija i kvalifikacija, te pristup vrijednim resursima poput savjeta za intervjue i vodiča za karijeru. Sa Job Finderom, kandidati mogu s lakoćom i samopouzdanjem navigirati tržištem rada."
+      }
+    ]
+  },
+  "CandidateRegisterPopup": {
+    "title": "Registracija",
+    "firstNameLabel": "Ime",
+    "firstNamePlaceholder": "Unesite vaše ime",
+    "lastNameLabel": "Prezime",
+    "lastNamePlaceholder": "Unesite vaše prezime",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Unesite vaš email",
+    "passwordLabel": "Lozinka",
+    "passwordPlaceholder": "Unesite vašu lozinku",
+    "confirmPasswordLabel": "Potvrdite lozinku",
+    "confirmPasswordPlaceholder": "Potvrdite vašu lozinku",
+    "registerButton": "Registrujte se",
+    "alreadyHaveAccount": "Već imate račun?",
+    "loginLink": "Prijavite se",
+    "closePopup": "Zatvori"
+  },
+  "FirmRegisterPopup": {
+    "title": "Registracija Vaše Kompanije",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Unesite vaš email",
+    "companyNameLabel": "Naziv Kompanije",
+    "companyNamePlaceholder": "Unesite naziv vaše kompanije",
+    "addressLabel": "Adresa",
+    "addressPlaceholder": "Unesite vašu adresu",
+    "employeesRangeLabel": "Broj Zaposlenih",
+    "selectedRange": "Odabrani Opseg",
+    "submitButton": "Pošalji Zahtjev",
+    "closePopup": "Zatvori"
+  },
+  "Footer": {
+    "text": "© 2024 Job Finder - Sva Prava Zadržana"
+  },
+  "LoginPopup": {
+    "title": "Prijava",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Unesite vaš email",
+    "passwordLabel": "Lozinka",
+    "passwordPlaceholder": "Unesite vašu lozinku",
+    "loginButton": "Prijavite se",
+    "dontHaveAccount": "Nemate račun?",
+    "registerLink": "Registrujte se",
+    "closePopup": "Zatvori"
+  },
+  "CompanyApprovals": {
+    "title": "Odobrenje Kompanija",
+    "header": "Odobrenje Kompanija",
+    "searchPlaceholder": "Pretraži po imenu...",
+    "filterLabel": "Filtriraj po statusu",
+    "filterAll": "Svi Zahtjevi",
+    "filterPending": "Na čekanju",
+    "filterApproved": "Odobreno",
+    "filterRejected": "Odbijeno",
+    "status": {
+      "pending": "Na čekanju",
+      "approved": "Odobren",
+      "rejected": "Odbijen"
+    },
+    "email": "Email",
+    "address": "Adresa",
+    "employees": "Broj Zaposlenih",
+    "createdAt": "Kreirano",
+    "approve": "Odobri",
+    "reject": "Odbij",
+    "already": "Ovaj zahtjev je već",
+    "approveTitle": "Odobri zahtjev",
+    "approveMessage": "Jeste li sigurni da želite odobriti ovaj zahtjev?",
+    "rejectTitle": "Odbij zahtjev",
+    "rejectMessage": "Jeste li sigurni da želite odbiti ovaj zahtjev?"
+  },
+  "AdminMenu": {
+    "userManagement": "Upravljanje korisnicima",
+    "companyApprovals": "Odobrenje kompanija",
+    "jobAds": "Oglasi za posao",
+    "reports": "Izvještaji",
+    "reviewsManagement": "Upravljanje recenzijama",
+    "massNotifications": "Masovne obavijesti",
+    "ticketManagement": "Upravljanje tiketima"
+  },
+  "FirmMenu": {
+    "profile": "Profil",
+    "createJobAd": "Kreiraj oglas za posao",
+    "myJobAds": "Moji oglasi za posao",
+    "candidates": "Kandidati",
+    "interviewCalendar": "Kalendar intervjua",
+    "reports": "Izvještaji",
+    "reviews": "Recenzije",
+    "tickets": "Tiketi"
+  },
+  "CandidateMenu": {
+    "profile": "Profil",
+    "jobAds": "Oglasi za posao",
+    "myApplications": "Moje prijave",
+    "interviewCalendar": "Kalendar intervjua",
+    "tickets": "Tiketi",
+    "companyReviews": "Recenzije kompanija",
+    "myProfile": "CandidateMenu.myProfile"
+  },
+  "ConfirmModal": {
+    "yes": "Da",
+    "no": "Ne"
+  },
+  "UserManagement": {
+    "title": "Upravljanje Korisnicima",
+    "tableHeaders": {
+      "id": "ID",
+      "email": "Email",
+      "role": "Uloga",
+      "createdAt": "Kreiran",
+      "updatedAt": "Ažuriran",
+      "actions": "Akcije"
+    },
+    "roles": {
+      "admin": "Administrator",
+      "firm": "Firma",
+      "candidate": "Kandidat"
+    },
+    "buttons": {
+      "addUser": "Dodaj Novog Korisnika",
+      "edit": "Izmeni",
+      "delete": "Obriši"
+    },
+    "modal": {
+      "addUserTitle": "Dodaj Novog Korisnika",
+      "editUserTitle": "Izmeni Korisnika",
+      "selectRole": "Izaberi Ulogu:",
+      "chooseRole": "Izaberi ulogu",
+      "email": "Email",
+      "password": "Lozinka",
+      "firmName": "Ime Firme",
+      "firmAddress": "Adresa Firme",
+      "numberOfEmployees": "Broj Zaposlenih",
+	  "selectedRange": "Izabrani Opseg",
+      "firstName": "Ime",
+      "lastName": "Prezime",
+      "save": "Sačuvaj",
+      "cancel": "Otkaži"
+    },
+    "confirmModal": {
+      "title": "Brisanje Korisnika",
+      "message": "Da li ste sigurni da želite da obrišete ovog korisnika? Ova akcija se ne može poništiti.",
+      "yes": "Da",
+      "no": "Ne"
+    }
+  }
 }

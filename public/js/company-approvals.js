@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     rejectTitle: document.body.dataset.rejectTitle,
     rejectMessage: document.body.dataset.rejectMessage,
     yes: document.body.dataset.yes,
-    no: document.body.dataset.no,
+    no: document.body.dataset.no
   };
 
   const openConfirmModal = ({ titleKey, messageKey, action, id }) => {

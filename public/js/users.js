@@ -8,13 +8,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const roleSpecificFields = document.getElementById("role-specific-fields");
   const addUserForm = document.getElementById("add-user-form");
 
+  const localizations = {
+    title: document.body.dataset.title,
+    addUser: document.body.dataset.addUserTitle,
+    editUser: document.body.dataset.editUserTitle,
+    selectRole: document.body.dataset.selectRole,
+    chooseRole: document.body.dataset.chooseRole,
+    emailLabel: document.body.dataset.emailLabel,
+    passwordLabel: document.body.dataset.passwordLabel,
+    firmNameLabel: document.body.dataset.firmNameLabel,
+    firmAddressLabel: document.body.dataset.firmAddressLabel,
+    numberOfEmployeesLabel: document.body.dataset.numberOfEmployeesLabel,
+    selectedRange: document.body.dataset.selectedRange,
+    firstNameLabel: document.body.dataset.firstNameLabel,
+    lastNameLabel: document.body.dataset.lastNameLabel,
+    save: document.body.dataset.save,
+    cancel: document.body.dataset.cancel,
+    deleteUserTitle: document.body.dataset.deleteUserTitle,
+    deleteUserMessage: document.body.dataset.deleteUserMessage,
+    yes: document.body.dataset.yes,
+    no: document.body.dataset.no,
+  };
+
   const toggleModalForEdit = (isEdit) => {
     if (isEdit) {
-      modalTitle.textContent = "Edit User";
+      modalTitle.textContent = localizations.editUser;
       roleSelectContainer.style.display = "none";
       roleSelect.removeAttribute("required");
     } else {
-      modalTitle.textContent = "Add New User";
+      modalTitle.textContent = localizations.addUser;
       roleSelectContainer.style.display = "block";
       roleSelect.setAttribute("required", "true");
     }
@@ -45,37 +67,37 @@ document.addEventListener("DOMContentLoaded", () => {
     if (role === "admin") {
       roleSpecificFields.innerHTML = `
           <div class="form-group">
-            <label for="admin-email">Email:</label>
+            <label for="admin-email">${localizations.emailLabel}:</label>
             <input type="email" id="admin-email" name="email" required />
           </div>
           <div class="form-group">
-            <label for="admin-password">Password:</label>
+            <label for="admin-password">${localizations.passwordLabel}:</label>
             <input type="password" id="admin-password" name="password" required />
           </div>
         `;
     } else if (role === "firm") {
       roleSpecificFields.innerHTML = `
         <div class="form-group">
-          <label for="firm-email">Email:</label>
+          <label for="firm-email">${localizations.emailLabel}:</label>
           <input type="email" id="firm-email" name="email" required />
         </div>
         <div class="form-group">
-          <label for="firm-password">Password:</label>
+          <label for="firm-password">${localizations.passwordLabel}:</label>
           <input type="password" id="firm-password" name="password" required />
         </div>
         <div class="form-group">
-          <label for="firm-name">Firm Name:</label>
+          <label for="firm-name">${localizations.firmNameLabel}:</label>
           <input type="text" id="firm-name" name="name" required />
         </div>
         <div class="form-group">
-          <label for="firm-address">Firm Address:</label>
+          <label for="firm-address">${localizations.firmAddressLabel}:</label>
           <input type="text" id="firm-address" name="address" required />
         </div>
         <div class="form-group">
-          <label for="firm-employees">Number of Employees:</label>
+          <label for="firm-employees">${localizations.numberOfEmployeesLabel}:</label>
           <div id="firm-employees-slider"></div>
           <input type="hidden" id="firm-employees-range" name="employees_range" />
-          <div class="slider-values"> Selected Range:
+          <div class="slider-values">${localizations.selectedRange}:
             <span id="min-employees">0</span>
             <span> - </span>
             <span id="max-employees">100</span>
@@ -107,19 +129,19 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (role === "candidate") {
       roleSpecificFields.innerHTML = `
           <div class="form-group">
-            <label for="candidate-email">Email:</label>
+            <label for="candidate-email">${localizations.emailLabel}:</label>
             <input type="email" id="candidate-email" name="email" required />
           </div>
           <div class="form-group">
-            <label for="candidate-password">Password:</label>
+            <label for="candidate-password">${localizations.passwordLabel}:</label>
             <input type="password" id="candidate-password" name="password" required />
           </div>
           <div class="form-group">
-            <label for="candidate-first-name">First Name:</label>
+            <label for="candidate-first-name">${localizations.firstNameLabel}:</label>
             <input type="text" id="candidate-first-name" name="first_name" required />
           </div>
           <div class="form-group">
-            <label for="candidate-last-name">Last Name:</label>
+            <label for="candidate-last-name">${localizations.lastNameLabel}:</label>
             <input type="text" id="candidate-last-name" name="last_name" required />
           </div>
         `;
@@ -140,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const details = await response.json();
           Object.assign(userData, details);
         } else {
-          alert("Error fetching user details.");
+          alert(localizations.errorFetchingUserDetails);
           return;
         }
       }
@@ -151,15 +173,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Dodavanje EventListener-a na Delete dugmad
   document.querySelectorAll(".delete-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const userId = btn.getAttribute("data-id");
 
       openConfirmModal({
-        title: "Delete User",
-        message:
-          "Are you sure you want to delete this user? This action cannot be undone.",
+        title: localizations.deleteUserTitle,
+        message: localizations.deleteUserMessage,
         action: "delete",
         id: userId,
         onConfirm: async (id) => {
@@ -169,15 +189,15 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (response.ok) {
-              alert("User deleted successfully!");
+              alert(localizations.userDeletedSuccessfully);
               location.reload();
             } else {
               const error = await response.json();
-              alert(`Failed to delete user: ${error.message}`);
+              alert(`${localizations.failedToDeleteUser}: ${error.message}`);
             }
           } catch (error) {
-            console.error("Error deleting user:", error);
-            alert("An error occurred while deleting the user.");
+            console.error(localizations.errorDeletingUser, error);
+            alert(localizations.anErrorOccurredDeletingUser);
           }
         },
       });
@@ -201,29 +221,29 @@ document.addEventListener("DOMContentLoaded", () => {
     if (role === "admin") {
       roleSpecificFields.innerHTML += `
         <div class="form-group">
-          <label for="admin-email">Email:</label>
+          <label for="admin-email">${localizations.emailLabel}:</label>
           <input type="email" id="admin-email" name="email" value="${email}" required />
         </div>`;
     } else if (role === "firm") {
       const [minEmployees, maxEmployees] = employees_range.split("-");
       roleSpecificFields.innerHTML += `
         <div class="form-group">
-          <label for="firm-email">Email:</label>
+          <label for="firm-email">${localizations.emailLabel}:</label>
           <input type="email" id="firm-email" name="email" value="${email}" required />
         </div>
         <div class="form-group">
-          <label for="firm-name">Firm Name:</label>
+          <label for="firm-name">${localizations.firmNameLabel}:</label>
           <input type="text" id="firm-name" name="name" value="${name}" required />
         </div>
         <div class="form-group">
-          <label for="firm-address">Firm Address:</label>
+          <label for="firm-address">${localizations.firmAddressLabel}:</label>
           <input type="text" id="firm-address" name="address" value="${address}" required />
         </div>
         <div class="form-group">
-          <label for="firm-employees">Number of Employees:</label>
+          <label for="firm-employees">${localizations.numberOfEmployeesLabel}:</label>
           <div id="firm-employees-slider"></div>
           <input type="hidden" id="firm-employees-range" name="employees_range" value="${employees_range}" />
-          <div class="slider-values"> Selected Range:
+          <div class="slider-values">${localizations.selectedRange}:
             <span id="min-employees">${minEmployees}</span>
             <span> - </span>
             <span id="max-employees">${maxEmployees}</span>
@@ -233,15 +253,15 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (role === "candidate") {
       roleSpecificFields.innerHTML += `
         <div class="form-group">
-          <label for="candidate-email">Email:</label>
+          <label for="candidate-email">${localizations.emailLabel}:</label>
           <input type="email" id="candidate-email" name="email" value="${email}" required />
         </div>
         <div class="form-group">
-          <label for="candidate-first-name">First Name:</label>
+          <label for="candidate-first-name">${localizations.firstNameLabel}:</label>
           <input type="text" id="candidate-first-name" name="first_name" value="${first_name}" required />
         </div>
         <div class="form-group">
-          <label for="candidate-last-name">Last Name:</label>
+          <label for="candidate-last-name">${localizations.lastNameLabel}:</label>
           <input type="text" id="candidate-last-name" name="last_name" value="${last_name}" required />
         </div>`;
     }
@@ -272,7 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (roleSelectContainer.style.display !== "none") {
       const roleSelect = document.getElementById("role-select");
       if (!roleSelect.value) {
-        alert("Please select a role.");
+        alert(localizations.selectRoleAlert);
         return;
       }
     }
@@ -282,11 +302,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const response = await fetch(
-        modalTitle.textContent === "Add New User"
+        modalTitle.textContent === localizations.addUser
           ? "/admin/users/add"
           : `/admin/users/edit/${userData.id}`,
         {
-          method: modalTitle.textContent === "Add New User" ? "POST" : "PUT",
+          method:
+            modalTitle.textContent === localizations.addUser ? "POST" : "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(userData),
         }
@@ -294,19 +315,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok) {
         alert(
-          modalTitle.textContent === "Add New User"
-            ? "User added successfully!"
-            : "User updated successfully!"
+          modalTitle.textContent === localizations.addUser
+            ? localizations.userAddedSuccessfully
+            : localizations.userUpdatedSuccessfully
         );
         closeModal();
         location.reload();
       } else {
         const error = await response.json();
-        alert(`Failed to process user: ${error.message}`);
+        alert(`${localizations.failedToProcessUser}: ${error.message}`);
       }
     } catch (error) {
-      console.error("Error processing user:", error);
-      alert("An error occurred while processing the user.");
+      console.error(localizations.errorProcessingUser, error);
+      alert(localizations.anErrorOccurredProcessingUser);
     }
   });
 });
