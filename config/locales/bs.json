@@ -197,5 +197,15 @@
     "emailLabel": "Unesite vašu email adresu",
     "emailPlaceholder": "Vaša email adresa",
     "submitButton": "Pošalji link za resetovanje"
+  },
+  "CandidateProfile": {
+    "title": "Profil Kandidata",
+    "profilePictureAlt": "Profilna Slika",
+    "noImage": "Nema Slike",
+    "editProfile": "Uredi Profil",
+    "about": "O Kandidatu",
+    "cv": "CV",
+    "motivationLetter": "Motivaciono Pismo",
+    "recommendations": "Preporuke"
   }
 }

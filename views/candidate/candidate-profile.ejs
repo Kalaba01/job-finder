@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Candidate Profile</title>
+    <title><%= __("CandidateProfile.title") %></title>
     <link rel="stylesheet" href="/styles/candidate-profile.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
   <body>
     <%- include('../partials/top-bar') %>
@@ -15,11 +16,13 @@
           <% if (candidate.profile_picture) { %>
           <img
             src="<%= candidate.profile_picture %>"
-            alt="Profile Picture"
+            alt="<%= __('CandidateProfile.profilePictureAlt') %>"
             class="profile-picture"
           />
           <% } else { %>
-          <div class="profile-placeholder">No Image</div>
+          <div class="profile-placeholder">
+            <%= __("CandidateProfile.noImage") %>
+          </div>
           <% } %>
         </div>
         <div class="profile-name">
@@ -29,24 +32,26 @@
 
       <div class="profile-details">
         <div class="profile-detail-item">
-          <h3>About</h3>
+          <h3><%= __("CandidateProfile.about") %></h3>
           <p><%= candidate.about %></p>
         </div>
         <div class="profile-detail-item">
-          <h3>CV</h3>
+          <h3><%= __("CandidateProfile.cv") %></h3>
           <p><%= candidate.cv %></p>
         </div>
         <div class="profile-detail-item">
-          <h3>Motivation Letter</h3>
+          <h3><%= __("CandidateProfile.motivationLetter") %></h3>
           <p><%= candidate.motivation_letter %></p>
         </div>
         <div class="profile-detail-item">
-          <h3>Recommendations</h3>
+          <h3><%= __("CandidateProfile.recommendations") %></h3>
           <p><%= candidate.recommendations %></p>
         </div>
       </div>
 
-      <button class="edit-profile-btn">Edit Profile</button>
+      <button class="edit-profile-btn">
+        <%= __("CandidateProfile.editProfile") %>
+      </button>
     </div>
   </body>
 </html>

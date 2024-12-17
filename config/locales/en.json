@@ -196,5 +196,15 @@
     "emailLabel": "Enter your email",
     "emailPlaceholder": "Your email address",
     "submitButton": "Send Reset Link"
+  },
+  "CandidateProfile": {
+    "title": "Candidate Profile",
+    "profilePictureAlt": "Profile Picture",
+    "noImage": "No Image",
+    "editProfile": "Edit Profile",
+    "about": "About",
+    "cv": "CV",
+    "motivationLetter": "Motivation Letter",
+    "recommendations": "Recommendations"
   }
 }
