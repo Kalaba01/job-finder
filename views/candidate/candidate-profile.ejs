@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Candidate Profile</title>
+    <link rel="stylesheet" href="/styles/candidate-profile.css" />
+  </head>
+  <body>
+    <%- include('../partials/top-bar') %>
+
+    <div class="profile-container">
+      <div class="profile-header">
+        <div class="profile-image-container">
+          <% if (candidate.profile_picture) { %>
+          <img
+            src="<%= candidate.profile_picture %>"
+            alt="Profile Picture"
+            class="profile-picture"
+          />
+          <% } else { %>
+          <div class="profile-placeholder">No Image</div>
+          <% } %>
+        </div>
+        <div class="profile-name">
+          <h1><%= candidate.first_name %> <%= candidate.last_name %></h1>
+        </div>
+      </div>
+
+      <div class="profile-details">
+        <div class="profile-detail-item">
+          <h3>About</h3>
+          <p><%= candidate.about %></p>
+        </div>
+        <div class="profile-detail-item">
+          <h3>CV</h3>
+          <p><%= candidate.cv %></p>
+        </div>
+        <div class="profile-detail-item">
+          <h3>Motivation Letter</h3>
+          <p><%= candidate.motivation_letter %></p>
+        </div>
+        <div class="profile-detail-item">
+          <h3>Recommendations</h3>
+          <p><%= candidate.recommendations %></p>
+        </div>
+      </div>
+
+      <button class="edit-profile-btn">Edit Profile</button>
+    </div>
+  </body>
+</html>
