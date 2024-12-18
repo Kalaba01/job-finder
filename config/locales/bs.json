@@ -206,6 +206,19 @@
     "about": "O Kandidatu",
     "cv": "CV",
     "motivationLetter": "Motivaciono Pismo",
-    "recommendations": "Preporuke"
+    "recommendations": "Preporuke",
+    "downloadCV": "Preuzmi CV",
+    "downloadMotivationLetter": "Preuzmi motivaciono pismo",
+    "downloadRecommendations": "Preuzmi preporuke"
+  },
+  "CandidateProfileEdit": {
+    "title": "Uredi Profil Kandidata",
+    "firstName": "Ime",
+    "lastName": "Prezime",
+    "about": "O kandidatu",
+    "uploadCV": "Dodaj CV",
+    "uploadMotivationLetter": "Dodaj Motivaciono Pismo",
+    "uploadRecommendations": "Dodaj Preporuke",
+    "saveChanges": "Sačuvaj Promjene"
   }
 }

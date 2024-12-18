@@ -2,41 +2,41 @@
 <div id="edit-profile-popup" class="edit-profile-popup-overlay">
   <div class="edit-profile-popup-content">
     <span id="edit-profile-close-btn" class="edit-profile-close-popup">&times;</span>
-    <h2>Edit Candidate Profile</h2>
+    <h2><%= __("CandidateProfileEdit.title") %></h2>
     <form id="edit-profile-form">
       <div class="form-row">
         <div class="form-group">
-          <label for="edit-first-name">First Name</label>
+          <label for="edit-first-name"><%= __("CandidateProfileEdit.firstName") %></label>
           <input type="text" id="edit-first-name" name="first_name" value="<%= candidate.first_name %>" required />
         </div>
         <div class="form-group">
-          <label for="edit-last-name">Last Name</label>
+          <label for="edit-last-name"><%= __("CandidateProfileEdit.lastName") %></label>
           <input type="text" id="edit-last-name" name="last_name" value="<%= candidate.last_name %>" required />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="edit-about">About</label>
+        <label for="edit-about"><%= __("CandidateProfileEdit.about") %></label>
         <textarea id="edit-about" name="about" rows="5" required><%= candidate.about %></textarea>
       </div>
 
       <div class="form-group file-upload">
-        <label for="edit-cv">Upload CV</label>
+        <label for="edit-cv"><%= __("CandidateProfileEdit.uploadCV") %></label>
         <input type="file" id="edit-cv" name="cv" accept=".pdf,.doc,.docx" />
       </div>
 
       <div class="form-group file-upload">
-        <label for="edit-motivation-letter">Upload Motivation Letter</label>
+        <label for="edit-motivation-letter"><%= __("CandidateProfileEdit.uploadMotivationLetter") %></label>
         <input type="file" id="edit-motivation-letter" name="motivation_letter" accept=".pdf,.doc,.docx" />
       </div>
 
       <div class="form-group file-upload">
-        <label for="edit-recommendations">Upload Recommendations</label>
+        <label for="edit-recommendations"><%= __("CandidateProfileEdit.uploadRecommendations") %></label>
         <input type="file" id="edit-recommendations" name="recommendations" accept=".pdf,.doc,.docx" />
       </div>
 
       <button type="submit" id="save-profile-btn" class="save-profile-btn">
-        Save Changes
+        <%= __("CandidateProfileEdit.saveChanges") %>
       </button>
     </form>
   </div>

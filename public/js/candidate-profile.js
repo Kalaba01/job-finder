@@ -4,27 +4,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const closePopupBtn = document.getElementById("edit-profile-close-btn");
   const editProfileForm = document.getElementById("edit-profile-form");
 
-  // Otvaranje popupa
   editProfileBtn.addEventListener("click", () => {
     popupOverlay.style.display = "flex";
   });
 
-  // Zatvaranje popupa
   closePopupBtn.addEventListener("click", () => {
     popupOverlay.style.display = "none";
   });
 
-  // Slanje forme
   editProfileForm.addEventListener("submit", async (e) => {
     e.preventDefault();
   
-    // Kreiramo FormData za podršku fajlova
     const formData = new FormData(editProfileForm);
   
     try {
       const response = await fetch("/candidate/profile/edit", {
         method: "PUT",
-        body: formData, // Šaljemo FormData objekt
+        body: formData
       });
   
       if (response.ok) {
