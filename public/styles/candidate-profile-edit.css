@@ -1,3 +1,31 @@
+/* Light Mode */
+:root {
+    --background-color: #fff;
+    --text-color: #333;
+    --overlay-color: rgba(0, 0, 0, 0.6);
+    --border-color: #ccc;
+    --button-bg-color: #007bff;
+    --button-hover-bg-color: #0056b3;
+    --input-focus-border: #007bff;
+    --close-icon-color: #555;
+    --close-icon-hover-color: #000;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --background-color: #1e1e1e;
+    --text-color: #e4e4e4;
+    --overlay-color: rgba(0, 0, 0, 0.8);
+    --border-color: #555;
+    --button-bg-color: #4444ff;
+    --button-hover-bg-color: #6666ff;
+    --input-focus-border: #4444ff;
+    --close-icon-color: #aaa;
+    --close-icon-hover-color: #fff;
+    --shadow-color: rgba(0, 0, 0, 0.6);
+}
+
 /* Edit Profile Popup */
 .edit-profile-popup-overlay {
     display: none;
@@ -6,17 +34,18 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: var(--overlay-color);
     z-index: 1000;
     justify-content: center;
     align-items: center;
 }
 
 .edit-profile-popup-content {
-    background: #fff;
+    background: var(--background-color);
+    color: var(--text-color);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px var(--shadow-color);
     width: 550px;
     max-width: 90%;
     position: relative;
@@ -27,20 +56,20 @@
     top: 10px;
     right: 15px;
     font-size: 1.5rem;
-    color: #555;
+    color: var(--close-icon-color);
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
 .edit-profile-close-popup:hover {
-    color: #000;
+    color: var(--close-icon-hover-color);
 }
 
 .edit-profile-popup-content h2 {
     text-align: center;
     margin-bottom: 1rem;
     font-size: 1.5rem;
-    color: #333;
+    color: var(--text-color);
 }
 
 /* Form Styles */
@@ -64,7 +93,7 @@
 .form-group label {
     margin-bottom: 0.5rem;
     font-weight: bold;
-    color: #333;
+    color: var(--text-color);
 }
 
 textarea#edit-about {
@@ -74,7 +103,9 @@ textarea#edit-about {
 input,
 textarea {
     padding: 0.75rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
+    background: var(--background-color);
+    color: var(--text-color);
     border-radius: 5px;
     font-size: 1rem;
     transition: border-color 0.3s ease;
@@ -82,7 +113,7 @@ textarea {
 
 input:focus,
 textarea:focus {
-    border-color: #007bff;
+    border-color: var(--input-focus-border);
     outline: none;
 }
 
@@ -94,7 +125,7 @@ textarea:focus {
 .file-upload label {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: #007bff;
+    background: var(--button-bg-color);
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
@@ -102,12 +133,12 @@ textarea:focus {
 }
 
 .file-upload label:hover {
-    background: #0056b3;
+    background: var(--button-hover-bg-color);
 }
 
 /* Save Button */
 .save-profile-btn {
-    background-color: #007bff;
+    background-color: var(--button-bg-color);
     color: #fff;
     border: none;
     padding: 0.75rem;
@@ -119,6 +150,6 @@ textarea:focus {
 }
 
 .save-profile-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--button-hover-bg-color);
     transform: translateY(-2px);
 }
