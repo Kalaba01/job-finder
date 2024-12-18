@@ -37,16 +37,28 @@
         </div>
         <div class="profile-detail-item">
           <h3><%= __("CandidateProfile.cv") %></h3>
-          <p><%= candidate.cv %></p>
+          <% if (candidate.cv) { %>
+            <a href="/files/cv/<%= candidate.id %>" target="_blank">Download CV</a>
+          <% } else { %>
+            <p>N/A</p>
+          <% } %>
         </div>
         <div class="profile-detail-item">
           <h3><%= __("CandidateProfile.motivationLetter") %></h3>
-          <p><%= candidate.motivation_letter %></p>
+          <% if (candidate.motivation_letter) { %>
+            <a href="/files/motivation_letter/<%= candidate.id %>" target="_blank">Download Motivation Letter</a>
+          <% } else { %>
+            <p>N/A</p>
+          <% } %>
         </div>
         <div class="profile-detail-item">
           <h3><%= __("CandidateProfile.recommendations") %></h3>
-          <p><%= candidate.recommendations %></p>
-        </div>
+          <% if (candidate.recommendations) { %>
+            <a href="/files/recommendations/<%= candidate.id %>" target="_blank">Download Recommendations</a>
+          <% } else { %>
+            <p>N/A</p>
+          <% } %>
+        </div>                
       </div>
 
       <button class="edit-profile-btn">

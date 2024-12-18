@@ -1,7 +1,23 @@
 const emailService = require("../services/emailService");
 const userService = require("./userService");
 const imageService = require("./imageService");
-const { Candidate, Image } = require("../models");
+const { User, Candidate, Image } = require("../models");
+
+exports.checkIfCandidateWithEmailExists = async (email) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        email: email,
+        role: "candidate",
+      },
+    });
+
+    if (user) throw new Error("User with this email already exists as a candidate.");
+  } catch (error) {
+    console.error("Error checking if user with email exists:", error.message || error);
+    throw error;
+  }
+};
 
 exports.findCandidateByUserId = async(userId) => {
   try {
@@ -16,7 +32,7 @@ exports.findCandidateByUserId = async(userId) => {
 
 exports.registerCandidate = async (email, password, first_name, last_name, transaction=null) => {
   try {
-    await userService.checkIfUserWithEmailExists(email);
+    await this.checkIfCandidateWithEmailExists(email);
 
     const user = await userService.createUser(email, password, "candidate", transaction);
     const defaultImage = await imageService.setDefaultPicture("candidate", transaction);
@@ -90,10 +106,10 @@ exports.getCandidateProfile = async (userId) => {
       first_name: candidate?.first_name || "N/A",
       last_name: candidate?.last_name || "N/A",
       about: candidate?.about || "N/A",
-      cv: candidate?.cv || "N/A",
-      motivation_letter: candidate?.motivation_letter || "N/A",
-      recommendations: candidate?.recommendations || "N/A",
-      profile_picture_id: candidate?.profile_picture_id || null
+      cv: !!candidate?.cv,
+      motivation_letter: !!candidate?.motivation_letter,
+      recommendations: !!candidate?.recommendations,
+      profile_picture_id: candidate?.profile_picture_id || null,
     };
 
     return candidateData;

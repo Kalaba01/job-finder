@@ -25,15 +25,15 @@ const Candidate = sequelize.define('Candidate', {
     allowNull: true,
   },
   cv: {
-    type: DataTypes.STRING,
+    type: DataTypes.BLOB('long'),
     allowNull: true,
   },
   motivation_letter: {
-    type: DataTypes.STRING,
+    type: DataTypes.BLOB('long'),
     allowNull: true,
   },
   recommendations: {
-    type: DataTypes.STRING,
+    type: DataTypes.BLOB('long'),
     allowNull: true,
   },
   profile_picture_id: {
@@ -43,7 +43,7 @@ const Candidate = sequelize.define('Candidate', {
       model: Image,
       key: 'id',
     },
-  }
+  },
 });
 
 Candidate.belongsTo(User, { foreignKey: 'user_id' });

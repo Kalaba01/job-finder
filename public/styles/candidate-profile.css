@@ -138,3 +138,17 @@ body {
     color: var(--text-color);
     line-height: 1.6;
 }
+
+.file-link {
+    display: inline-block;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.file-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
