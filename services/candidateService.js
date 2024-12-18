@@ -118,3 +118,24 @@ exports.getCandidateProfile = async (userId) => {
     throw new Error("Failed to fetch candidate profile.");
   }
 };
+
+exports.updateCandidateProfile = async (userId, { first_name, last_name, about, cv, motivation_letter, recommendations }) => {
+  try {
+    const candidate = await Candidate.findOne({ where: { user_id: userId } });
+
+    if (!candidate) throw new Error("Candidate not found.");
+
+    candidate.first_name = first_name || candidate.first_name;
+    candidate.last_name = last_name || candidate.last_name;
+    candidate.about = about || candidate.about;
+
+    if (cv) candidate.cv = cv.buffer;
+    if (motivation_letter) candidate.motivation_letter = motivation_letter.buffer;
+    if (recommendations) candidate.recommendations = recommendations.buffer;
+
+    await candidate.save();
+  } catch (error) {
+    console.error("Error updating candidate profile:", error);
+    throw new Error("Failed to update candidate profile.");
+  }
+};

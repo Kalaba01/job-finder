@@ -2,8 +2,7 @@ const fileService = require("../services/fileService");
 
 exports.getCandidateFile = async (req, res) => {
   try {
-    const { type, candidateId } = req.params;
-
+    const { candidateId, type } = req.params;
     const fileData = await fileService.getCandidateFile(candidateId, type);
 
     if (!fileData) return res.status(404).send("File not found");

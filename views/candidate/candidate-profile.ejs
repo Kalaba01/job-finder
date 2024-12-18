@@ -38,6 +38,7 @@
         <div class="profile-detail-item">
           <h3><%= __("CandidateProfile.cv") %></h3>
           <% if (candidate.cv) { %>
+            <%= console.log(candidate.id) %>
             <a href="/files/cv/<%= candidate.id %>" target="_blank">Download CV</a>
           <% } else { %>
             <p>N/A</p>
@@ -61,9 +62,12 @@
         </div>                
       </div>
 
-      <button class="edit-profile-btn">
+      <button class="edit-profile-btn" id="edit-profile-btn">
         <%= __("CandidateProfile.editProfile") %>
-      </button>
+      </button>      
     </div>
+
+    <%- include('./candidate-profile-edit') %>
+    
   </body>
 </html>

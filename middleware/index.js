@@ -4,6 +4,7 @@ const languageMiddleware = require("./languageMiddleware");
 const userRedirectMiddleware = require("./userRedirectMiddleware");
 const notFoundMiddleware = require("./notFoundMiddleware");
 const setMenuOptions = require("./setMenuOptions");
+const uploadMiddleware = require("./uploadMiddleware");
 
 module.exports = {
     authMiddleware,
@@ -11,5 +12,6 @@ module.exports = {
     languageMiddleware,
     userRedirectMiddleware,
     notFoundMiddleware,
-    setMenuOptions
+    setMenuOptions,
+    uploadMiddleware
 }

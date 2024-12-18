@@ -1,8 +1,8 @@
-const { Candidate } = require("../models");
+const candidateService = require("./candidateService");
 
 exports.getCandidateFile = async (candidateId, type) => {
   try {
-    const candidate = await Candidate.findByPk(candidateId);
+    const candidate = await candidateService.findCandidateByUserId(candidateId);
 
     if (!candidate) throw new Error("Candidate not found");
 
@@ -33,14 +33,12 @@ exports.getCandidateFile = async (candidateId, type) => {
         throw new Error("Invalid file type");
     }
 
-    if (!fileContent) {
-      throw new Error("File not found");
-    }
+    if (!fileContent) throw new Error("File not found");
 
     return {
       content: fileContent,
       fileName,
-      mimeType,
+      mimeType
     };
   } catch (error) {
     console.error("Error fetching candidate file:", error);
