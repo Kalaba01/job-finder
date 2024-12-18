@@ -103,6 +103,7 @@ exports.getCandidateProfile = async (userId) => {
     const candidate = await this.findCandidateByUserId(userId);
 
     const candidateData = {
+      id: candidate?.user_id || null,
       first_name: candidate?.first_name || "N/A",
       last_name: candidate?.last_name || "N/A",
       about: candidate?.about || "N/A",

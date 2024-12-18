@@ -13,19 +13,19 @@ exports.getCandidateFile = async (candidateId, type) => {
     switch (type) {
       case "cv":
         fileContent = candidate.cv;
-        fileName = "cv.pdf";
+        fileName = `cv_${candidate.first_name}_${candidate.last_name}.pdf`;
         mimeType = "application/pdf";
         break;
 
       case "motivation_letter":
         fileContent = candidate.motivation_letter;
-        fileName = "motivation_letter.pdf";
+        fileName = `motivation_letter_${candidate.first_name}_${candidate.last_name}.pdf`;
         mimeType = "application/pdf";
         break;
 
       case "recommendations":
         fileContent = candidate.recommendations;
-        fileName = "recommendations.pdf";
+        fileName = `recommendations_${candidate.first_name}_${candidate.last_name}.pdf`;
         mimeType = "application/pdf";
         break;
 

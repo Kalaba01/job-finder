@@ -140,15 +140,28 @@ body {
 }
 
 .file-link {
-    display: inline-block;
-    color: #007bff;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--button-background);
     text-decoration: none;
-    font-weight: bold;
-    margin-top: 0.5rem;
-    transition: color 0.3s ease;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--button-background);
+    border-radius: 8px;
+    background: transparent;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px var(--shadow-color);
 }
 
 .file-link:hover {
-    color: #0056b3;
-    text-decoration: underline;
+    background-color: var(--button-background);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.file-link i {
+    font-size: 1rem;
 }
