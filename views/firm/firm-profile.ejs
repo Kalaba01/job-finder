@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Firm Profile</title>
+    <link rel="stylesheet" href="/styles/firm-profile.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+  <body>
+    <%- include('../partials/top-bar') %>
+
+    <div class="profile-container">
+      <div class="profile-header">
+        <div class="profile-image-container">
+          <% if (firm.profile_picture_id) { %>
+          <img
+            src="/images/<%= firm.profile_picture_id %>"
+            alt="Firm Profile Picture"
+            class="profile-picture"
+          />
+          <% } else { %>
+          <div class="profile-placeholder">
+            No Image Available
+          </div>
+          <% } %>
+        </div>
+        <h1><%= firm.name %></h1>
+      </div>
+
+      <div class="profile-details">
+        <div class="profile-detail-item">
+          <h3>Address</h3>
+          <p><%= firm.address %></p>
+        </div>
+        <div class="profile-detail-item">
+          <h3>Number of Employees</h3>
+          <p><%= firm.employees %></p>
+        </div>
+      </div>
+
+      <button class="edit-profile-btn">
+        Edit Profile
+      </button>
+    </div>
+  </body>
+</html>

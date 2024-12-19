@@ -106,3 +106,23 @@ exports.deleteFirm = async (userId) => {
     throw new Error("Error deleting firm.");
   }
 };
+
+exports.getFirmProfile = async (userId) => {
+  try {
+    const firm = await this.firmExistsByUserId(userId);
+
+    if (!firm) throw new Error("Firm profile not found");
+
+    const firmData = {
+      name: firm.name || "N/A",
+      address: firm.address || "N/A",
+      employees: firm.employees || "N/A",
+      profile_picture_id: firm.profile_picture_id || null,
+    };
+
+    return firmData;
+  } catch (error) {
+    console.error("Error fetching firm profile:", error);
+    throw new Error("Failed to fetch firm profile.");
+  }
+};

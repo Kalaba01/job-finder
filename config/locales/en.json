@@ -1,228 +1,235 @@
 {
-  "TopBar": {
-    "userIcon": "Profile",
-    "themeIcon": "Change Theme",
-    "languageIcon": "Change Language",
-    "notifications": "TopBar.notifications",
-    "chat": "TopBar.chat",
-    "logout": "TopBar.logout"
-  },
-  "HeroSection": {
-    "title": "Find Your Dream Job Today"
-  },
-  "ContentSection": {
-    "streamlineRecruitment": {
-      "title": "Streamline Recruitment",
-      "text": "In today’s fast-paced job market, recruitment requires more than just posting job openings. It demands a strategic approach that connects top talent with the right opportunities. By leveraging advanced tools and technology, companies can not only simplify their hiring processes but also build a strong and diverse workforce. From initial applications to final onboarding, effective recruitment ensures that every candidate experiences a seamless and professional journey, fostering trust and building a positive employer brand. Embrace a smarter recruitment strategy that prioritizes efficiency, transparency, and human connection."
-    },
-    "boostProductivity": {
-      "title": "Boost Productivity",
-      "text": "In a competitive business landscape, productivity is the cornerstone of success. Empower your team with cutting-edge tools designed to simplify complex hiring processes and eliminate bottlenecks. By automating repetitive tasks, you can free up valuable time for HR professionals to focus on building meaningful connections with candidates. Drive productivity by making data-driven decisions, optimizing workflows, and delivering a faster, more effective recruitment experience that benefits both your organization and job seekers."
-    }
-  },
-  "RegisterSection": {
-    "title": "Register Your Company",
-    "text1": "Take the next step in streamlining your recruitment process by registering your company on our platform. By submitting a registration request, you'll gain access to a suite of tools designed to help you connect with top-tier talent, manage job postings, and oversee candidate applications efficiently. Our admin team will review your request to ensure all necessary information is provided. Upon approval, you'll unlock a dedicated dashboard tailored to meet your recruitment and organizational needs, providing transparency, ease of management, and opportunities for growth.",
-    "text2": "Empower your business with advanced features and a seamless user experience. Join our growing network of industry leaders who are transforming the way they recruit and retain exceptional talent. Submit your request today and let us help you find the right people to drive your company forward.",
-    "button": "Register Your Company"
-  },
-  "FAQSection": {
-    "questions": [
-      {
-        "title": "What is Job Finder?",
-        "content": "Job Finder is a comprehensive platform designed to bridge the gap between job seekers and employers. It empowers organizations to find top-tier talent while providing candidates with the tools and resources needed to land their dream jobs. With features like automated job postings, real-time application tracking, and personalized candidate experiences, Job Finder simplifies the recruitment process for both employers and job seekers."
-      },
-      {
-        "title": "How does Job Finder work?",
-        "content": "Job Finder operates as a dual-sided platform. Employers can create detailed job postings, manage applications, and communicate directly with candidates. On the other hand, job seekers can browse opportunities, apply seamlessly, and track their application status in real time. The platform also leverages advanced filtering and matching algorithms to ensure that employers and candidates find the perfect fit, saving time and effort for everyone involved."
-      },
-      {
-        "title": "What features does Job Finder offer to employers?",
-        "content": "Employers gain access to a suite of tools that streamline the hiring process. These include dynamic job posting templates, automated email notifications, interview scheduling, candidate ranking, and real-time analytics dashboards. Additionally, the platform provides insightful reports to help organizations evaluate the success of their recruitment campaigns and make data-driven decisions for future hiring strategies."
-      },
-      {
-        "title": "What benefits does Job Finder provide to job seekers?",
-        "content": "Job Finder offers job seekers a user-friendly interface to create professional profiles, upload resumes, and showcase their skills. The platform provides real-time updates on application statuses, personalized job recommendations based on their preferences and qualifications, and access to valuable resources like interview tips and career guidance. With Job Finder, candidates can navigate the job market with confidence and ease."
-      }
-    ]
-  },
-  "CandidateRegisterPopup": {
-    "title": "Register",
-    "firstNameLabel": "First Name",
-    "firstNamePlaceholder": "Enter your first name",
-    "lastNameLabel": "Last Name",
-    "lastNamePlaceholder": "Enter your last name",
-    "emailLabel": "Email",
-    "emailPlaceholder": "Enter your email",
-    "passwordLabel": "Password",
-    "passwordPlaceholder": "Enter your password",
-    "confirmPasswordLabel": "Confirm Password",
-    "confirmPasswordPlaceholder": "Confirm your password",
-    "registerButton": "Register",
-    "alreadyHaveAccount": "Already have an account?",
-    "loginLink": "Login",
-    "closePopup": "Close"
-  },
-  "FirmRegisterPopup": {
-    "title": "Register Your Company",
-    "emailLabel": "Email",
-    "emailPlaceholder": "Enter your email",
-    "companyNameLabel": "Company Name",
-    "companyNamePlaceholder": "Enter your company name",
-    "addressLabel": "Address",
-    "addressPlaceholder": "Enter your address",
-    "employeesRangeLabel": "Number of Employees",
-    "selectedRange": "Selected Range",
-    "submitButton": "Submit Request",
-    "closePopup": "Close"
-  },
-  "Footer": {
-    "text": "© 2024 Job Finder - All Rights Reserved"
-  },
-  "LoginPopup": {
-    "title": "Login",
-    "emailLabel": "Email",
-    "emailPlaceholder": "Enter your email",
-    "passwordLabel": "Password",
-    "passwordPlaceholder": "Enter your password",
-    "loginButton": "Login",
-    "dontHaveAccount": "Don't have an account?",
-    "registerLink": "Register",
-    "closePopup": "Close",
-    "forgotPassword": "Forgot Password?"
-  },
-  "CompanyApprovals": {
-    "title": "Company Approvals",
-    "header": "Company Approvals",
-    "searchPlaceholder": "Search by name...",
-    "filterLabel": "Filter by status",
-    "filterAll": "All Requests",
-    "filterPending": "Pending",
-    "filterApproved": "Approved",
-    "filterRejected": "Rejected",
-    "status": {
-      "pending": "Pending",
-      "approved": "Approved",
-      "rejected": "Rejected"
-    },
-    "email": "Email",
-    "address": "Address",
-    "employees": "Employees",
-    "createdAt": "Created At",
-    "approve": "Approve",
-    "reject": "Reject",
-    "already": "This request has already been",
-    "approveTitle": "Approve Request",
-    "approveMessage": "Are you sure you want to approve this request?",
-    "rejectTitle": "Reject Request",
-    "rejectMessage": "Are you sure you want to reject this request?"
-  },
-  "AdminMenu": {
-    "userManagement": "User Management",
-    "companyApprovals": "Company Approvals",
-    "jobAds": "Job Ads",
-    "reports": "Reports",
-    "reviewsManagement": "Reviews Management",
-    "massNotifications": "Mass Notifications",
-    "ticketManagement": "Ticket Management"
-  },
-  "FirmMenu": {
-    "profile": "Profile",
-    "createJobAd": "Create Job Ad",
-    "myJobAds": "My Job Ads",
-    "candidates": "Candidates",
-    "interviewCalendar": "Interview Calendar",
-    "reports": "Reports",
-    "reviews": "Reviews",
-    "tickets": "Tickets"
-  },
-  "CandidateMenu": {
-    "profile": "Profile",
-    "jobAds": "Job Ads",
-    "myApplications": "My Applications",
-    "interviewCalendar": "Interview Calendar",
-    "tickets": "Tickets",
-    "companyReviews": "Company Reviews"
-  },
-  "ConfirmModal": {
-    "yes": "Yes",
-    "no": "No"
-  },
-  "UserManagement": {
-    "title": "User Management",
-    "tableHeaders": {
-      "id": "ID",
-      "email": "Email",
-      "role": "Role",
-      "createdAt": "Created At",
-      "updatedAt": "Updated At",
-      "actions": "Actions"
-    },
-    "roles": {
-      "admin": "Admin",
-      "firm": "Firm",
-      "candidate": "Candidate"
-    },
-    "buttons": {
-      "addUser": "Add New User",
-      "edit": "Edit",
-      "delete": "Delete"
-    },
-    "modal": {
-      "addUserTitle": "Add New User",
-      "editUserTitle": "Edit User",
-      "selectRole": "Select Role:",
-      "chooseRole": "Choose a role",
-      "email": "Email",
-      "password": "Password",
-      "firmName": "Firm Name",
-      "firmAddress": "Firm Address",
-      "numberOfEmployees": "Number of Employees",
-      "selectedRange": "Selected Range",
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "save": "Save",
-      "cancel": "Cancel"
-    },
-    "confirmModal": {
-      "title": "Delete User",
-      "message": "Are you sure you want to delete this user? This action cannot be undone.",
-      "yes": "Yes",
-      "no": "No"
-    }
-  },
-  "ForgotPasswordPopup": {
-    "title": "Forgot Password?",
-    "emailLabel": "Enter your email",
-    "emailPlaceholder": "Your email address",
-    "submitButton": "Send Reset Link"
-  },
-  "CandidateProfile": {
-    "title": "Candidate Profile",
-    "profilePictureAlt": "Profile Picture",
-    "noImage": "No Image",
-    "editProfile": "Edit Profile",
-    "about": "About",
-    "cv": "CV",
-    "motivationLetter": "Motivation Letter",
-    "recommendations": "Recommendations",
-    "firstName": "CandidateProfile.firstName",
-    "lastName": "CandidateProfile.lastName",
-    "saveChanges": "CandidateProfile.saveChanges",
-    "editProfileTitle": "CandidateProfile.editProfileTitle",
-    "saveButton": "CandidateProfile.saveButton",
-    "downloadCV": "Download CV",
-    "downloadMotivationLetter": "Download Motivation Letter",
-    "downloadRecommendations": "Download Recommendations"
-  },
-  "CandidateProfileEdit": {
-    "title": "Edit Candidate Profile",
-    "firstName": "First Name",
-    "lastName": "Last Name",
-    "about": "About",
-    "uploadCV": "Upload CV",
-    "uploadMotivationLetter": "Upload Motivation Letter",
-    "uploadRecommendations": "Upload Recommendations",
-    "saveChanges": "Save Changes"
-  }
+	"TopBar": {
+		"userIcon": "Profile",
+		"themeIcon": "Change Theme",
+		"languageIcon": "Change Language",
+		"notifications": "TopBar.notifications",
+		"chat": "TopBar.chat",
+		"logout": "TopBar.logout"
+	},
+	"HeroSection": {
+		"title": "Find Your Dream Job Today"
+	},
+	"ContentSection": {
+		"streamlineRecruitment": {
+			"title": "Streamline Recruitment",
+			"text": "In today’s fast-paced job market, recruitment requires more than just posting job openings. It demands a strategic approach that connects top talent with the right opportunities. By leveraging advanced tools and technology, companies can not only simplify their hiring processes but also build a strong and diverse workforce. From initial applications to final onboarding, effective recruitment ensures that every candidate experiences a seamless and professional journey, fostering trust and building a positive employer brand. Embrace a smarter recruitment strategy that prioritizes efficiency, transparency, and human connection."
+		},
+		"boostProductivity": {
+			"title": "Boost Productivity",
+			"text": "In a competitive business landscape, productivity is the cornerstone of success. Empower your team with cutting-edge tools designed to simplify complex hiring processes and eliminate bottlenecks. By automating repetitive tasks, you can free up valuable time for HR professionals to focus on building meaningful connections with candidates. Drive productivity by making data-driven decisions, optimizing workflows, and delivering a faster, more effective recruitment experience that benefits both your organization and job seekers."
+		}
+	},
+	"RegisterSection": {
+		"title": "Register Your Company",
+		"text1": "Take the next step in streamlining your recruitment process by registering your company on our platform. By submitting a registration request, you'll gain access to a suite of tools designed to help you connect with top-tier talent, manage job postings, and oversee candidate applications efficiently. Our admin team will review your request to ensure all necessary information is provided. Upon approval, you'll unlock a dedicated dashboard tailored to meet your recruitment and organizational needs, providing transparency, ease of management, and opportunities for growth.",
+		"text2": "Empower your business with advanced features and a seamless user experience. Join our growing network of industry leaders who are transforming the way they recruit and retain exceptional talent. Submit your request today and let us help you find the right people to drive your company forward.",
+		"button": "Register Your Company"
+	},
+	"FAQSection": {
+		"questions": [
+			{
+				"title": "What is Job Finder?",
+				"content": "Job Finder is a comprehensive platform designed to bridge the gap between job seekers and employers. It empowers organizations to find top-tier talent while providing candidates with the tools and resources needed to land their dream jobs. With features like automated job postings, real-time application tracking, and personalized candidate experiences, Job Finder simplifies the recruitment process for both employers and job seekers."
+			},
+			{
+				"title": "How does Job Finder work?",
+				"content": "Job Finder operates as a dual-sided platform. Employers can create detailed job postings, manage applications, and communicate directly with candidates. On the other hand, job seekers can browse opportunities, apply seamlessly, and track their application status in real time. The platform also leverages advanced filtering and matching algorithms to ensure that employers and candidates find the perfect fit, saving time and effort for everyone involved."
+			},
+			{
+				"title": "What features does Job Finder offer to employers?",
+				"content": "Employers gain access to a suite of tools that streamline the hiring process. These include dynamic job posting templates, automated email notifications, interview scheduling, candidate ranking, and real-time analytics dashboards. Additionally, the platform provides insightful reports to help organizations evaluate the success of their recruitment campaigns and make data-driven decisions for future hiring strategies."
+			},
+			{
+				"title": "What benefits does Job Finder provide to job seekers?",
+				"content": "Job Finder offers job seekers a user-friendly interface to create professional profiles, upload resumes, and showcase their skills. The platform provides real-time updates on application statuses, personalized job recommendations based on their preferences and qualifications, and access to valuable resources like interview tips and career guidance. With Job Finder, candidates can navigate the job market with confidence and ease."
+			}
+		]
+	},
+	"CandidateRegisterPopup": {
+		"title": "Register",
+		"firstNameLabel": "First Name",
+		"firstNamePlaceholder": "Enter your first name",
+		"lastNameLabel": "Last Name",
+		"lastNamePlaceholder": "Enter your last name",
+		"emailLabel": "Email",
+		"emailPlaceholder": "Enter your email",
+		"passwordLabel": "Password",
+		"passwordPlaceholder": "Enter your password",
+		"confirmPasswordLabel": "Confirm Password",
+		"confirmPasswordPlaceholder": "Confirm your password",
+		"registerButton": "Register",
+		"alreadyHaveAccount": "Already have an account?",
+		"loginLink": "Login",
+		"closePopup": "Close"
+	},
+	"FirmRegisterPopup": {
+		"title": "Register Your Company",
+		"emailLabel": "Email",
+		"emailPlaceholder": "Enter your email",
+		"companyNameLabel": "Company Name",
+		"companyNamePlaceholder": "Enter your company name",
+		"addressLabel": "Address",
+		"addressPlaceholder": "Enter your address",
+		"employeesRangeLabel": "Number of Employees",
+		"selectedRange": "Selected Range",
+		"submitButton": "Submit Request",
+		"closePopup": "Close"
+	},
+	"Footer": {
+		"text": "© 2024 Job Finder - All Rights Reserved"
+	},
+	"LoginPopup": {
+		"title": "Login",
+		"emailLabel": "Email",
+		"emailPlaceholder": "Enter your email",
+		"passwordLabel": "Password",
+		"passwordPlaceholder": "Enter your password",
+		"loginButton": "Login",
+		"dontHaveAccount": "Don't have an account?",
+		"registerLink": "Register",
+		"closePopup": "Close",
+		"forgotPassword": "Forgot Password?"
+	},
+	"CompanyApprovals": {
+		"title": "Company Approvals",
+		"header": "Company Approvals",
+		"searchPlaceholder": "Search by name...",
+		"filterLabel": "Filter by status",
+		"filterAll": "All Requests",
+		"filterPending": "Pending",
+		"filterApproved": "Approved",
+		"filterRejected": "Rejected",
+		"status": {
+			"pending": "Pending",
+			"approved": "Approved",
+			"rejected": "Rejected"
+		},
+		"email": "Email",
+		"address": "Address",
+		"employees": "Employees",
+		"createdAt": "Created At",
+		"approve": "Approve",
+		"reject": "Reject",
+		"already": "This request has already been",
+		"approveTitle": "Approve Request",
+		"approveMessage": "Are you sure you want to approve this request?",
+		"rejectTitle": "Reject Request",
+		"rejectMessage": "Are you sure you want to reject this request?"
+	},
+	"AdminMenu": {
+		"userManagement": "User Management",
+		"companyApprovals": "Company Approvals",
+		"jobAds": "Job Ads",
+		"reports": "Reports",
+		"reviewsManagement": "Reviews Management",
+		"massNotifications": "Mass Notifications",
+		"ticketManagement": "Ticket Management"
+	},
+	"FirmMenu": {
+		"profile": "Profile",
+		"createJobAd": "Create Job Ad",
+		"myJobAds": "My Job Ads",
+		"candidates": "Candidates",
+		"interviewCalendar": "Interview Calendar",
+		"reports": "Reports",
+		"reviews": "Reviews",
+		"tickets": "Tickets"
+	},
+	"CandidateMenu": {
+		"profile": "Profile",
+		"jobAds": "Job Ads",
+		"myApplications": "My Applications",
+		"interviewCalendar": "Interview Calendar",
+		"tickets": "Tickets",
+		"companyReviews": "Company Reviews"
+	},
+	"ConfirmModal": {
+		"yes": "Yes",
+		"no": "No"
+	},
+	"UserManagement": {
+		"title": "User Management",
+		"tableHeaders": {
+			"id": "ID",
+			"email": "Email",
+			"role": "Role",
+			"createdAt": "Created At",
+			"updatedAt": "Updated At",
+			"actions": "Actions"
+		},
+		"roles": {
+			"admin": "Admin",
+			"firm": "Firm",
+			"candidate": "Candidate"
+		},
+		"buttons": {
+			"addUser": "Add New User",
+			"edit": "Edit",
+			"delete": "Delete"
+		},
+		"modal": {
+			"addUserTitle": "Add New User",
+			"editUserTitle": "Edit User",
+			"selectRole": "Select Role:",
+			"chooseRole": "Choose a role",
+			"email": "Email",
+			"password": "Password",
+			"firmName": "Firm Name",
+			"firmAddress": "Firm Address",
+			"numberOfEmployees": "Number of Employees",
+			"selectedRange": "Selected Range",
+			"firstName": "First Name",
+			"lastName": "Last Name",
+			"save": "Save",
+			"cancel": "Cancel"
+		},
+		"confirmModal": {
+			"title": "Delete User",
+			"message": "Are you sure you want to delete this user? This action cannot be undone.",
+			"yes": "Yes",
+			"no": "No"
+		}
+	},
+	"ForgotPasswordPopup": {
+		"title": "Forgot Password?",
+		"emailLabel": "Enter your email",
+		"emailPlaceholder": "Your email address",
+		"submitButton": "Send Reset Link"
+	},
+	"CandidateProfile": {
+		"title": "Candidate Profile",
+		"profilePictureAlt": "Profile Picture",
+		"noImage": "No Image",
+		"editProfile": "Edit Profile",
+		"about": "About",
+		"cv": "CV",
+		"motivationLetter": "Motivation Letter",
+		"recommendations": "Recommendations",
+		"firstName": "CandidateProfile.firstName",
+		"lastName": "CandidateProfile.lastName",
+		"saveChanges": "CandidateProfile.saveChanges",
+		"editProfileTitle": "CandidateProfile.editProfileTitle",
+		"saveButton": "CandidateProfile.saveButton",
+		"downloadCV": "Download CV",
+		"downloadMotivationLetter": "Download Motivation Letter",
+		"downloadRecommendations": "Download Recommendations"
+	},
+	"CandidateProfileEdit": {
+		"title": "Edit Candidate Profile",
+		"firstName": "First Name",
+		"lastName": "Last Name",
+		"about": "About",
+		"uploadCV": "Upload CV",
+		"uploadMotivationLetter": "Upload Motivation Letter",
+		"uploadRecommendations": "Upload Recommendations",
+		"saveChanges": "Save Changes"
+	},
+	"FirmProfile": {
+		"title": "FirmProfile.title",
+		"address": "FirmProfile.address",
+		"employees": "FirmProfile.employees",
+		"editProfile": "FirmProfile.editProfile",
+		"profilePictureAlt": "FirmProfile.profilePictureAlt"
+	}
 }
