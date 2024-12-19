@@ -126,3 +126,28 @@ exports.getFirmProfile = async (userId) => {
     throw new Error("Failed to fetch firm profile.");
   }
 };
+
+exports.updateFirmProfile = async (userId, updatedData) => {
+  try {
+    const { name, address, employees_range, profilePicture } = updatedData;
+    const firm = await this.firmExistsByUserId(userId);
+
+    if (!firm) throw new Error("Firm not found");
+
+    if (profilePicture) {
+      if (firm.profile_picture_id) await imageService.replaceImage(profilePicture, firm.profile_picture_id);
+      else throw new Error("Firm profile picture not found for replacement");
+    }
+
+    await firm.update({
+      name: name || firm.name,
+      address: address || firm.address,
+      employees: employees_range || firm.employees
+    });
+
+    return firm;
+  } catch (error) {
+    console.error("Error updating firm profile:", error);
+    throw error;
+  }
+};

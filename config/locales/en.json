@@ -232,5 +232,13 @@
 		"address": "Address",
 		"employees": "Number of Employees",
 		"editProfile": "Edit Profile"
-  	}
+	},
+	"FirmProfileEdit": {
+		"title": "FirmProfileEdit.title",
+		"name": "FirmProfileEdit.name",
+		"address": "FirmProfileEdit.address",
+		"employees": "FirmProfileEdit.employees",
+		"profilePicture": "FirmProfileEdit.profilePicture",
+		"save": "FirmProfileEdit.save"
+	}
 }

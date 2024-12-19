@@ -11,3 +11,23 @@ exports.showFirmProfile = async (req, res) => {
     res.status(500).render("error", { message: "Failed to load firm profile." });
   }
 };
+
+exports.updateFirmProfile = async (req, res) => {
+  try {
+    const { name, address, employees } = req.body;
+    const profilePicture = req.files?.profilePicture?.[0];
+    const [minEmployees, maxEmployees] = employees.split("-").map(Number);
+
+    await firmService.updateFirmProfile(req.user.id, {
+      name,
+      address,
+      employees_range: `${minEmployees}-${maxEmployees}`,
+      profilePicture
+    });
+
+    res.json({ success: true, message: "Profile updated successfully" });
+  } catch (error) {
+    console.error("Error updating firm profile:", error);
+    res.status(500).json({ success: false, message: "Failed to update profile" });
+  }
+};

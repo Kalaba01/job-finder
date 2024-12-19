@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const firmController = require("../controllers/firmController");
-const { authMiddleware, languageMiddleware, setMenuOptions } = require("../middleware");
+const { authMiddleware, languageMiddleware, setMenuOptions, uploadMiddleware } = require("../middleware");
 
 // Middleware za postavljanje menuOptions
 router.use(authMiddleware.isAuthenticated, authMiddleware.isFirm, languageMiddleware, setMenuOptions);
@@ -12,5 +12,8 @@ router.get("/", (req, res) => {
 
 // Prikaz profila firme
 router.get("/profile", firmController.showFirmProfile);
+
+// Update profila firme
+router.post("/profile/edit", uploadMiddleware, firmController.updateFirmProfile);
 
 module.exports = router;

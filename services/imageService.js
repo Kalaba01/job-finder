@@ -25,3 +25,22 @@ exports.setDefaultPicture = async (type, transaction = null) => {
 
   return defaultImage;
 };
+
+exports.replaceImage = async (file, imageId) => {
+  try {
+    if (!file) throw new Error("No file provided for upload");
+
+    const image = await this.findImageById(imageId);
+    if (!image) throw new Error("Image not found");
+
+    await image.update({
+      data: file.buffer,
+      mime_type: file.mimetype
+    });
+
+    return image.id;
+  } catch (error) {
+    console.error("Error replacing image:", error);
+    throw new Error("Failed to replace image");
+  }
+};
