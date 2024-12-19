@@ -228,5 +228,13 @@
     "address": "Adresa",
     "employees": "Broj zaposlenih",
     "editProfile": "Uredi Profil"
+  },
+  "FirmProfileEdit": {
+    "title": "Uredi Profil Firme",
+    "name": "Naziv Firme",
+    "address": "Adresa",
+    "employees": "Broj Zaposlenih",
+    "profilePicture": "Učitaj Profilnu Sliku",
+    "save": "Sačuvaj Izmjene"
   }
 }

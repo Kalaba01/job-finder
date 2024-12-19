@@ -4,30 +4,30 @@
 <div class="edit-profile-popup-overlay" id="editProfilePopup">
     <div class="edit-profile-popup-content">
         <span class="edit-profile-close-popup" id="closeEditPopup">&times;</span>
-        <h2>Edit Firm Profile</h2>
+        <h2><%= __("FirmProfileEdit.title") %></h2>
         <form id="edit-profile-form">
             <div class="form-group">
-                <label for="name">Firm Name</label>
+                <label for="name"><%= __("FirmProfileEdit.name") %></label>
                 <input type="text" id="name" name="name" value="<%= firm.name %>" required />
             </div>
 
             <div class="form-group">
-                <label for="address">Address</label>
+                <label for="address"><%= __("FirmProfileEdit.address") %></label>
                 <input type="text" id="address" name="address" value="<%= firm.address %>" required />
             </div>
 
             <div class="form-group">
-                <label for="employeeRange">Number of Employees</label>
+                <label for="employeeRange"><%= __("FirmProfileEdit.employees") %></label>
                 <div id="employeeRange" class="slider"></div>
                 <input type="hidden" id="employees" name="employees" value="<%= firm.employees %>">
             </div>
 
             <div class="form-group file-upload">
-                <label for="profilePicture">Upload Profile Picture</label>
+                <label for="profilePicture"><%= __("FirmProfileEdit.profilePicture") %></label>
                 <input type="file" id="profilePicture" name="profilePicture" />
             </div>
 
-            <button type="submit" class="save-profile-btn">Save Changes</button>
+            <button type="submit" class="save-profile-btn"><%= __("FirmProfileEdit.save") %></button>
         </form>
     </div>
 </div>
