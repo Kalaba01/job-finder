@@ -226,10 +226,11 @@
 		"saveChanges": "Save Changes"
 	},
 	"FirmProfile": {
-		"title": "FirmProfile.title",
-		"address": "FirmProfile.address",
-		"employees": "FirmProfile.employees",
-		"editProfile": "FirmProfile.editProfile",
-		"profilePictureAlt": "FirmProfile.profilePictureAlt"
-	}
+		"title": "Firm Profile",
+		"profilePictureAlt": "Firm Profile Picture",
+		"noImage": "No Image Available",
+		"address": "Address",
+		"employees": "Number of Employees",
+		"editProfile": "Edit Profile"
+  	}
 }

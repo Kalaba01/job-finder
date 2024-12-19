@@ -220,5 +220,13 @@
     "uploadMotivationLetter": "Dodaj Motivaciono Pismo",
     "uploadRecommendations": "Dodaj Preporuke",
     "saveChanges": "Sačuvaj Promjene"
+  },
+  "FirmProfile": {
+    "title": "Profil Firme",
+    "profilePictureAlt": "Slika profila firme",
+    "noImage": "Nema dostupne slike",
+    "address": "Adresa",
+    "employees": "Broj zaposlenih",
+    "editProfile": "Uredi Profil"
   }
 }

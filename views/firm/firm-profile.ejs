@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Firm Profile</title>
+    <title><%= __("FirmProfile.title") %></title>
     <link rel="stylesheet" href="/styles/firm-profile.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
@@ -16,12 +16,12 @@
           <% if (firm.profile_picture_id) { %>
           <img
             src="/images/<%= firm.profile_picture_id %>"
-            alt="Firm Profile Picture"
+            alt="<%= __('FirmProfile.profilePictureAlt') %>"
             class="profile-picture"
           />
           <% } else { %>
           <div class="profile-placeholder">
-            No Image Available
+            <%= __("FirmProfile.noImage") %>
           </div>
           <% } %>
         </div>
@@ -30,17 +30,17 @@
 
       <div class="profile-details">
         <div class="profile-detail-item">
-          <h3>Address</h3>
+          <h3><%= __("FirmProfile.address") %></h3>
           <p><%= firm.address %></p>
         </div>
         <div class="profile-detail-item">
-          <h3>Number of Employees</h3>
+          <h3><%= __("FirmProfile.employees") %></h3>
           <p><%= firm.employees %></p>
         </div>
       </div>
 
       <button class="edit-profile-btn">
-        Edit Profile
+        <%= __("FirmProfile.editProfile") %>
       </button>
     </div>
   </body>
