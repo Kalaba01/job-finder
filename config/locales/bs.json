@@ -234,6 +234,7 @@
     "name": "Naziv Firme",
     "address": "Adresa",
     "employees": "Broj Zaposlenih",
+    "selectedRange": "Odabrani Raspon",
     "profilePicture": "Učitaj Profilnu Sliku",
     "save": "Sačuvaj Izmjene"
   }

@@ -238,6 +238,7 @@
     "name": "Firm Name",
     "address": "Address",
     "employees": "Number of Employees",
+    "selectedRange": "Selected Range",
     "profilePicture": "Upload Profile Picture",
     "save": "Save Changes"
   	}

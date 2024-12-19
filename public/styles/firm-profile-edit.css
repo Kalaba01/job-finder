@@ -1,3 +1,39 @@
+/* Light Mode */
+:root {
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --overlay-color: rgba(0, 0, 0, 0.6);
+    --border-color: #cccccc;
+    --slider-bg-color: #dddddd;
+    --slider-handle-bg: #007bff;
+    --slider-connect-bg: #007bff;
+    --button-bg-color: #007bff;
+    --button-hover-bg-color: #0056b3;
+    --input-bg-color: #f9f9f9;
+    --input-border-color: #cccccc;
+    --close-icon-color: #555555;
+    --close-icon-hover-color: #000000;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --background-color: #1e1e1e;
+    --text-color: #e0e0e0;
+    --overlay-color: rgba(0, 0, 0, 0.8);
+    --border-color: #555555;
+    --slider-bg-color: #444444;
+    --slider-handle-bg: #90caf9;
+    --slider-connect-bg: #90caf9;
+    --button-bg-color: #4444ff;
+    --button-hover-bg-color: #6666ff;
+    --input-bg-color: #2e2e2e;
+    --input-border-color: #555555;
+    --close-icon-color: #aaaaaa;
+    --close-icon-hover-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.6);
+}
+
 .edit-profile-popup-overlay {
     display: none;
     position: fixed;
@@ -5,18 +41,18 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: var(--overlay-color);
     z-index: 1000;
     justify-content: center;
     align-items: center;
 }
 
 .edit-profile-popup-content {
-    background: #ffffff;
-    color: #333;
+    background: var(--background-color);
+    color: var(--text-color);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px var(--shadow-color);
     width: 550px;
     max-width: 90%;
     position: relative;
@@ -28,13 +64,13 @@
     top: 10px;
     right: 15px;
     font-size: 1.5rem;
-    color: #555;
+    color: var(--close-icon-color);
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
 .edit-profile-close-popup:hover {
-    color: #000;
+    color: var(--close-icon-hover-color);
 }
 
 .edit-profile-popup-content h2 {
@@ -42,7 +78,7 @@
     margin-bottom: 1rem;
     font-size: 1.5rem;
     font-weight: bold;
-    color: #333;
+    color: var(--text-color);
 }
 
 /* Form Styles */
@@ -66,7 +102,7 @@
 .form-group label {
     margin-bottom: 0.5rem;
     font-weight: bold;
-    color: #333;
+    color: var(--text-color);
 }
 
 textarea#edit-about {
@@ -76,9 +112,9 @@ textarea#edit-about {
 input,
 textarea {
     padding: 0.75rem;
-    border: 1px solid #ccc;
-    background: #f9f9f9;
-    color: #333;
+    border: 1px solid var(--input-border-color);
+    background: var(--input-bg-color);
+    color: var(--text-color);
     border-radius: 5px;
     font-size: 1rem;
     transition: border-color 0.3s ease;
@@ -86,16 +122,16 @@ textarea {
 
 input:focus,
 textarea:focus {
-    border-color: #007bff;
+    border-color: var(--button-bg-color);
     outline: none;
 }
 
 /* Stilovi za slider */
 .slider {
-    margin: 2.5rem 0 0 0;
+    margin: 1rem 0;
     width: 100%;
     height: 10px;
-    background: #ddd;
+    background: var(--slider-bg-color);
     border-radius: 5px;
     position: relative;
 }
@@ -103,15 +139,23 @@ textarea:focus {
 .noUi-handle {
     width: 20px;
     height: 20px;
-    background: #007bff;
-    border: 2px solid #fff;
+    background: var(--slider-handle-bg);
+    border: 2px solid var(--background-color);
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px var(--shadow-color);
 }
 
 .noUi-connect {
-    background: #007bff;
+    background: var(--slider-connect-bg);
+}
+
+.selected-range {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: var(--text-color);
+    font-weight: bold;
+    text-align: center;
 }
 
 /* File Upload Styles */
@@ -122,7 +166,7 @@ textarea:focus {
 .file-upload label {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: #007bff;
+    background: var(--button-bg-color);
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
@@ -130,12 +174,12 @@ textarea:focus {
 }
 
 .file-upload label:hover {
-    background: #0056b3;
+    background: var(--button-hover-bg-color);
 }
 
 /* Save Button */
 .save-profile-btn {
-    background-color: #007bff;
+    background-color: var(--button-bg-color);
     color: #fff;
     border: none;
     padding: 0.75rem;
@@ -147,7 +191,7 @@ textarea:focus {
 }
 
 .save-profile-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--button-hover-bg-color);
     transform: translateY(-2px);
 }
 

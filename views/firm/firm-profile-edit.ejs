@@ -19,8 +19,12 @@
             <div class="form-group">
                 <label for="employeeRange"><%= __("FirmProfileEdit.employees") %></label>
                 <div id="employeeRange" class="slider"></div>
+                <div id="selectedRange" class="selected-range" data-i18n="<%= __('FirmProfileEdit.selectedRange') %>">
+                    <%= __("FirmProfileEdit.selectedRange") %>: <%= firm.employees %>
+                </div>
                 <input type="hidden" id="employees" name="employees" value="<%= firm.employees %>">
             </div>
+            
 
             <div class="form-group file-upload">
                 <label for="profilePicture"><%= __("FirmProfileEdit.profilePicture") %></label>

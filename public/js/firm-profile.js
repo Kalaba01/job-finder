@@ -24,8 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const employeeSlider = document.getElementById("employeeRange");
   const employeesInput = document.getElementById("employees");
+  const selectedRange = document.getElementById("selectedRange");
   const employeeRange = employeesInput.value.split("-").map(Number);
 
+  // Inicijalizacija noUiSlider-a
   noUiSlider.create(employeeSlider, {
     start: employeeRange,
     connect: true,
@@ -34,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
       max: 1000,
     },
     step: 1,
-    tooltips: [true, true],
     format: {
       to: (value) => Math.round(value),
       from: (value) => Math.round(value),
@@ -43,7 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   employeeSlider.noUiSlider.on("update", (values) => {
     employeesInput.value = `${values[0]}-${values[1]}`;
-  });
+    const rangeLabel = selectedRange.getAttribute("data-i18n");
+    selectedRange.textContent = `${rangeLabel}: ${values[0]} - ${values[1]}`;
+});
 
   editForm.addEventListener("submit", async (e) => {
     e.preventDefault();
