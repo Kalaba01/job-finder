@@ -28,6 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
     deleteUserMessage: document.body.dataset.deleteUserMessage,
     yes: document.body.dataset.yes,
     no: document.body.dataset.no,
+    userAddedSuccessfully: document.body.dataset.userAddedSuccessfully,
+    userUpdatedSuccessfully: document.body.dataset.userUpdatedSuccessfully,
+    failedToProcessUser: document.body.dataset.failedToProcessUser,
+    errorProcessingUser: document.body.dataset.errorProcessingUser,
+    userDeletedSuccessfully: document.body.dataset.userDeletedSuccessfully,
+    failedToDeleteUser: document.body.dataset.failedToDeleteUser,
+    errorDeletingUser: document.body.dataset.errorDeletingUser,
+    errorFetchingUserDetails: document.body.dataset.errorFetchingUserDetails,
+    anErrorOccurredProcessingUser: document.body.dataset.anErrorOccurredProcessingUser
   };
 
   const toggleModalForEdit = (isEdit) => {

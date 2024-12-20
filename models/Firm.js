@@ -18,6 +18,10 @@ const Firm = sequelize.define('Firm', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    about: {
+        type: DataTypes.TEXT,
+        allowNull: true
+    },
     employees: {
         type: DataTypes.STRING,
         allowNull: true

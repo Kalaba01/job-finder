@@ -189,6 +189,19 @@
 			"message": "Are you sure you want to delete this user? This action cannot be undone.",
 			"yes": "Yes",
 			"no": "No"
+		},
+		"success": {
+			"userAdded": "User added successfully.",
+			"userUpdated": "User updated successfully.",
+			"userDeleted": "User deleted successfully."
+		},
+		"errors": {
+			"failedToProcess": "Failed to process user.",
+			"errorProcessing": "An error occurred while processing the user.",
+			"failedToDelete": "Failed to delete user.",
+			"errorDeleting": "An error occurred while deleting the user.",
+			"errorFetchingDetails": "Error fetching user details.",
+			"generalError": "An error occurred. Please try again."
 		}
 	},
 	"ForgotPasswordPopup": {
@@ -234,7 +247,8 @@
 		"noImage": "No Image Available",
 		"address": "Address",
 		"employees": "Number of Employees",
-		"editProfile": "Edit Profile"
+		"editProfile": "Edit Profile",
+		"about": "FirmProfile.about"
 	},
 	"FirmProfileEdit": {
 		"title": "Edit Firm Profile",
@@ -243,6 +257,7 @@
 		"employees": "Number of Employees",
 		"selectedRange": "Selected Range",
 		"profilePicture": "Upload Profile Picture",
-		"save": "Save Changes"
+		"save": "Save Changes",
+		"about": "FirmProfileEdit.about"
 	}
 }

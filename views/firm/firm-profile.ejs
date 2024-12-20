@@ -34,6 +34,10 @@
           <p><%= firm.address %></p>
         </div>
         <div class="profile-detail-item">
+          <h3><%= __("FirmProfile.about") %></h3>
+          <p><%= firm.about || __("FirmProfile.noAbout") %></p>
+        </div>        
+        <div class="profile-detail-item">
           <h3><%= __("FirmProfile.employees") %></h3>
           <p><%= firm.employees %></p>
         </div>

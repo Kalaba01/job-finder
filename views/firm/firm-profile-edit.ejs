@@ -17,6 +17,11 @@
             </div>
 
             <div class="form-group">
+                <label for="about"><%= __("FirmProfileEdit.about") %></label>
+                <textarea id="about" name="about" rows="5"><%= firm.about %></textarea>
+            </div>
+
+            <div class="form-group">
                 <label for="employeeRange"><%= __("FirmProfileEdit.employees") %></label>
                 <div id="employeeRange" class="slider"></div>
                 <div id="selectedRange" class="selected-range" data-i18n="<%= __('FirmProfileEdit.selectedRange') %>">
@@ -27,8 +32,8 @@
             
 
             <div class="form-group file-upload">
-                <label for="profilePicture"><%= __("FirmProfileEdit.profilePicture") %></label>
-                <input type="file" id="profilePicture" name="profilePicture" />
+                <label for="profilePicture" class="upload-ready"><%= __("FirmProfileEdit.profilePicture") %></label>
+                <input type="file" id="profilePicture" name="profilePicture" onchange="handleFileUpload(this)" />
             </div>
 
             <button type="submit" class="save-profile-btn"><%= __("FirmProfileEdit.save") %></button>

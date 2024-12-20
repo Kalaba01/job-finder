@@ -4,17 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const closePopupBtn = document.getElementById("closeEditPopup");
   const editForm = document.querySelector("#editProfilePopup form");
 
-  if (openPopupBtn) {
-    openPopupBtn.addEventListener("click", () => {
-      editPopup.style.display = "flex";
-    });
-  }
+  openPopupBtn.addEventListener("click", () => {
+    editPopup.style.display = "flex";
+  });
 
-  if (closePopupBtn) {
-    closePopupBtn.addEventListener("click", () => {
-      editPopup.style.display = "none";
-    });
-  }
+  closePopupBtn.addEventListener("click", () => {
+    resetFileUploads();
+    editPopup.style.display = "none";
+  });
 
   window.addEventListener("click", (e) => {
     if (e.target === editPopup) {
@@ -72,3 +69,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+function handleFileUpload(input) {
+  const label = input.closest('.file-upload').querySelector('label');
+
+  if (input.files.length > 0) {
+    label.classList.remove("upload-ready");
+    label.classList.add("upload-success");
+  } else {
+    label.classList.remove("upload-success");
+    label.classList.add("upload-ready");
+  }
+}
+
+function resetFileUploads() {
+  const fileUploads = document.querySelectorAll('.file-upload');
+  fileUploads.forEach((fileUpload) => {
+    const input = fileUpload.querySelector('input[type="file"]');
+    const label = fileUpload.querySelector('label');
+
+    input.value = "";
+    label.classList.remove("upload-success");
+    label.classList.add("upload-ready");
+  });
+}

@@ -190,6 +190,19 @@
       "message": "Da li ste sigurni da želite da obrišete ovog korisnika? Ova akcija se ne može poništiti.",
       "yes": "Da",
       "no": "Ne"
+    },
+    "success": {
+    "userAdded": "Korisnik je uspješno dodan.",
+    "userUpdated": "Korisnik je uspješno ažuriran.",
+    "userDeleted": "Korisnik je uspješno obrisan."
+    },
+    "errors": {
+      "failedToProcess": "Nije uspjelo procesiranje korisnika.",
+      "errorProcessing": "Došlo je do greške prilikom procesiranja korisnika.",
+      "failedToDelete": "Nije uspjelo brisanje korisnika.",
+      "errorDeleting": "Došlo je do greške prilikom brisanja korisnika.",
+      "errorFetchingDetails": "Greška prilikom preuzimanja podataka korisnika.",
+      "generalError": "Došlo je do greške. Molimo pokušajte ponovo."
     }
   },
   "ForgotPasswordPopup": {

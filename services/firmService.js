@@ -116,6 +116,7 @@ exports.getFirmProfile = async (userId) => {
     const firmData = {
       name: firm.name || "N/A",
       address: firm.address || "N/A",
+      about: firm.about || "N/A",
       employees: firm.employees || "N/A",
       profile_picture_id: firm.profile_picture_id || null,
     };
@@ -129,7 +130,7 @@ exports.getFirmProfile = async (userId) => {
 
 exports.updateFirmProfile = async (userId, updatedData) => {
   try {
-    const { name, address, employees_range, profilePicture } = updatedData;
+    const { name, address, about, employees_range, profilePicture } = updatedData;
     const firm = await this.firmExistsByUserId(userId);
 
     if (!firm) throw new Error("Firm not found");
@@ -142,6 +143,7 @@ exports.updateFirmProfile = async (userId, updatedData) => {
     await firm.update({
       name: name || firm.name,
       address: address || firm.address,
+      about: about || firm.about,
       employees: employees_range || firm.employees
     });
 
