@@ -259,5 +259,19 @@
 		"profilePicture": "Upload Profile Picture",
 		"save": "Save Changes",
 		"about": "FirmProfileEdit.about"
-	}
+	},
+	"TicketList": {
+		"title": "Tickets",
+		"heading": "Tickets",
+		"filters": {
+		"all": "All",
+		"pending": "Pending",
+		"resolved": "Resolved",
+		"searchPlaceholder": "Search by title...",
+		"searchButton": "Search"
+		},
+		"status": "Status",
+		"createdAt": "Created At",
+		"noTickets": "No tickets found."
+  	}
 }

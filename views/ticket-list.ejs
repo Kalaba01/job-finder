@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tickets</title>
+    <title><%= __("TicketList.title") %></title>
     <link rel="stylesheet" href="/styles/ticket-list.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
@@ -11,16 +11,16 @@
     <%- include('./partials/top-bar') %>
 
     <div class="ticket-container">
-      <h1>Tickets</h1>
+      <h1><%= __("TicketList.heading") %></h1>
 
       <div class="filters">
         <select id="statusFilter">
-          <option value="all">All</option>
-          <option value="pending">Pending</option>
-          <option value="resolved">Resolved</option>
+          <option value="all"><%= __("TicketList.filters.all") %></option>
+          <option value="pending"><%= __("TicketList.filters.pending") %></option>
+          <option value="resolved"><%= __("TicketList.filters.resolved") %></option>
         </select>
-        <input type="text" id="searchInput" placeholder="Search by title..." />
-        <button id="searchButton">Search</button>
+        <input type="text" id="searchInput" placeholder="<%= __("TicketList.filters.searchPlaceholder") %>" />
+        <button id="searchButton"><%= __("TicketList.filters.searchButton") %></button>
       </div>
 
       <div id="ticketList">
@@ -28,11 +28,13 @@
           <div class="ticket-item" data-id="<%= ticket.id %>">
             <h3><%= ticket.title %></h3>
             <p><%= ticket.description %></p>
-            <p>Status: <%= ticket.status %></p>
-            <p>Created At: <%= ticket.createdAt.toLocaleString() %></p>
+            <p><%= __("TicketList.status") %>: <%= ticket.status %></p>
+            <p><%= __("TicketList.createdAt") %>: <%= ticket.createdAt.toLocaleString() %></p>
           </div>
         <% }) %>
-        <p id="noTicketsMessage" style="display: none; text-align: center; color: #777;">No tickets found.</p>
+        <p id="noTicketsMessage" style="display: none; text-align: center; color: #777;">
+          <%= __("TicketList.noTickets") %>
+        </p>
       </div>      
     </div>
 

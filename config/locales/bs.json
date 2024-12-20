@@ -251,5 +251,19 @@
     "selectedRange": "Odabrani Raspon",
     "profilePicture": "Učitaj Profilnu Sliku",
     "save": "Sačuvaj Izmjene"
+  },
+  "TicketList": {
+    "title": "Tiketi",
+    "heading": "Tiketi",
+    "filters": {
+      "all": "Svi",
+      "pending": "Na čekanju",
+      "resolved": "Riješeni",
+      "searchPlaceholder": "Pretraži po nazivu...",
+      "searchButton": "Pretraži"
+    },
+    "status": "Status",
+    "createdAt": "Kreirano",
+    "noTickets": "Nijedan tiket nije pronađen."
   }
 }
