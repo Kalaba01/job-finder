@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { authMiddleware, languageMiddleware, setMenuOptions } = require("../middleware");
 const adminController = require("../controllers/adminController");
+const { authMiddleware, languageMiddleware, setMenuOptions } = require("../middleware");
 
 // Middleware za postavljanje menuOptions
 router.use(authMiddleware.isAuthenticated, authMiddleware.isAdmin, languageMiddleware, setMenuOptions);

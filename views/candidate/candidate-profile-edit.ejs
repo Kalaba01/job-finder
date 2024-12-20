@@ -21,19 +21,32 @@
       </div>
 
       <div class="form-group file-upload">
-        <label for="edit-cv"><%= __("CandidateProfileEdit.uploadCV") %></label>
-        <input type="file" id="edit-cv" name="cv" accept=".pdf,.doc,.docx" />
+        <label for="edit-profile-picture" class="upload-ready">
+          <%= __("CandidateProfileEdit.uploadProfilePicture") %>
+        </label>
+        <input type="file" id="edit-profile-picture" name="profilePicture" accept="image/*" onchange="handleFileUpload(this)" />
       </div>
-
+      
       <div class="form-group file-upload">
-        <label for="edit-motivation-letter"><%= __("CandidateProfileEdit.uploadMotivationLetter") %></label>
-        <input type="file" id="edit-motivation-letter" name="motivation_letter" accept=".pdf,.doc,.docx" />
+        <label for="edit-cv" class="upload-ready">
+          <%= __("CandidateProfileEdit.uploadCV") %>
+        </label>
+        <input type="file" id="edit-cv" name="cv" accept=".pdf,.doc,.docx" onchange="handleFileUpload(this)" />
       </div>
-
+      
       <div class="form-group file-upload">
-        <label for="edit-recommendations"><%= __("CandidateProfileEdit.uploadRecommendations") %></label>
-        <input type="file" id="edit-recommendations" name="recommendations" accept=".pdf,.doc,.docx" />
+        <label for="edit-motivation-letter" class="upload-ready">
+          <%= __("CandidateProfileEdit.uploadMotivationLetter") %>
+        </label>
+        <input type="file" id="edit-motivation-letter" name="motivation_letter" accept=".pdf,.doc,.docx" onchange="handleFileUpload(this)" />
       </div>
+      
+      <div class="form-group file-upload">
+        <label for="edit-recommendations" class="upload-ready">
+          <%= __("CandidateProfileEdit.uploadRecommendations") %>
+        </label>
+        <input type="file" id="edit-recommendations" name="recommendations" accept=".pdf,.doc,.docx" onchange="handleFileUpload(this)" />
+      </div>      
 
       <button type="submit" id="save-profile-btn" class="save-profile-btn">
         <%= __("CandidateProfileEdit.saveChanges") %>

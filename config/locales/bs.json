@@ -219,7 +219,8 @@
     "uploadCV": "Dodaj CV",
     "uploadMotivationLetter": "Dodaj Motivaciono Pismo",
     "uploadRecommendations": "Dodaj Preporuke",
-    "saveChanges": "Sačuvaj Promjene"
+    "saveChanges": "Sačuvaj Promjene",
+    "uploadProfilePicture": "Učitaj Profilnu Sliku"
   },
   "FirmProfile": {
     "title": "Profil Firme",

@@ -25,6 +25,7 @@ exports.updateCandidateProfile = async (req, res) => {
       cv: files?.cv ? files.cv[0] : null,
       motivation_letter: files?.motivation_letter ? files.motivation_letter[0] : null,
       recommendations: files?.recommendations ? files.recommendations[0] : null,
+      profilePicture: files?.profilePicture ? files.profilePicture[0] : null
     });
 
     res.status(200).json({ message: "Profile updated successfully!" });

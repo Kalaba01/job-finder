@@ -10,6 +10,9 @@
     --close-icon-color: #555;
     --close-icon-hover-color: #000;
     --shadow-color: rgba(0, 0, 0, 0.3);
+    --upload-success-bg: #28a745;
+    --upload-success-hover-bg: #218838;
+    --upload-success-text: #fff;
 }
 
 /* Dark Mode */
@@ -24,6 +27,9 @@
     --close-icon-color: #aaa;
     --close-icon-hover-color: #fff;
     --shadow-color: rgba(0, 0, 0, 0.6);
+    --upload-success-bg: #218838;
+    --upload-success-hover-bg: #1e7e34;
+    --upload-success-text: #e4e4e4;
 }
 
 /* Edit Profile Popup */
@@ -125,15 +131,28 @@ textarea:focus {
 .file-upload label {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: var(--button-bg-color);
-    color: #fff;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    text-align: center;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
-.file-upload label:hover {
+.file-upload label.upload-ready {
+    background-color: var(--button-bg-color);
+    color: #fff;
+}
+
+.file-upload label.upload-ready:hover {
     background: var(--button-hover-bg-color);
+}
+
+.file-upload label.upload-success {
+    background-color: var(--upload-success-bg);
+    color: var(--upload-success-text);
+}
+
+.file-upload label.upload-success:hover {
+    background-color: var(--upload-success-hover-bg);
 }
 
 /* Save Button */

@@ -120,19 +120,26 @@ exports.getCandidateProfile = async (userId) => {
   }
 };
 
-exports.updateCandidateProfile = async (userId, { first_name, last_name, about, cv, motivation_letter, recommendations }) => {
+exports.updateCandidateProfile = async (userId, { first_name, last_name, about, cv, motivation_letter, recommendations, profilePicture }) => {
   try {
     const candidate = await Candidate.findOne({ where: { user_id: userId } });
 
     if (!candidate) throw new Error("Candidate not found.");
 
-    candidate.first_name = first_name || candidate.first_name;
-    candidate.last_name = last_name || candidate.last_name;
-    candidate.about = about || candidate.about;
+    await candidate.update({
+      first_name: first_name || candidate.first_name,
+      last_name: last_name || candidate.last_name,
+      about: about || candidate.about
+    })
 
     if (cv) candidate.cv = cv.buffer;
     if (motivation_letter) candidate.motivation_letter = motivation_letter.buffer;
     if (recommendations) candidate.recommendations = recommendations.buffer;
+
+    if (profilePicture) {
+      if (candidate.profile_picture_id) await imageService.replaceImage(profilePicture, candidate.profile_picture_id);
+      else throw new Error("Candidate profile picture not found for replacement");
+    }
 
     await candidate.save();
   } catch (error) {

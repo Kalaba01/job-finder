@@ -223,7 +223,10 @@
 		"uploadCV": "Upload CV",
 		"uploadMotivationLetter": "Upload Motivation Letter",
 		"uploadRecommendations": "Upload Recommendations",
-		"saveChanges": "Save Changes"
+		"saveChanges": "Save Changes",
+		"uploadProfilePicture": "Upload Profile Picture",
+		"preview": "CandidateProfileEdit.preview",
+		"noFileSelected": "CandidateProfileEdit.noFileSelected"
 	},
 	"FirmProfile": {
 		"title": "Firm Profile",
@@ -234,12 +237,12 @@
 		"editProfile": "Edit Profile"
 	},
 	"FirmProfileEdit": {
-    "title": "Edit Firm Profile",
-    "name": "Firm Name",
-    "address": "Address",
-    "employees": "Number of Employees",
-    "selectedRange": "Selected Range",
-    "profilePicture": "Upload Profile Picture",
-    "save": "Save Changes"
-  	}
+		"title": "Edit Firm Profile",
+		"name": "Firm Name",
+		"address": "Address",
+		"employees": "Number of Employees",
+		"selectedRange": "Selected Range",
+		"profilePicture": "Upload Profile Picture",
+		"save": "Save Changes"
+	}
 }
