@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const firmController = require("../controllers/firmController");
+const ticketController = require("../controllers/ticketController");
 const { authMiddleware, languageMiddleware, setMenuOptions, uploadMiddleware } = require("../middleware");
 
 // Middleware za postavljanje menuOptions
@@ -15,5 +16,8 @@ router.get("/profile", firmController.showFirmProfile);
 
 // Update profila firme
 router.post("/profile/edit", uploadMiddleware, firmController.updateFirmProfile);
+
+// Ruta za prikaz ticketa firme
+router.get("/tickets", ticketController.getTickets);
 
 module.exports = router;

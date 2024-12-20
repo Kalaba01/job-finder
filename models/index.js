@@ -8,6 +8,7 @@ const Review = require("./Review");
 const FirmRequest = require("./FirmRequest");
 const Image = require("./Image");
 const PasswordResetToken = require("./PasswordResetToken");
+const Ticket = require("./Ticket");
 
 module.exports = {
   sequelize,
@@ -18,5 +19,6 @@ module.exports = {
   Review,
   FirmRequest,
   Image,
-  PasswordResetToken
+  PasswordResetToken,
+  Ticket
 };
