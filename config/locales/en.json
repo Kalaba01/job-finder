@@ -274,5 +274,21 @@
 		"createdAt": "Created At",
 		"noTickets": "No tickets found.",
 		"createTicket": "Create Ticket"
-	}
+	},
+	"TicketCreate": {
+    "title": "Create New Ticket",
+    "titleLabel": "Title",
+    "titlePlaceholder": "Enter ticket title",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Describe your issue",
+    "categoryLabel": "Category",
+    "categoryPlaceholder": "Select a category",
+    "categories": {
+      "general": "General",
+      "technical": "Technical",
+      "billing": "Billing"
+    },
+    "attachmentLabel": "Upload Attachment",
+    "submitButton": "Submit Ticket"
+  }
 }

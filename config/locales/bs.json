@@ -233,7 +233,7 @@
     "uploadMotivationLetter": "Dodaj Motivaciono Pismo",
     "uploadRecommendations": "Dodaj Preporuke",
     "saveChanges": "Sačuvaj Promjene",
-    "uploadProfilePicture": "Učitaj Profilnu Sliku"
+    "uploadProfilePicture": "Dodaj Profilnu Sliku"
   },
   "FirmProfile": {
     "title": "Profil Firme",
@@ -266,5 +266,21 @@
     "createdAt": "Kreirano",
     "noTickets": "Nijedan tiket nije pronađen.",
     "createTicket": "Kreiraj Tiket"
+  },
+  "TicketCreate": {
+    "title": "Kreiraj Novi Tiket",
+    "titleLabel": "Naslov",
+    "titlePlaceholder": "Unesite naslov tiketa",
+    "descriptionLabel": "Opis",
+    "descriptionPlaceholder": "Opišite vaš problem",
+    "categoryLabel": "Kategorija",
+    "categoryPlaceholder": "Odaberite kategoriju",
+    "categories": {
+      "general": "Opšte",
+      "technical": "Tehnički",
+      "billing": "Fakturisanje"
+    },
+    "attachmentLabel": "Dodajte Fajl",
+    "submitButton": "Pošaljite Tiket"
   }
 }

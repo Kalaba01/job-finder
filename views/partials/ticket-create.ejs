@@ -2,40 +2,40 @@
 <div id="ticketCreatePopup" class="popup-overlay" style="display: none;">
   <div class="popup-content">
     <span id="closeTicketCreatePopup" class="close-popup">&times;</span>
-    <h2>Create New Ticket</h2>
+    <h2><%= __("TicketCreate.title") %></h2>
     <form id="ticketCreateForm">
       <div class="form-group">
-        <label for="ticketCreateTitle">Title</label>
+        <label for="ticketCreateTitle"><%= __("TicketCreate.titleLabel") %></label>
         <input
           type="text"
           id="ticketCreateTitle"
           name="title"
-          placeholder="Enter ticket title"
+          placeholder="<%= __("TicketCreate.titlePlaceholder") %>"
           required
         />
       </div>
       <div class="form-group">
-        <label for="ticketCreateDescription">Description</label>
+        <label for="ticketCreateDescription"><%= __("TicketCreate.descriptionLabel") %></label>
         <textarea
           id="ticketCreateDescription"
           name="description"
           rows="4"
-          placeholder="Describe your issue"
+          placeholder="<%= __("TicketCreate.descriptionPlaceholder") %>"
           required
         ></textarea>
       </div>
       <div class="form-group">
-        <label for="ticketCreateCategory">Category</label>
+        <label for="ticketCreateCategory"><%= __("TicketCreate.categoryLabel") %></label>
         <select id="ticketCreateCategory" name="category" required>
-          <option value="" disabled selected>Select a category</option>
-          <option value="general">General</option>
-          <option value="technical">Technical</option>
-          <option value="billing">Billing</option>
+          <option value="" disabled selected><%= __("TicketCreate.categoryPlaceholder") %></option>
+          <option value="general"><%= __("TicketCreate.categories.general") %></option>
+          <option value="technical"><%= __("TicketCreate.categories.technical") %></option>
+          <option value="billing"><%= __("TicketCreate.categories.billing") %></option>
         </select>
       </div>
       <div class="form-group file-upload">
         <label for="ticketCreateAttachment" class="upload-ready">
-          Upload Attachment
+          <%= __("TicketCreate.attachmentLabel") %>
         </label>
         <input
           type="file"
@@ -45,7 +45,7 @@
           onchange="handleFileUpload(this)"
         />
       </div>
-      <button type="submit" class="submit-btn">Submit Ticket</button>
+      <button type="submit" class="submit-btn"><%= __("TicketCreate.submitButton") %></button>
     </form>
   </div>
 </div>
