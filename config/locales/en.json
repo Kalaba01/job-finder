@@ -290,5 +290,23 @@
     },
     "attachmentLabel": "Upload Attachment",
     "submitButton": "Submit Ticket"
+  },
+  "Tickets": {
+    "title": "Tickets",
+    "manageHeading": "Manage Tickets",
+    "searchPlaceholder": "Search tickets by title...",
+    "filters": {
+      "all": "All",
+      "pending": "Pending",
+      "resolved": "Resolved"
+    },
+    "filterButton": "Filter",
+    "status": {
+      "pending": "Pending",
+      "resolved": "Resolved"
+    },
+    "categoryLabel": "Category",
+    "createdLabel": "Created",
+    "viewButton": "View"
   }
 }

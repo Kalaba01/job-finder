@@ -282,5 +282,23 @@
     },
     "attachmentLabel": "Dodajte Fajl",
     "submitButton": "Pošaljite Tiket"
+  },
+  "Tickets": {
+    "title": "Tiketi",
+    "manageHeading": "Upravljanje tiketima",
+    "searchPlaceholder": "Pretražite tikete po naslovu...",
+    "filters": {
+      "all": "Svi",
+      "pending": "Na čekanju",
+      "resolved": "Rešeni"
+    },
+    "filterButton": "Filtriraj",
+    "status": {
+      "pending": "Na čekanju",
+      "resolved": "Rešen"
+    },
+    "categoryLabel": "Kategorija",
+    "createdLabel": "Kreirano",
+    "viewButton": "Prikaži"
   }
 }
