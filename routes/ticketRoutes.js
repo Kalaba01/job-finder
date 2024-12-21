@@ -6,10 +6,7 @@ const { authMiddleware, uploadMiddleware } = require("../middleware");
 // Middleware za autentikaciju
 router.use(authMiddleware.isAuthenticated);
 
-// Prikaz tiketa
-router.get("/", ticketController.getTickets);
-
-// Kreiranje novog tiketa
+// Kreiranje novog tiketa od strane firme/kandidata
 router.post("/", uploadMiddleware, ticketController.createTicket);
 
 module.exports = router;

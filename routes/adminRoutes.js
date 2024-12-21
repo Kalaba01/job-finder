@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const adminController = require("../controllers/adminController");
+const ticketController = require("../controllers/ticketController");
 const { authMiddleware, languageMiddleware, setMenuOptions } = require("../middleware");
 
 // Middleware za postavljanje menuOptions
@@ -22,5 +23,8 @@ router.post("/users/add", adminController.addUser);
 router.get("/users/details/:id", adminController.getUserDetails);
 router.put("/users/edit/:id", adminController.editUser);
 router.delete("/users/delete/:id", adminController.deleteUser);
+
+// Prikaz svih tiketa
+router.get("/tickets", ticketController.getTickets);
 
 module.exports = router;

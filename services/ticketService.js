@@ -1,11 +1,9 @@
 const { Ticket } = require("../models");
 
-exports.getTicketsByUser = async (userId, status, search) => {
+exports.getTickets = async ({ userId, userRole }) => {
   try {
-    const query = { where: { user_id: userId } };
-
-    if (status) query.where.status = status;
-    if (search) query.where.title = { [Op.like]: `%${search}%` };
+    const query = {};
+    if (userRole !== "admin") query.where = { user_id: userId };
 
     const tickets = await Ticket.findAll(query);
     return tickets;
