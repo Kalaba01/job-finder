@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="/styles/ticket-create.css" />
+<div id="ticketCreatePopup" class="popup-overlay" style="display: none;">
+  <div class="popup-content">
+    <span id="closeTicketCreatePopup" class="close-popup">&times;</span>
+    <h2>Create New Ticket</h2>
+    <form id="ticketCreateForm">
+      <div class="form-group">
+        <label for="ticketCreateTitle">Title</label>
+        <input
+          type="text"
+          id="ticketCreateTitle"
+          name="title"
+          placeholder="Enter ticket title"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="ticketCreateDescription">Description</label>
+        <textarea
+          id="ticketCreateDescription"
+          name="description"
+          rows="4"
+          placeholder="Describe your issue"
+          required
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="ticketCreateCategory">Category</label>
+        <select id="ticketCreateCategory" name="category" required>
+          <option value="" disabled selected>Select a category</option>
+          <option value="general">General</option>
+          <option value="technical">Technical</option>
+          <option value="billing">Billing</option>
+        </select>
+      </div>
+      <div class="form-group file-upload">
+        <label for="ticketCreateAttachment" class="upload-ready">
+          Upload Attachment
+        </label>
+        <input
+          type="file"
+          id="ticketCreateAttachment"
+          name="attachment"
+          accept="image/*,application/pdf"
+          onchange="handleFileUpload(this)"
+        />
+      </div>
+      <button type="submit" class="submit-btn">Submit Ticket</button>
+    </form>
+  </div>
+</div>

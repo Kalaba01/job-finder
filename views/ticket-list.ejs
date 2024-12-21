@@ -16,27 +16,41 @@
       <div class="filters">
         <select id="statusFilter">
           <option value="all"><%= __("TicketList.filters.all") %></option>
-          <option value="pending"><%= __("TicketList.filters.pending") %></option>
-          <option value="resolved"><%= __("TicketList.filters.resolved") %></option>
+          <option value="pending">
+            <%= __("TicketList.filters.pending") %>
+          </option>
+          <option value="resolved">
+            <%= __("TicketList.filters.resolved") %>
+          </option>
         </select>
-        <input type="text" id="searchInput" placeholder="<%= __("TicketList.filters.searchPlaceholder") %>" />
-        <button id="searchButton"><%= __("TicketList.filters.searchButton") %></button>
+        <input type="text" id="searchInput" placeholder="<%=
+        __("TicketList.filters.searchPlaceholder") %>" />
+        <button id="searchButton">
+          <%= __("TicketList.filters.searchButton") %>
+        </button>
       </div>
 
       <div id="ticketList">
-        <% tickets.forEach(ticket => { %>
-          <div class="ticket-item" data-id="<%= ticket.id %>">
-            <h3><%= ticket.title %></h3>
-            <p><%= ticket.description %></p>
-            <p><%= __("TicketList.status") %>: <%= ticket.status %></p>
-            <p><%= __("TicketList.createdAt") %>: <%= ticket.createdAt.toLocaleString() %></p>
-          </div>
+        <% tickets.forEach((ticket) => { %>
+        <div class="ticket-item" data-id="<%= ticket.id %>">
+          <h3><%= ticket.title %></h3>
+          <p><%= ticket.description %></p>
+          <p><%= __("TicketList.status") %>: <%= ticket.status %></p>
+          <p>
+            <%= __("TicketList.createdAt") %>: <%=
+            ticket.createdAt.toLocaleString() %>
+          </p>
+        </div>
         <% }) %>
-        <p id="noTicketsMessage" style="display: none; text-align: center; color: #777;">
-          <%= __("TicketList.noTickets") %>
-        </p>
-      </div>      
+        <p id="noTicketsMessage"><%= __("TicketList.noTickets") %></p>
+      </div>
+
+      <button id="createTicketButton" class="create-ticket-btn">
+        <%= __("TicketList.createTicket") %>
+      </button>
     </div>
+
+    <%- include('./partials/ticket-create') %>
 
     <script src="/js/ticket-list.js"></script>
   </body>

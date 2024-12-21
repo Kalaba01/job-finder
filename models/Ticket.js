@@ -25,7 +25,7 @@ const Ticket = sequelize.define(
         allowNull: false 
     },
     attachment: { 
-        type: DataTypes.STRING, 
+        type: DataTypes.BLOB("long"),
         allowNull: true 
     },
     status: {

@@ -180,3 +180,22 @@ body {
     border-radius: 5px;
     box-shadow: 0 2px 4px var(--container-shadow);
 }
+
+.create-ticket-btn {
+    display: block;
+    margin: 1rem 0 0 auto;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--filter-button-background);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.create-ticket-btn:hover {
+    background-color: var(--filter-button-hover);
+    transform: translateY(-2px);
+}

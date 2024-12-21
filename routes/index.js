@@ -6,6 +6,7 @@ const languageRoutes = require("./languageRoutes");
 const passwordResetRoutes = require("./passwordResetRoutes");
 const imageRoutes = require("./imageRoutes");
 const fileRoutes = require("./fileRoutes");
+const ticketRoutes = require("./ticketRoutes");
 
 module.exports = {
     adminRoutes,
@@ -15,5 +16,6 @@ module.exports = {
     languageRoutes,
     passwordResetRoutes,
     imageRoutes,
-    fileRoutes
+    fileRoutes,
+    ticketRoutes
 }

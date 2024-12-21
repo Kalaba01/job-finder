@@ -264,6 +264,7 @@
     },
     "status": "Status",
     "createdAt": "Kreirano",
-    "noTickets": "Nijedan tiket nije pronađen."
+    "noTickets": "Nijedan tiket nije pronađen.",
+    "createTicket": "Kreiraj Tiket"
   }
 }

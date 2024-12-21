@@ -264,14 +264,15 @@
 		"title": "Tickets",
 		"heading": "Tickets",
 		"filters": {
-		"all": "All",
-		"pending": "Pending",
-		"resolved": "Resolved",
-		"searchPlaceholder": "Search by title...",
-		"searchButton": "Search"
+			"all": "All",
+			"pending": "Pending",
+			"resolved": "Resolved",
+			"searchPlaceholder": "Search by title...",
+			"searchButton": "Search"
 		},
 		"status": "Status",
 		"createdAt": "Created At",
-		"noTickets": "No tickets found."
-  	}
+		"noTickets": "No tickets found.",
+		"createTicket": "Create Ticket"
+	}
 }
