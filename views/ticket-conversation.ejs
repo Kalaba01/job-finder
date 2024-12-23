@@ -1,36 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="<%= locale %>" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ticket Conversation - Ticket #<%= ticket.id %></title>
+    <title><%= __("TicketConversation.title", { id: ticket.id }) %></title>
     <link rel="stylesheet" href="/styles/ticket-conversation.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
   <body id="ticketData" 
-  data-ticket-id="<%= ticket.id %>" 
-  data-sender-role="<%= userRole %>"
-  data-user-id="<%= userId %>"
+    data-ticket-id="<%= ticket.id %>" 
+    data-sender-role="<%= userRole %>"
+    data-user-id="<%= userId %>"
   >
-  
     <%- include('./partials/top-bar') %>
 
     <div class="ticket-conversation-container">
-      <h1>Ticket Conversation - Ticket #<%= ticket.id %></h1>
+      <h1><%= __("TicketConversation.title", { id: ticket.id }) %></h1>
 
       <!-- Ticket Info -->
       <div class="ticket-info">
-        <p><strong>Title:</strong> <%= ticket.title %></p>
-        <p><strong>Description:</strong> <%= ticket.description %></p>
-        <p><strong>Category:</strong> <%= ticket.category %></p>
-        <p><strong>Status:</strong> <%= ticket.status %></p>
-        <p><strong>Created At:</strong> <%= ticket.createdAt.toLocaleString() %></p>
+        <p><strong><%= __("TicketConversation.info.title") %>:</strong> <%= ticket.title %></p>
+        <p><strong><%= __("TicketConversation.info.description") %>:</strong> <%= ticket.description %></p>
+        <p><strong><%= __("TicketConversation.info.category") %>:</strong> <%= ticket.category %></p>
+        <p><strong><%= __("TicketConversation.info.status") %>:</strong> <%= ticket.status %></p>
+        <p><strong><%= __("TicketConversation.info.createdAt") %>:</strong> <%= ticket.createdAt.toLocaleString() %></p>
         <p>
-          <strong>Attachment:</strong>
+          <strong><%= __("TicketConversation.info.attachment") %>:</strong>
           <% if (ticket.attachment) { %>
-            <a href="/files/ticket/<%= ticket.id %>" target="_blank">Download</a>
+            <a href="/files/ticket/<%= ticket.id %>" target="_blank"><%= __("TicketConversation.info.download") %></a>
           <% } else { %>
-            <em>No attachment available</em>
+            <em><%= __("TicketConversation.info.noAttachment") %></em>
           <% } %>
         </p>
       </div>
@@ -53,14 +52,13 @@
         <textarea
           id="ticketMessageInput"
           name="message"
-          placeholder="Write your message here..."
+          placeholder="<%= __("TicketConversation.form.placeholder") %>"
           required
         ></textarea>
-        <button type="submit" class="ticket-send-btn">Send</button>
+        <button type="submit" class="ticket-send-btn"><%= __("TicketConversation.form.sendButton") %></button>
       </form>
     </div>
 
     <script type="module" src="/js/ticket-conversation.js"></script>
-
   </body>
 </html>

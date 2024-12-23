@@ -308,5 +308,22 @@
 		"categoryLabel": "Category",
 		"createdLabel": "Created",
 		"viewButton": "View"
-	}
+	},
+	"TicketConversation": {
+    "title": "Ticket Conversation - Ticket #{{id}}",
+    "info": {
+      "title": "Title",
+      "description": "Description",
+      "category": "Category",
+      "status": "Status",
+      "createdAt": "Created At",
+      "attachment": "Attachment",
+      "download": "Download",
+      "noAttachment": "No attachment available"
+    },
+    "form": {
+      "placeholder": "Write your message here...",
+      "sendButton": "Send"
+    }
+  }
 }

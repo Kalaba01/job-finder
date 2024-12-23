@@ -45,8 +45,6 @@ exports.getTicketConversation = async (req, res) => {
       userRole
     });
 
-    console.log(messages);
-
     res.render("./ticket-conversation", {
       ticket,
       messages,

@@ -300,5 +300,22 @@
     "categoryLabel": "Kategorija",
     "createdLabel": "Kreirano",
     "viewButton": "Prikaži"
+  },
+  "TicketConversation": {
+    "title": "Razgovor o Tiketu - Tiket #{{id}}",
+    "info": {
+      "title": "Naslov",
+      "description": "Opis",
+      "category": "Kategorija",
+      "status": "Status",
+      "createdAt": "Kreirano",
+      "attachment": "Prilog",
+      "download": "Preuzmi",
+      "noAttachment": "Nema dostupnih priloga"
+    },
+    "form": {
+      "placeholder": "Napišite svoju poruku ovdje...",
+      "sendButton": "Pošalji"
+    }
   }
 }
