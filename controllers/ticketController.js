@@ -22,7 +22,7 @@ exports.createTicket = async (req, res) => {
       title: req.body.title,
       description: req.body.description,
       category: req.body.category,
-      attachment: req.files.attachment ? req.files.attachment[0].buffer : null
+      attachment: req.files && req.files.attachment ? req.files.attachment[0] : null
     };
 
     const newTicket = await ticketService.createTicket(ticketData);

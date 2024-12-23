@@ -1,12 +1,30 @@
-const { Ticket, TicketConversation, User, Firm, Candidate } = require("../models");
+const { Ticket, TicketConversation, User, Firm, Candidate, File } = require("../models");
 
 exports.getTickets = async ({ userId, userRole }) => {
   try {
-    const query = {};
-    if (userRole !== "admin") query.where = { user_id: userId };
+    const query = {
+      include: [
+        {
+          model: File,
+          as: "Attachment",
+          attributes: ["id", "file_name", "file_mime"],
+        },
+      ],
+    };
+
+    if (userRole !== "admin") {
+      query.where = { user_id: userId };
+    }
 
     const tickets = await Ticket.findAll(query);
-    return tickets;
+    return tickets.map((ticket) => ({
+      ...ticket.toJSON(),
+      attachment: ticket.Attachment ? {
+        id: ticket.Attachment.id,
+        file_name: ticket.Attachment.file_name,
+        file_mime: ticket.Attachment.file_mime,
+      } : null,
+    }));
   } catch (error) {
     console.error("Error fetching tickets:", error);
     throw new Error("Failed to fetch tickets.");
@@ -15,11 +33,29 @@ exports.getTickets = async ({ userId, userRole }) => {
 
 exports.createTicket = async (ticketData) => {
   try {
-    if (!ticketData.title || !ticketData.description || !ticketData.category) {
-      throw new Error("Fields title, description, category are required.");
+    const { title, description, category, attachment } = ticketData;
+
+    if (!title || !description || !category) throw new Error("Fields title, description, category are required.");
+
+    let fileRecord = null;
+    
+    if (attachment) {
+      fileRecord = await File.create({
+        file: attachment.buffer,
+        file_name: attachment.originalname,
+        file_mime: attachment.mimetype,
+      });
     }
 
-    const newTicket = await Ticket.create(ticketData);
+    const newTicket = await Ticket.create({
+      user_id: ticketData.user_id,
+      user_role: ticketData.user_role,
+      title,
+      description,
+      category,
+      attachment_id: fileRecord ? fileRecord.id : null
+    });
+
     return newTicket;
   } catch (error) {
     console.error("Error creating ticket:", error);
