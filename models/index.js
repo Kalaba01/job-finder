@@ -10,6 +10,7 @@ const Image = require("./Image");
 const PasswordResetToken = require("./PasswordResetToken");
 const Ticket = require("./Ticket");
 const TicketConversation = require("./TicketConversation");
+const File = require("./File");
 
 // Funkcija za definisanje asocijacija
 const defineAssociations = () => {
@@ -38,6 +39,9 @@ const defineAssociations = () => {
   // Ticket -> User
   Ticket.belongsTo(User, { foreignKey: "user_id", as: "TicketCreator" });
 
+  // Ticket -> File
+  Ticket.belongsTo(File, { foreignKey: "attachment_id", as: "Attachment" });
+
   // PasswordResetToken -> User
   PasswordResetToken.belongsTo(User, { foreignKey: "user_id", as: "PasswordResetUser" });
 
@@ -58,5 +62,6 @@ module.exports = {
   Image,
   PasswordResetToken,
   Ticket,
-  TicketConversation
+  TicketConversation,
+  File
 };

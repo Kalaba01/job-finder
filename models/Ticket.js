@@ -24,9 +24,13 @@ const Ticket = sequelize.define(
         type: DataTypes.STRING, 
         allowNull: false 
     },
-    attachment: { 
-        type: DataTypes.BLOB("long"),
-        allowNull: true 
+    attachment_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "Files", // Ime tabele Files
+        key: "id",
+      },
+      allowNull: true,
     },
     status: {
       type: DataTypes.ENUM("pending", "resolved"),
