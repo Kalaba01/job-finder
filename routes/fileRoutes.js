@@ -5,6 +5,9 @@ const { authMiddleware } = require("../middleware");
 const router = express.Router();
 
 // Ruta za preuzimanje fajla kandidata (CV, motivaciono pismo, preporuke)
-router.get("/:type/:candidateId", authMiddleware.isAuthenticated, fileController.getCandidateFile);
+router.get("/candidate/:type/:candidateId", authMiddleware.isAuthenticated, fileController.getCandidateFile);
+
+// Ruta za preuzimanje priloga vezanih za ticket
+router.get("/ticket/:ticketId", authMiddleware.isAuthenticated, fileController.getTicketAttachment);
 
 module.exports = router;

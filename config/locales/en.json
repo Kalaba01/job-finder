@@ -276,37 +276,37 @@
 		"createTicket": "Create Ticket"
 	},
 	"TicketCreate": {
-    "title": "Create New Ticket",
-    "titleLabel": "Title",
-    "titlePlaceholder": "Enter ticket title",
-    "descriptionLabel": "Description",
-    "descriptionPlaceholder": "Describe your issue",
-    "categoryLabel": "Category",
-    "categoryPlaceholder": "Select a category",
-    "categories": {
-      "general": "General",
-      "technical": "Technical",
-      "billing": "Billing"
-    },
-    "attachmentLabel": "Upload Attachment",
-    "submitButton": "Submit Ticket"
-  },
-  "Tickets": {
-    "title": "Tickets",
-    "manageHeading": "Manage Tickets",
-    "searchPlaceholder": "Search tickets by title...",
-    "filters": {
-      "all": "All",
-      "pending": "Pending",
-      "resolved": "Resolved"
-    },
-    "filterButton": "Filter",
-    "status": {
-      "pending": "Pending",
-      "resolved": "Resolved"
-    },
-    "categoryLabel": "Category",
-    "createdLabel": "Created",
-    "viewButton": "View"
-  }
+		"title": "Create New Ticket",
+		"titleLabel": "Title",
+		"titlePlaceholder": "Enter ticket title",
+		"descriptionLabel": "Description",
+		"descriptionPlaceholder": "Describe your issue",
+		"categoryLabel": "Category",
+		"categoryPlaceholder": "Select a category",
+		"categories": {
+			"general": "General",
+			"technical": "Technical",
+			"billing": "Billing"
+		},
+		"attachmentLabel": "Upload Attachment",
+		"submitButton": "Submit Ticket"
+	},
+	"Tickets": {
+		"title": "Tickets",
+		"manageHeading": "Manage Tickets",
+		"searchPlaceholder": "Search tickets by title...",
+		"filters": {
+			"all": "All",
+			"pending": "Pending",
+			"resolved": "Resolved"
+		},
+		"filterButton": "Filter",
+		"status": {
+			"pending": "Pending",
+			"resolved": "Resolved"
+		},
+		"categoryLabel": "Category",
+		"createdLabel": "Created",
+		"viewButton": "View"
+	}
 }

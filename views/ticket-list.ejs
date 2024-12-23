@@ -32,14 +32,11 @@
 
       <div id="ticketList">
         <% tickets.forEach((ticket) => { %>
-        <div class="ticket-item" data-id="<%= ticket.id %>">
+        <div class="ticket-item" data-id="<%= ticket.id %>" data-user-role="<%= ticket.user_role %>">
           <h3><%= ticket.title %></h3>
           <p><%= ticket.description %></p>
           <p><%= __("TicketList.status") %>: <%= ticket.status %></p>
-          <p>
-            <%= __("TicketList.createdAt") %>: <%=
-            ticket.createdAt.toLocaleString() %>
-          </p>
+          <p><%= __("TicketList.createdAt") %>: <%= ticket.createdAt.toLocaleString() %></p>
         </div>
         <% }) %>
         <p id="noTicketsMessage"><%= __("TicketList.noTickets") %></p>

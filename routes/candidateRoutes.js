@@ -20,4 +20,7 @@ router.put("/profile/edit", uploadMiddleware, candidateController.updateCandidat
 // Ruta za prikaz ticketa kandidata
 router.get("/tickets", ticketController.getTickets);
 
+// Ruta za prikazivanje konverzacije tiketa
+router.get("/tickets/:ticketId", ticketController.getTicketConversation);
+
 module.exports = router;

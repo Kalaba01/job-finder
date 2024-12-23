@@ -41,7 +41,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const ticketItem = event.target.closest(".ticket-item");
     if (ticketItem) {
       const ticketId = ticketItem.getAttribute("data-id");
-      console.log(`Clicked ticket ID: ${ticketId}`);
+      const userRole = ticketItem.getAttribute("data-user-role");
+
+      if (userRole) {
+        window.location.href = `/${userRole}/tickets/${ticketId}`;
+      } else {
+        console.error("User role is not defined.");
+      }
     }
   });
 

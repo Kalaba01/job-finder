@@ -10,6 +10,4 @@ const Admin = sequelize.define('Admin', {
     },
 });
 
-Admin.belongsTo(User, { foreignKey: 'user_id', onDelete: 'CASCADE' });
-
 module.exports = Admin;

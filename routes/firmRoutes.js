@@ -20,4 +20,7 @@ router.post("/profile/edit", uploadMiddleware, firmController.updateFirmProfile)
 // Ruta za prikaz ticketa firme
 router.get("/tickets", ticketController.getTickets);
 
+// Ruta za prikazivanje konverzacije tiketa
+router.get("/tickets/:ticketId", ticketController.getTicketConversation);
+
 module.exports = router;

@@ -32,3 +32,30 @@ exports.createTicket = async (req, res) => {
     res.status(500).json({ message: "Failed to create ticket" });
   }
 };
+
+exports.getTicketConversation = async (req, res) => {
+  try {
+    const { ticketId } = req.params;
+    const userId = req.user.id;
+    const userRole = req.user.role;
+
+    const { ticket, messages } = await ticketService.getTicketConversation({
+      ticketId,
+      userId,
+      userRole
+    });
+
+    console.log(messages);
+
+    res.render("./ticket-conversation", {
+      ticket,
+      messages,
+      userRole,
+      userId: req.user.id,
+      locale: req.getLocale()
+    });
+  } catch (error) {
+    console.error("Error fetching ticket conversation:", error);
+    res.status(500).render("error", { message: "Failed to load ticket conversation." });
+  }
+};

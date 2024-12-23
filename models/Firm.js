@@ -41,7 +41,4 @@ const Firm = sequelize.define('Firm', {
     },
 });
 
-Firm.belongsTo(User, { foreignKey: 'user_id', onDelete: 'CASCADE' });
-Firm.belongsTo(Image, { foreignKey: 'profile_picture_id' });
-
 module.exports = Firm;

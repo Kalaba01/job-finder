@@ -49,8 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (viewButton) {
       const ticketCard = viewButton.closest(".ticket-card");
       const ticketId = ticketCard.dataset.id;
-      console.log(`View ticket ID: ${ticketId}`);
-      // Future functionality: Redirect to ticket details page
+
+      window.location.href = `/admin/tickets/${ticketId}`;
     }
   });
 

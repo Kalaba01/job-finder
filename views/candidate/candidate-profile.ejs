@@ -39,7 +39,7 @@
         <div class="profile-detail-item">
           <h3><%= __("CandidateProfile.cv") %></h3>
           <% if (candidate.cv) { %>
-            <a href="/files/cv/<%= candidate.id %>" target="_blank" class="file-link">
+            <a href="/files/candidate/cv/<%= candidate.id %>" target="_blank" class="file-link">
               <i class="fa fa-download"></i> <%= __("CandidateProfile.downloadCV") %>
             </a>
           <% } else { %>
@@ -49,7 +49,7 @@
         <div class="profile-detail-item">
           <h3><%= __("CandidateProfile.motivationLetter") %></h3>
           <% if (candidate.motivation_letter) { %>
-            <a href="/files/motivation_letter/<%= candidate.id %>" target="_blank" class="file-link">
+            <a href="/files/candidate/motivation_letter/<%= candidate.id %>" target="_blank" class="file-link">
               <i class="fa fa-download"></i> <%= __("CandidateProfile.downloadMotivationLetter") %>
             </a>
           <% } else { %>
@@ -59,7 +59,7 @@
         <div class="profile-detail-item">
           <h3><%= __("CandidateProfile.recommendations") %></h3>
           <% if (candidate.recommendations) { %>
-            <a href="/files/recommendations/<%= candidate.id %>" target="_blank" class="file-link">
+            <a href="/files/candidate/recommendations/<%= candidate.id %>" target="_blank" class="file-link">
               <i class="fa fa-download"></i> <%= __("CandidateProfile.downloadRecommendations") %>
             </a>
           <% } else { %>

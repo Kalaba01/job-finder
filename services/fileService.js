@@ -1,4 +1,5 @@
 const candidateService = require("./candidateService");
+const { Ticket } = require("../models");
 
 exports.getCandidateFile = async (candidateId, type) => {
   try {
@@ -42,6 +43,24 @@ exports.getCandidateFile = async (candidateId, type) => {
     };
   } catch (error) {
     console.error("Error fetching candidate file:", error);
+    throw error;
+  }
+};
+
+exports.getTicketAttachment = async (ticketId) => {
+  try {
+    const ticket = await Ticket.findOne({ where: { id: ticketId } });
+
+    if (!ticket) throw new Error("Ticket not found");
+    if (!ticket.attachment) throw new Error("Attachment not found");
+
+    return {
+      content: ticket.attachment,
+      fileName: `ticket_attachment_${ticket.id}.bin`,
+      mimeType: "application/octet-stream"
+    };
+  } catch (error) {
+    console.error("Error fetching ticket attachment:", error);
     throw error;
   }
 };

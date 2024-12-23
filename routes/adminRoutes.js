@@ -27,4 +27,7 @@ router.delete("/users/delete/:id", adminController.deleteUser);
 // Prikaz svih tiketa
 router.get("/tickets", ticketController.getTickets);
 
+// Ruta za prikazivanje konverzacije tiketa
+router.get("/tickets/:ticketId", ticketController.getTicketConversation);
+
 module.exports = router;

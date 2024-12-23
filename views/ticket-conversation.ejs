@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket Conversation - Ticket #<%= ticket.id %></title>
+    <link rel="stylesheet" href="/styles/ticket-conversation.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+  <body id="ticketData" 
+  data-ticket-id="<%= ticket.id %>" 
+  data-sender-role="<%= userRole %>"
+  data-user-id="<%= userId %>"
+  >
+  
+    <%- include('./partials/top-bar') %>
+
+    <div class="ticket-conversation-container">
+      <h1>Ticket Conversation - Ticket #<%= ticket.id %></h1>
+
+      <!-- Ticket Info -->
+      <div class="ticket-info">
+        <p><strong>Title:</strong> <%= ticket.title %></p>
+        <p><strong>Description:</strong> <%= ticket.description %></p>
+        <p><strong>Category:</strong> <%= ticket.category %></p>
+        <p><strong>Status:</strong> <%= ticket.status %></p>
+        <p><strong>Created At:</strong> <%= ticket.createdAt.toLocaleString() %></p>
+        <p>
+          <strong>Attachment:</strong>
+          <% if (ticket.attachment) { %>
+            <a href="/files/ticket/<%= ticket.id %>" target="_blank">Download</a>
+          <% } else { %>
+            <em>No attachment available</em>
+          <% } %>
+        </p>
+      </div>
+
+      <!-- Messages -->
+      <div id="ticketMessageList" class="ticket-message-list">
+        <% messages.forEach((message) => { %>
+          <div class="ticket-message <%= message.sender_id === userId ? 'sent' : 'received' %>">
+            <p class="ticket-message-meta">
+              <strong><%= message.sender_name %></strong>
+              <span><%= new Date(message.createdAt).toLocaleString() %></span>
+            </p>
+            <p class="ticket-message-content"><%= message.message %></p>
+          </div>          
+        <% }) %>
+      </div>            
+
+      <!-- Message Input -->
+      <form id="ticketMessageForm" class="ticket-message-form">
+        <textarea
+          id="ticketMessageInput"
+          name="message"
+          placeholder="Write your message here..."
+          required
+        ></textarea>
+        <button type="submit" class="ticket-send-btn">Send</button>
+      </form>
+    </div>
+
+    <script type="module" src="/js/ticket-conversation.js"></script>
+
+  </body>
+</html>

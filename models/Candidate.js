@@ -42,7 +42,4 @@ const Candidate = sequelize.define('Candidate', {
     },
 });
 
-Candidate.belongsTo(User, { foreignKey: 'user_id', onDelete: 'CASCADE' });
-Candidate.belongsTo(Image, { foreignKey: 'profile_picture_id' });
-
 module.exports = Candidate;
