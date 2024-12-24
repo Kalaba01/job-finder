@@ -28,7 +28,7 @@
         <p>
           <strong><%= __("TicketConversation.info.attachment") %>:</strong>
           <% if (ticket.attachment_id) { %>
-            <a href="/files/ticket/<%= ticket.attachment_id %>" target="_blank" class="attachment-download">
+            <a href="/files/<%= ticket.attachment_id %>" target="_blank" class="attachment-download">
               <i class="fa fa-download"></i>
               <%= __("TicketConversation.info.download") %>
             </a>
