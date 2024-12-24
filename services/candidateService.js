@@ -107,9 +107,9 @@ exports.getCandidateProfile = async (userId) => {
       first_name: candidate?.first_name || "N/A",
       last_name: candidate?.last_name || "N/A",
       about: candidate?.about || "N/A",
-      cv: !!candidate?.cv,
-      motivation_letter: !!candidate?.motivation_letter,
-      recommendations: !!candidate?.recommendations,
+      cv_file_id: candidate?.cv_file_id || null,
+      motivation_file_id: candidate?.motivation_file_id || null,
+      recommendations_file_id: candidate?.recommendations_file_id || null,
       profile_picture_id: candidate?.profile_picture_id || null,
     };
 

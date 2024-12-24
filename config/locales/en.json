@@ -226,7 +226,8 @@
 		"saveButton": "CandidateProfile.saveButton",
 		"downloadCV": "Download CV",
 		"downloadMotivationLetter": "Download Motivation Letter",
-		"downloadRecommendations": "Download Recommendations"
+		"downloadRecommendations": "Download Recommendations",
+		"cv_file_id": "CandidateProfile.cv_file_id"
 	},
 	"CandidateProfileEdit": {
 		"title": "Edit Candidate Profile",
@@ -310,20 +311,20 @@
 		"viewButton": "View"
 	},
 	"TicketConversation": {
-    "title": "Ticket Conversation - Ticket #{{id}}",
-    "info": {
-      "title": "Title",
-      "description": "Description",
-      "category": "Category",
-      "status": "Status",
-      "createdAt": "Created At",
-      "attachment": "Attachment",
-      "download": "Download",
-      "noAttachment": "No attachment available"
-    },
-    "form": {
-      "placeholder": "Write your message here...",
-      "sendButton": "Send"
-    }
-  }
+		"title": "Ticket Conversation - Ticket #{{id}}",
+		"info": {
+			"title": "Title",
+			"description": "Description",
+			"category": "Category",
+			"status": "Status",
+			"createdAt": "Created At",
+			"attachment": "Attachment",
+			"download": "Download",
+			"noAttachment": "No attachment available"
+		},
+		"form": {
+			"placeholder": "Write your message here...",
+			"sendButton": "Send"
+		}
+	}
 }
