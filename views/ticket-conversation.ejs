@@ -27,8 +27,8 @@
         <p><strong><%= __("TicketConversation.info.createdAt") %>:</strong> <%= ticket.createdAt.toLocaleString() %></p>
         <p>
           <strong><%= __("TicketConversation.info.attachment") %>:</strong>
-          <% if (ticket.attachment) { %>
-            <a href="/files/ticket/<%= ticket.id %>" target="_blank" class="attachment-download">
+          <% if (ticket.attachment_id) { %>
+            <a href="/files/ticket/<%= ticket.attachment_id %>" target="_blank" class="attachment-download">
               <i class="fa fa-download"></i>
               <%= __("TicketConversation.info.download") %>
             </a>

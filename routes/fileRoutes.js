@@ -7,7 +7,7 @@ const router = express.Router();
 // Ruta za preuzimanje fajla kandidata (CV, motivaciono pismo, preporuke)
 router.get("/candidate/:type/:candidateId", authMiddleware.isAuthenticated, fileController.getCandidateFile);
 
-// Ruta za preuzimanje priloga vezanih za ticket
-router.get("/ticket/:ticketId", authMiddleware.isAuthenticated, fileController.getTicketAttachment);
+// Ruta za preuzimanje attachmenta iz tabele File
+router.get("/ticket/:fileId", authMiddleware.isAuthenticated, fileController.getTicketAttachment);
 
 module.exports = router;

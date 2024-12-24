@@ -18,13 +18,13 @@ exports.getCandidateFile = async (req, res) => {
 
 exports.getTicketAttachment = async (req, res) => {
   try {
-    const { ticketId } = req.params;
-    const fileData = await fileService.getTicketAttachment(ticketId);
+    const { fileId } = req.params;
+    const fileData = await fileService.getFileById(fileId);
 
     if (!fileData) return res.status(404).send("Attachment not found");
 
     res.setHeader("Content-Type", fileData.mimeType);
-    res.setHeader("Content-Disposition", `attachment; filename=${fileData.fileName}`);
+    res.setHeader("Content-Disposition", `attachment; filename="${fileData.fileName}"`);
     res.send(fileData.content);
   } catch (error) {
     console.error("Error fetching ticket attachment:", error);
