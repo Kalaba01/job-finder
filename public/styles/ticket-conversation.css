@@ -120,6 +120,30 @@ body {
     opacity: 0.8;
 }
 
+.resolve-ticket-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: var(--button-bg);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: fit-content;
+    display: block;
+    margin: 0 0 0 auto;
+}
+
+.resolve-ticket-btn:hover {
+    background-color: var(--button-bg-hover);
+    transform: translateY(-2px);
+}
+
+.resolve-ticket-btn:active {
+    transform: translateY(0);
+}
+
 /* Message List */
 .ticket-message-list {
     max-height: 500px;
@@ -230,6 +254,10 @@ body {
     color: var(--text-color);
 }
 
+.ticket-message-form textarea::placeholder {
+    color: var(--text-color);
+}
+
 .ticket-message-form textarea:focus {
     outline: none;
     border-color: var(--info-border);
@@ -256,12 +284,27 @@ body {
     transform: translateY(0);
 }
 
+/* Resolved */
+.ticket-message-form.resolved textarea {
+    font-style: italic;
+    cursor: not-allowed;
+}
+
+.ticket-message-form.resolved button {
+    cursor: not-allowed;
+}
+
+.ticket-message-form.resolved button:hover {
+    transform: translateY(0);
+}
+
 /* Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

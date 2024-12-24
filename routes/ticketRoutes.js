@@ -9,4 +9,7 @@ router.use(authMiddleware.isAuthenticated);
 // Kreiranje novog tiketa od strane firme/kandidata
 router.post("/", uploadMiddleware, ticketController.createTicket);
 
+// Ruta za izmjenu statusa ticketa
+router.put("/resolve/:ticketId", authMiddleware.isAdmin, ticketController.resolveTicket);
+
 module.exports = router;

@@ -12,6 +12,7 @@
     data-ticket-id="<%= ticket.id %>" 
     data-sender-role="<%= userRole %>"
     data-user-id="<%= userId %>"
+    data-resolved-notice="<%= __('TicketConversation.form.resolvedNotice') %>"
   >
     <%- include('./partials/top-bar') %>
 
@@ -23,7 +24,7 @@
         <p><strong><%= __("TicketConversation.info.title") %>:</strong> <%= ticket.title %></p>
         <p><strong><%= __("TicketConversation.info.description") %>:</strong> <%= ticket.description %></p>
         <p><strong><%= __("TicketConversation.info.category") %>:</strong> <%= ticket.category %></p>
-        <p><strong><%= __("TicketConversation.info.status") %>:</strong> <%= ticket.status %></p>
+        <p><strong><%= __("TicketConversation.info.status") %>:</strong> <span class="ticket-status"> <%= ticket.status %> </span></p>
         <p><strong><%= __("TicketConversation.info.createdAt") %>:</strong> <%= ticket.createdAt.toLocaleString() %></p>
         <p>
           <strong><%= __("TicketConversation.info.attachment") %>:</strong>
@@ -35,7 +36,12 @@
           <% } else { %>
             <span class="no-attachment"><em><%= __("TicketConversation.info.noAttachment") %></em></span>
           <% } %>
-        </p>        
+        </p>
+        <% if (userRole === "admin" && ticket.status === "pending") { %>
+          <button id="resolveTicketButton" class="resolve-ticket-btn">
+            <%= __("TicketConversation.info.markResolved") %>
+          </button>
+        <% } %>
       </div>
 
       <!-- Messages -->
@@ -52,14 +58,16 @@
       </div>            
 
       <!-- Message Input -->
-      <form id="ticketMessageForm" class="ticket-message-form">
+      <form id="ticketMessageForm" class="ticket-message-form <%= ticket.status === "resolved" ? "resolved" : "" %>">
         <textarea
           id="ticketMessageInput"
           name="message"
-          placeholder="<%= __("TicketConversation.form.placeholder") %>"
-          required
+          placeholder="<%= ticket.status === "resolved" ? __('TicketConversation.form.resolvedNotice') : __('TicketConversation.form.placeholder') %>"
+          <%= ticket.status === "resolved" ? "disabled" : "" %>
         ></textarea>
-        <button type="submit" class="ticket-send-btn"><%= __("TicketConversation.form.sendButton") %></button>
+        <button type="submit" class="ticket-send-btn" <%= ticket.status === "resolved" ? "disabled" : "" %>>
+          <%= __("TicketConversation.form.sendButton") %>
+        </button>
       </form>
     </div>
 

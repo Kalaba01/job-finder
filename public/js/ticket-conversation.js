@@ -8,6 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const ticketMessageForm = document.getElementById("ticketMessageForm");
   const ticketMessageInput = document.getElementById("ticketMessageInput");
   const ticketMessageList = document.getElementById("ticketMessageList");
+  const resolveTicketButton = document.getElementById("resolveTicketButton");
+
+  const localizations = {
+    resolvedNotice: document.body.dataset.resolvedNotice
+  };
 
   const socket = io("/", {
     withCredentials: true
@@ -19,6 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
     displayMessage(message);
   });
 
+  socket.on("ticket-resolved", (data) => {
+    if (data.ticketId === ticketId) updateResolvedUI();
+  });
+
   ticketMessageForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -28,6 +37,25 @@ document.addEventListener("DOMContentLoaded", () => {
       ticketMessageInput.value = "";
     }
   });
+
+  if (resolveTicketButton) {
+    resolveTicketButton.addEventListener("click", async () => {
+      try {
+        const response = await fetch(`/tickets/resolve/${ticketId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+  
+        if (response.ok) socket.emit("mark-resolved", ticketId);
+        else alert("Failed to mark ticket as resolved.");
+      } catch (error) {
+        console.error("Error resolving ticket:", error);
+        alert("An error occurred while marking the ticket as resolved.");
+      }
+    });
+  }
 
   const displayMessage = (message) => {
     const messageDiv = document.createElement("div");
@@ -41,5 +69,15 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     ticketMessageList.appendChild(messageDiv);
     ticketMessageList.scrollTop = ticketMessageList.scrollHeight;
-  };  
+  };
+
+  const updateResolvedUI = () => {
+    document.querySelector(".ticket-info .ticket-status").textContent = "resolved";
+    if (resolveTicketButton) resolveTicketButton.remove();
+  
+      ticketMessageForm.classList.add("resolved");
+      ticketMessageInput.setAttribute("placeholder", localizations.resolvedNotice);
+      ticketMessageInput.setAttribute("disabled", true);
+      ticketMessageForm.querySelector(".ticket-send-btn").setAttribute("disabled", true);
+  }
 });

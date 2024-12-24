@@ -175,3 +175,17 @@ exports.saveMessageToDatabase = async (ticketId, message, senderRole, senderId) 
     throw error;
   }
 };
+
+exports.markAsResolved = async (ticketId) => {
+  try {
+    const ticket = await Ticket.findOne({ where: { id: ticketId } });
+
+    if (!ticket) throw new Error("Ticket not found");
+
+    ticket.status = "resolved";
+    await ticket.save();
+  } catch (error) {
+    console.error("Error updating ticket status:", error);
+    throw new Error("Failed to update ticket status.");
+  }
+};

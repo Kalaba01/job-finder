@@ -1,4 +1,5 @@
 const { saveMessageToDatabase } = require("../services/ticketService");
+const { Ticket } = require("../models");
 
 module.exports = (io, socket) => {
   const userId = socket.request.session.passport.user;
@@ -10,11 +11,28 @@ module.exports = (io, socket) => {
     console.log(`User ${userId} joined room ticket-${ticketId}`);
   });
 
+  socket.on("mark-resolved", (ticketId) => {
+    try {
+      io.to(`ticket-${ticketId}`).emit("ticket-resolved", {
+        ticketId,
+        status: "resolved"
+      });
+    } catch (error) {
+      console.error("Error emitting ticket resolved event:", error);
+    }
+  });
+
   socket.on("send-message", async ({ ticketId, message, senderRole }) => {
     try {
+      const ticket = await Ticket.findOne({ where: { id: ticketId } });
+      if (ticket.status === "resolved") {
+        console.warn(`Message blocked: Ticket ${ticketId} is resolved.`);
+        return;
+      }
+  
       const senderId = userId;
       const newMessage = await saveMessageToDatabase(ticketId, message, senderRole, senderId);
-
+  
       io.to(`ticket-${ticketId}`).emit("new-message", {
         id: newMessage.id,
         ticket_id: newMessage.ticket_id,
@@ -27,7 +45,7 @@ module.exports = (io, socket) => {
     } catch (error) {
       console.error("Error saving message:", error);
     }
-  });
+  });  
 
   socket.on("disconnect", () => {
     console.log(`User disconnected: ${userId} (Socket ID: ${socket.id})`);

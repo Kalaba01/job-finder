@@ -57,3 +57,14 @@ exports.getTicketConversation = async (req, res) => {
     res.status(500).render("error", { message: "Failed to load ticket conversation." });
   }
 };
+
+exports.resolveTicket = async (req, res) => {
+  try {
+    const { ticketId } = req.params;
+    await ticketService.markAsResolved(ticketId);
+    res.status(200).json({ message: "Ticket marked as resolved." });
+  } catch (error) {
+    console.error("Error resolving ticket:", error);
+    res.status(500).json({ message: "Failed to resolve ticket." });
+  }
+};

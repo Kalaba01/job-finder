@@ -320,10 +320,13 @@
 			"createdAt": "Created At",
 			"attachment": "Attachment",
 			"download": "Download",
-			"noAttachment": "No attachment available"
+			"noAttachment": "No attachment available",
+			"markResolved": "Mark as Resolved",
+			"resolvedNotice": "TicketConversation.info.resolvedNotice"
 		},
 		"form": {
 			"placeholder": "Write your message here...",
+			"resolvedNotice": "This ticket has been resolved. You can no longer send messages.",
 			"sendButton": "Send"
 		}
 	}
