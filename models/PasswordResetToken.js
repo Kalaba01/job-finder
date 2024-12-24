@@ -7,17 +7,17 @@ const PasswordResetToken = sequelize.define('PasswordResetToken', {
     allowNull: false,
     references: {
       model: 'Users',
-      key: 'id',
-    },
+      key: 'id'
+    }
   },
   token: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: false
   },
   expires_at: {
     type: DataTypes.DATE,
-    allowNull: false,
-  },
+    allowNull: false
+  }
 });
 
 module.exports = PasswordResetToken;

@@ -38,7 +38,7 @@ const Firm = sequelize.define('Firm', {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: { model: Image, key: 'id' }
-    },
+    }
 });
 
 module.exports = Firm;

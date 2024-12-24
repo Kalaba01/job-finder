@@ -7,7 +7,7 @@ const sessionConfig = session({
   saveUninitialized: false,
   cookie: {
     httpOnly: true
-  },
+  }
 });
 
 module.exports = sessionConfig;

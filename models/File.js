@@ -5,7 +5,7 @@ const File = sequelize.define(
   "File",
   {
     file: {
-      type: DataTypes.BLOB("long"),
+      type: DataTypes.BLOB,
       allowNull: false
     },
     file_name: {
