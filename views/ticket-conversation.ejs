@@ -13,6 +13,10 @@
     data-sender-role="<%= userRole %>"
     data-user-id="<%= userId %>"
     data-resolved-notice="<%= __('TicketConversation.form.resolvedNotice') %>"
+    data-confirm-title="<%= __('TicketConversation.confirmModal.title') %>"
+    data-confirm-message="<%= __('TicketConversation.confirmModal.message') %>"
+    data-confirm-yes="<%= __('TicketConversation.confirmModal.yes') %>"
+    data-confirm-no="<%= __('TicketConversation.confirmModal.no') %>"
   >
     <%- include('./partials/top-bar') %>
 
@@ -70,6 +74,8 @@
         </button>
       </form>
     </div>
+
+    <%- include('./partials/confirm') %>
 
     <script type="module" src="/js/ticket-conversation.js"></script>
   </body>

@@ -328,6 +328,12 @@
 			"placeholder": "Write your message here...",
 			"resolvedNotice": "This ticket has been resolved. You can no longer send messages.",
 			"sendButton": "Send"
+		},
+		"confirmModal": {
+		"title": "Are you sure?",
+		"message": "Marking this ticket as resolved will prevent further messages.",
+		"yes": "Yes, Resolve",
+		"no": "Cancel"
 		}
 	}
 }

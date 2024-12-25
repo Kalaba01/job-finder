@@ -318,6 +318,12 @@
 			"placeholder": "Napišite svoju poruku ovdje...",
 			"resolvedNotice": "Ovaj tiket je zatvoren. Ne možete više slati poruke.",
 			"sendButton": "Pošalji"
+		},
+		"confirmModal": {
+		"title": "Da li ste sigurni?",
+		"message": "Označavanje tiketa kao zatvorenog sprečiće dalju komunikaciju.",
+		"yes": "Da, Zatvori",
+		"no": "Otkaži"
 		}
 	}
 }

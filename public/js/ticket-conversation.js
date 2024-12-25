@@ -11,7 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const resolveTicketButton = document.getElementById("resolveTicketButton");
 
   const localizations = {
-    resolvedNotice: document.body.dataset.resolvedNotice
+    resolvedNotice: document.body.dataset.resolvedNotice,
+    confirmTitle: document.body.dataset.confirmTitle,
+    confirmMessage: document.body.dataset.confirmMessage,
+    confirmYes: document.body.dataset.confirmYes,
+    confirmNo: document.body.dataset.confirmNo
   };
 
   const socket = io("/", {
@@ -39,21 +43,27 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   if (resolveTicketButton) {
-    resolveTicketButton.addEventListener("click", async () => {
-      try {
-        const response = await fetch(`/tickets/resolve/${ticketId}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json"
+    resolveTicketButton.addEventListener("click", () => {
+      openConfirmModal({
+        title: localizations.confirmTitle,
+        message: localizations.confirmMessage,
+        action: "mark-resolved",
+        id: ticketId,
+        onConfirm: async (id) => {
+          try {
+            const response = await fetch(`/tickets/resolve/${id}`, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" }
+            });
+
+            if (response.ok) socket.emit("mark-resolved", id);
+            else alert("Failed to mark ticket as resolved.");
+          } catch (error) {
+            console.error("Error resolving ticket:", error);
+            alert("An error occurred while marking the ticket as resolved.");
           }
-        });
-  
-        if (response.ok) socket.emit("mark-resolved", ticketId);
-        else alert("Failed to mark ticket as resolved.");
-      } catch (error) {
-        console.error("Error resolving ticket:", error);
-        alert("An error occurred while marking the ticket as resolved.");
-      }
+        },
+      });
     });
   }
 
