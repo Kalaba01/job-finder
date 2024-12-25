@@ -16,3 +16,12 @@ exports.getFileById = async (fileId) => {
     throw new Error("Failed to fetch file.");
   }
 };
+
+exports.saveFile = async (file) => {
+  if (!file) throw new Error("File is required.");
+  return await File.create({
+    file: file.buffer,
+    file_name: file.originalname,
+    file_mime: file.mimetype
+  });
+};

@@ -1,6 +1,7 @@
 const emailService = require("../services/emailService");
 const userService = require("./userService");
 const imageService = require("./imageService");
+const fileService = require("./fileService");
 const { User, Candidate, Image, File } = require("../models");
 
 exports.checkIfCandidateWithEmailExists = async (email) => {
@@ -132,32 +133,9 @@ exports.updateCandidateProfile = async (userId, { first_name, last_name, about, 
       about: about || candidate.about
     });
 
-    if (cv) {
-      const cvFile = await File.create({
-        file: cv.buffer,
-        file_name: cv.originalname,
-        file_mime: cv.mimetype,
-      });
-      candidate.cv_file_id = cvFile.id;
-    }
-
-    if (motivation_letter) {
-      const motivationFile = await File.create({
-        file: motivation_letter.buffer,
-        file_name: motivation_letter.originalname,
-        file_mime: motivation_letter.mimetype,
-      });
-      candidate.motivation_file_id = motivationFile.id;
-    }
-
-    if (recommendations) {
-      const recommendationsFile = await File.create({
-        file: recommendations.buffer,
-        file_name: recommendations.originalname,
-        file_mime: recommendations.mimetype,
-      });
-      candidate.recommendations_file_id = recommendationsFile.id;
-    }
+    if (cv) candidate.cv_file_id = (await fileService.saveFile(cv)).id;
+    if (motivation_letter) candidate.motivation_file_id = (await fileService.saveFile(motivation_letter)).id;
+    if (recommendations) candidate.recommendations_file_id = (await fileService.saveFile(recommendations)).id;
 
     if (profilePicture) {
       if (candidate.profile_picture_id) await imageService.replaceImage(profilePicture, candidate.profile_picture_id);
