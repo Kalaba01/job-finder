@@ -14,13 +14,20 @@ const Firm = sequelize.define('Firm', {
         allowNull: false,
         validate: { len: [3, 100] }
     },
+    city: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        validate: { len: [2, 50] }
+    },
     address: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: { len: [2, 50] }
     },
     about: {
         type: DataTypes.TEXT,
-        allowNull: true
+        allowNull: true,
+        validate: { len: [2, 500] }
     },
     employees: {
         type: DataTypes.STRING,
