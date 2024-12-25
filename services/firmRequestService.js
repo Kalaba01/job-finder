@@ -33,7 +33,7 @@ exports.getFirmRequestById = async (id) => {
 
 exports.createFirmRequest = async (firmData) => {
   try {
-    const { email, name, address, employees_range } = firmData;
+    const { email, name, city, address, employees_range } = firmData;
 
     await this.checkPendingFirmRequest(email);
 
@@ -41,6 +41,7 @@ exports.createFirmRequest = async (firmData) => {
       email,
       name,
       address,
+      city,
       employees_range
     });
 

@@ -10,11 +10,18 @@ const FirmRequest = sequelize.define('FirmRequest', {
     },
     name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: { len: [3, 100] }
+    },
+    city: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: { len: [2, 50] }
     },
     address: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: { len: [2, 50] }
     },
     employees_range: {
         type: DataTypes.STRING,

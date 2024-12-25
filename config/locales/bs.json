@@ -69,6 +69,8 @@
 		"emailPlaceholder": "Unesite vaš email",
 		"companyNameLabel": "Naziv Kompanije",
 		"companyNamePlaceholder": "Unesite naziv vaše kompanije",
+		"cityLabel": "Grad",
+		"cityPlaceholder": "Unesite grad u kojem se nalazi kompanija",
 		"addressLabel": "Adresa",
 		"addressPlaceholder": "Unesite vašu adresu",
 		"employeesRangeLabel": "Broj Zaposlenih",
@@ -106,6 +108,7 @@
 			"rejected": "Odbijen"
 		},
 		"email": "Email",
+		"city": "Grad",
 		"address": "Adresa",
 		"employees": "Broj Zaposlenih",
 		"createdAt": "Kreirano",
@@ -239,9 +242,11 @@
 		"title": "Profil Firme",
 		"profilePictureAlt": "Slika profila firme",
 		"noImage": "Nema dostupne slike",
+		"city": "Grad",
 		"address": "Adresa",
 		"employees": "Broj zaposlenih",
-		"editProfile": "Uredi Profil"
+		"editProfile": "Uredi Profil",
+		"about": "O Firmi"
 	},
 	"FirmProfileEdit": {
 		"title": "Uredi Profil Firme",
@@ -250,7 +255,8 @@
 		"employees": "Broj Zaposlenih",
 		"selectedRange": "Odabrani Raspon",
 		"profilePicture": "Učitaj Profilnu Sliku",
-		"save": "Sačuvaj Izmjene"
+		"save": "Sačuvaj Izmjene",
+		"about": "FirmProfileEdit.about"
 	},
 	"TicketList": {
 		"title": "Tiketi",
@@ -320,10 +326,10 @@
 			"sendButton": "Pošalji"
 		},
 		"confirmModal": {
-		"title": "Da li ste sigurni?",
-		"message": "Označavanje tiketa kao zatvorenog sprečiće dalju komunikaciju.",
-		"yes": "Da, Zatvori",
-		"no": "Otkaži"
+			"title": "Da li ste sigurni?",
+			"message": "Označavanje tiketa kao zatvorenog sprečiće dalju komunikaciju.",
+			"yes": "Da, Zatvori",
+			"no": "Otkaži"
 		}
 	}
 }

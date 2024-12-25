@@ -16,7 +16,7 @@ const Firm = sequelize.define('Firm', {
     },
     city: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
         validate: { len: [2, 50] }
     },
     address: {

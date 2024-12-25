@@ -115,6 +115,7 @@ exports.getFirmProfile = async (userId) => {
 
     const firmData = {
       name: firm.name || "N/A",
+      city: firm.city || "N/A",
       address: firm.address || "N/A",
       about: firm.about || "N/A",
       employees: firm.employees || "N/A",

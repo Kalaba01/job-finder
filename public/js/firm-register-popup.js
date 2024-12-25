@@ -11,9 +11,9 @@ noUiSlider.create(employeeRangeSlider, {
   connect: true,
   range: {
     min: 1,
-    max: 500,
+    max: 500
   },
-  step: 1,
+  step: 1
 });
 
 // Update the output for the range slider
@@ -49,12 +49,14 @@ firmRegisterForm.addEventListener("submit", async (e) => {
 
   const email = document.getElementById("firm-register-email").value;
   const name = document.getElementById("firm-register-name").value;
+  const city = document.getElementById("firm-register-city").value;
   const address = document.getElementById("firm-register-address").value;
   const employeesRange = employeeRangeSlider.noUiSlider.get();
 
   const formData = {
     email,
     name,
+    city,
     address,
     employees_range: `${Math.floor(employeesRange[0])}-${Math.ceil(employeesRange[1])}`,
   };

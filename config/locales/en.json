@@ -69,6 +69,8 @@
 		"emailPlaceholder": "Enter your email",
 		"companyNameLabel": "Company Name",
 		"companyNamePlaceholder": "Enter your company name",
+		"cityLabel": "City",
+  		"cityPlaceholder": "Enter the city where the company is located",
 		"addressLabel": "Address",
 		"addressPlaceholder": "Enter your address",
 		"employeesRangeLabel": "Number of Employees",
@@ -106,6 +108,7 @@
 			"rejected": "Rejected"
 		},
 		"email": "Email",
+		"city": "City",
 		"address": "Address",
 		"employees": "Employees",
 		"createdAt": "Created At",
@@ -226,8 +229,7 @@
 		"saveButton": "CandidateProfile.saveButton",
 		"downloadCV": "Download CV",
 		"downloadMotivationLetter": "Download Motivation Letter",
-		"downloadRecommendations": "Download Recommendations",
-		"cv_file_id": "CandidateProfile.cv_file_id"
+		"downloadRecommendations": "Download Recommendations"
 	},
 	"CandidateProfileEdit": {
 		"title": "Edit Candidate Profile",
@@ -246,10 +248,11 @@
 		"title": "Firm Profile",
 		"profilePictureAlt": "Firm Profile Picture",
 		"noImage": "No Image Available",
+		"city": "City",
 		"address": "Address",
 		"employees": "Number of Employees",
 		"editProfile": "Edit Profile",
-		"about": "FirmProfile.about"
+		"about": "About"
 	},
 	"FirmProfileEdit": {
 		"title": "Edit Firm Profile",
@@ -330,10 +333,10 @@
 			"sendButton": "Send"
 		},
 		"confirmModal": {
-		"title": "Are you sure?",
-		"message": "Marking this ticket as resolved will prevent further messages.",
-		"yes": "Yes, Resolve",
-		"no": "Cancel"
+			"title": "Are you sure?",
+			"message": "Marking this ticket as resolved will prevent further messages.",
+			"yes": "Yes, Resolve",
+			"no": "Cancel"
 		}
 	}
 }
