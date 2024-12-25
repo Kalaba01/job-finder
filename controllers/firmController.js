@@ -14,12 +14,13 @@ exports.showFirmProfile = async (req, res) => {
 
 exports.updateFirmProfile = async (req, res) => {
   try {
-    const { name, address, about, employees } = req.body;
+    const { name, city, address, about, employees } = req.body;
     const profilePicture = req.files?.profilePicture?.[0];
     const [minEmployees, maxEmployees] = employees.split("-").map(Number);
 
     await firmService.updateFirmProfile(req.user.id, {
       name,
+      city,
       address,
       about,
       employees_range: `${minEmployees}-${maxEmployees}`,

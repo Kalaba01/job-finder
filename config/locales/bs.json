@@ -180,6 +180,8 @@
 			"email": "Email",
 			"password": "Lozinka",
 			"firmName": "Ime Firme",
+			"cityLabel": "Grad",
+      		"cityPlaceholder": "Unesite naziv grada",
 			"firmAddress": "Adresa Firme",
 			"numberOfEmployees": "Broj Zaposlenih",
 			"selectedRange": "Izabrani Opseg",
@@ -251,12 +253,13 @@
 	"FirmProfileEdit": {
 		"title": "Uredi Profil Firme",
 		"name": "Naziv Firme",
+		"city": "Grad",
 		"address": "Adresa",
 		"employees": "Broj Zaposlenih",
 		"selectedRange": "Odabrani Raspon",
 		"profilePicture": "Učitaj Profilnu Sliku",
 		"save": "Sačuvaj Izmjene",
-		"about": "FirmProfileEdit.about"
+		"about": "O Firmi"
 	},
 	"TicketList": {
 		"title": "Tiketi",

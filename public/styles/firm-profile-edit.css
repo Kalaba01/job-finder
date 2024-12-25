@@ -82,7 +82,7 @@
 .edit-profile-popup-content h2 {
     text-align: center;
     margin-bottom: 0.8rem;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: bold;
     color: var(--text-color);
 }
@@ -106,13 +106,9 @@
 }
 
 .form-group label {
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
     font-weight: bold;
     color: var(--text-color);
-}
-
-textarea#edit-about {
-    resize: none;
 }
 
 input,
@@ -124,6 +120,7 @@ textarea {
     border-radius: 5px;
     font-size: 0.8rem;
     transition: border-color 0.3s ease;
+    resize: none;
 }
 
 input:focus,

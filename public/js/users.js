@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
     selectedRange: document.body.dataset.selectedRange,
     firstNameLabel: document.body.dataset.firstNameLabel,
     lastNameLabel: document.body.dataset.lastNameLabel,
+    cityLabel: document.body.dataset.cityLabel,
+    cityPlaceholder: document.body.dataset.cityPlaceholder,
     save: document.body.dataset.save,
     cancel: document.body.dataset.cancel,
     deleteUserTitle: document.body.dataset.deleteUserTitle,
@@ -36,7 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
     failedToDeleteUser: document.body.dataset.failedToDeleteUser,
     errorDeletingUser: document.body.dataset.errorDeletingUser,
     errorFetchingUserDetails: document.body.dataset.errorFetchingUserDetails,
-    anErrorOccurredProcessingUser: document.body.dataset.anErrorOccurredProcessingUser
+    anErrorOccurredProcessingUser:
+      document.body.dataset.anErrorOccurredProcessingUser,
   };
 
   const toggleModalForEdit = (isEdit) => {
@@ -99,6 +102,10 @@ document.addEventListener("DOMContentLoaded", () => {
           <input type="text" id="firm-name" name="name" required />
         </div>
         <div class="form-group">
+          <label for="firm-city">${localizations.cityLabel}:</label>
+          <input type="text" id="firm-city" name="city" required />
+        </div>
+        <div class="form-group">
           <label for="firm-address">${localizations.firmAddressLabel}:</label>
           <input type="text" id="firm-address" name="address" required />
         </div>
@@ -124,9 +131,9 @@ document.addEventListener("DOMContentLoaded", () => {
         connect: true,
         range: {
           min: 0,
-          max: 500,
+          max: 500
         },
-        step: 1,
+        step: 1
       });
 
       slider.noUiSlider.on("update", (values) => {
@@ -219,6 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
       role,
       email,
       name = "",
+      city = "",
       address = "",
       employees_range = "0-0",
       first_name = "",
@@ -243,6 +251,10 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="form-group">
           <label for="firm-name">${localizations.firmNameLabel}:</label>
           <input type="text" id="firm-name" name="name" value="${name}" required />
+        </div>
+        <div class="form-group">
+          <label for="firm-city">${localizations.cityLabel}:</label>
+          <input type="text" id="firm-city" name="city" value="${city}" required />
         </div>
         <div class="form-group">
           <label for="firm-address">${localizations.firmAddressLabel}:</label>

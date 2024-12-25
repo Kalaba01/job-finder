@@ -35,7 +35,7 @@ exports.firmExistsByUserId = async(userId) => {
   }
 }
 
-exports.createFirmAccount = async ( email, password, name, address, employees, transaction = null ) => {
+exports.createFirmAccount = async ( email, password, name, city, address, employees, transaction = null ) => {
   try {
     if (await this.firmExistsByEmail(email)) throw new Error("A user with this email already exists.");
 
@@ -48,6 +48,7 @@ exports.createFirmAccount = async ( email, password, name, address, employees, t
       {
         user_id: user.id,
         name,
+        city,
         address,
         employees,
         profile_picture_id: defaultImage.id,
@@ -67,6 +68,7 @@ exports.getFirmDetails = async (userId, userDetails) => {
     const firm = await this.firmExistsByUserId(userId);
     if (firm) {
       userDetails.name = firm.name;
+      userDetails.city = firm.city;
       userDetails.address = firm.address;
       userDetails.employees_range = firm.employees;
     }
@@ -79,10 +81,11 @@ exports.getFirmDetails = async (userId, userDetails) => {
 
 exports.updateFirm = async (firm, updatedData) => {
   try {
-    const { name, address, employees_range } = updatedData;
+    const { name, city, address, employees_range } = updatedData;
 
     await firm.update({
       name: name || firm.name,
+      city: city || firm.city,
       address: address || firm.address,
       employees: employees_range || firm.employees,
     });
@@ -131,7 +134,7 @@ exports.getFirmProfile = async (userId) => {
 
 exports.updateFirmProfile = async (userId, updatedData) => {
   try {
-    const { name, address, about, employees_range, profilePicture } = updatedData;
+    const { name, city, address, about, employees_range, profilePicture } = updatedData;
     const firm = await this.firmExistsByUserId(userId);
 
     if (!firm) throw new Error("Firm not found");
@@ -143,6 +146,7 @@ exports.updateFirmProfile = async (userId, updatedData) => {
 
     await firm.update({
       name: name || firm.name,
+      city: city || firm.city,
       address: address || firm.address,
       about: about || firm.about,
       employees: employees_range || firm.employees

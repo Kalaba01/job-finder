@@ -79,7 +79,7 @@ exports.getUserDetails = async (userId) => {
 exports.addUser = async (userData) => {
   const transaction = await sequelize.transaction();
   try {
-    const { email, password, role, name, address, employees_range, first_name, last_name } = userData;
+    const { email, password, role, name, city, address, employees_range, first_name, last_name } = userData;
 
     if (await this.findUserByEmail(email)) throw new Error("Email is already in use.");
     let newUser;
@@ -87,7 +87,7 @@ exports.addUser = async (userData) => {
     switch (role) {
       case "firm":
         if (!name || !address|| !employees_range) throw new Error("Firm name and address are required for firms.");
-        newUser = await firmService.createFirmAccount(email, password, name, address, employees_range, transaction);
+        newUser = await firmService.createFirmAccount(email, password, name, city, address, employees_range, transaction);
         break;
 
       case "candidate":

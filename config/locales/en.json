@@ -179,6 +179,8 @@
 			"email": "Email",
 			"password": "Password",
 			"firmName": "Firm Name",
+			"cityLabel": "City",
+      		"cityPlaceholder": "Enter city name",
 			"firmAddress": "Firm Address",
 			"numberOfEmployees": "Number of Employees",
 			"selectedRange": "Selected Range",
@@ -257,12 +259,13 @@
 	"FirmProfileEdit": {
 		"title": "Edit Firm Profile",
 		"name": "Firm Name",
+		"city": "City",
 		"address": "Address",
 		"employees": "Number of Employees",
 		"selectedRange": "Selected Range",
 		"profilePicture": "Upload Profile Picture",
 		"save": "Save Changes",
-		"about": "FirmProfileEdit.about"
+		"about": "About"
 	},
 	"TicketList": {
 		"title": "Tickets",

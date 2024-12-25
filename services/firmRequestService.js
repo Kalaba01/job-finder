@@ -86,6 +86,7 @@ exports.handleFirmRequestUpdate = async (id, status) => {
         firmRequest.email,
         hashedPassword,
         firmRequest.name,
+        firmRequest.city,
         firmRequest.address,
         firmRequest.employees_range,
         transaction
@@ -101,14 +102,15 @@ exports.handleFirmRequestUpdate = async (id, status) => {
         user: {
           id: user.id,
           email: user.email,
-          role: user.role,
+          role: user.role
         },
         firm: {
           id: firm.user_id,
           name: firm.name,
+          city: firm.city,
           address: firm.address,
-          employees: firm.employees,
-        },
+          employees: firm.employees
+        }
       };
     } else if (status === "rejected") {
       await this.updateFirmRequestStatus(id, "rejected", transaction);
