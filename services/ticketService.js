@@ -1,5 +1,16 @@
 const { Ticket, TicketConversation, User, Firm, Candidate, File } = require("../models");
 
+exports.getTicketById = async(ticketId) => {
+    try{
+      const ticket = Ticket.findOne({ where: { id: ticketId } });
+
+      return ticket;
+    } catch (error) {
+      console.error(`Error fetching ticket with ID: ${ticketId}`, error);
+      throw new Error("Failed to retrieve ticket.");
+    }
+}
+
 exports.getTickets = async ({ userId, userRole }) => {
   try {
     const query = {
@@ -12,9 +23,7 @@ exports.getTickets = async ({ userId, userRole }) => {
       ],
     };
 
-    if (userRole !== "admin") {
-      query.where = { user_id: userId };
-    }
+    if (userRole !== "admin") query.where = { user_id: userId };
 
     const tickets = await Ticket.findAll(query);
     return tickets.map((ticket) => ({
@@ -22,8 +31,8 @@ exports.getTickets = async ({ userId, userRole }) => {
       attachment: ticket.Attachment ? {
         id: ticket.Attachment.id,
         file_name: ticket.Attachment.file_name,
-        file_mime: ticket.Attachment.file_mime,
-      } : null,
+        file_mime: ticket.Attachment.file_mime
+      } : null
     }));
   } catch (error) {
     console.error("Error fetching tickets:", error);
@@ -91,7 +100,7 @@ const getSenderName = async (user, userId, userRole) => {
 
 exports.getTicketConversation = async ({ ticketId, userId, userRole }) => {
   try {
-    const ticket = await Ticket.findOne({ where: { id: ticketId } });
+    const ticket = await this.getTicketById(ticketId);
 
     if (!ticket) throw new Error("Ticket not found");
     if (userRole !== "admin" && ticket.user_id !== userId) throw new Error("Unauthorized access to ticket");
@@ -178,7 +187,7 @@ exports.saveMessageToDatabase = async (ticketId, message, senderRole, senderId) 
 
 exports.markAsResolved = async (ticketId) => {
   try {
-    const ticket = await Ticket.findOne({ where: { id: ticketId } });
+    const ticket = await this.getTicketById(ticketId);
 
     if (!ticket) throw new Error("Ticket not found");
 
