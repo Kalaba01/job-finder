@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const firmController = require("../controllers/firmController");
 const ticketController = require("../controllers/ticketController");
+const jobAdsController = require("../controllers/jobAdsController");
 const { authMiddleware, languageMiddleware, setMenuOptions, uploadMiddleware } = require("../middleware");
 
 // Middleware za postavljanje menuOptions
@@ -22,5 +23,8 @@ router.get("/tickets", ticketController.getTickets);
 
 // Ruta za prikazivanje konverzacije tiketa
 router.get("/tickets/:ticketId", ticketController.getTicketConversation);
+
+// Job Ads rute
+router.get("/job-ads", jobAdsController.showJobAds);
 
 module.exports = router;

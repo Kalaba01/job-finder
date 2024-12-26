@@ -131,8 +131,7 @@
 	},
 	"FirmMenu": {
 		"profile": "Profil",
-		"createJobAd": "Kreiraj oglas za posao",
-		"myJobAds": "Moji oglasi za posao",
+		"jobAds": "Oglasi za posao",
 		"candidates": "Kandidati",
 		"interviewCalendar": "Kalendar intervjua",
 		"reports": "Izvještaji",

@@ -11,6 +11,11 @@ const FirmRequest = require("./FirmRequest");
 const PasswordResetToken = require("./PasswordResetToken");
 const Ticket = require("./Ticket");
 const TicketConversation = require("./TicketConversation");
+const JobAd = require("./JobAd");
+const Application = require("./Application");
+const HiringPhase = require("./HiringPhase");
+const HiringProcess = require("./HiringProcess");
+const InterviewComment = require("./InterviewComment");
 
 // Funkcija za definisanje asocijacija
 const defineAssociations = () => {
@@ -29,7 +34,6 @@ const defineAssociations = () => {
   // Candidate -> User
   Candidate.belongsTo(User, { foreignKey: "user_id", as: "CandidateUser" });
   User.hasOne(Candidate, { foreignKey: "user_id", as: "Candidate" });
-
 
   // Firm -> User
   Firm.belongsTo(User, { foreignKey: "user_id", as: "FirmUser" });
@@ -53,6 +57,35 @@ const defineAssociations = () => {
 
   // Review -> Firm
   Review.belongsTo(Firm, { foreignKey: "reviewed_firm_id", as: "ReviewedFirm" });
+
+  // JobAd -> Firm
+  JobAd.belongsTo(Firm, { foreignKey: "firm_id", as: "Firm" });
+  Firm.hasMany(JobAd, { foreignKey: "firm_id", as: "JobAds" });
+
+  // Application -> JobAd
+  Application.belongsTo(JobAd, { foreignKey: "job_ad_id", as: "JobAd" });
+  JobAd.hasMany(Application, { foreignKey: "job_ad_id", as: "Applications" });
+
+  // Application -> Candidate
+  Application.belongsTo(Candidate, { foreignKey: "candidate_id", as: "Candidate" });
+  Candidate.hasMany(Application, { foreignKey: "candidate_id", as: "Applications" });
+
+  // HiringProcess -> Candidate
+  HiringProcess.belongsTo(Candidate, { foreignKey: "candidate_id", as: "Candidate" });
+  Candidate.hasMany(HiringProcess, { foreignKey: "candidate_id", as: "HiringProcesses" });
+
+  // HiringProcess -> HiringPhase
+  HiringProcess.belongsTo(HiringPhase, { foreignKey: "current_phase", as: "CurrentPhase" });
+  HiringPhase.hasMany(HiringProcess, { foreignKey: "current_phase", as: "ProcessesInPhase" });
+
+  // InterviewComment -> HiringProcess
+  InterviewComment.belongsTo(HiringProcess, { foreignKey: "hiring_process_id", as: "HiringProcess" });
+  HiringProcess.hasMany(InterviewComment, { foreignKey: "hiring_process_id", as: "Comments" });
+
+  // InterviewComment -> HiringPhase
+  InterviewComment.belongsTo(HiringPhase, { foreignKey: "phase_id", as: "Phase" });
+  HiringPhase.hasMany(InterviewComment, { foreignKey: "phase_id", as: "Comments" });
+
 };
 
 defineAssociations();
@@ -69,5 +102,10 @@ module.exports = {
   PasswordResetToken,
   Ticket,
   TicketConversation,
-  File
+  File,
+  JobAd,
+  Application,
+  HiringPhase,
+  HiringProcess,
+  InterviewComment
 };

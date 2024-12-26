@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Ads</title>
+  <link rel="stylesheet" href="/styles/job-ads.css">
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+</head>
+<body>
+  <%- include('../partials/top-bar') %>
+
+  <div class="job-ads-container">
+    <div class="job-ads-header">
+      <input 
+        type="text" 
+        id="search-bar" 
+        class="search-bar" 
+        placeholder="Search by title..."
+      />
+      <select id="status-filter" class="filter-dropdown">
+        <option value="">All Statuses</option>
+        <% statuses.forEach(status => { %>
+          <option value="<%= status %>"><%= status.charAt(0).toUpperCase() + status.slice(1) %></option>
+        <% }) %>
+      </select>
+    </div>
+    <div id="job-ads-list-container">
+      <% if (jobAds.length === 0) { %>
+        <p id="no-ads-message" class="no-ads-message">No job ads found. Start creating your first job ad!</p>
+      <% } else { %>
+        <div id="job-ads-list" class="job-ads-list <%= jobAds.length === 1 ? 'single-ad' : '' %>">
+          <% jobAds.forEach(jobAd => { %>
+            <div class="job-card" data-title="<%= jobAd.title.toLowerCase() %>" data-status="<%= jobAd.status %>">
+              <h2 class="job-title"><%= jobAd.title %></h2>
+              <p class="job-description"><%= jobAd.description.substring(0, 100) %>...</p>
+              <p class="job-location">Location: <%= jobAd.location || "Remote" %></p>
+              <p class="job-category">Category: <%= jobAd.category || "General" %></p>
+              <p class="job-expiration">Expires on: <%= new Date(jobAd.expiration_date).toLocaleDateString() %></p>
+              <button class="job-edit-btn">Edit</button>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <script src="/js/job-ads.js"></script>
+</body>
+</html>

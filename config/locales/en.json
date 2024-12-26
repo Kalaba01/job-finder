@@ -131,8 +131,7 @@
 	},
 	"FirmMenu": {
 		"profile": "Profile",
-		"createJobAd": "Create Job Ad",
-		"myJobAds": "My Job Ads",
+		"jobAds": "Job Ads",
 		"candidates": "Candidates",
 		"interviewCalendar": "Interview Calendar",
 		"reports": "Reports",

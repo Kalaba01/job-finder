@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
   
     switch (role) {
       case "admin":
-        res.locals.menuOptions = [
+        res.locals.menuOptions = [ 
           { name: translate("AdminMenu.userManagement"), link: "/admin/users" },
           { name: translate("AdminMenu.companyApprovals"), link: "/admin/company-approvals" },
           { name: translate("AdminMenu.jobAds"), link: "/admin/job-ads" },
@@ -23,8 +23,7 @@ module.exports = (req, res, next) => {
       case "firm":
         res.locals.menuOptions = [
           { name: translate("FirmMenu.profile"), link: "/firm/profile" },
-          { name: translate("FirmMenu.createJobAd"), link: "/firm/create-job-ad" },
-          { name: translate("FirmMenu.myJobAds"), link: "/firm/job-ads" },
+          { name: translate("FirmMenu.jobAds"), link: "/firm/job-ads" },
           { name: translate("FirmMenu.candidates"), link: "/firm/candidates" },
           { name: translate("FirmMenu.interviewCalendar"), link: "/firm/calendar" },
           { name: translate("FirmMenu.reports"), link: "/firm/reports" },
