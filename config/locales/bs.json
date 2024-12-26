@@ -333,5 +333,21 @@
 			"yes": "Da, Zatvori",
 			"no": "Otkaži"
 		}
+	},
+	"JobAds": {
+		"title": "Oglasi za posao",
+		"searchPlaceholder": "Pretraži po naslovu...",
+		"allStatuses": "Svi statusi",
+		"status": {
+			"open": "Otvoren",
+			"closed": "Zatvoren"
+		},
+		"noAdsFound": "Nema oglasa. Počnite kreirati svoj prvi oglas!",
+		"location": "Lokacija",
+		"remote": "Daljinski",
+		"category": "Kategorija",
+		"general": "Opšte",
+		"expiresOn": "Ističe",
+		"editButton": "Uredi"
 	}
 }

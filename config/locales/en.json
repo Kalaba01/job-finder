@@ -340,5 +340,21 @@
 			"yes": "Yes, Resolve",
 			"no": "Cancel"
 		}
+	},
+	"JobAds": {
+		"title": "Job Ads",
+		"searchPlaceholder": "Search by title...",
+		"allStatuses": "All Statuses",
+		"status": {
+			"open": "Open",
+			"closed": "Closed"
+		},
+		"noAdsFound": "No job ads found. Start creating your first job ad!",
+		"location": "Location",
+		"remote": "Remote",
+		"category": "Category",
+		"general": "General",
+		"expiresOn": "Expires on",
+		"editButton": "Edit"
 	}
 }
