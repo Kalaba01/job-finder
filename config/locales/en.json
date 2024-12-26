@@ -70,7 +70,7 @@
 		"companyNameLabel": "Company Name",
 		"companyNamePlaceholder": "Enter your company name",
 		"cityLabel": "City",
-  		"cityPlaceholder": "Enter the city where the company is located",
+		"cityPlaceholder": "Enter the city where the company is located",
 		"addressLabel": "Address",
 		"addressPlaceholder": "Enter your address",
 		"employeesRangeLabel": "Number of Employees",
@@ -179,7 +179,7 @@
 			"password": "Password",
 			"firmName": "Firm Name",
 			"cityLabel": "City",
-      		"cityPlaceholder": "Enter city name",
+			"cityPlaceholder": "Enter city name",
 			"firmAddress": "Firm Address",
 			"numberOfEmployees": "Number of Employees",
 			"selectedRange": "Selected Range",
@@ -355,6 +355,7 @@
 		"category": "Category",
 		"general": "General",
 		"expiresOn": "Expires on",
-		"editButton": "Edit"
+		"editButton": "Edit",
+		"createAdButton": "JobAds.createAdButton"
 	}
 }

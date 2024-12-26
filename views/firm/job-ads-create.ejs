@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="/styles/job-ads-create.css" />
+<div id="job-ad-create-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="close-create-modal">&times;</span>
+    <h1>Create Job Ad</h1>
+    <form id="job-ad-create-form" action="/firm/job-ads/create" method="POST">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="Enter job title"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          placeholder="Enter job description"
+          rows="5"
+          required
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input
+          type="text"
+          id="location"
+          name="location"
+          placeholder="Enter job location"
+        />
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <input
+          type="text"
+          id="category"
+          name="category"
+          placeholder="Enter job category"
+        />
+      </div>
+      <div class="form-group">
+        <label for="expiration_date">Expiration Date</label>
+        <input
+          type="date"
+          id="expiration_date"
+          name="expiration_date"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="required_documents">Required Documents</label>
+        <div id="required-documents-dropdown" class="dropdown">
+          <button type="button" id="dropdown-button">Select Documents</button>
+          <div id="dropdown-menu" class="dropdown-menu">
+            <label>
+              <input type="checkbox" value="CV" class="document-checkbox" />
+              CV
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                value="Motivation Letter"
+                class="document-checkbox"
+              />
+              Motivation Letter
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                value="Recommendations"
+                class="document-checkbox"
+              />
+              Recommendations
+            </label>
+          </div>
+        </div>
+        <input
+          type="hidden"
+          id="required_documents_json"
+          name="required_documents"
+        />
+      </div>
+      <div class="form-group">
+        <label for="custom_questions">Custom Questions</label>
+        <textarea
+          id="custom_questions"
+          name="custom_questions"
+          placeholder="Enter custom questions"
+          rows="3"
+        ></textarea>
+      </div>
+      <button type="submit" class="create-ad-submit-btn">Submit</button>
+    </form>
+  </div>
+</div>

@@ -26,5 +26,6 @@ router.get("/tickets/:ticketId", ticketController.getTicketConversation);
 
 // Job Ads rute
 router.get("/job-ads", jobAdsController.showJobAds);
+router.post("/job-ads/create", jobAdsController.createJobAd);
 
 module.exports = router;

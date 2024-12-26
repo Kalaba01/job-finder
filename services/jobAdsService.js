@@ -15,3 +15,12 @@ exports.getJobAdsWithStatuses = async (firmId) => {
     throw new Error("Failed to fetch job ads.");
   }
 };
+
+exports.createJobAd = async (jobAdData) => {
+  try {
+    await JobAd.create(jobAdData);
+  } catch (error) {
+    console.error("Error creating job ad:", error);
+    throw new Error("Failed to create job ad.");
+  }
+};

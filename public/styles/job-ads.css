@@ -72,15 +72,26 @@ body {
     color: var(--text-color);
 }
 
+.create-job-ad-btn {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.create-job-ad-btn:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
 .job-ads-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
-}
-
-.job-ads-list.single-ad {
-    grid-template-columns: repeat(1, 300px);
-    justify-content: center;
 }
 
 .job-card {
@@ -90,7 +101,7 @@ body {
     padding: 20px;
     box-shadow: 0 4px 6px var(--shadow-light);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    max-width: 550px;
+    max-width: 450px;
 }
 
 .job-card:hover {
