@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="/styles/job-ads.css">
   <link rel="icon" type="image/png" href="/images/logo.png" />
 </head>
-<body>
+<body 
+  data-no-ads-message="<%= __('JobAds.noAdsFound') %>"
+>
   <%- include('../partials/top-bar') %>
 
   <div class="job-ads-container">
@@ -24,8 +26,8 @@
           <option value="<%= status %>"><%= __("JobAds.status." + status) %></option>
         <% }) %>
       </select>
-      <button id="create-job-ad-btn" class="create-job-ad-btn">Create Job Ad</button>
-    </div>
+      <button id="create-job-ad-btn" class="create-job-ad-btn"><%= __("JobAds.createAdButton") %></button>
+    </div>    
     <div id="job-ads-list-container">
       <% if (jobAds.length === 0) { %>
         <p id="no-ads-message" class="no-ads-message"><%= __("JobAds.noAdsFound") %></p>

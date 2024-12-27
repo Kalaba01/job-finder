@@ -349,13 +349,13 @@
 			"open": "Open",
 			"closed": "Closed"
 		},
-		"noAdsFound": "No job ads found. Start creating your first job ad!",
+		"noAdsFound": "No job ads found.",
 		"location": "Location",
 		"remote": "Remote",
 		"category": "Category",
 		"general": "General",
 		"expiresOn": "Expires on",
 		"editButton": "Edit",
-		"createAdButton": "JobAds.createAdButton"
+		"createAdButton": "Create Job Ad"
 	}
 }

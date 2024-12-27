@@ -1,0 +1,129 @@
+/* Modal Styling */
+#custom-question-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+#custom-question-modal .modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 25px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+#custom-question-modal .form-group {
+    margin-bottom: 20px;
+}
+
+#custom-question-modal .form-group label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#custom-question-modal .form-group input,
+#custom-question-modal .form-group select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+#custom-question-modal .add-option-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#custom-question-modal .add-option-btn:hover {
+    background-color: #0056b3;
+}
+
+#custom-question-modal .save-question-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#custom-question-modal .save-question-btn:hover {
+    background-color: #218838;
+}
+
+/* Aligning Required checkbox with label */
+.required-group {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.required-group label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px;
+    margin: 0;
+}
+
+.required-group input[type="checkbox"] {
+    accent-color: #007bff;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    margin: 0.5rem 0 0 0;
+    padding: 0;
+}
+
+/* Options container styling */
+.option-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+}
+
+.option-item span {
+    font-size: 14px;
+    color: #333;
+}
+
+.remove-option-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.remove-option-btn:hover {
+    background-color: #c82333;
+}

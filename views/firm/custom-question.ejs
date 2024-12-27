@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="/styles/custom-question.css" />
+<div id="custom-question-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="close-question-modal">&times;</span>
+    <h1>Add Custom Question</h1>
+    <form id="custom-question-form">
+      <div class="form-group">
+        <label for="question-text">Question</label>
+        <input
+          type="text"
+          id="question-text"
+          placeholder="Enter your question"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="question-type">Type</label>
+        <select id="question-type" required>
+          <option value="text">Text</option>
+          <option value="dropdown">Dropdown</option>
+          <option value="radio">Radio</option>
+          <option value="checkbox">Checkbox</option>
+        </select>
+      </div>
+      <div class="form-group" id="options-container" style="display: none">
+        <label for="question-options">Options</label>
+        <div id="options-list">
+          <div class="option-input-container">
+            <input
+              type="text"
+              id="option-input"
+              placeholder="Enter option"
+              class="option-input"
+            />
+          </div>
+        </div>
+        <button type="button" id="add-option-btn" class="add-option-btn">
+          Add Option
+        </button>
+      </div>
+      <div class="form-group required-group">
+        <label for="question-required">
+            Required <input type="checkbox" id="question-required" /> 
+        </label>
+      </div>      
+      <button type="button" id="save-question-btn" class="save-question-btn">
+        Save Question
+      </button>
+    </form>
+  </div>
+</div>

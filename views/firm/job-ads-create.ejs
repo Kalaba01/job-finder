@@ -86,14 +86,12 @@
       </div>
       <div class="form-group">
         <label for="custom_questions">Custom Questions</label>
-        <textarea
-          id="custom_questions"
-          name="custom_questions"
-          placeholder="Enter custom questions"
-          rows="3"
-        ></textarea>
+        <button type="button" id="add-question-btn" class="add-question-btn">Add Question</button>
+        <div id="custom-questions-container" class="custom-questions-container"></div>
+        <input type="hidden" id="custom_questions_json" name="custom_questions" />
       </div>
       <button type="submit" class="create-ad-submit-btn">Submit</button>
     </form>
   </div>
 </div>
+<%- include('./custom-question') %>

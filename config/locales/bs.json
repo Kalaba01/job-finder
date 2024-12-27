@@ -342,12 +342,13 @@
 			"open": "Otvoren",
 			"closed": "Zatvoren"
 		},
-		"noAdsFound": "Nema oglasa. Počnite kreirati svoj prvi oglas!",
+		"noAdsFound": "Nema oglasa.",
 		"location": "Lokacija",
 		"remote": "Daljinski",
 		"category": "Kategorija",
 		"general": "Opšte",
 		"expiresOn": "Ističe",
-		"editButton": "Uredi"
+		"editButton": "Uredi",
+		"createAdButton": "Kreiraj Oglas"
 	}
 }
