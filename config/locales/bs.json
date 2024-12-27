@@ -178,7 +178,7 @@
 			"password": "Lozinka",
 			"firmName": "Ime Firme",
 			"cityLabel": "Grad",
-      		"cityPlaceholder": "Unesite naziv grada",
+			"cityPlaceholder": "Unesite naziv grada",
 			"firmAddress": "Adresa Firme",
 			"numberOfEmployees": "Broj Zaposlenih",
 			"selectedRange": "Izabrani Opseg",
@@ -352,52 +352,71 @@
 	"JobAdsCreate": {
 		"title": "Kreiraj oglas za posao",
 		"labels": {
-		"title": "Naslov",
-		"description": "Opis",
-		"location": "Lokacija",
-		"category": "Kategorija",
-		"expirationDate": "Datum isteka",
-		"requiredDocuments": "Potrebni dokumenti",
-		"customQuestions": "Prilagođena pitanja"
+			"title": "Naslov",
+			"description": "Opis",
+			"location": "Lokacija",
+			"category": "Kategorija",
+			"expirationDate": "Datum isteka",
+			"requiredDocuments": "Potrebni dokumenti",
+			"customQuestions": "Prilagođena pitanja"
 		},
 		"placeholders": {
-		"title": "Unesite naslov oglasa",
-		"description": "Unesite opis posla",
-		"location": "Unesite lokaciju posla",
-		"category": "Unesite kategoriju posla",
-		"selectDocuments": "Izaberite dokumente"
+			"title": "Unesite naslov oglasa",
+			"description": "Unesite opis posla",
+			"location": "Unesite lokaciju posla",
+			"category": "Unesite kategoriju posla",
+			"selectDocuments": "Izaberite dokumente"
 		},
 		"documents": {
-		"cv": "CV",
-		"motivationLetter": "Motivaciono pismo",
-		"recommendations": "Preporuke"
+			"cv": "CV",
+			"motivationLetter": "Motivaciono pismo",
+			"recommendations": "Preporuke"
 		},
 		"buttons": {
-		"addQuestion": "Dodaj pitanje",
-		"submit": "Sačuvaj"
+			"addQuestion": "Dodaj pitanje",
+			"submit": "Sačuvaj"
 		}
 	},
 	"CustomQuestion": {
 		"title": "Dodaj prilagođeno pitanje",
 		"labels": {
-		"question": "Pitanje",
-		"type": "Tip",
-		"options": "Opcije",
-		"required": "Obavezno"
+			"question": "Pitanje",
+			"type": "Tip",
+			"options": "Opcije",
+			"required": "Obavezno"
 		},
 		"placeholders": {
-		"question": "Unesite vaše pitanje",
-		"option": "Unesite opciju"
+			"question": "Unesite vaše pitanje",
+			"option": "Unesite opciju"
 		},
 		"types": {
-		"text": "Tekst",
-		"dropdown": "Padajući meni",
-		"radio": "Radio dugme",
-		"checkbox": "Checkbox"
+			"text": "Tekst",
+			"dropdown": "Padajući meni",
+			"radio": "Radio dugme",
+			"checkbox": "Checkbox"
 		},
 		"buttons": {
-		"addOption": "Dodaj opciju",
-		"saveQuestion": "Sačuvaj pitanje"
+			"addOption": "Dodaj opciju",
+			"saveQuestion": "Sačuvaj pitanje"
+		}
+	},
+	"AdminJobAds": {
+		"title": "Svi oglasi za posao",
+		"searchPlaceholder": "Pretraži po nazivu kompanije",
+		"allStatuses": "Svi statusi",
+		"noResults": "Nije pronađen nijedan oglas za posao.",
+		"noAdsAvailable": "Nema dostupnih oglasa za posao.",
+		"company": "Kompanija",
+		"location": "Lokacija",
+		"category": "Kategorija",
+		"created": "Kreirano",
+		"status": "Status",
+		"remote": "Udaljeno",
+		"general": "Opšte",
+		"editButton": "Uredi",
+		"statusFilter": {
+			"open": "Otvoreno",
+			"closed": "Zatvoreno"
 		}
 	}
 }

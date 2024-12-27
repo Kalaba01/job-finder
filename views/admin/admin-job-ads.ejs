@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= locale %>" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>All Job Ads</title>
+    <title><%= __("AdminJobAds.title") %></title>
     <link rel="stylesheet" href="/styles/admin-job-ads.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
@@ -16,12 +16,14 @@
           type="text"
           id="search-bar"
           class="search-bar"
-          placeholder="Search by company name"
+          placeholder="<%= __('AdminJobAds.searchPlaceholder') %>"
         />
         <select id="status-filter" class="filter-dropdown">
-          <option value="">All Statuses</option>
+          <option value=""><%= __("AdminJobAds.allStatuses") %></option>
           <% statuses.forEach((status) => { %>
-          <option value="<%= status %>"><%= status %></option>
+          <option value="<%= status %>">
+            <%= __("AdminJobAds.statusFilter." + status) %>
+          </option>
           <% }) %>
         </select>
       </div>
@@ -31,11 +33,11 @@
           class="no-ads-message"
           style="display: none"
         >
-          <p>No job ads found.</p>
+          <p><%= __("AdminJobAds.noResults") %></p>
         </div>
         <% if (jobAds.length === 0) { %>
         <div class="no-ads-message">
-          <p>No job ads available.</p>
+          <p><%= __("AdminJobAds.noAdsAvailable") %></p>
         </div>
         <% } else { %> <% jobAds.forEach((jobAd) => { %>
         <div class="job-card">
@@ -45,23 +47,29 @@
           </p>
           <div class="job-meta">
             <p class="job-company">
-              <strong>Company:</strong> <%= jobAd.Firm.name %>
+              <strong><%= __("AdminJobAds.company") %>:</strong> <%=
+              jobAd.Firm.name %>
             </p>
             <p class="job-location">
-              <strong>Location:</strong> <%= jobAd.location || "Remote" %>
+              <strong><%= __("AdminJobAds.location") %>:</strong> <%=
+              jobAd.location || __("AdminJobAds.remote") %>
             </p>
             <p class="job-category">
-              <strong>Category:</strong> <%= jobAd.category || "General" %>
+              <strong><%= __("AdminJobAds.category") %>:</strong> <%=
+              jobAd.category || __("AdminJobAds.general") %>
             </p>
             <p class="job-created">
-              <strong>Created:</strong>
-              <%= new Date(jobAd.createdAt).toLocaleDateString() %>
+              <strong><%= __("AdminJobAds.created") %>:</strong>
+              <%= new Date(jobAd.createdAt).toLocaleDateString(locale) %>
             </p>
             <p class="job-status">
-              <strong>Status:</strong> <%= jobAd.status %>
+              <strong><%= __("AdminJobAds.status") %>:</strong>
+              <%= jobAd.status %>
             </p>
           </div>
-          <button class="edit-job-btn">Edit</button>
+          <button class="edit-job-btn">
+            <%= __("AdminJobAds.editButton") %>
+          </button>
         </div>
         <% }) %> <% } %>
       </div>
