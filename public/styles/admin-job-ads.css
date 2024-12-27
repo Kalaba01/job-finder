@@ -1,9 +1,39 @@
+/* Light Theme (Default) */
+:root {
+    --background-color: #f9f9f9;
+    --text-color: #333;
+    --border-color: #ddd;
+    --card-background-color: #fff;
+    --card-shadow-light: rgba(0, 0, 0, 0.1);
+    --card-shadow-hover: rgba(0, 0, 0, 0.2);
+    --primary-color: #007bff;
+    --primary-hover-color: #0056b3;
+    --primary-active-color: #003d82;
+    --placeholder-color: #aaa;
+    --no-ads-color: #777;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --border-color: #333;
+    --card-background-color: #1e1e1e;
+    --card-shadow-light: rgba(255, 255, 255, 0.1);
+    --card-shadow-hover: rgba(255, 255, 255, 0.2);
+    --primary-color: #1694fa;
+    --primary-hover-color: #359ff7;
+    --primary-active-color: #2b9dfa;
+    --placeholder-color: #b0bec5;
+    --no-ads-color: #bdbdbd;
+}
+
 /* General Styling */
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .admin-job-ads-container {
@@ -24,21 +54,23 @@ body {
 .filter-dropdown {
     padding: 12px;
     font-size: 16px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-background-color);
+    box-shadow: 0 4px 6px var(--card-shadow-light);
+    color: var(--text-color);
     transition: box-shadow 0.2s ease-in-out;
 }
 
 .search-bar:focus,
 .filter-dropdown:focus {
-    box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 6px var(--primary-color);
     outline: none;
 }
 
 .search-bar::placeholder {
-    color: #aaa;
+    color: var(--placeholder-color);
 }
 
 /* Job Ads List */
@@ -50,41 +82,41 @@ body {
 
 /* Job Card */
 .job-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px var(--card-shadow-light);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     max-width: 350px;
 }
 
 .job-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 16px var(--card-shadow-hover);
 }
 
 .job-title {
     font-size: 20px;
     font-weight: bold;
-    color: #007bff;
+    color: var(--primary-color);
     margin-bottom: 10px;
 }
 
 .job-description {
     font-size: 14px;
-    color: #555;
+    color: var(--text-color);
     margin-bottom: 15px;
 }
 
 .job-meta p {
     font-size: 14px;
-    color: #444;
+    color: var(--text-color);
     margin: 5px 0;
 }
 
 .job-meta p strong {
-    color: #333;
+    color: var(--text-color);
 }
 
 /* Stilizacija dugmeta Edit */
@@ -92,7 +124,7 @@ body {
     position: absolute;
     bottom: 10px;
     right: 10px;
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 5px;
@@ -100,17 +132,17 @@ body {
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px var(--card-shadow-light);
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .edit-job-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-hover-color);
     transform: scale(1.05);
 }
 
 .edit-job-btn:active {
-    background-color: #003d82;
+    background-color: var(--primary-active-color);
     transform: scale(0.95);
 }
 
@@ -123,7 +155,7 @@ body {
 /* No Ads Message */
 .no-ads-message {
     text-align: center;
-    color: #777;
+    color: var(--no-ads-color);
     margin-top: 50px;
 }
 
