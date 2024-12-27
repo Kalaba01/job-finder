@@ -1,4 +1,4 @@
-const { JobAd } = require("../models");
+const { JobAd, Firm } = require("../models");
 
 exports.getJobAdsWithStatuses = async (firmId) => {
   try {
@@ -12,6 +12,28 @@ exports.getJobAdsWithStatuses = async (firmId) => {
     return { jobAds, statuses };
   } catch (error) {
     console.error("Error fetching job ads for firm:", error);
+    throw new Error("Failed to fetch job ads.");
+  }
+};
+
+exports.getAllJobAdsWithStatuses = async () => {
+  try {
+    const jobAds = await JobAd.findAll({
+      include: [
+        {
+          model: Firm,
+          as: "Firm",
+          attributes: ["name"]
+        }
+      ],
+      order: [["createdAt", "DESC"]]
+    });
+
+    const statuses = ["open", "closed"];
+
+    return { jobAds, statuses };
+  } catch (error) {
+    console.error("Error fetching job ads for admin:", error);
     throw new Error("Failed to fetch job ads.");
   }
 };

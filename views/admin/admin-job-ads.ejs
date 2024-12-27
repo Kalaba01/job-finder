@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Job Ads</title>
+    <link rel="stylesheet" href="/styles/admin-job-ads.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+  <body>
+    <%- include('../partials/top-bar') %>
+
+    <div class="admin-job-ads-container">
+      <div class="admin-job-ads-header">
+        <input
+          type="text"
+          id="search-bar"
+          class="search-bar"
+          placeholder="Search by company name"
+        />
+        <select id="status-filter" class="filter-dropdown">
+          <option value="">All Statuses</option>
+          <% statuses.forEach((status) => { %>
+          <option value="<%= status %>"><%= status %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div id="job-ads-list-container" class="job-ads-list">
+        <div
+          id="no-results-message"
+          class="no-ads-message"
+          style="display: none"
+        >
+          <p>No job ads found.</p>
+        </div>
+        <% if (jobAds.length === 0) { %>
+        <div class="no-ads-message">
+          <p>No job ads available.</p>
+        </div>
+        <% } else { %> <% jobAds.forEach((jobAd) => { %>
+        <div class="job-card">
+          <h2 class="job-title"><%= jobAd.title %></h2>
+          <p class="job-description">
+            <%= jobAd.description.substring(0, 150) %>...
+          </p>
+          <div class="job-meta">
+            <p class="job-company">
+              <strong>Company:</strong> <%= jobAd.Firm.name %>
+            </p>
+            <p class="job-location">
+              <strong>Location:</strong> <%= jobAd.location || "Remote" %>
+            </p>
+            <p class="job-category">
+              <strong>Category:</strong> <%= jobAd.category || "General" %>
+            </p>
+            <p class="job-created">
+              <strong>Created:</strong>
+              <%= new Date(jobAd.createdAt).toLocaleDateString() %>
+            </p>
+            <p class="job-status">
+              <strong>Status:</strong> <%= jobAd.status %>
+            </p>
+          </div>
+          <button class="edit-job-btn">Edit</button>
+        </div>
+        <% }) %> <% } %>
+      </div>
+    </div>
+    <script src="/js/admin-job-ads.js"></script>
+  </body>
+</html>

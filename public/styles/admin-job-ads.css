@@ -1,0 +1,152 @@
+/* General Styling */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.admin-job-ads-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Header Styling */
+.admin-job-ads-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-bar,
+.filter-dropdown {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.search-bar:focus,
+.filter-dropdown:focus {
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+.search-bar::placeholder {
+    color: #aaa;
+}
+
+/* Job Ads List */
+.job-ads-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+/* Job Card */
+.job-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    max-width: 350px;
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.job-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.job-description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.job-meta p {
+    font-size: 14px;
+    color: #444;
+    margin: 5px 0;
+}
+
+.job-meta p strong {
+    color: #333;
+}
+
+/* Stilizacija dugmeta Edit */
+.edit-job-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.edit-job-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.edit-job-btn:active {
+    background-color: #003d82;
+    transform: scale(0.95);
+}
+
+/* Pozicija za dugme Edit unutar kartice */
+.job-card {
+    position: relative;
+    padding-bottom: 50px;
+    /* Dodajte prostor za dugme */
+}
+
+/* No Ads Message */
+.no-ads-message {
+    text-align: center;
+    color: #777;
+    margin-top: 50px;
+}
+
+.no-ads-message img {
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+
+.no-ads-message p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-job-ads-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-bar,
+    .filter-dropdown {
+        width: 100%;
+    }
+}

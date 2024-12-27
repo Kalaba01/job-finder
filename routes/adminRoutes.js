@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const adminController = require("../controllers/adminController");
 const ticketController = require("../controllers/ticketController");
+const jobAdsController = require("../controllers/jobAdsController");
 const { authMiddleware, languageMiddleware, setMenuOptions } = require("../middleware");
 
 // Middleware za postavljanje menuOptions
@@ -29,5 +30,8 @@ router.get("/tickets", ticketController.getTickets);
 
 // Ruta za prikazivanje konverzacije tiketa
 router.get("/tickets/:ticketId", ticketController.getTicketConversation);
+
+router.get("/job-ads", jobAdsController.getAllJobAds);
+
 
 module.exports = router;

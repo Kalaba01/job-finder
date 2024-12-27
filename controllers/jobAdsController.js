@@ -12,6 +12,17 @@ exports.showJobAds = async (req, res) => {
   }
 };
 
+exports.getAllJobAds = async (req, res) => {
+  try {
+    const { jobAds, statuses } = await jobAdsService.getAllJobAdsWithStatuses();
+
+    res.render("admin/admin-job-ads", { jobAds, statuses });
+  } catch (error) {
+    console.error("Error fetching job ads for admin:", error);
+    res.status(500).render("error", { message: "Failed to load job ads." });
+  }
+};
+
 exports.createJobAd = async (req, res) => {
   try {
     const firmId = req.user.id;

@@ -13,10 +13,9 @@ module.exports = (req, res, next) => {
           { name: translate("AdminMenu.userManagement"), link: "/admin/users" },
           { name: translate("AdminMenu.companyApprovals"), link: "/admin/company-approvals" },
           { name: translate("AdminMenu.jobAds"), link: "/admin/job-ads" },
-          { name: translate("AdminMenu.reports"), link: "/admin/reports" },
           { name: translate("AdminMenu.reviewsManagement"), link: "/admin/reviews" },
           { name: translate("AdminMenu.massNotifications"), link: "/admin/notifications" },
-          { name: translate("AdminMenu.ticketManagement"), link: "/admin/tickets" },
+          { name: translate("AdminMenu.ticketManagement"), link: "/admin/tickets" }
         ];
         break;
   
@@ -26,9 +25,8 @@ module.exports = (req, res, next) => {
           { name: translate("FirmMenu.jobAds"), link: "/firm/job-ads" },
           { name: translate("FirmMenu.candidates"), link: "/firm/candidates" },
           { name: translate("FirmMenu.interviewCalendar"), link: "/firm/calendar" },
-          { name: translate("FirmMenu.reports"), link: "/firm/reports" },
           { name: translate("FirmMenu.reviews"), link: "/firm/reviews" },
-          { name: translate("FirmMenu.tickets"), link: "/firm/tickets" },
+          { name: translate("FirmMenu.tickets"), link: "/firm/tickets" }
         ];
         break;
   
@@ -39,7 +37,7 @@ module.exports = (req, res, next) => {
           { name: translate("CandidateMenu.myApplications"), link: "/candidate/applications" },
           { name: translate("CandidateMenu.interviewCalendar"), link: "/candidate/calendar" },
           { name: translate("CandidateMenu.tickets"), link: "/candidate/tickets" },
-          { name: translate("CandidateMenu.companyReviews"), link: "/candidate/reviews" },
+          { name: translate("CandidateMenu.companyReviews"), link: "/candidate/reviews" }
         ];
         break;
   

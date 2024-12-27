@@ -124,7 +124,6 @@
 		"userManagement": "User Management",
 		"companyApprovals": "Company Approvals",
 		"jobAds": "Job Ads",
-		"reports": "Reports",
 		"reviewsManagement": "Reviews Management",
 		"massNotifications": "Mass Notifications",
 		"ticketManagement": "Ticket Management"
@@ -134,7 +133,6 @@
 		"jobAds": "Job Ads",
 		"candidates": "Candidates",
 		"interviewCalendar": "Interview Calendar",
-		"reports": "Reports",
 		"reviews": "Reviews",
 		"tickets": "Tickets"
 	},
