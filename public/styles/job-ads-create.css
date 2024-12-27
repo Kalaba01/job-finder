@@ -1,3 +1,47 @@
+/* Light Mode */
+:root {
+    --background-color: #f8f9fa;
+    --modal-background: #ffffff;
+    --text-color: #212529;
+    --border-color: #ced4da;
+    --button-background: #007bff;
+    --button-hover-background: #0056b3;
+    --button-active-background: #003d82;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-hover-color: rgba(0, 0, 0, 0.2);
+    --dropdown-background: #ffffff;
+    --dropdown-border: #ccc;
+    --dropdown-item-hover: #f1f1f1;
+    --dropdown-text: #212529;
+    --dropdown-shadow: rgba(0, 0, 0, 0.1);
+    --question-card-background: #ffffff;
+    --question-card-border: #e0e0e0;
+    --question-card-text: #212529;
+    --placeholder-color: #6c757d;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --background-color: #121212;
+    --modal-background: #1e1e1e;
+    --text-color: #e0e0e0;
+    --border-color: #424242;
+    --button-background: #012644;
+    --button-hover-background: #023e6e;
+    --button-active-background: #015294;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --shadow-hover-color: rgba(255, 255, 255, 0.2);
+    --dropdown-background: #2c2c2c;
+    --dropdown-border: #424242;
+    --dropdown-item-hover: #3c3c3c;
+    --dropdown-text: #e0e0e0;
+    --dropdown-shadow: rgba(255, 255, 255, 0.1);
+    --question-card-background: #2c2c2c;
+    --question-card-border: #424242;
+    --question-card-text: #fff;
+    --placeholder-color: #b0bec5;
+}
+
 /* Modal styling */
 .modal {
     display: none;
@@ -13,33 +57,35 @@
 
 /* Modal content box */
 .modal-content {
-    background-color: #fff;
+    background-color: var(--modal-background);
+    color: var(--text-color);
     margin: 0.8rem auto;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     width: 80%;
     max-width: 600px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px var(--shadow-color);
     animation: fadeIn 0.3s ease;
 }
 
 .modal-content h1 {
     text-align: center;
+    color: var(--text-color);
 }
 
 /* Close button */
 .close-btn {
     font-size: 24px;
     font-weight: bold;
-    color: #aaa;
+    color: var(--placeholder-color);
     float: right;
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
 .close-btn:hover {
-    color: #000;
+    color: var(--text-color);
 }
 
 /* Form styling */
@@ -52,7 +98,12 @@
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 5px;
-    color: #333;
+    color: var(--text-color);
+}
+
+.modal .form-group input::placeholder,
+.modal .form-group textarea::placeholder {
+    color: var(--text-color);
 }
 
 .modal .form-group input:not([type="checkbox"]),
@@ -60,16 +111,18 @@
     width: 100%;
     padding: 10px;
     font-size: 14px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     box-sizing: border-box;
+    color: var(--text-color);
+    background-color: var(--modal-background);
     transition: box-shadow 0.2s ease-in-out;
     resize: none;
 }
 
 .modal .form-group input:not([type="checkbox"]):focus,
 .modal .form-group textarea:focus {
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 5px var(--button-background);
     outline: none;
 }
 
@@ -83,23 +136,24 @@
 #dropdown-button {
     width: 100%;
     padding: 10px;
-    background-color: #f8f9fa;
-    border: 1px solid #ccc;
+    background-color: var(--dropdown-background);
+    border: 1px solid var(--dropdown-border);
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
     text-align: left;
+    color: var(--dropdown-text);
 }
 
 #dropdown-menu {
     display: none;
     position: absolute;
-    background-color: white;
-    border: 1px solid #ccc;
+    background-color: var(--dropdown-background);
+    border: 1px solid var(--dropdown-border);
     border-radius: 5px;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px var(--dropdown-shadow);
     margin-top: 5px;
     max-height: 200px;
     overflow-y: auto;
@@ -115,35 +169,38 @@
     padding: 10px;
     font-size: 14px;
     cursor: pointer;
+    color: var(--dropdown-text);
 }
 
 #dropdown-menu label:hover {
-    background-color: #f1f1f1;
+    background-color: var(--dropdown-item-hover);
 }
 
 #dropdown-menu input[type="checkbox"] {
     margin-right: 10px;
+    accent-color: var(--dropdown-text);
 }
 
 /* Question Cards */
 .custom-questions-container .question-card {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
+    background-color: var(--question-card-background);
+    border: 1px solid var(--question-card-border);
     border-radius: 10px;
     padding: 20px;
     margin: 0.8rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    color: var(--question-card-text);
+    box-shadow: 0 4px 10px var(--shadow-color);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .custom-questions-container .question-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 15px var(--shadow-hover-color);
 }
 
 .custom-questions-container .question-card strong {
     font-size: 18px;
-    color: #212529;
+    color: var(--question-card-text);
     margin-bottom: 15px;
 }
 
@@ -154,7 +211,7 @@
 
 .custom-questions-container .question-card ul li {
     font-size: 15px;
-    color: #495057;
+    color: var(--question-card-text);
     margin-bottom: 5px;
 }
 
@@ -166,7 +223,7 @@
 
 /* Add Question Button */
 .add-question-btn {
-    background-color: #007bff;
+    background-color: var(--button-background);
     color: white;
     border: none;
     padding: 12px 20px;
@@ -175,19 +232,19 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 .add-question-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--button-hover-background);
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px var(--shadow-hover-color);
 }
 
 .add-question-btn:active {
-    background-color: #003d82;
+    background-color: var(--button-active-background);
     transform: translateY(1px);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 6px var(--shadow-hover-color);
 }
 
 /* Submit button */
@@ -195,7 +252,7 @@
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: var(--button-background);
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -207,7 +264,7 @@
 }
 
 .create-ad-submit-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--button-hover-background);
     transform: scale(1.05);
 }
 
