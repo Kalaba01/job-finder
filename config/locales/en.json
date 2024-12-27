@@ -357,5 +357,56 @@
 		"expiresOn": "Expires on",
 		"editButton": "Edit",
 		"createAdButton": "Create Job Ad"
+	},
+	"JobAdsCreate": {
+		"title": "Create Job Ad",
+		"labels": {
+		"title": "Title",
+		"description": "Description",
+		"location": "Location",
+		"category": "Category",
+		"expirationDate": "Expiration Date",
+		"requiredDocuments": "Required Documents",
+		"customQuestions": "Custom Questions"
+		},
+		"placeholders": {
+		"title": "Enter job title",
+		"description": "Enter job description",
+		"location": "Enter job location",
+		"category": "Enter job category",
+		"selectDocuments": "Select Documents"
+		},
+		"documents": {
+		"cv": "CV",
+		"motivationLetter": "Motivation Letter",
+		"recommendations": "Recommendations"
+		},
+		"buttons": {
+		"addQuestion": "Add Question",
+		"submit": "Submit"
+		}
+	},
+	"CustomQuestion": {
+		"title": "Add Custom Question",
+		"labels": {
+		"question": "Question",
+		"type": "Type",
+		"options": "Options",
+		"required": "Required"
+		},
+		"placeholders": {
+		"question": "Enter your question",
+		"option": "Enter option"
+		},
+		"types": {
+		"text": "Text",
+		"dropdown": "Dropdown",
+		"radio": "Radio",
+		"checkbox": "Checkbox"
+		},
+		"buttons": {
+		"addOption": "Add Option",
+		"saveQuestion": "Save Question"
+		}
 	}
 }

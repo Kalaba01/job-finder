@@ -2,48 +2,48 @@
 <div id="job-ad-create-modal" class="modal">
   <div class="modal-content">
     <span class="close-btn" id="close-create-modal">&times;</span>
-    <h1>Create Job Ad</h1>
+    <h1><%= __("JobAdsCreate.title") %></h1>
     <form id="job-ad-create-form" action="/firm/job-ads/create" method="POST">
       <div class="form-group">
-        <label for="title">Title</label>
+        <label for="title"><%= __("JobAdsCreate.labels.title") %></label>
         <input
           type="text"
           id="title"
           name="title"
-          placeholder="Enter job title"
+          placeholder="<%= __('JobAdsCreate.placeholders.title') %>"
           required
         />
       </div>
       <div class="form-group">
-        <label for="description">Description</label>
+        <label for="description"><%= __("JobAdsCreate.labels.description") %></label>
         <textarea
           id="description"
           name="description"
-          placeholder="Enter job description"
+          placeholder="<%= __('JobAdsCreate.placeholders.description') %>"
           rows="5"
           required
         ></textarea>
       </div>
       <div class="form-group">
-        <label for="location">Location</label>
+        <label for="location"><%= __("JobAdsCreate.labels.location") %></label>
         <input
           type="text"
           id="location"
           name="location"
-          placeholder="Enter job location"
+          placeholder="<%= __('JobAdsCreate.placeholders.location') %>"
         />
       </div>
       <div class="form-group">
-        <label for="category">Category</label>
+        <label for="category"><%= __("JobAdsCreate.labels.category") %></label>
         <input
           type="text"
           id="category"
           name="category"
-          placeholder="Enter job category"
+          placeholder="<%= __('JobAdsCreate.placeholders.category') %>"
         />
       </div>
       <div class="form-group">
-        <label for="expiration_date">Expiration Date</label>
+        <label for="expiration_date"><%= __("JobAdsCreate.labels.expirationDate") %></label>
         <input
           type="date"
           id="expiration_date"
@@ -52,29 +52,23 @@
         />
       </div>
       <div class="form-group">
-        <label for="required_documents">Required Documents</label>
+        <label for="required_documents"><%= __("JobAdsCreate.labels.requiredDocuments") %></label>
         <div id="required-documents-dropdown" class="dropdown">
-          <button type="button" id="dropdown-button">Select Documents</button>
+          <button type="button" id="dropdown-button">
+            <%= __("JobAdsCreate.placeholders.selectDocuments") %>
+          </button>
           <div id="dropdown-menu" class="dropdown-menu">
             <label>
               <input type="checkbox" value="CV" class="document-checkbox" />
-              CV
+              <%= __("JobAdsCreate.documents.cv") %>
             </label>
             <label>
-              <input
-                type="checkbox"
-                value="Motivation Letter"
-                class="document-checkbox"
-              />
-              Motivation Letter
+              <input type="checkbox" value="Motivation Letter" class="document-checkbox" />
+              <%= __("JobAdsCreate.documents.motivationLetter") %>
             </label>
             <label>
-              <input
-                type="checkbox"
-                value="Recommendations"
-                class="document-checkbox"
-              />
-              Recommendations
+              <input type="checkbox" value="Recommendations" class="document-checkbox" />
+              <%= __("JobAdsCreate.documents.recommendations") %>
             </label>
           </div>
         </div>
@@ -85,12 +79,16 @@
         />
       </div>
       <div class="form-group">
-        <label for="custom_questions">Custom Questions</label>
-        <button type="button" id="add-question-btn" class="add-question-btn">Add Question</button>
+        <label for="custom_questions"><%= __("JobAdsCreate.labels.customQuestions") %></label>
+        <button type="button" id="add-question-btn" class="add-question-btn">
+          <%= __("JobAdsCreate.buttons.addQuestion") %>
+        </button>
         <div id="custom-questions-container" class="custom-questions-container"></div>
         <input type="hidden" id="custom_questions_json" name="custom_questions" />
       </div>
-      <button type="submit" class="create-ad-submit-btn">Submit</button>
+      <button type="submit" class="create-ad-submit-btn">
+        <%= __("JobAdsCreate.buttons.submit") %>
+      </button>
     </form>
   </div>
 </div>
