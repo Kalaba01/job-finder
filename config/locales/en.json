@@ -440,5 +440,22 @@
 		"posted": "Posted",
 		"notAvailable": "N/A",
 		"viewDetails": "View Details"
+	},
+	"JobAd": {
+		"company": "Company",
+		"location": "Location",
+		"category": "Category",
+		"postedOn": "Posted on",
+		"aboutCompany": "About",
+		"noAdditionalInfo": "No additional information about this company.",
+		"jobDescription": "Job Description",
+		"applicationDeadline": "Application Deadline",
+		"expiresOn": "This job posting will expire on",
+		"daysLeft": "You have {{timeLeft}} day(s) left to apply for this position.",
+		"expired": "This job posting has expired.",
+		"requiredDocuments": "Required Documents",
+		"customQuestions": "Custom Questions",
+		"applyNow": "Apply Now",
+		"notAvailable": "N/A"
 	}
 }

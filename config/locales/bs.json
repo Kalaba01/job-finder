@@ -433,5 +433,22 @@
 		"posted": "Objavljeno",
 		"notAvailable": "N/A",
 		"viewDetails": "Detalji"
+	},
+	"JobAd": {
+		"company": "Kompanija",
+		"location": "Lokacija",
+		"category": "Kategorija",
+		"postedOn": "Objavljeno",
+		"aboutCompany": "O kompaniji",
+		"noAdditionalInfo": "Nema dodatnih informacija o ovoj kompaniji.",
+		"jobDescription": "Opis posla",
+		"applicationDeadline": "Rok za prijavu",
+		"expiresOn": "Ovaj oglas ističe",
+		"daysLeft": "Imate još {{timeLeft}} dan/a za prijavu na ovu poziciju.",
+		"expired": "Ovaj oglas je istekao.",
+		"requiredDocuments": "Potrebni dokumenti",
+		"customQuestions": "Prilagođena pitanja",
+		"applyNow": "Prijavi se",
+		"notAvailable": "Nije dostupno"
 	}
 }
