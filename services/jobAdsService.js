@@ -62,3 +62,29 @@ exports.createJobAd = async (jobAdData) => {
     throw new Error("Failed to create job ad.");
   }
 };
+
+exports.getJobAdDetails = async (jobAdId) => {
+  try {
+    const jobAd = await JobAd.findOne({
+      where: { id: jobAdId },
+      include: [
+        {
+          model: Firm,
+          as: "Firm",
+          attributes: ["name", "about", "profile_picture_id"]
+        }
+      ]
+    });
+
+    if (!jobAd) throw new Error("Job ad not found.");
+
+    const now = new Date();
+    const expirationDate = new Date(jobAd.expiration_date);
+    const timeLeft = Math.ceil((expirationDate - now) / (1000 * 60 * 60 * 24));
+
+    return { jobAd, timeLeft };
+  } catch (error) {
+    console.error("Error fetching job ad details:", error);
+    throw new Error("Failed to fetch job ad details.");
+  }
+};

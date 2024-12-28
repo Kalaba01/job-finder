@@ -12,6 +12,18 @@ exports.showJobAds = async (req, res) => {
   }
 };
 
+exports.showJobAdDetails = async (req, res) => {
+  try {
+    const { jobAd, timeLeft } = await jobAdsService.getJobAdDetails(req.params.jobAdId);
+    if (!jobAd) return res.status(404).render("error", { message: "Job ad not found." });
+
+    res.render("candidate/job-ad", { locale: req.getLocale(), jobAd, timeLeft });
+  } catch (error) {
+    console.error("Error fetching job ad details:", error);
+    res.status(500).render("error", { message: "Failed to load job ad details." });
+  }
+};
+
 exports.getAllJobAds = async (req, res) => {
   try {
     const { jobAds, statuses } = await jobAdsService.getAllJobAdsWithDetails();

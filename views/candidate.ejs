@@ -74,7 +74,7 @@
               <%= new Date(jobAd.createdAt).toLocaleDateString() %>
             </p>
           </div>
-          <button class="view-job-btn">
+          <button data-id="<%= jobAd.id %>" class="view-job-btn">
             <%= __("CandidateDashboard.viewDetails") %>
           </button>
         </div>

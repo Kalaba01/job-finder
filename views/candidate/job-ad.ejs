@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= jobAd.title %></title>
+    <link rel="stylesheet" href="/styles/job-ad.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+  <body>
+    <%- include('../partials/top-bar') %>
+
+    <div class="job-ad-container">
+      <div class="job-ad-header">
+        <h1 class="job-title"><%= jobAd.title %></h1>
+        <p class="company-name">
+          Company:
+          <a href="/company/<%= jobAd.Firm.id %>" class="company-link">
+            <%= jobAd.Firm.name %>
+          </a>
+        </p>
+        <p class="job-location">Location: <%= jobAd.location || "N/A" %></p>
+        <p class="job-category">Category: <%= jobAd.category || "N/A" %></p>
+        <p class="job-posted">
+          Posted on: <%= new Date(jobAd.createdAt).toLocaleDateString() %>
+        </p>
+      </div>
+
+      <div class="company-info">
+        <h2>About <%= jobAd.Firm.name %></h2>
+        <p>
+          <%= jobAd.Firm.about || "No additional information about this company." %>
+        </p>
+      </div>
+
+      <div class="job-ad-description">
+        <h2>Job Description</h2>
+        <p><%= jobAd.description %></p>
+      </div>
+      
+      <div class="job-expiration">
+        <h2>Application Deadline</h2>
+        <p>
+          This job posting will expire on: 
+          <strong><%= new Date(jobAd.expiration_date).toLocaleDateString() %></strong>
+        </p>
+        <% if (timeLeft > 0) { %>
+          <p>You have <strong><%= timeLeft %></strong> day(s) left to apply for this position.</p>
+        <% } else { %>
+          <p style="color: red;">This job posting has expired.</p>
+        <% } %>
+      </div>     
+
+      <% if (jobAd.required_documents && jobAd.required_documents.length > 0) {
+      %>
+      <div class="job-ad-documents">
+        <h2>Required Documents</h2>
+        <ul>
+          <% jobAd.required_documents.forEach((doc) => { %>
+          <li><%= doc %></li>
+          <% }) %>
+        </ul>
+      </div>
+      <% } %>
+
+      <!-- Custom Questions -->
+      <% if (jobAd.custom_questions && jobAd.custom_questions.length > 0) { %>
+      <div class="job-ad-questions">
+        <h2>Custom Questions</h2>
+        <ul>
+          <% jobAd.custom_questions.forEach((question) => { %>
+          <li><%= question.question %></li>
+          <% }) %>
+        </ul>
+      </div>
+      <% } %>
+
+      <!-- Apply Now Button -->
+      <button class="apply-btn">Apply Now</button>
+    </div>
+  </body>
+</html>
