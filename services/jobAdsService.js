@@ -16,7 +16,7 @@ exports.getJobAdsWithStatuses = async (firmId) => {
   }
 };
 
-exports.getAllJobAdsWithStatuses = async () => {
+exports.getAllJobAdsWithDetails = async () => {
   try {
     const jobAds = await JobAd.findAll({
       include: [
@@ -31,9 +31,25 @@ exports.getAllJobAdsWithStatuses = async () => {
 
     const statuses = ["open", "closed"];
 
-    return { jobAds, statuses };
+    const categories = [
+      ...new Set(
+        jobAds
+          .map((jobAd) => jobAd.category)
+          .filter((category) => category)
+      )
+    ];
+
+    const locations = [
+      ...new Set(
+        jobAds
+          .map((jobAd) => jobAd.location)
+          .filter((location) => location)
+      )
+    ];
+
+    return { jobAds, statuses, categories, locations };
   } catch (error) {
-    console.error("Error fetching job ads for admin:", error);
+    console.error("Error fetching job ads with statuses, categories, and locations:", error);
     throw new Error("Failed to fetch job ads.");
   }
 };

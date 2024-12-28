@@ -14,7 +14,7 @@ exports.showJobAds = async (req, res) => {
 
 exports.getAllJobAds = async (req, res) => {
   try {
-    const { jobAds, statuses } = await jobAdsService.getAllJobAdsWithStatuses();
+    const { jobAds, statuses } = await jobAdsService.getAllJobAdsWithDetails();
 
     res.render("admin/admin-job-ads", { jobAds, statuses });
   } catch (error) {

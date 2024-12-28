@@ -2,13 +2,15 @@ const express = require("express");
 const router = express.Router();
 const candidateController = require("../controllers/candidateController");
 const ticketController = require("../controllers/ticketController");
+const jobAdsService = require("../services/jobAdsService");
 const { authMiddleware, languageMiddleware, setMenuOptions, uploadMiddleware } = require("../middleware");
 
 // Middleware za postavljanje menuOptions
 router.use(authMiddleware.isAuthenticated, authMiddleware.isCandidate, languageMiddleware, setMenuOptions);
 
-router.get("/", (req, res) => {
-  res.render("candidate", { locale: req.getLocale() });
+router.get("/", async (req, res) => {
+  const { jobAds, categories, locations } = await jobAdsService.getAllJobAdsWithDetails();
+  res.render("candidate", { locale: req.getLocale(), jobAds, categories, locations });
 });
 
 // Ruta za prikaz profila kandidata

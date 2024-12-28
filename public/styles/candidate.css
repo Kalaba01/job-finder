@@ -1,28 +1,203 @@
-:root {
-    --background-color: #f8f9fa;
-    --text-color: #343a40;
-}
-
-[data-theme="dark"] {
-    --background-color: #121212;
-    --text-color: #e0e0e0;
-}
-
+/* General Styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    background-color: #f8f9fa;
+    color: #121212;
     line-height: 1.6;
 }
 
 .dashboard-container {
-    padding: 2rem;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
 }
 
 h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
     text-align: center;
+    color: #007bff;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #007bff;
+    margin: 0.5rem auto 1rem auto;
+}
+
+/* Header Styling */
+.candidate-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.candidate-header h1 {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 0.5rem;
+}
+
+/* Header Styling */
+.candidate-job-ads-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 15px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar,
+.filter-dropdown {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.search-bar:focus,
+.filter-dropdown:focus {
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+.search-bar::placeholder {
+    color: #bbb;
+}
+
+/* Job Ads List */
+.job-ads-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+/* Job Card */
+.job-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    max-width: 380px;
+    position: relative;
+}
+
+.job-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.job-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.job-title:hover {
+    text-decoration: underline;
+}
+
+.job-description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.job-meta p {
+    font-size: 14px;
+    color: #444;
+    margin: 8px 0;
+}
+
+.job-meta p strong {
+    color: #222;
+}
+
+/* View Job Button */
+.view-job-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.view-job-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.view-job-btn:active {
+    background-color: #003d82;
+    transform: scale(0.95);
+}
+
+/* No Ads Message */
+.no-ads-message {
+    text-align: center;
+    color: #777;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.no-ads-message img {
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+
+.no-ads-message p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .candidate-job-ads-header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .search-bar,
+    .filter-dropdown {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .job-title {
+        font-size: 18px;
+    }
+
+    .job-description {
+        font-size: 13px;
+    }
+
+    .view-job-btn {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
 }
