@@ -1,10 +1,44 @@
+/* Light Mode */
+:root {
+    --background-color: #f8f9fa;
+    --text-color: #121212;
+    --header-bg-color: #ffffff;
+    --header-shadow: rgba(0, 0, 0, 0.1);
+    --card-bg-color: #ffffff;
+    --card-border-color: #ddd;
+    --card-shadow: rgba(0, 0, 0, 0.05);
+    --primary-color: #007bff;
+    --primary-hover-color: #0056b3;
+    --primary-active-color: #003d82;
+    --placeholder-color: #000;
+    --no-ads-color: #555;
+    --no-ads-text-color: #777;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --header-bg-color: #1e1e1e;
+    --header-shadow: rgba(255, 255, 255, 0.1);
+    --card-bg-color: #1e1e1e;
+    --card-border-color: #333;
+    --card-shadow: rgba(255, 255, 255, 0.05);
+    --primary-color: #1a96fc;
+    --primary-hover-color: #64b5f6;
+    --primary-active-color: #42a5f5;
+    --placeholder-color: #fff;
+    --no-ads-color: #b0bec5;
+    --no-ads-text-color: #cfd8dc;
+}
+
 /* General Styling */
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
-    color: #121212;
+    background-color: var(--background-color);
+    color: var(--text-color);
     line-height: 1.6;
 }
 
@@ -18,7 +52,7 @@ h1 {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
     text-align: center;
-    color: #007bff;
+    color: var(--primary-color);
 }
 
 h1::after {
@@ -26,7 +60,7 @@ h1::after {
     display: block;
     width: 60px;
     height: 3px;
-    background-color: #007bff;
+    background-color: var(--primary-color);
     margin: 0.5rem auto 1rem auto;
 }
 
@@ -38,7 +72,7 @@ h1::after {
 
 .candidate-header h1 {
     font-size: 2.5rem;
-    color: #007bff;
+    color: var(--primary-color);
     margin-bottom: 0.5rem;
 }
 
@@ -49,31 +83,32 @@ h1::after {
     align-items: center;
     margin-bottom: 30px;
     gap: 15px;
-    background-color: #ffffff;
+    background-color: var(--header-bg-color);
     border-radius: 12px;
     padding: 15px 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px var(--header-shadow);
 }
 
 .search-bar,
 .filter-dropdown {
     padding: 12px;
     font-size: 16px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--card-border-color);
     border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: var(--card-bg-color);
+    box-shadow: 0 2px 4px var(--card-shadow);
     transition: box-shadow 0.3s ease, transform 0.2s ease;
+    color: var(--text-color);
 }
 
 .search-bar:focus,
 .filter-dropdown:focus {
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 8px var(--primary-color);
     outline: none;
 }
 
 .search-bar::placeholder {
-    color: #bbb;
+    color: var(--placeholder-color);
 }
 
 /* Job Ads List */
@@ -85,11 +120,11 @@ h1::after {
 
 /* Job Card */
 .job-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--card-border-color);
     border-radius: 16px;
     padding: 20px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 12px var(--card-shadow);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     max-width: 380px;
     position: relative;
@@ -97,13 +132,13 @@ h1::after {
 
 .job-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px var(--card-shadow);
 }
 
 .job-title {
     font-size: 20px;
     font-weight: bold;
-    color: #007bff;
+    color: var(--primary-color);
     margin-bottom: 10px;
 }
 
@@ -113,18 +148,18 @@ h1::after {
 
 .job-description {
     font-size: 14px;
-    color: #555;
+    color: var(--no-ads-color);
     margin-bottom: 15px;
 }
 
 .job-meta p {
     font-size: 14px;
-    color: #444;
+    color: var(--text-color);
     margin: 8px 0;
 }
 
 .job-meta p strong {
-    color: #222;
+    color: var(--text-color);
 }
 
 /* View Job Button */
@@ -132,7 +167,7 @@ h1::after {
     position: absolute;
     bottom: 10px;
     right: 10px;
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 8px;
@@ -140,24 +175,24 @@ h1::after {
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--card-shadow);
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .view-job-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-hover-color);
     transform: scale(1.05);
 }
 
 .view-job-btn:active {
-    background-color: #003d82;
+    background-color: var(--primary-active-color);
     transform: scale(0.95);
 }
 
 /* No Ads Message */
 .no-ads-message {
     text-align: center;
-    color: #777;
+    color: var(--no-ads-text-color);
     margin-top: 50px;
     padding: 20px;
 }
@@ -170,7 +205,7 @@ h1::after {
 .no-ads-message p {
     font-size: 18px;
     font-weight: bold;
-    color: #555;
+    color: var(--no-ads-color);
 }
 
 /* Responsive Design */
