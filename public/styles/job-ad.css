@@ -1,19 +1,44 @@
+/* Light Mode */
+:root {
+    --background-color: #f8f9fa;
+    --text-color: #121212;
+    --primary-color: #007bff;
+    --secondary-color: #0056b3;
+    --light-box-color: #f1f9ff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-color: #fce4b2;
+    --expired-color: red;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --background-color: #121212;
+    --text-color: #f8f9fa;
+    --primary-color: #3096fc;
+    --secondary-color: #3399ff;
+    --light-box-color: #1e2a35;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --border-color: #ffcc80;
+    --expired-color: #ff6666;
+}
+
 /* General Styling */
 body {
     font-family: "Roboto", sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
-    color: #121212;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .job-ad-container {
     max-width: 900px;
     margin: 50px auto;
     padding: 30px;
-    background: #fff;
+    background-color: var(--background-color);
+    color: var(--text-color);
     border-radius: 12px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 16px var(--shadow-color);
 }
 
 .job-ad-header {
@@ -23,7 +48,7 @@ body {
 
 .job-title {
     font-size: 2.5rem;
-    color: #007bff;
+    color: var(--primary-color);
     margin-bottom: 10px;
 }
 
@@ -33,7 +58,7 @@ body {
 }
 
 .company-link {
-    color: #0056b3;
+    color: var(--secondary-color);
     text-decoration: none;
     font-weight: bold;
 }
@@ -47,27 +72,51 @@ body {
 .job-posted {
     font-size: 1rem;
     margin: 5px 0;
-    color: #555;
+    color: var(--text-color);
 }
 
 .company-info {
-    background-color: #f1f9ff;
+    background-color: var(--light-box-color);
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 .company-info h2 {
     font-size: 1.8rem;
     margin-bottom: 10px;
-    color: #007bff;
+    color: var(--primary-color);
 }
 
 .company-info p {
     font-size: 1rem;
-    color: #444;
+    color: var(--text-color);
     line-height: 1.6;
+}
+
+.job-expiration {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--light-box-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.job-expiration h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.job-expiration p {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.job-expiration .expired {
+    color: var(--expired-color);
+    font-weight: bold;
 }
 
 .job-ad-description h2,
@@ -75,12 +124,12 @@ body {
 .job-ad-questions h2 {
     font-size: 1.8rem;
     margin-top: 20px;
-    color: #007bff;
+    color: var(--primary-color);
 }
 
 .job-ad-description p {
     font-size: 1.1rem;
-    color: #444;
+    color: var(--text-color);
     line-height: 1.8;
 }
 
@@ -88,7 +137,7 @@ body {
 .job-ad-questions ul {
     list-style-type: disc;
     padding-left: 20px;
-    color: #555;
+    color: var(--text-color);
     margin-top: 10px;
 }
 
@@ -96,47 +145,23 @@ body {
     display: block;
     margin: 30px auto;
     padding: 12px 25px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--text-color);
     border: none;
     border-radius: 8px;
     font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--shadow-color);
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .apply-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--secondary-color);
     transform: scale(1.05);
 }
 
 .apply-btn:active {
-    background-color: #003d82;
+    background-color: var(--secondary-color);
     transform: scale(0.95);
-}
-
-.job-expiration {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.job-expiration h2 {
-    font-size: 1.5rem;
-    color: #007bff;
-    margin-bottom: 10px;
-}
-
-.job-expiration p {
-    font-size: 1rem;
-    color: #333;
-}
-
-.job-expiration p strong {
-    color: #007bff;
 }
