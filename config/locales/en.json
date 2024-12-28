@@ -425,5 +425,20 @@
 			"open": "Open",
 			"closed": "Closed"
 		}
+	},
+	"CandidateDashboard": {
+		"title": "Candidate Dashboard",
+		"header": "Find Your Next Opportunity",
+		"searchPlaceholder": "Search job ads",
+		"allCategories": "All Categories",
+		"allLocations": "All Locations",
+		"noResultsMessage": "No job ads match your criteria. Try adjusting your filters.",
+		"noAdsAvailable": "No job ads available at the moment.",
+		"company": "Company",
+		"location": "Location",
+		"category": "Category",
+		"posted": "Posted",
+		"notAvailable": "N/A",
+		"viewDetails": "View Details"
 	}
 }

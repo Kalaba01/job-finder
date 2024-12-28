@@ -418,5 +418,20 @@
 			"open": "Otvoreno",
 			"closed": "Zatvoreno"
 		}
+	},
+	"CandidateDashboard": {
+		"title": "Kandidatov Dashboard",
+		"header": "Pronađite svoju sljedeću priliku",
+		"searchPlaceholder": "Pretražite oglase za posao",
+		"allCategories": "Sve kategorije",
+		"allLocations": "Sve lokacije",
+		"noResultsMessage": "Nijedan oglas ne odgovara vašim kriterijima. Pokušajte prilagoditi filtere.",
+		"noAdsAvailable": "Trenutno nema dostupnih oglasa za posao.",
+		"company": "Kompanija",
+		"location": "Lokacija",
+		"category": "Kategorija",
+		"posted": "Objavljeno",
+		"notAvailable": "N/A",
+		"viewDetails": "Detalji"
 	}
 }

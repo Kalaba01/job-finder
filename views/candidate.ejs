@@ -3,17 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Candidate Dashboard</title>
+    <title><%= __("CandidateDashboard.title") %></title>
     <link rel="stylesheet" href="/styles/candidate.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
   <body>
-    
     <%- include('partials/top-bar') %>
 
     <div class="dashboard-container">
       <header class="candidate-header">
-        <h1>Find Your Next Opportunity</h1>
+        <h1><%= __("CandidateDashboard.header") %></h1>
       </header>
 
       <div class="candidate-job-ads-header">
@@ -21,16 +20,18 @@
           type="text"
           id="search-bar"
           class="search-bar"
-          placeholder="Search job ads"
+          placeholder="<%= __('CandidateDashboard.searchPlaceholder') %>"
         />
         <select id="category-filter" class="filter-dropdown">
-          <option value="">All Categories</option>
+          <option value="">
+            <%= __("CandidateDashboard.allCategories") %>
+          </option>
           <% categories.forEach((category) => { %>
           <option value="<%= category %>"><%= category %></option>
           <% }) %>
         </select>
         <select id="location-filter" class="filter-dropdown">
-          <option value="">All Locations</option>
+          <option value=""><%= __("CandidateDashboard.allLocations") %></option>
           <% locations.forEach((location) => { %>
           <option value="<%= location %>"><%= location %></option>
           <% }) %>
@@ -43,9 +44,12 @@
           class="no-ads-message"
           style="display: none"
         >
-          <p>No job ads match your criteria. Try adjusting your filters.</p>
+          <p><%= __("CandidateDashboard.noResultsMessage") %></p>
         </div>
         <% if (jobAds.length === 0) { %>
+        <div class="no-ads-message">
+          <p><%= __("CandidateDashboard.noAdsAvailable") %></p>
+        </div>
         <% } else { %> <% jobAds.forEach((jobAd) => { %>
         <div class="job-card">
           <h2 class="job-title"><%= jobAd.title %></h2>
@@ -54,24 +58,32 @@
           </p>
           <div class="job-meta">
             <p class="job-company">
-              <strong>Company:</strong> <%= jobAd.Firm.name %>
+              <strong><%= __("CandidateDashboard.company") %>:</strong> <%=
+              jobAd.Firm.name %>
             </p>
             <p class="job-location">
-              <strong>Location:</strong> <%= jobAd.location || "N/A" %>
+              <strong><%= __("CandidateDashboard.location") %>:</strong> <%=
+              jobAd.location || __("CandidateDashboard.notAvailable") %>
             </p>
             <p class="job-category">
-              <strong>Category:</strong> <%= jobAd.category || "N/A" %>
+              <strong><%= __("CandidateDashboard.category") %>:</strong> <%=
+              jobAd.category || __("CandidateDashboard.notAvailable") %>
             </p>
             <p class="job-created">
-              <strong>Posted:</strong>
+              <strong><%= __("CandidateDashboard.posted") %>:</strong>
               <%= new Date(jobAd.createdAt).toLocaleDateString() %>
             </p>
           </div>
-          <button class="view-job-btn">View Details</button>
+          <button class="view-job-btn">
+            <%= __("CandidateDashboard.viewDetails") %>
+          </button>
         </div>
         <% }) %> <% } %>
       </div>
     </div>
+
+    <%- include('partials/go-top') %>
     <script src="/js/candidate.js"></script>
+
   </body>
 </html>
