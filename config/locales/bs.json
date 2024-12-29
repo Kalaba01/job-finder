@@ -450,5 +450,20 @@
 		"customQuestions": "Prilagođena pitanja",
 		"applyNow": "Prijavi se",
 		"notAvailable": "Nije dostupno"
+	},
+	"FirmDetails": {
+		"title": "{{name}} - Detalji o Kompaniji",
+		"address": "Adresa",
+		"employees": "Broj Zaposlenih",
+		"unknown": "Nepoznato",
+		"notAvailable": "N/A",
+		"activeJobAds": "Aktivni Oglasi za Posao",
+		"location": "Lokacija",
+		"category": "Kategorija",
+		"viewDetails": "Detalji",
+		"noActiveJobAds": "Ova kompanija trenutno nema aktivnih oglasa za posao.",
+		"reviews": "Recenzije",
+		"noReviews": "Trenutno nema dostupnih recenzija.",
+		"noAboutInfo": "Nema dodatnih informacija o ovoj kompaniji."
 	}
 }

@@ -457,5 +457,20 @@
 		"customQuestions": "Custom Questions",
 		"applyNow": "Apply Now",
 		"notAvailable": "N/A"
+	},
+	"FirmDetails": {
+		"title": "{{name}} - Company Details",
+		"address": "Address",
+		"employees": "Employees",
+		"unknown": "Unknown",
+		"notAvailable": "N/A",
+		"activeJobAds": "Active Job Ads",
+		"location": "Location",
+		"category": "Category",
+		"viewDetails": "View Details",
+		"noActiveJobAds": "This company has no active job ads.",
+		"reviews": "Reviews",
+		"noReviews": "No reviews available yet.",
+		"noAboutInfo": "No additional information about this company."
 	}
 }

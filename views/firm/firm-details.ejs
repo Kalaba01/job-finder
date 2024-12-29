@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= locale %>">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= firmDetails.name %> - Company Details</title>
+    <title><%= __("FirmDetails.title", { name: firmDetails.name }) %></title>
     <link rel="stylesheet" href="/styles/firm-details.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
@@ -23,18 +23,18 @@
         <% } %>
 
         <h1 class="firm-name"><%= firmDetails.name %></h1>
-        <p class="firm-about"><%= firmDetails.about %></p>
+        <p class="firm-about"><%= firmDetails.about || __("FirmDetails.noAboutInfo") %></p>
         <p class="firm-address">
-            <strong>Address:</strong> <%= firmDetails.address || "N/A" %>
+          <strong><%= __("FirmDetails.address") %>:</strong> <%= firmDetails.address || __("FirmDetails.notAvailable") %>
         </p>
         <p class="firm-employees">
-            <strong>Employees:</strong> <%= firmDetails.employees || "Unknown" %>
+          <strong><%= __("FirmDetails.employees") %>:</strong> <%= firmDetails.employee_count || __("FirmDetails.unknown") %>
         </p>
       </div>
 
       <!-- Active Job Ads -->
       <div class="firm-job-ads">
-        <h2>Active Job Ads</h2>
+        <h2><%= __("FirmDetails.activeJobAds") %></h2>
         <% if (firmDetails.jobAds.length > 0) { %>
         <div class="job-ads-list">
           <% firmDetails.jobAds.forEach((jobAd) => { %>
@@ -43,23 +43,23 @@
             <p class="job-description">
               <%= jobAd.description.substring(0, 150) %>...
             </p>
-            <p class="job-location">Location: <%= jobAd.location || "N/A" %></p>
-            <p class="job-category">Category: <%= jobAd.category || "N/A" %></p>
+            <p class="job-location"><%= __("FirmDetails.location") %>: <%= jobAd.location || __("FirmDetails.notAvailable") %></p>
+            <p class="job-category"><%= __("FirmDetails.category") %>: <%= jobAd.category || __("FirmDetails.notAvailable") %></p>
             <a href="/candidate/jobads/<%= jobAd.id %>" class="view-job-btn">
-              View Details
+              <%= __("FirmDetails.viewDetails") %>
             </a>
           </div>
           <% }) %>
         </div>
         <% } else { %>
-        <p class="no-job-ads">This company has no active job ads.</p>
+        <p class="no-job-ads"><%= __("FirmDetails.noActiveJobAds") %></p>
         <% } %>
       </div>
 
       <!-- Reviews Section (Placeholder) -->
       <div class="firm-reviews">
-        <h2>Reviews</h2>
-        <p>No reviews available yet.</p>
+        <h2><%= __("FirmDetails.reviews") %></h2>
+        <p><%= __("FirmDetails.noReviews") %></p>
       </div>
     </div>
   </body>
