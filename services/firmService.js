@@ -1,6 +1,6 @@
 const imageService = require("./imageService");
 const userService = require("./userService");
-const { User, Firm, Image } = require("../models");
+const { User, Firm, JobAd, Image } = require("../models");
 
 exports.firmExistsByEmail = async (email) => {
   try {
@@ -76,6 +76,37 @@ exports.getFirmDetails = async (userId, userDetails) => {
   } catch (error) {
     console.error("Error fetching firm details:", error);
     throw new Error("Error fetching firm details.");
+  }
+};
+
+exports.getFirmDetailsWithJobAds = async (firmId) => {
+  try {
+    const firm = await Firm.findByPk(firmId, {
+      include: [
+        {
+          model: JobAd,
+          as: "JobAds",
+          where: { status: "open" },
+          required: false
+        }
+      ],
+      attributes: ["name", "address", "about", "employees", "profile_picture_id"]
+    });
+
+    if (!firm) throw new Error("Firm not found");
+
+    return {
+      id: firm.id,
+      name: firm.name,
+      address: firm.address || "N/A",
+      about: firm.about || "No additional information about this company.",
+      employees: firm.employees || "N/A",
+      profile_picture_id: firm.profile_picture_id || null,
+      jobAds: firm.JobAds || []
+    };
+  } catch (error) {
+    console.error("Error fetching firm details with job ads:", error);
+    throw error;
   }
 };
 

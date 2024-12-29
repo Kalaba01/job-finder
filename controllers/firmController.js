@@ -12,6 +12,17 @@ exports.showFirmProfile = async (req, res) => {
   }
 };
 
+exports.getFirmDetails = async (req, res) => {
+  try {
+    const { firmId } = req.params;
+    const firmDetails = await firmService.getFirmDetailsWithJobAds(firmId);
+    res.render("firm/firm-details", { firmDetails });
+  } catch (error) {
+    console.error("Error fetching firm details:", error);
+    res.status(500).send("Failed to fetch firm details.");
+  }
+};
+
 exports.updateFirmProfile = async (req, res) => {
   try {
     const { name, city, address, about, employees } = req.body;

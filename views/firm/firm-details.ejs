@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= firmDetails.name %> - Company Details</title>
+    <link rel="stylesheet" href="/styles/firm-details.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+  <body>
+    <%- include('../partials/top-bar') %>
+
+    <div class="firm-details-container">
+      <!-- Basic Company Info -->
+      <div class="firm-header">
+        <!-- Profile Image -->
+        <% if (firmDetails.profile_picture_id) { %>
+        <img
+          src="/images/<%= firmDetails.profile_picture_id %>"
+          alt="<%= firmDetails.name %>"
+          class="firm-profile-image"
+        />
+        <% } %>
+
+        <h1 class="firm-name"><%= firmDetails.name %></h1>
+        <p class="firm-about"><%= firmDetails.about %></p>
+        <p class="firm-address">
+            <strong>Address:</strong> <%= firmDetails.address || "N/A" %>
+        </p>
+        <p class="firm-employees">
+            <strong>Employees:</strong> <%= firmDetails.employees || "Unknown" %>
+        </p>
+      </div>
+
+      <!-- Active Job Ads -->
+      <div class="firm-job-ads">
+        <h2>Active Job Ads</h2>
+        <% if (firmDetails.jobAds.length > 0) { %>
+        <div class="job-ads-list">
+          <% firmDetails.jobAds.forEach((jobAd) => { %>
+          <div class="job-card">
+            <h3 class="job-title"><%= jobAd.title %></h3>
+            <p class="job-description">
+              <%= jobAd.description.substring(0, 150) %>...
+            </p>
+            <p class="job-location">Location: <%= jobAd.location || "N/A" %></p>
+            <p class="job-category">Category: <%= jobAd.category || "N/A" %></p>
+            <a href="/candidate/jobads/<%= jobAd.id %>" class="view-job-btn">
+              View Details
+            </a>
+          </div>
+          <% }) %>
+        </div>
+        <% } else { %>
+        <p class="no-job-ads">This company has no active job ads.</p>
+        <% } %>
+      </div>
+
+      <!-- Reviews Section (Placeholder) -->
+      <div class="firm-reviews">
+        <h2>Reviews</h2>
+        <p>No reviews available yet.</p>
+      </div>
+    </div>
+  </body>
+</html>

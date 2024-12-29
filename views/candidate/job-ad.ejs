@@ -16,7 +16,7 @@
         <h1 class="job-title"><%= jobAd.title %></h1>
         <p class="company-name">
           <%= __("JobAd.company") %>:
-          <a href="/company/<%= jobAd.Firm.id %>" class="company-link">
+          <a href="/candidate/company/<%= jobAd.Firm.user_id %>" class="company-link">
             <%= jobAd.Firm.name %>
           </a>
         </p>

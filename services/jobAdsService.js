@@ -71,7 +71,7 @@ exports.getJobAdDetails = async (jobAdId) => {
         {
           model: Firm,
           as: "Firm",
-          attributes: ["name", "about", "profile_picture_id"]
+          attributes: ["user_id", "name", "about", "profile_picture_id"]
         }
       ]
     });

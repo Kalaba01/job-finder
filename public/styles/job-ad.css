@@ -146,7 +146,7 @@ body {
     margin: 30px auto;
     padding: 12px 25px;
     background-color: var(--primary-color);
-    color: var(--text-color);
+    color: #fff;
     border: none;
     border-radius: 8px;
     font-size: 1.2rem;
