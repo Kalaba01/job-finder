@@ -1,0 +1,139 @@
+.apply-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s;
+}
+
+.apply-popup-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.apply-popup-container {
+    background: var(--background-color);
+    color: var(--text-color);
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 6px 16px var(--shadow-color);
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.apply-popup-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.apply-popup-title {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.apply-popup-description {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.apply-popup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.apply-popup-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.apply-popup-label {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.apply-popup-required {
+    color: red;
+}
+
+.apply-popup-input,
+.apply-popup-dropdown {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background: var(--light-box-color);
+    color: var(--text-color);
+}
+
+.apply-popup-radio-group,
+.apply-popup-checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.apply-popup-radio,
+.apply-popup-checkbox {
+    margin: 0;
+}
+
+.apply-popup-radio-label,
+.apply-popup-checkbox-label {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.apply-popup-submit-btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    align-self: center;
+}
+
+.apply-popup-submit-btn:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.apply-popup-submit-btn:active {
+    transform: scale(0.95);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

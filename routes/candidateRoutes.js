@@ -4,6 +4,7 @@ const candidateController = require("../controllers/candidateController");
 const ticketController = require("../controllers/ticketController");
 const jobAdsController = require("../controllers/jobAdsController");
 const firmController = require("../controllers/firmController");
+const applicationController = require("../controllers/applicationController");
 const jobAdsService = require("../services/jobAdsService");
 const { authMiddleware, languageMiddleware, setMenuOptions, uploadMiddleware } = require("../middleware");
 
@@ -32,5 +33,8 @@ router.get("/jobads/:jobAdId", jobAdsController.showJobAdDetails);
 
 // Ruta za prikaz detalja firme
 router.get("/company/:firmId", firmController.getFirmDetails);
+
+// Ruta za apliciranje na oglas
+router.post("/apply", uploadMiddleware, applicationController.submitApplication);
 
 module.exports = router;

@@ -80,7 +80,13 @@
       <% } %>
 
       <!-- Apply Now Button -->
-      <button class="apply-btn"><%= __("JobAd.applyNow") %></button>
+      <button class="apply-btn" data-candidate-documents='<%= JSON.stringify(candidateDocuments) %>'>
+        <%= __("JobAd.applyNow") %>
+      </button>      
+
+      <%- include('apply-form', { jobAd, candidateDocuments }) %>
+      <script src="/js/job-ad.js"></script>
+
     </div>
   </body>
 </html>

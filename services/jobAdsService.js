@@ -1,4 +1,4 @@
-const { JobAd, Firm } = require("../models");
+const { JobAd, Firm, Candidate } = require("../models");
 
 exports.getJobAdsWithStatuses = async (firmId) => {
   try {
@@ -63,7 +63,7 @@ exports.createJobAd = async (jobAdData) => {
   }
 };
 
-exports.getJobAdDetails = async (jobAdId) => {
+exports.getJobAdDetails = async (jobAdId, candidateId) => {
   try {
     const jobAd = await JobAd.findOne({
       where: { id: jobAdId },
@@ -82,7 +82,18 @@ exports.getJobAdDetails = async (jobAdId) => {
     const expirationDate = new Date(jobAd.expiration_date);
     const timeLeft = Math.ceil((expirationDate - now) / (1000 * 60 * 60 * 24));
 
-    return { jobAd, timeLeft };
+    const candidate = await Candidate.findOne({
+      where: { user_id: candidateId },
+      attributes: ["cv_file_id", "motivation_file_id", "recommendations_file_id"]
+    });
+
+    const candidateDocuments = {
+      "CV": !!candidate?.cv_file_id,
+      "Motivation Letter": !!candidate?.motivation_file_id,
+      "Recommendations": !!candidate?.recommendations_file_id
+    };
+
+    return { jobAd, timeLeft, candidateDocuments };
   } catch (error) {
     console.error("Error fetching job ad details:", error);
     throw new Error("Failed to fetch job ad details.");
