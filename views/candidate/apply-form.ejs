@@ -2,22 +2,22 @@
 <div class="apply-popup-overlay" id="applyPopup">
   <div class="apply-popup-container">
     <button class="apply-popup-close-btn" id="closePopup">&times;</button>
-    <h2 class="apply-popup-title">Apply for <%= jobAd.title %></h2>
+    <h2 class="apply-popup-title"><%= __("ApplyForm.title", { jobTitle: jobAd.title }) %></h2>
     <% const missingDocuments = jobAd.required_documents.filter(
       (doc) => !candidateDocuments[doc]
     ); %>
     <% if (missingDocuments.length > 0) { %>
       <div class="apply-popup-missing-documents">
         <p class="apply-popup-description">
-          You are missing the following required documents:
+          <%= __("ApplyForm.missingDocuments") %>
         </p>
         <ul>
           <% missingDocuments.forEach((doc) => { %>
-            <li><%= doc %></li>
+            <li><%= __("ApplyForm.document." + doc) %></li>
           <% }); %>
         </ul>
         <p class="apply-popup-note">
-          Please upload these documents to your profile before applying.
+          <%= __("ApplyForm.uploadNote") %>
         </p>
       </div>
     <% } else { %>
@@ -27,7 +27,7 @@
           <div class="apply-popup-form-group">
             <label for="question_<%= question.id %>" class="apply-popup-label">
               <%= question.question %> <% if (question.required) { %>
-                <span class="apply-popup-required">*</span>
+                <span class="apply-popup-required"><%= __("ApplyForm.required") %></span>
               <% } %>
             </label>
             <% if (question.type === "text") { %>
@@ -71,26 +71,26 @@
             <% } else if (question.type === "checkbox") { %>
               <% question.options.forEach((option) => { %>
                 <div class="apply-popup-checkbox-group">
-                    <input
-                      type="checkbox"
-                      id="question_<%= question.id %>_<%= option %>"
-                      name="answers[<%= question.id %>][]"
-                      value="<%= option %>"
-                      class="apply-popup-checkbox"
-                    />
-                    <label
-                      for="question_<%= question.id %>_<%= option %>"
-                      class="apply-popup-checkbox-label"
-                    >
-                      <%= option %>
-                    </label>
-                  </div>                  
+                  <input
+                    type="checkbox"
+                    id="question_<%= question.id %>_<%= option %>"
+                    name="answers[<%= question.id %>][]"
+                    value="<%= option %>"
+                    class="apply-popup-checkbox"
+                  />
+                  <label
+                    for="question_<%= question.id %>_<%= option %>"
+                    class="apply-popup-checkbox-label"
+                  >
+                    <%= option %>
+                  </label>
+                </div>
               <% }); %>
             <% } %>
           </div>
         <% }); %>
         <button type="button" id="submitApplication" class="apply-popup-submit-btn">
-          Submit Application
+          <%= __("ApplyForm.submitButton") %>
         </button>
       </form>
     <% } %>

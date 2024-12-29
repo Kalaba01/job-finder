@@ -472,5 +472,17 @@
 		"reviews": "Reviews",
 		"noReviews": "No reviews available yet.",
 		"noAboutInfo": "No additional information about this company."
+	},
+	"ApplyForm": {
+		"title": "Apply for {{jobTitle}}",
+		"missingDocuments": "You are missing the following required documents:",
+		"document": {
+			"CV": "CV",
+			"Motivation Letter": "Motivation Letter",
+			"Recommendations": "Recommendations"
+		},
+		"uploadNote": "Please upload these documents to your profile before applying.",
+		"required": "*",
+		"submitButton": "Submit Application"
 	}
 }

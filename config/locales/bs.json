@@ -465,5 +465,17 @@
 		"reviews": "Recenzije",
 		"noReviews": "Trenutno nema dostupnih recenzija.",
 		"noAboutInfo": "Nema dodatnih informacija o ovoj kompaniji."
+	},
+	"ApplyForm": {
+		"title": "Prijavite se za {{jobTitle}}",
+		"missingDocuments": "Nedostaju vam sljedeći potrebni dokumenti:",
+		"document": {
+			"CV": "CV",
+			"Motivation Letter": "Motivaciono Pismo",
+			"Recommendations": "Preporuke"
+		},
+		"uploadNote": "Molimo vas da učitate ove dokumente na svoj profil prije prijave.",
+		"required": "*",
+		"submitButton": "Pošaljite Prijavu"
 	}
 }

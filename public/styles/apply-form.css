@@ -20,13 +20,13 @@
 }
 
 .apply-popup-container {
-    background: var(--background-color);
-    color: var(--text-color);
+    background: #f8f9fa;
+    color: #121212;
     padding: 30px;
     border-radius: 12px;
     width: 90%;
     max-width: 600px;
-    box-shadow: 0 6px 16px var(--shadow-color);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
     position: relative;
     animation: fadeIn 0.3s ease-in-out;
 }
@@ -35,7 +35,7 @@
     background: none;
     border: none;
     font-size: 1.5rem;
-    color: var(--text-color);
+    color: #121212;
     position: absolute;
     top: 10px;
     right: 10px;
@@ -44,14 +44,14 @@
 
 .apply-popup-title {
     font-size: 2rem;
-    color: var(--primary-color);
+    color: #007bff;
     margin-bottom: 10px;
     text-align: center;
 }
 
 .apply-popup-description {
     font-size: 1.1rem;
-    color: var(--text-color);
+    color: #121212;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -70,7 +70,7 @@
 
 .apply-popup-label {
     font-size: 1rem;
-    color: var(--text-color);
+    color: #121212;
 }
 
 .apply-popup-required {
@@ -80,10 +80,10 @@
 .apply-popup-input,
 .apply-popup-dropdown {
     padding: 10px;
-    border: 1px solid var(--border-color);
+    border: 1px solid #fce4b2;
     border-radius: 5px;
-    background: var(--light-box-color);
-    color: var(--text-color);
+    background: #f1f9ff;
+    color: #121212;
 }
 
 .apply-popup-radio-group,
@@ -101,11 +101,11 @@
 .apply-popup-radio-label,
 .apply-popup-checkbox-label {
     font-size: 1rem;
-    color: var(--text-color);
+    color: #121212;
 }
 
 .apply-popup-submit-btn {
-    background-color: var(--primary-color);
+    background-color: #007bff;
     color: #fff;
     border: none;
     padding: 12px 20px;
@@ -118,7 +118,7 @@
 }
 
 .apply-popup-submit-btn:hover {
-    background-color: var(--secondary-color);
+    background-color: #0056b3;
     transform: scale(1.05);
 }
 

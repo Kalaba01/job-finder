@@ -19,51 +19,53 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  submitApplicationBtn.addEventListener("click", async () => {
-    const rawFormData = new FormData(applicationForm);
-    const cleanedFormData = new FormData();
+  if (submitApplicationBtn) {
+    submitApplicationBtn.addEventListener("click", async () => {
+      const rawFormData = new FormData(applicationForm);
+      const cleanedFormData = new FormData();
 
-    const answers = {};
+      const answers = {};
 
-    for (const [key, value] of rawFormData.entries()) {
-      if (key.startsWith("answers[")) {
-        const match = key.match(/answers\[(\d+)\](\[\])?/);
-        if (match) {
-          const questionId = match[1];
-          if (match[2]) {
-            if (!answers[questionId]) {
-              answers[questionId] = [];
+      for (const [key, value] of rawFormData.entries()) {
+        if (key.startsWith("answers[")) {
+          const match = key.match(/answers\[(\d+)\](\[\])?/);
+          if (match) {
+            const questionId = match[1];
+            if (match[2]) {
+              if (!answers[questionId]) {
+                answers[questionId] = [];
+              }
+              answers[questionId].push(value);
+            } else {
+              answers[questionId] = value;
             }
-            answers[questionId].push(value);
-          } else {
-            answers[questionId] = value;
           }
+        } else {
+          cleanedFormData.append(key, value);
         }
-      } else {
-        cleanedFormData.append(key, value);
       }
-    }
 
-    cleanedFormData.append("answers", JSON.stringify(answers));
+      cleanedFormData.append("answers", JSON.stringify(answers));
 
-    try {
-      const response = await fetch("/candidate/apply", {
-        method: "POST",
-        body: cleanedFormData,
-      });
+      try {
+        const response = await fetch("/candidate/apply", {
+          method: "POST",
+          body: cleanedFormData,
+        });
 
-      if (response.ok) {
-        alert("Application submitted successfully!");
-        applicationForm.reset();
-        popupOverlay.classList.remove("active");
-      } else {
-        const error = await response.text();
+        if (response.ok) {
+          alert("Application submitted successfully!");
+          applicationForm.reset();
+          popupOverlay.classList.remove("active");
+        } else {
+          const error = await response.text();
+          console.error("Error submitting application:", error);
+          alert("Failed to submit application.");
+        }
+      } catch (error) {
         console.error("Error submitting application:", error);
         alert("Failed to submit application.");
       }
-    } catch (error) {
-      console.error("Error submitting application:", error);
-      alert("Failed to submit application.");
-    }
-  });
+    });
+  }
 });
