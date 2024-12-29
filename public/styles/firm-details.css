@@ -1,9 +1,43 @@
+/* Light Mode */
+:root {
+    --background-color: #f8f9fa;
+    --text-color: #121212;
+    --card-background: #fff;
+    --card-border: #ddd;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --header-color: #007bff;
+    --subtitle-color: #555;
+    --detail-color: #444;
+    --highlight-color: #0056b3;
+    --btn-background: #007bff;
+    --btn-hover: #0056b3;
+    --btn-text-color: #fff;
+    --no-ads-color: #777;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --card-background: #1e1e1e;
+    --card-border: #333;
+    --card-shadow: rgba(0, 0, 0, 0.4);
+    --header-color: #82aaff;
+    --subtitle-color: #aaa;
+    --detail-color: #ccc;
+    --highlight-color: #69a2ff;
+    --btn-background: #69a2ff;
+    --btn-hover: #4f8cff;
+    --btn-text-color: #121212;
+    --no-ads-color: #aaa;
+}
+
 body {
     font-family: "Roboto", sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
-    color: #121212;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .firm-profile-image {
@@ -13,16 +47,16 @@ body {
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--card-shadow);
 }
 
 .firm-details-container {
     max-width: 1000px;
     margin: 50px auto;
     padding: 20px;
-    background: #fff;
+    background: var(--card-background);
     border-radius: 12px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 16px var(--card-shadow);
 }
 
 .firm-header {
@@ -32,20 +66,20 @@ body {
 
 .firm-name {
     font-size: 2.5rem;
-    color: #007bff;
+    color: var(--header-color);
     margin-bottom: 10px;
 }
 
 .firm-about {
     font-size: 1.2rem;
-    color: #555;
+    color: var(--subtitle-color);
     line-height: 1.6;
 }
 
 .firm-address,
 .firm-employees {
     font-size: 1rem;
-    color: #444;
+    color: var(--detail-color);
     margin: 0.8rem 0;
 }
 
@@ -55,7 +89,7 @@ body {
 
 .firm-job-ads h2 {
     font-size: 1.8rem;
-    color: #007bff;
+    color: var(--header-color);
     margin-bottom: 20px;
 }
 
@@ -66,36 +100,36 @@ body {
 }
 
 .job-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: var(--card-background);
+    border: 1px solid var(--card-border);
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px var(--card-shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     max-width: 350px;
 }
 
 .job-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px var(--card-shadow);
 }
 
 .job-title {
     font-size: 1.5rem;
-    color: #007bff;
+    color: var(--header-color);
     margin-bottom: 10px;
 }
 
 .job-description {
     font-size: 1rem;
-    color: #555;
+    color: var(--subtitle-color);
     margin-bottom: 15px;
 }
 
 .job-location,
 .job-category {
     font-size: 1rem;
-    color: #444;
+    color: var(--detail-color);
     margin: 5px 0;
 }
 
@@ -104,20 +138,20 @@ body {
     padding: 8px 15px;
     margin: 0 0 0 auto;
     width: fit-content;
-    background-color: #007bff;
-    color: white;
+    background-color: var(--btn-background);
+    color: var(--btn-text-color);
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
 .view-job-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--btn-hover);
 }
 
 .no-job-ads {
     font-size: 1rem;
-    color: #777;
+    color: var(--no-ads-color);
     text-align: center;
 }
 
@@ -127,11 +161,11 @@ body {
 
 .firm-reviews h2 {
     font-size: 1.8rem;
-    color: #007bff;
+    color: var(--header-color);
     margin-bottom: 20px;
 }
 
 .firm-reviews p {
     font-size: 1rem;
-    color: #555;
+    color: var(--subtitle-color);
 }

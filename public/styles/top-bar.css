@@ -7,9 +7,9 @@
 
 [data-theme="dark"] {
     --top-bar-bg: #1e1e1e;
-    --logo-color: #ffa500;
+    --logo-color: #3399ff;
     --icon-color: #e0e0e0;
-    --icon-hover-color: #ff9800;
+    --icon-hover-color: #188bfd;
 }
 
 .top-bar {

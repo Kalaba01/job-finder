@@ -7,9 +7,9 @@
 
 /* Dark Mode */
 [data-theme="dark"] {
-    --btn-bg: #ffa500;
+    --btn-bg: #3399ff;
     --btn-text: #121212;
-    --btn-hover-bg: #ff9800;
+    --btn-hover-bg: #188bfd;
 }
 
 .go-top {
