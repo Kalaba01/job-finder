@@ -1,3 +1,25 @@
+/* Light Mode */
+:root {
+    --background-color: #f8f9fa;
+    --text-color: #121212;
+    --primary-color: #007bff;
+    --secondary-color: #0056b3;
+    --light-box-color: #f1f9ff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-color: #fce4b2;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --background-color: #121212;
+    --text-color: #f8f9fa;
+    --primary-color: #3096fc;
+    --secondary-color: #0056b3;
+    --light-box-color: #1e2a35;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --border-color: #ffcc80;
+}
+
 .apply-popup-overlay {
     position: fixed;
     top: 0;
@@ -20,13 +42,13 @@
 }
 
 .apply-popup-container {
-    background: #f8f9fa;
-    color: #121212;
+    background: var(--background-color);
+    color: var(--text-color);
     padding: 30px;
     border-radius: 12px;
     width: 90%;
     max-width: 600px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 16px var(--shadow-color);
     position: relative;
     animation: fadeIn 0.3s ease-in-out;
 }
@@ -35,7 +57,7 @@
     background: none;
     border: none;
     font-size: 1.5rem;
-    color: #121212;
+    color: var(--text-color);
     position: absolute;
     top: 10px;
     right: 10px;
@@ -44,14 +66,14 @@
 
 .apply-popup-title {
     font-size: 2rem;
-    color: #007bff;
+    color: var(--primary-color);
     margin-bottom: 10px;
     text-align: center;
 }
 
 .apply-popup-description {
     font-size: 1.1rem;
-    color: #121212;
+    color: var(--text-color);
     margin-bottom: 20px;
     text-align: center;
 }
@@ -70,7 +92,7 @@
 
 .apply-popup-label {
     font-size: 1rem;
-    color: #121212;
+    color: var(--text-color);
 }
 
 .apply-popup-required {
@@ -80,10 +102,10 @@
 .apply-popup-input,
 .apply-popup-dropdown {
     padding: 10px;
-    border: 1px solid #fce4b2;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
-    background: #f1f9ff;
-    color: #121212;
+    background: var(--light-box-color);
+    color: var(--text-color);
 }
 
 .apply-popup-radio-group,
@@ -101,11 +123,11 @@
 .apply-popup-radio-label,
 .apply-popup-checkbox-label {
     font-size: 1rem;
-    color: #121212;
+    color: var(--text-color);
 }
 
 .apply-popup-submit-btn {
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: #fff;
     border: none;
     padding: 12px 20px;
@@ -118,7 +140,7 @@
 }
 
 .apply-popup-submit-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--secondary-color);
     transform: scale(1.05);
 }
 
