@@ -27,7 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const questionRequired = document.getElementById("question-required");
 
   const localizations = {
-    noAdsMessage: document.body.dataset.noAdsMessage
+    noAdsMessage: document.body.dataset.noAdsMessage,
+    remove: document.body.dataset.remove
   };
 
   const noAdsMessage = document.createElement("p");
@@ -111,24 +112,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateQuestionsDisplay() {
     customQuestionsContainer.innerHTML = "";
-    questions.forEach((q) => {
+    questions.forEach((q, index) => {
       const questionCard = document.createElement("div");
       questionCard.classList.add("question-card");
+  
       questionCard.innerHTML = `
-        <strong>${q.question}</strong> (${q.type}) ${
-        q.required ? "<span>(Required)</span>" : ""
-      }
+        <strong>${q.question}</strong> (${q.type}) 
+        ${q.required ? "<span>(Required)</span>" : ""}
         ${
           q.options
             ? `<ul>${q.options.map((opt) => `<li>${opt}</li>`).join("")}</ul>`
             : ""
         }
+        <button class="remove-question-btn" data-index="${index}">${localizations.remove}</button>
       `;
+  
       customQuestionsContainer.appendChild(questionCard);
     });
-
+  
     customQuestionsJsonInput.value = JSON.stringify(questions);
+  
+    const removeButtons = customQuestionsContainer.querySelectorAll(
+      ".remove-question-btn"
+    );
+    removeButtons.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const index = parseInt(e.target.dataset.index, 10);
+        removeQuestion(index);
+      });
+    });
   }
+  
+  function removeQuestion(index) {
+    questions.splice(index, 1);
+    updateQuestionsDisplay();
+  }  
 
   function clearQuestionForm() {
     questionText.value = "";

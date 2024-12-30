@@ -354,6 +354,7 @@
 		"general": "General",
 		"expiresOn": "Expires on",
 		"editButton": "Edit",
+		"remove": "Remove",
 		"createAdButton": "Create Job Ad"
 	},
 	"JobAdsCreate": {

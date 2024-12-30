@@ -247,6 +247,27 @@
     box-shadow: 0 2px 6px var(--shadow-hover-color);
 }
 
+.remove-question-btn {
+    background-color: var(--remove-button);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.remove-question-btn:hover {
+    background-color: var(--remove-button-hover);
+    transform: scale(1.05);
+}
+
+.remove-question-btn:active {
+    transform: scale(0.95);
+}
+
 /* Submit button */
 .create-ad-submit-btn {
     display: block;
