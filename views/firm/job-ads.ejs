@@ -41,7 +41,7 @@
               <p class="job-location"><%= __("JobAds.location") %>: <%= jobAd.location || __("JobAds.remote") %></p>
               <p class="job-category"><%= __("JobAds.category") %>: <%= jobAd.category || __("JobAds.general") %></p>
               <p class="job-expiration"><%= __("JobAds.expiresOn") %>: <%= new Date(jobAd.expiration_date).toLocaleDateString() %></p>
-              <button class="job-edit-btn"><%= __("JobAds.editButton") %></button>
+              <button class="job-edit-btn" data-id="<%= jobAd.id %>"><%= __("JobAds.editButton") %></button>
             </div>
           <% }) %>
         </div>

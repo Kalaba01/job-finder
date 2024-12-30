@@ -26,6 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const addOptionBtn = document.getElementById("add-option-btn");
   const questionRequired = document.getElementById("question-required");
 
+  const jobEditButtons = document.querySelectorAll(".job-edit-btn");
+  const jobAdCreateForm = document.getElementById("job-ad-create-form");
+
   const localizations = {
     noAdsMessage: document.body.dataset.noAdsMessage,
     remove: document.body.dataset.remove
@@ -42,10 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
     questionModal.style.display = "block";
   });
 
-  closeQuestionModal.addEventListener("click", () => {
-    questionModal.style.display = "none";
-  });
-
   questionType.addEventListener("change", () => {
     if (["dropdown", "radio", "checkbox"].includes(questionType.value)) {
       optionsContainer.style.display = "block";
@@ -53,6 +52,24 @@ document.addEventListener("DOMContentLoaded", () => {
       optionsContainer.style.display = "none";
       optionsList.innerHTML = "";
     }
+  });
+
+  saveQuestionBtn.addEventListener("click", () => {
+    const options = Array.from(
+      optionsList.querySelectorAll(".option-item")
+    ).map((item) => item.getAttribute("data-option"));
+
+    const newQuestion = {
+      id: questions.length + 1,
+      question: questionText.value,
+      type: questionType.value,
+      options: options.length > 0 ? options : null,
+      required: questionRequired.checked
+    };
+
+    questions.push(newQuestion);
+    updateQuestionsDisplay();
+    questionModal.style.display = "none";
   });
 
   addOptionBtn.addEventListener("click", () => {
@@ -92,22 +109,93 @@ document.addEventListener("DOMContentLoaded", () => {
     optionInput.value = "";
   });
 
-  saveQuestionBtn.addEventListener("click", () => {
-    const options = Array.from(
-      optionsList.querySelectorAll(".option-item")
-    ).map((item) => item.getAttribute("data-option"));
+  function clearQuestionForm() {
+    questionText.value = "";
+    questionType.value = "text";
+    optionsList.innerHTML = `
+      <div class="option-input-container">
+        <input
+          type="text"
+          id="option-input"
+          placeholder="Enter option"
+          class="option-input"
+        />
+      </div>
+    `;
+    questionRequired.checked = false;
+    optionsContainer.style.display = "none";
+  }
 
-    const newQuestion = {
-      id: questions.length + 1,
-      question: questionText.value,
-      type: questionType.value,
-      options: options.length > 0 ? options : null,
-      required: questionRequired.checked,
-    };
+  addQuestionBtn.addEventListener("click", () => {
+    clearQuestionForm();
+    questionModal.style.display = "block";
+  });
 
-    questions.push(newQuestion);
-    updateQuestionsDisplay();
+  closeQuestionModal.addEventListener("click", () => {
     questionModal.style.display = "none";
+  });
+
+  jobEditButtons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      const jobId = button.dataset.id;
+      try {
+        const response = await fetch(`/firm/job-ads/${jobId}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch job ad details");
+        }
+        const jobAd = await response.json();
+
+        document.getElementById("title").value = jobAd.title;
+        document.getElementById("description").value = jobAd.description;
+        document.getElementById("location").value = jobAd.location || "";
+        document.getElementById("category").value = jobAd.category || "";
+        document.getElementById("expiration_date").value = jobAd.expiration_date.split("T")[0];
+
+        const requiredDocuments = jobAd.required_documents || [];
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked = requiredDocuments.includes(checkbox.value);
+        });
+        requiredDocumentsJsonInput.value = JSON.stringify(requiredDocuments);
+
+        questions = jobAd.custom_questions || [];
+        updateQuestionsDisplay();
+
+        jobAdCreateForm.dataset.mode = "edit";
+        jobAdCreateForm.dataset.jobId = jobId;
+
+        jobAdCreateModal.style.display = "block";
+      } catch (error) {
+        console.error("Error fetching job ad details:", error);
+        alert("Failed to load job ad details.");
+      }
+    });
+  });
+
+  jobAdCreateForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const mode = jobAdCreateForm.dataset.mode || "create";
+    const jobId = jobAdCreateForm.dataset.jobId || "";
+
+    const formData = new FormData(jobAdCreateForm);
+
+    const url = mode === "edit" ? `/firm/job-ads/edit/${jobId}` : "/firm/job-ads/create";
+    const method = mode === "edit" ? "PUT" : "POST";
+
+    try {
+      const response = await fetch(url, {
+        method,
+        body: formData
+      });
+
+      if (!response.ok) throw new Error(`Failed to ${mode} job ad`);
+
+      alert(`Job ad successfully ${mode === "edit" ? "updated" : "created"}!`);
+      location.reload();
+    } catch (error) {
+      console.error(`Error during job ad ${mode}:`, error);
+      alert(`Failed to ${mode} job ad.`);
+    }
   });
 
   function updateQuestionsDisplay() {
@@ -142,36 +230,28 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-  
+
   function removeQuestion(index) {
     questions.splice(index, 1);
     updateQuestionsDisplay();
-  }  
+  }
 
-  function clearQuestionForm() {
-    questionText.value = "";
-    questionType.value = "text";
-    optionsList.innerHTML = "";
-    optionsList.innerHTML = `
-      <div class="option-input-container">
-        <input
-          type="text"
-          id="option-input"
-          placeholder="Enter option"
-          class="option-input"
-        />
-      </div>
-    `;
-    questionRequired.checked = false;
-    optionsContainer.style.display = "none";
+  function resetCreateModal() {
+    jobAdCreateForm.dataset.mode = "create";
+    jobAdCreateForm.dataset.jobId = "";
+    jobAdCreateForm.reset();
+    questions = [];
+    updateQuestionsDisplay();
   }
 
   createJobAdBtn.addEventListener("click", () => {
     jobAdCreateModal.style.display = "block";
+    resetCreateModal();
   });
 
   closeCreateModalBtn.addEventListener("click", () => {
     jobAdCreateModal.style.display = "none";
+    resetCreateModal();
   });
 
   dropdownButton.addEventListener("click", (event) => {
@@ -225,9 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } else {
       const existingMessage = document.getElementById("no-ads-message");
-      if (existingMessage) {
-        existingMessage.remove();
-      }
+      if (existingMessage) existingMessage.remove();
     }
   };
 

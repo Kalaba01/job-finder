@@ -16,6 +16,17 @@ exports.getJobAdsWithStatuses = async (firmId) => {
   }
 };
 
+exports.getJobAdDetailsForEdit = async (jobAdId) => {
+  try {
+    const jobAd = await JobAd.findOne({ where: { id: jobAdId } });
+    if (!jobAd) throw new Error("Job ad not found.");
+    return jobAd.toJSON();
+  } catch (error) {
+    console.error("Error fetching job ad for edit:", error);
+    throw new Error("Failed to fetch job ad for edit.");
+  }
+};
+
 exports.getAllJobAdsWithDetails = async () => {
   try {
     const jobAds = await JobAd.findAll({
@@ -97,5 +108,18 @@ exports.getJobAdDetails = async (jobAdId, candidateId) => {
   } catch (error) {
     console.error("Error fetching job ad details:", error);
     throw new Error("Failed to fetch job ad details.");
+  }
+};
+
+exports.editJobAd = async (jobAdData) => {
+  try {
+    const { jobAdId, firmId, ...updates } = jobAdData;
+    const jobAd = await JobAd.findOne({ where: { id: jobAdId, firm_id: firmId } });
+
+    if (!jobAd) throw new Error("Job ad not found or unauthorized.");
+    await jobAd.update(updates);
+  } catch (error) {
+    console.error("Error updating job ad:", error);
+    throw new Error("Failed to update job ad.");
   }
 };

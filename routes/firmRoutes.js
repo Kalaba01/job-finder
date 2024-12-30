@@ -26,6 +26,9 @@ router.get("/tickets/:ticketId", ticketController.getTicketConversation);
 
 // Job Ads rute
 router.get("/job-ads", jobAdsController.showJobAds);
-router.post("/job-ads/create", jobAdsController.createJobAd);
+router.post("/job-ads/create", uploadMiddleware, jobAdsController.createJobAd);
+
+router.get("/job-ads/:jobAdId", jobAdsController.getJobAdDetailsForEdit);
+router.put("/job-ads/edit/:jobAdId", uploadMiddleware, jobAdsController.editJobAd);
 
 module.exports = router;
