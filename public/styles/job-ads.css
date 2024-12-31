@@ -7,6 +7,12 @@
     --card-border-color: #e9ecef;
     --primary-color: #007bff;
     --primary-hover-color: #0056b3;
+    --attention-color: #ffc107;
+    --attention-color-hover: #e0a800;
+    --atention-color-active: #c69500;
+    --delete-color: #dc3545;
+    --delete-color-hover: #c82333;
+    --delete-color-active: #a71d2a;
     --success-color: #28a745;
     --success-hover-color: #218838;
     --shadow-light: rgba(0, 0, 0, 0.1);
@@ -23,6 +29,12 @@
     --card-border-color: #333333;
     --primary-color: #90caf9;
     --primary-hover-color: #64b5f6;
+    --attention-color: #fdc51b;
+    --attention-color-hover: #c49301;
+    --atention-color-active: #ad8201;
+    --delete-color: #f83a4d;
+    --delete-color-hover: #df2033;
+    --delete-color-active: #b60e1f;
     --success-color: #66bb6a;
     --success-hover-color: #388e3c;
     --shadow-light: rgba(255, 255, 255, 0.1);
@@ -142,7 +154,7 @@ body {
 }
 
 .job-edit-btn {
-    display: block;
+    display: inline-block;
     background-color: var(--success-color);
     color: white;
     text-align: center;
@@ -153,12 +165,101 @@ body {
     font-size: 14px;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin: 0 0 0 auto;
 }
 
 .job-edit-btn:hover {
     background-color: var(--success-hover-color);
     transform: scale(1.05);
+}
+
+.close-job-btn {
+    display: inline-block;
+    background-color: var(--attention-color);
+    color: #fff;
+    text-align: center;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.close-job-btn:hover {
+    background-color: var(--attention-color-hover);
+    transform: translateY(-2px);
+}
+
+.close-job-btn:active {
+    background-color: var(--atention-color-active);
+    transform: scale(0.98);
+}
+
+.delete-job-btn {
+    display: inline-block;
+    background-color: var(--delete-color);
+    color: #fff;
+    text-align: center;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.delete-job-btn:hover {
+    background-color: var(--delete-color-hover);
+    transform: translateY(-2px);
+}
+
+.delete-job-btn:active {
+    background-color: var(--delete-color-active);
+    transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+    .close-job-btn,
+    .delete-job-btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+.job-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.job-card-actions .job-edit-btn,
+.job-card-actions .close-job-btn,
+.job-card-actions .delete-job-btn {
+    flex: 1;
+    max-width: 100px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .job-card-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .job-card-actions .job-edit-btn,
+    .job-card-actions .close-job-btn,
+    .job-card-actions .delete-job-btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .job-card-actions .delete-job-btn {
+        margin-bottom: 0;
+    }
 }
 
 .no-ads-message {

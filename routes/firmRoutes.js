@@ -31,6 +31,8 @@ router.post("/job-ads/create", uploadMiddleware, jobAdsController.createJobAd);
 
 router.get("/job-ads/:jobAdId", jobAdsController.getJobAdDetailsForEdit);
 router.put("/job-ads/edit/:jobAdId", uploadMiddleware, jobAdsController.editJobAd);
+router.put("/job-ads/close/:jobAdId", jobAdsController.closeJobAd);
+router.delete("/job-ads/:jobAdId", jobAdsController.deleteJobAd);
 
 // Prikaz stranice za kandidate i njihove aplikacije
 router.get("/applications", applicationController.showApplications);

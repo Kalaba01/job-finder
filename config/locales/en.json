@@ -356,7 +356,12 @@
 		"editButton": "Edit",
 		"remove": "Remove",
 		"createAdButton": "Create Job Ad",
-		"header": "JobAds.header"
+		"closeButton": "Close",
+		"deleteButton": "Delete",
+		"confirmCloseTitle": "Close Job Ad",
+		"confirmCloseMessage": "Are you sure you want to close this job ad? This action cannot be undone.",
+		"confirmDeleteTitle": "Delete Job Ad",
+		"confirmDeleteMessage": "Are you sure you want to delete this job ad? This action cannot be undone."
 	},
 	"JobAdsCreate": {
 		"title": "Create Job Ad",

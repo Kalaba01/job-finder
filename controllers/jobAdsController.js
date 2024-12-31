@@ -96,7 +96,7 @@ exports.editJobAd = async (req, res) => {
 
 exports.closeJobAd = async (req, res) => {
   try {
-    const jobId = req.params.id;
+    const jobId = req.params.jobAdId;
     await jobAdsService.updateJobAdStatus(jobId, "closed");
     res.status(200).json({ message: "Job ad closed successfully." });
   } catch (error) {
@@ -107,7 +107,7 @@ exports.closeJobAd = async (req, res) => {
 
 exports.deleteJobAd = async (req, res) => {
   try {
-    const jobId = req.params.id;
+    const jobId = req.params.jobAdId;
     await jobAdsService.deleteJobAd(jobId);
     res.status(200).json({ message: "Job ad deleted successfully." });
   } catch (error) {

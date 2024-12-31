@@ -10,46 +10,57 @@
 <body 
   data-no-ads-message="<%= __('JobAds.noAdsFound') %>"
   data-remove="<%= __('JobAds.remove') %>"
+  data-close-title="<%= __('JobAds.confirmCloseTitle') %>"
+  data-close-message="<%= __('JobAds.confirmCloseMessage') %>"
+  data-delete-title="<%= __('JobAds.confirmDeleteTitle') %>"
+  data-delete-message="<%= __('JobAds.confirmDeleteMessage') %>"
 >
   <%- include('../partials/top-bar') %>
 
-  <div class="job-ads-container">
-    <h1 class="page-title"><%= __("JobAds.title") %></h1>
-    <div class="job-ads-header">
-      <input 
-        type="text" 
-        id="search-bar" 
-        class="search-bar" 
-        placeholder="<%= __('JobAds.searchPlaceholder') %>"
-      />
-      <select id="status-filter" class="filter-dropdown">
-        <option value=""><%= __("JobAds.allStatuses") %></option>
-        <% statuses.forEach(status => { %>
-          <option value="<%= status %>"><%= __("JobAds.status." + status) %></option>
-        <% }) %>
-      </select>
-      <button id="create-job-ad-btn" class="create-job-ad-btn"><%= __("JobAds.createAdButton") %></button>
-    </div>    
-    <div id="job-ads-list-container">
-      <% if (jobAds.length === 0) { %>
-        <p id="no-ads-message" class="no-ads-message"><%= __("JobAds.noAdsFound") %></p>
-      <% } else { %>
-        <div id="job-ads-list" class="job-ads-list" >
-          <% jobAds.forEach(jobAd => { %>
-            <div class="job-card" data-title="<%= jobAd.title.toLowerCase() %>" data-status="<%= jobAd.status %>">
-              <h2 class="job-title"><%= jobAd.title %></h2>
-              <p class="job-description"><%= jobAd.description.substring(0, 100) %>...</p>
-              <p class="job-location"><%= __("JobAds.location") %>: <%= jobAd.location || __("JobAds.remote") %></p>
-              <p class="job-category"><%= __("JobAds.category") %>: <%= jobAd.category || __("JobAds.general") %></p>
-              <p class="job-expiration"><%= __("JobAds.expiresOn") %>: <%= new Date(jobAd.expiration_date).toLocaleDateString() %></p>
-              <button class="job-edit-btn" data-id="<%= jobAd.id %>"><%= __("JobAds.editButton") %></button>
-            </div>
+    <div class="job-ads-container">
+      <h1 class="page-title"><%= __("JobAds.title") %></h1>
+      <div class="job-ads-header">
+        <input 
+          type="text" 
+          id="search-bar" 
+          class="search-bar" 
+          placeholder="<%= __('JobAds.searchPlaceholder') %>"
+        />
+        <select id="status-filter" class="filter-dropdown">
+          <option value=""><%= __("JobAds.allStatuses") %></option>
+          <% statuses.forEach(status => { %>
+            <option value="<%= status %>"><%= __("JobAds.status." + status) %></option>
           <% }) %>
-        </div>
-      <% } %>
+        </select>
+        <button id="create-job-ad-btn" class="create-job-ad-btn"><%= __("JobAds.createAdButton") %></button>
+      </div>    
+      <div id="job-ads-list-container">
+        <% if (jobAds.length === 0) { %>
+          <p id="no-ads-message" class="no-ads-message"><%= __("JobAds.noAdsFound") %></p>
+        <% } else { %>
+          <div id="job-ads-list" class="job-ads-list">
+            <% jobAds.forEach(jobAd => { %>
+              <div class="job-card" data-id="<%= jobAd.id %>" data-title="<%= jobAd.title.toLowerCase() %>" data-status="<%= jobAd.status %>">
+                <h2 class="job-title"><%= jobAd.title %></h2>
+                <p class="job-description"><%= jobAd.description.substring(0, 100) %>...</p>
+                <p class="job-location"><%= __("JobAds.location") %>: <%= jobAd.location || __("JobAds.remote") %></p>
+                <p class="job-category"><%= __("JobAds.category") %>: <%= jobAd.category || __("JobAds.general") %></p>
+                <p class="job-expiration"><%= __("JobAds.expiresOn") %>: <%= new Date(jobAd.expiration_date).toLocaleDateString() %></p>
+                <div class="job-card-actions">
+                  <button class="job-edit-btn" data-id="<%= jobAd.id %>"><%= __("JobAds.editButton") %></button>
+                  <% if (jobAd.status === "open") { %>
+                    <button class="close-job-btn" data-id="<%= jobAd.id %>"><%= __("JobAds.closeButton") %></button>
+                  <% } %>
+                  <button class="delete-job-btn" data-id="<%= jobAd.id %>"><%= __("JobAds.deleteButton") %></button>
+                </div>
+              </div>              
+            <% }) %>
+          </div>
+        <% } %>
+      </div>
     </div>
-  </div>
 
+  <%- include('../partials/confirm') %>
   <%- include('./job-ads-create') %>
   <script src="/js/job-ads.js"></script>
 </body>

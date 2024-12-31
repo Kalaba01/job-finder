@@ -31,7 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const localizations = {
     noAdsMessage: document.body.dataset.noAdsMessage,
-    remove: document.body.dataset.remove
+    remove: document.body.dataset.remove,
+    closeTitle: document.body.dataset.closeTitle,
+    closeMessage: document.body.dataset.closeMessage,
+    deleteTitle: document.body.dataset.deleteTitle,
+    deleteMessage: document.body.dataset.deleteMessage
   };
 
   const noAdsMessage = document.createElement("p");
@@ -53,6 +57,26 @@ document.addEventListener("DOMContentLoaded", () => {
       optionsList.innerHTML = "";
     }
   });
+
+  const handleJobAction = async (jobId, action) => {
+    const url =
+      action === "close"
+        ? `/firm/job-ads/close/${jobId}`
+        : `/firm/job-ads/${jobId}`;
+    const method = action === "close" ? "PUT" : "DELETE";
+
+    try {
+      const response = await fetch(url, { method });
+      if (!response.ok) {
+        throw new Error("Failed to process job action.");
+      }
+      alert(`Job ${action}d successfully!`);
+      location.reload();
+    } catch (error) {
+      console.error(`Error during job ${action}:`, error);
+      alert(`Failed to ${action} job.`);
+    }
+  };
 
   saveQuestionBtn.addEventListener("click", () => {
     const options = Array.from(
@@ -265,6 +289,34 @@ document.addEventListener("DOMContentLoaded", () => {
       !dropdownButton.contains(event.target)
     ) {
       dropdownMenu.classList.remove("show");
+    }
+  });
+
+  jobAdsList.addEventListener("click", (event) => {
+    if (event.target.classList.contains("close-job-btn")) {
+    const jobCard = event.target.closest(".job-card");
+    const jobId = jobCard ? jobCard.dataset.id : null;
+    console.log("Close button clicked, jobId:", jobId);
+      window.openConfirmModal({
+        title: localizations.closeTitle,
+        message: localizations.closeMessage,
+        action: "close",
+        id: jobId,
+        onConfirm: handleJobAction
+      });
+    }
+
+    if (event.target.classList.contains("delete-job-btn")) {
+      const jobCard = event.target.closest(".job-card");
+      const jobId = jobCard ? jobCard.dataset.id : null;
+      console.log("Delete button clicked, jobId:", jobId);
+      window.openConfirmModal({
+        title: localizations.deleteTitle,
+        message: localizations.deleteMessage,
+        action: "delete",
+        id: jobId,
+        onConfirm: handleJobAction
+      });
     }
   });
 
