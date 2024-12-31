@@ -44,6 +44,14 @@ body {
     padding: 20px;
 }
 
+.page-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
 .job-ads-header {
     display: flex;
     align-items: center;
@@ -71,6 +79,10 @@ body {
 .job-ads-header .filter-dropdown:focus {
     box-shadow: 0 4px 10px var(--shadow-dark);
     transform: scale(1.03);
+}
+
+.job-ads-header .search-bar::placeholder {
+    color: #000;
 }
 
 .job-ads-header .create-job-ad-btn {

@@ -355,7 +355,8 @@
 		"expiresOn": "Expires on",
 		"editButton": "Edit",
 		"remove": "Remove",
-		"createAdButton": "Create Job Ad"
+		"createAdButton": "Create Job Ad",
+		"header": "JobAds.header"
 	},
 	"JobAdsCreate": {
 		"title": "Create Job Ad",

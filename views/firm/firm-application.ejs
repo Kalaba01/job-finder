@@ -10,15 +10,16 @@
   <body>
     <%- include('../partials/top-bar') %>
 
-    <header class="page-header">
-      <h1><%= __("Applications.header") %></h1>
-      <div class="filters">
+    <div class="container">
+      <h1 class="page-title"><%= __("Applications.header") %></h1>
+      <div class="header-controls">
         <input
           type="text"
           id="search-name"
+          class="search-bar"
           placeholder="<%= __('Applications.searchPlaceholder') %>"
         />
-        <select id="filter-position">
+        <select id="filter-position" class="filter-dropdown">
           <option value=""><%= __("Applications.allPositions") %></option>
           <% const uniquePositions = applications.map((app) =>
           app.jobTitle.trim()) .filter((value, index, self) =>
@@ -27,7 +28,7 @@
           <option value="<%= position %>"><%= position %></option>
           <% }) %>
         </select>
-        <select id="filter-status">
+        <select id="filter-status" class="filter-dropdown">
           <option value=""><%= __("Applications.allStatuses") %></option>
           <option value="pending">
             <%= __("Applications.statusPending") %>
@@ -40,37 +41,38 @@
           </option>
         </select>
       </div>
-    </header>
 
-    <main id="applications-container" class="applications-container">
-      <% if (applications.length === 0) { %>
-      <div class="no-data-container">
-        <p class="no-data"><%= __("Applications.noData") %></p>
+      <div id="applications-container" class="applications-container">
+        <% if (applications.length === 0) { %>
+        <div class="no-data-container">
+          <p class="no-data"><%= __("Applications.noData") %></p>
+        </div>
+        <% } else { %> <% applications.forEach((app) => { %>
+        <div
+          class="application-card"
+          data-status="<%= app.status %>"
+          data-position="<%= app.jobTitle.trim() %>"
+        >
+          <h2><%= app.candidateName %></h2>
+          <p>
+            <strong><%= __("Applications.labelPosition") %>:</strong> <%=
+            app.jobTitle %>
+          </p>
+          <p>
+            <strong><%= __("Applications.labelStatus") %>:</strong> <%=
+            __("Applications.status_" + app.status) %>
+          </p>
+          <p>
+            <strong><%= __("Applications.labelDate") %>:</strong> <%= app.date
+            %>
+          </p>
+          <button class="view-btn" data-id="<%= app.id %>">
+            <%= __("Applications.viewButton") %>
+          </button>
+        </div>
+        <% }) %> <% } %>
       </div>
-      <% } else { %> <% applications.forEach((app) => { %>
-      <div
-        class="application-card"
-        data-status="<%= app.status %>"
-        data-position="<%= app.jobTitle.trim() %>"
-      >
-        <h2><%= app.candidateName %></h2>
-        <p>
-          <strong><%= __("Applications.labelPosition") %>:</strong> <%=
-          app.jobTitle %>
-        </p>
-        <p>
-          <strong><%= __("Applications.labelStatus") %>:</strong> <%=
-          __("Applications.status_" + app.status) %>
-        </p>
-        <p>
-          <strong><%= __("Applications.labelDate") %>:</strong> <%= app.date %>
-        </p>
-        <button class="view-btn" data-id="<%= app.id %>">
-          <%= __("Applications.viewButton") %>
-        </button>
-      </div>
-      <% }) %> <% } %>
-    </main>
+    </div>
 
     <script src="/js/firm-application.js"></script>
   </body>
