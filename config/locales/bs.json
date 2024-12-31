@@ -505,5 +505,23 @@
 		"status_pending": "Na čekanju",
 		"status_accepted": "Prihvaćeno",
 		"status_rejected": "Odbijeno"
+	},
+	"CandidateApplications": {
+	"title": "Moje Prijave",
+	"pageTitle": "Moje Prijave",
+	"searchPlaceholder": "Pretraži po nazivu pozicije...",
+	"allFirms": "Sve Firme",
+	"allStatuses": "Svi Statusi",
+	"status": {
+		"pending": "Na čekanju",
+		"accepted": "Prihvaćena",
+		"rejected": "Odbijena"
+	},
+	"firmLabel": "Firma",
+	"statusLabel": "Status",
+	"dateLabel": "Datum prijave",
+	"viewButton": "Pregledaj",
+	"noApplicationsFound": "Nijedna prijava nije pronađena.",
+	"noResultsFound": "Nijedna prijava ne zadovoljava kriterije."
 	}
 }
