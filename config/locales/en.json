@@ -485,5 +485,23 @@
 		"uploadNote": "Please upload these documents to your profile before applying.",
 		"required": "*",
 		"submitButton": "Submit Application"
+	},
+	"Applications": {
+		"title": "Job Applications",
+		"header": "Job Applications",
+		"searchPlaceholder": "Search by candidate name",
+		"allPositions": "All Positions",
+		"allStatuses": "All Statuses",
+		"statusPending": "Pending",
+		"statusAccepted": "Accepted",
+		"statusRejected": "Rejected",
+		"noData": "No job applications found.",
+		"labelPosition": "Position",
+		"labelStatus": "Status",
+		"labelDate": "Application Date",
+		"viewButton": "View Details",
+		"status_pending": "Pending",
+		"status_accepted": "Accepted",
+		"status_rejected": "Rejected"
 	}
 }

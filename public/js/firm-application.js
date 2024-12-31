@@ -12,20 +12,19 @@ document.addEventListener("DOMContentLoaded", () => {
   noResultsMessage.style.display = "none";
 
   const filterApplications = () => {
-    const searchQuery = searchNameInput.value.toLowerCase();
-    const selectedPosition = positionFilter.value;
-    const selectedStatus = statusFilter.value;
+    const searchQuery = searchNameInput.value.toLowerCase().trim();
+    const selectedPosition = positionFilter.value.trim();
+    const selectedStatus = statusFilter.value.trim();
 
     let visibleCount = 0;
 
     allApplications.forEach((card) => {
-      const candidateName = card.querySelector("h2").textContent.toLowerCase();
-      const jobTitle = card
-        .querySelector("p:nth-of-type(1)")
-        .textContent.replace("Position: ", "");
-      const status = card
-        .querySelector("p:nth-of-type(2)")
-        .textContent.replace("Status: ", "");
+      const candidateName = card
+        .querySelector("h2")
+        .textContent.toLowerCase()
+        .trim();
+      const jobTitle = card.getAttribute("data-position").trim();
+      const status = card.getAttribute("data-status").trim();
 
       const matchesSearch = candidateName.includes(searchQuery);
       const matchesPosition = selectedPosition
@@ -41,11 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    if (visibleCount === 0) {
-      noResultsMessage.style.display = "block";
-    } else {
-      noResultsMessage.style.display = "none";
-    }
+    noResultsMessage.style.display = visibleCount === 0 ? "block" : "none";
   };
 
   searchNameInput.addEventListener("input", filterApplications);

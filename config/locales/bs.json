@@ -478,5 +478,23 @@
 		"uploadNote": "Molimo vas da učitate ove dokumente na svoj profil prije prijave.",
 		"required": "*",
 		"submitButton": "Pošaljite Prijavu"
+	},
+	"Applications": {
+		"title": "Prijave za posao",
+		"header": "Prijave za posao",
+		"searchPlaceholder": "Pretraži po imenu kandidata",
+		"allPositions": "Sve pozicije",
+		"allStatuses": "Svi statusi",
+		"statusPending": "Na čekanju",
+		"statusAccepted": "Prihvaćeno",
+		"statusRejected": "Odbijeno",
+		"noData": "Nema pronađenih prijava za posao.",
+		"labelPosition": "Pozicija",
+		"labelStatus": "Status",
+		"labelDate": "Datum prijave",
+		"viewButton": "Pogledaj detalje",
+		"status_pending": "Na čekanju",
+		"status_accepted": "Prihvaćeno",
+		"status_rejected": "Odbijeno"
 	}
 }
