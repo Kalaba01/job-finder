@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Applications</title>
+    <link rel="stylesheet" href="/styles/firm-application.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+  <body>
+    <%- include('../partials/top-bar') %>
+
+    <header class="page-header">
+      <h1>Job Applications</h1>
+      <div class="filters">
+        <input type="text" id="search-name" placeholder="Search by candidate name" />
+        <select id="filter-position">
+          <option value="">All Positions</option>
+          <% applications.map((app) => app.jobTitle) .filter((v, i, a) =>
+          a.indexOf(v) === i) .sort() .forEach((position) => { %>
+          <option value="<%= position %>"><%= position %></option>
+          <% }) %>
+        </select>
+        <select id="filter-status">
+          <option value="">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="accepted">Accepted</option>
+          <option value="rejected">Rejected</option>
+        </select>
+      </div>
+    </header>
+
+    <main id="applications-container" class="applications-container">
+      <% if (applications.length === 0) { %>
+      <div class="no-data-container">
+        <p class="no-data">No candidates found.</p>
+      </div>
+      <% } else { %> <% applications.forEach((app) => { %>
+      <div
+        class="application-card"
+        data-status="<%= app.status %>"
+        data-position="<%= app.jobTitle %>"
+      >
+        <h2><%= app.candidateName %></h2>
+        <p><strong>Position:</strong> <%= app.jobTitle %></p>
+        <p><strong>Status:</strong> <%= app.status %></p>
+        <p><strong>Date:</strong> <%= app.date %></p>
+        <button class="view-btn" data-id="<%= app.id %>">View</button>
+      </div>
+      <% }) %> <% } %>
+    </main>
+
+    <script src="/js/firm-application.js"></script>
+  </body>
+</html>

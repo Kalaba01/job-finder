@@ -23,7 +23,7 @@ module.exports = (req, res, next) => {
         res.locals.menuOptions = [
           { name: translate("FirmMenu.profile"), link: "/firm/profile" },
           { name: translate("FirmMenu.jobAds"), link: "/firm/job-ads" },
-          { name: translate("FirmMenu.candidates"), link: "/firm/candidates" },
+          { name: translate("FirmMenu.applications"), link: "/firm/applications" },
           { name: translate("FirmMenu.interviewCalendar"), link: "/firm/calendar" },
           { name: translate("FirmMenu.reviews"), link: "/firm/reviews" },
           { name: translate("FirmMenu.tickets"), link: "/firm/tickets" }

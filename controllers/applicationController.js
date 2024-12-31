@@ -17,3 +17,13 @@ exports.submitApplication = async (req, res) => {
     res.status(500).render("error", { message: "Failed to submit application." });
   }
 };
+
+exports.showApplications = async (req, res) => {
+  try {
+    const applications = await applicationService.getApplicationsForFirm(req.user.id);
+    res.render("firm/firm-application", { applications, locale: req.getLocale() });
+  } catch (error) {
+    console.error("Error fetching applications:", error);
+    res.status(500).render("error", { message: "Failed to load applications." });
+  }
+};

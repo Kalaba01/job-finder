@@ -3,6 +3,7 @@ const router = express.Router();
 const firmController = require("../controllers/firmController");
 const ticketController = require("../controllers/ticketController");
 const jobAdsController = require("../controllers/jobAdsController");
+const applicationController = require("../controllers/applicationController");
 const { authMiddleware, languageMiddleware, setMenuOptions, uploadMiddleware } = require("../middleware");
 
 // Middleware za postavljanje menuOptions
@@ -30,5 +31,8 @@ router.post("/job-ads/create", uploadMiddleware, jobAdsController.createJobAd);
 
 router.get("/job-ads/:jobAdId", jobAdsController.getJobAdDetailsForEdit);
 router.put("/job-ads/edit/:jobAdId", uploadMiddleware, jobAdsController.editJobAd);
+
+// Prikaz stranice za kandidate i njihove aplikacije
+router.get("/applications", applicationController.showApplications);
 
 module.exports = router;

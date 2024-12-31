@@ -1,0 +1,110 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+.page-header {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(90deg, #0056b3, #007bff);
+    color: #fff;
+    border-bottom: 2px solid #004a99;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.filters input,
+.filters select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    min-width: 150px;
+}
+
+.filters input:focus,
+.filters select:focus {
+    border-color: #0056b3;
+    outline: none;
+}
+
+.applications-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.application-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+.application-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.application-card h2 {
+    margin: 0 0 10px;
+    color: #0056b3;
+    font-size: 1.5rem;
+}
+
+.application-card p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+.application-card p strong {
+    color: #444;
+}
+
+.application-card .view-btn {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    padding: 10px 15px;
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.application-card .view-btn:hover {
+    background-color: #003f7f;
+    transform: scale(1.05);
+}
+
+.no-data-container {
+    text-align: center;
+    padding: 50px 20px;
+    grid-column: 1 / -1;
+}
+
+.no-data {
+    font-size: 1.5rem;
+    color: #777;
+    font-weight: 600;
+}

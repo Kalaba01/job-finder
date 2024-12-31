@@ -11,11 +11,12 @@ exports.applyForJob = async ({ candidateId, jobAdId, answers }) => {
   const candidateDocs = {
     CV: candidate.cv_file_id,
     "Motivation Letter": candidate.motivation_file_id,
-    Recommendations: candidate.recommendations_file_id
+    Recommendations: candidate.recommendations_file_id,
   };
 
   const missingDocs = requiredDocs.filter((doc) => !candidateDocs[doc]);
-  if (missingDocs.length > 0) throw new Error(`Missing required documents: ${missingDocs.join(", ")}`);
+  if (missingDocs.length > 0)
+    throw new Error(`Missing required documents: ${missingDocs.join(", ")}`);
 
   const submittedDocuments = {};
   for (const doc of requiredDocs) {
@@ -27,8 +28,34 @@ exports.applyForJob = async ({ candidateId, jobAdId, answers }) => {
     candidate_id: candidateId,
     submitted_documents: submittedDocuments,
     answers,
-    status: "pending"
+    status: "pending",
   });
 
   return newApplication;
+};
+
+exports.getApplicationsForFirm = async (firmId) => {
+  const applications = await Application.findAll({
+    include: [
+      {
+        model: Candidate,
+        attributes: ["first_name", "last_name"],
+        as: "Candidate"
+      },
+      {
+        model: JobAd,
+        attributes: ["title"],
+        as: "JobAd",
+        where: { firm_id: firmId }
+      }
+    ]
+  });
+
+  return applications.map((app) => ({
+    id: app.id,
+    candidateName: `${app.Candidate.first_name} ${app.Candidate.last_name}`,
+    jobTitle: app.JobAd.title,
+    status: app.status,
+    date: app.createdAt.toISOString().split("T")[0]
+  }));
 };
