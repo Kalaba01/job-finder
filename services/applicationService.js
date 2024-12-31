@@ -1,4 +1,4 @@
-const { Candidate, JobAd, Application } = require("../models");
+const { Candidate, JobAd, Application, Firm } = require("../models");
 
 exports.applyForJob = async ({ candidateId, jobAdId, answers }) => {
   const jobAd = await JobAd.findByPk(jobAdId);
@@ -40,15 +40,15 @@ exports.getApplicationsForFirm = async (firmId) => {
       {
         model: Candidate,
         attributes: ["first_name", "last_name"],
-        as: "Candidate"
+        as: "Candidate",
       },
       {
         model: JobAd,
         attributes: ["title"],
         as: "JobAd",
-        where: { firm_id: firmId }
-      }
-    ]
+        where: { firm_id: firmId },
+      },
+    ],
   });
 
   return applications.map((app) => ({
@@ -56,6 +56,34 @@ exports.getApplicationsForFirm = async (firmId) => {
     candidateName: `${app.Candidate.first_name} ${app.Candidate.last_name}`,
     jobTitle: app.JobAd.title,
     status: app.status,
-    date: app.createdAt.toISOString().split("T")[0]
+    date: app.createdAt.toISOString().split("T")[0],
+  }));
+};
+
+exports.getApplicationsForCandidate = async (candidateId) => {
+  const applications = await Application.findAll({
+    where: { candidate_id: candidateId },
+    include: [
+      {
+        model: JobAd,
+        attributes: ["title"],
+        as: "JobAd",
+        include: [
+          {
+            model: Firm,
+            attributes: ["name"],
+            as: "Firm",
+          },
+        ],
+      },
+    ],
+  });
+
+  return applications.map((app) => ({
+    id: app.id,
+    jobTitle: app.JobAd.title,
+    firmName: app.JobAd.Firm.name,
+    status: app.status,
+    date: app.createdAt.toISOString().split("T")[0],
   }));
 };

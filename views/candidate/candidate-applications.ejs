@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Applications</title>
+    <link rel="stylesheet" href="/styles/candidate-applications.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+  <body>
+    <%- include('../partials/top-bar') %>
+
+    <div class="application-container">
+      <h1 class="page-title">My Applications</h1>
+      <div class="filters">
+        <input
+          type="text"
+          id="search-bar"
+          placeholder="Search by position name..."
+          class="search-bar"
+        />
+        <select id="firm-filter" class="filter-dropdown">
+          <option value="">All Firms</option>
+          <% firms.forEach((firm) => { %>
+          <option value="<%= firm %>"><%= firm %></option>
+          <% }) %>
+        </select>
+        <select id="status-filter" class="filter-dropdown">
+          <option value="">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="accepted">Accepted</option>
+          <option value="rejected">Rejected</option>
+        </select>
+      </div>
+      <div id="applications-list" class="applications-list">
+        <% if (applications.length === 0) { %>
+          <p id="no-applications-message" class="no-applications-message">No applications found.</p>
+        <% } else { %>
+          <% applications.forEach((app) => { %>
+            <div
+              class="application-card"
+              data-title="<%= app.jobTitle.toLowerCase() %>"
+              data-firm="<%= app.firmName.toLowerCase() %>"
+              data-status="<%= app.status %>"
+            >
+              <h2 class="job-title"><%= app.jobTitle %></h2>
+              <p class="firm-name">Firm: <%= app.firmName %></p>
+              <p class="application-status">Status: <%= app.status %></p>
+              <p class="application-date">Applied on: <%= app.date %></p>
+              <button class="view-btn">View</button>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+      <p id="no-results-message" class="no-results-message" style="display: none;">No applications match the filter criteria.</p>
+    </div>
+
+    <script src="/js/candidate-applications.js"></script>
+  </body>
+</html>

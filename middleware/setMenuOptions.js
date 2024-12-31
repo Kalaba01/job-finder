@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
   
     switch (role) {
       case "admin":
-        res.locals.menuOptions = [ 
+        res.locals.menuOptions = [
           { name: translate("AdminMenu.userManagement"), link: "/admin/users" },
           { name: translate("AdminMenu.companyApprovals"), link: "/admin/company-approvals" },
           { name: translate("AdminMenu.jobAds"), link: "/admin/job-ads" },

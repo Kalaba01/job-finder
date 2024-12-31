@@ -37,4 +37,7 @@ router.get("/company/:firmId", firmController.getFirmDetails);
 // Ruta za apliciranje na oglas
 router.post("/apply", uploadMiddleware, applicationController.submitApplication);
 
+// Ruta za prikaz aplikacija kandidata
+router.get("/applications", applicationController.showCandidateApplications);
+
 module.exports = router;
