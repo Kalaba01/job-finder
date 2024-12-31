@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="/styles/admin-job-ads.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
-  <body>
+  <body
+    data-confirm-close-title="<%= __('AdminJobAds.confirmCloseTitle') %>"
+    data-confirm-close-message="<%= __('AdminJobAds.confirmCloseMessage') %>"
+    data-confirm-delete-title="<%= __('AdminJobAds.confirmDeleteTitle') %>"
+    data-confirm-delete-message="<%= __('AdminJobAds.confirmDeleteMessage') %>"
+  >
     <%- include('../partials/top-bar') %>
 
     <div class="admin-job-ads-container">
@@ -40,7 +45,11 @@
           <p><%= __("AdminJobAds.noAdsAvailable") %></p>
         </div>
         <% } else { %> <% jobAds.forEach((jobAd) => { %>
-        <div class="job-card">
+        <div
+          class="job-card"
+          data-id="<%= jobAd.id %>"
+          data-status="<%= jobAd.status %>"
+        >
           <h2 class="job-title"><%= jobAd.title %></h2>
           <p class="job-description">
             <%= jobAd.description.substring(0, 150) %>...
@@ -51,12 +60,12 @@
               jobAd.Firm.name %>
             </p>
             <p class="job-location">
-              <strong><%= __("AdminJobAds.location") %>:</strong> <%=
-              jobAd.location || __("AdminJobAds.remote") %>
+              <strong><%= __("AdminJobAds.location") %>:</strong>
+              <%= jobAd.location || __("AdminJobAds.remote") %>
             </p>
             <p class="job-category">
-              <strong><%= __("AdminJobAds.category") %>:</strong> <%=
-              jobAd.category || __("AdminJobAds.general") %>
+              <strong><%= __("AdminJobAds.category") %>:</strong>
+              <%= jobAd.category || __("AdminJobAds.general") %>
             </p>
             <p class="job-created">
               <strong><%= __("AdminJobAds.created") %>:</strong>
@@ -64,16 +73,22 @@
             </p>
             <p class="job-status">
               <strong><%= __("AdminJobAds.status") %>:</strong>
-              <%= jobAd.status %>
+              <%= __("AdminJobAds.statusFilter." + jobAd.status) %>
             </p>
           </div>
-          <button class="edit-job-btn">
-            <%= __("AdminJobAds.editButton") %>
+          <% if (jobAd.status === "open") { %>
+          <button class="close-job-btn">
+            <%= __("AdminJobAds.closeButton") %>
+          </button>
+          <% } %>
+          <button class="delete-job-btn">
+            <%= __("AdminJobAds.deleteButton") %>
           </button>
         </div>
         <% }) %> <% } %>
       </div>
     </div>
+    <%- include('../partials/confirm') %>
     <script src="/js/admin-job-ads.js"></script>
   </body>
 </html>

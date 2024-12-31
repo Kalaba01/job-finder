@@ -119,34 +119,53 @@ body {
     color: var(--text-color);
 }
 
-/* Stilizacija dugmeta Edit */
-.edit-job-btn {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: var(--primary-color);
+/* Dugme za zatvaranje oglasa */
+.close-job-btn {
+    background-color: #28a745; /* Zelena boja */
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 8px 12px;
+    padding: 10px 15px;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 4px 6px var(--card-shadow-light);
     transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-right: 10px;
 }
 
-.edit-job-btn:hover {
-    background-color: var(--primary-hover-color);
+.close-job-btn:hover {
+    background-color: #218838; /* Tamnija zelena */
     transform: scale(1.05);
 }
 
-.edit-job-btn:active {
-    background-color: var(--primary-active-color);
+.close-job-btn:active {
+    background-color: #1e7e34; /* Još tamnija zelena */
     transform: scale(0.95);
 }
 
-/* Pozicija za dugme Edit unutar kartice */
+/* Dugme za brisanje oglasa */
+.delete-job-btn {
+    background-color: #dc3545; /* Crvena boja */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.delete-job-btn:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+.delete-job-btn:active {
+    background-color: #bd2130;
+    transform: scale(0.95);
+}
+
 .job-card {
     position: relative;
     padding-bottom: 50px;

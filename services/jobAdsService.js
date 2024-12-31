@@ -123,3 +123,21 @@ exports.editJobAd = async (jobAdData) => {
     throw new Error("Failed to update job ad.");
   }
 };
+
+exports.updateJobAdStatus = async (jobId, status) => {
+  try {
+    await JobAd.update({ status }, { where: { id: jobId } });
+  } catch (error) {
+    console.error("Error updating job ad status:", error);
+    throw new Error("Failed to update job ad status.");
+  }
+};
+
+exports.deleteJobAd = async (jobId) => {
+  try {
+    await JobAd.destroy({ where: { id: jobId } });
+  } catch (error) {
+    console.error("Error deleting job ad:", error);
+    throw new Error("Failed to delete job ad.");
+  }
+};

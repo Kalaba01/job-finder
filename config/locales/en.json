@@ -409,23 +409,30 @@
 		}
 	},
 	"AdminJobAds": {
-		"title": "All Job Ads",
+		"title": "Manage Job Ads",
 		"searchPlaceholder": "Search by company name",
 		"allStatuses": "All Statuses",
-		"noResults": "No job ads found.",
+		"statusFilter": {
+			"open": "Open",
+			"closed": "Closed"
+		},
 		"noAdsAvailable": "No job ads available.",
+		"noResults": "No job ads match the criteria.",
 		"company": "Company",
 		"location": "Location",
 		"category": "Category",
 		"created": "Created",
 		"status": "Status",
-		"remote": "Remote",
-		"general": "General",
-		"editButton": "Edit",
-		"statusFilter": {
-			"open": "Open",
-			"closed": "Closed"
-		}
+		"closeButton": "Close",
+		"deleteButton": "Delete",
+		"confirmCloseTitle": "Close Job Ad",
+		"confirmCloseMessage": "Are you sure you want to close this job ad? This action cannot be undone.",
+		"confirmDeleteTitle": "Delete Job Ad",
+		"confirmDeleteMessage": "Are you sure you want to delete this job ad? This action cannot be undone.",
+		"closeTitle": "AdminJobAds.closeTitle",
+		"closeMessage": "AdminJobAds.closeMessage",
+		"deleteTitle": "AdminJobAds.deleteTitle",
+		"deleteMessage": "AdminJobAds.deleteMessage"
 	},
 	"CandidateDashboard": {
 		"title": "Candidate Dashboard",

@@ -93,3 +93,25 @@ exports.editJobAd = async (req, res) => {
     res.status(500).render("error", { message: "Failed to update job ad." });
   }
 };
+
+exports.closeJobAd = async (req, res) => {
+  try {
+    const jobId = req.params.id;
+    await jobAdsService.updateJobAdStatus(jobId, "closed");
+    res.status(200).json({ message: "Job ad closed successfully." });
+  } catch (error) {
+    console.error("Error closing job ad:", error);
+    res.status(500).json({ error: "Failed to close job ad." });
+  }
+};
+
+exports.deleteJobAd = async (req, res) => {
+  try {
+    const jobId = req.params.id;
+    await jobAdsService.deleteJobAd(jobId);
+    res.status(200).json({ message: "Job ad deleted successfully." });
+  } catch (error) {
+    console.error("Error deleting job ad:", error);
+    res.status(500).json({ error: "Failed to delete job ad." });
+  }
+};

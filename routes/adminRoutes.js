@@ -32,6 +32,7 @@ router.get("/tickets", ticketController.getTickets);
 router.get("/tickets/:ticketId", ticketController.getTicketConversation);
 
 router.get("/job-ads", jobAdsController.getAllJobAds);
-
+router.put("/job-ads/:id/close", jobAdsController.closeJobAd);
+router.delete("/job-ads/:id", jobAdsController.deleteJobAd);
 
 module.exports = router;

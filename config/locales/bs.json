@@ -402,23 +402,26 @@
 		}
 	},
 	"AdminJobAds": {
-		"title": "Svi oglasi za posao",
-		"searchPlaceholder": "Pretraži po nazivu kompanije",
+		"title": "Upravljanje oglasima za posao",
+		"searchPlaceholder": "Pretraži po nazivu firme",
 		"allStatuses": "Svi statusi",
-		"noResults": "Nije pronađen nijedan oglas za posao.",
-		"noAdsAvailable": "Nema dostupnih oglasa za posao.",
-		"company": "Kompanija",
+		"statusFilter": {
+			"open": "Otvoren",
+			"closed": "Zatvoren"
+		},
+		"noAdsAvailable": "Nema dostupnih oglasa.",
+		"noResults": "Nijedan oglas ne odgovara kriterijumima.",
+		"company": "Firma",
 		"location": "Lokacija",
 		"category": "Kategorija",
 		"created": "Kreirano",
 		"status": "Status",
-		"remote": "Udaljeno",
-		"general": "Opšte",
-		"editButton": "Uredi",
-		"statusFilter": {
-			"open": "Otvoreno",
-			"closed": "Zatvoreno"
-		}
+		"closeButton": "Zatvori",
+		"deleteButton": "Obriši",
+		"confirmCloseTitle": "Zatvori oglas",
+		"confirmCloseMessage": "Da li ste sigurni da želite zatvoriti ovaj oglas? Ova akcija se ne može poništiti.",
+		"confirmDeleteTitle": "Obriši oglas",
+		"confirmDeleteMessage": "Da li ste sigurni da želite obrisati ovaj oglas? Ova akcija se ne može poništiti."
 	},
 	"CandidateDashboard": {
 		"title": "Kandidatov Dashboard",
