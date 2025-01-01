@@ -126,7 +126,7 @@ exports.editJobAd = async (jobAdData) => {
 
 exports.updateJobAdStatus = async (jobId, status) => {
   try {
-    await JobAd.update({ status }, { where: { id: jobId } });
+    await JobAd.update({ expiration_date: new Date(), status }, { where: { id: jobId } });
   } catch (error) {
     console.error("Error updating job ad status:", error);
     throw new Error("Failed to update job ad status.");

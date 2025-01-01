@@ -119,9 +119,8 @@ body {
     color: var(--text-color);
 }
 
-/* Dugme za zatvaranje oglasa */
 .close-job-btn {
-    background-color: #28a745; /* Zelena boja */
+    background-color: #28a745;
     color: white;
     border: none;
     border-radius: 5px;
@@ -134,18 +133,17 @@ body {
 }
 
 .close-job-btn:hover {
-    background-color: #218838; /* Tamnija zelena */
+    background-color: #218838;
     transform: scale(1.05);
 }
 
 .close-job-btn:active {
-    background-color: #1e7e34; /* Još tamnija zelena */
+    background-color: #1e7e34;
     transform: scale(0.95);
 }
 
-/* Dugme za brisanje oglasa */
 .delete-job-btn {
-    background-color: #dc3545; /* Crvena boja */
+    background-color: #dc3545;
     color: white;
     border: none;
     border-radius: 5px;
@@ -164,11 +162,6 @@ body {
 .delete-job-btn:active {
     background-color: #bd2130;
     transform: scale(0.95);
-}
-
-.job-card {
-    position: relative;
-    padding-bottom: 50px;
 }
 
 /* No Ads Message */
