@@ -29,6 +29,7 @@ router.get("/tickets/:ticketId", ticketController.getTicketConversation);
 router.get("/job-ads", jobAdsController.showJobAds);
 router.post("/job-ads/create", uploadMiddleware, jobAdsController.createJobAd);
 
+// Rute za oglase firme
 router.get("/job-ads/:jobAdId", jobAdsController.getJobAdDetailsForEdit);
 router.put("/job-ads/edit/:jobAdId", uploadMiddleware, jobAdsController.editJobAd);
 router.put("/job-ads/close/:jobAdId", jobAdsController.closeJobAd);
@@ -37,6 +38,10 @@ router.delete("/job-ads/:jobAdId", jobAdsController.deleteJobAd);
 // Prikaz stranice za kandidate i njihove aplikacije
 router.get("/applications/:applicationId", applicationController.showApplicationDetails);
 
+// Detaljniji prikaz aplikacije
 router.get("/applications", applicationController.showFirmApplications);
+
+// Ruta za prihvatanje/odbijanje aplikacije
+router.put("/applications/:applicationId", applicationController.updateApplicationStatus);
 
 module.exports = router;

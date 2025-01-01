@@ -128,3 +128,13 @@ exports.getApplicationDetails = async (applicationId) => {
     date: application.createdAt.toISOString().split("T")[0]
   };
 };
+
+exports.updateApplicationStatus = async (applicationId, status) => {
+  const application = await Application.findByPk(applicationId);
+  if (!application) return null;
+
+  application.status = status;
+  await application.save();
+
+  return application;
+};
