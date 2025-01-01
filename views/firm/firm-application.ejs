@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Application Details</title>
+    <title><%= __("ApplicationDetails.title") %></title>
     <link rel="stylesheet" href="/styles/firm-application.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
@@ -11,21 +11,21 @@
     <%- include('../partials/top-bar') %>
 
     <div class="application-details-container">
-      <h1 class="page-title">Application Details</h1>
+      <h1 class="page-title"><%= __("ApplicationDetails.header") %></h1>
 
       <!-- Candidate Information -->
       <div class="details-section candidate-info">
-        <h3>Candidate Information</h3>
+        <h3><%= __("ApplicationDetails.candidateInfo.title") %></h3>
         <div class="candidate-profile">
           <img
             src="/images/<%= application.profilePictureId || 'default-profile' %>"
-            alt="Candidate Profile Picture"
+            alt="<%= __("ApplicationDetails.candidateInfo.profilePictureAlt") %>"
             class="profile-picture"
           />
           <div class="candidate-details">
-            <p><strong>Name:</strong> <%= application.candidateName %></p>
+            <p><strong><%= __("ApplicationDetails.candidateInfo.name") %>:</strong> <%= application.candidateName %></p>
             <p>
-              <strong>About:</strong> <%= application.candidateAbout || "N/A" %>
+              <strong><%= __("ApplicationDetails.candidateInfo.about") %>:</strong> <%= application.candidateAbout || __("ApplicationDetails.notAvailable") %>
             </p>
           </div>
         </div>
@@ -33,62 +33,60 @@
 
       <!-- Job Information -->
       <div class="details-section">
-        <h3>Job Information</h3>
-        <p><strong>Position:</strong> <%= application.jobTitle %></p>
+        <h3><%= __("ApplicationDetails.jobInfo.title") %></h3>
+        <p><strong><%= __("ApplicationDetails.jobInfo.position") %>:</strong> <%= application.jobTitle %></p>
         <p>
-          <strong>Description:</strong> <%= application.jobDescription || "N/A"
-          %>
+          <strong><%= __("ApplicationDetails.jobInfo.description") %>:</strong> <%= application.jobDescription || __("ApplicationDetails.notAvailable") %>
         </p>
         <p>
-          <strong>Location:</strong> <%= application.jobLocation || "Remote" %>
+          <strong><%= __("ApplicationDetails.jobInfo.location") %>:</strong> <%= application.jobLocation || __("ApplicationDetails.jobInfo.remote") %>
         </p>
         <p>
-          <strong>Category:</strong> <%= application.jobCategory || "General" %>
+          <strong><%= __("ApplicationDetails.jobInfo.category") %>:</strong> <%= application.jobCategory || __("ApplicationDetails.jobInfo.general") %>
         </p>
-        <p><strong>Job Status:</strong> <%= application.jobStatus %></p>
+        <p><strong><%= __("ApplicationDetails.jobInfo.status") %>:</strong> <%= application.jobStatus %></p>
       </div>
 
       <!-- Application Details -->
       <div class="details-section">
-        <h3>Application Details</h3>
-        <p><strong>Status:</strong> <%= application.status %></p>
-        <p><strong>Submitted on:</strong> <%= application.date %></p>
+        <h3><%= __("ApplicationDetails.applicationInfo.title") %></h3>
+        <p><strong><%= __("ApplicationDetails.applicationInfo.status") %>:</strong> <%= application.status %></p>
+        <p><strong><%= __("ApplicationDetails.applicationInfo.submittedOn") %>:</strong> <%= application.date %></p>
 
         <!-- Submitted Documents -->
-        <h3>Submitted Documents</h3>
+        <h3><%= __("ApplicationDetails.applicationInfo.documents.title") %></h3>
         <% for (const [doc, fileId] of Object.entries(application.submittedDocuments)) { %>
-            <% if (fileId) { %>
-              <div class="file-download-container">
-                <i class="fas fa-file-alt"></i>
-                <a href="/files/<%= fileId %>" class="file-download-btn" download>
-                  Download <%= doc %>
-                </a>
-              </div>
-            <% } else { %>
-              <p><strong><%= doc %>:</strong> Not Provided</p>
-            <% } %>
+          <% if (fileId) { %>
+            <div class="file-download-container">
+              <i class="fas fa-file-alt"></i>
+              <a href="/files/<%= fileId %>" class="file-download-btn" download>
+                <%= __("ApplicationDetails.applicationInfo.documents.download") %> <%= doc %>
+              </a>
+            </div>
+          <% } else { %>
+            <p><strong><%= doc %>:</strong> <%= __("ApplicationDetails.applicationInfo.documents.notProvided") %></p>
+          <% } %>
         <% } %>
 
         <!-- Custom Answers -->
-        <h3>Custom Answers</h3>
-        <% if (application.customQuestions.length > 0) { %> <%
-        application.customQuestions.forEach((question) => { %>
-        <p>
-          <strong><%= question.question %>:</strong> <%=
-          application.answers[question.id] || "No Answer Provided" %>
-        </p>
-        <% }) %> <% } else { %>
-        <p>No custom questions available.</p>
+        <h3><%= __("ApplicationDetails.applicationInfo.customAnswers.title") %></h3>
+        <% if (application.customQuestions.length > 0) { %>
+          <% application.customQuestions.forEach((question) => { %>
+            <p>
+              <strong><%= question.question %>:</strong> <%= application.answers[question.id] || __("ApplicationDetails.applicationInfo.customAnswers.noAnswerProvided") %>
+            </p>
+          <% }) %>
+        <% } else { %>
+          <p><%= __("ApplicationDetails.applicationInfo.customAnswers.noQuestions") %></p>
         <% } %>
       </div>
 
       <!-- Action Buttons -->
-      <% if (application.jobStatus === "closed" && application.status ===
-      "pending") { %>
-      <div class="actions-section">
-        <button id="accept-btn" class="action-btn accept-btn">Accept</button>
-        <button id="reject-btn" class="action-btn reject-btn">Reject</button>
-      </div>
+      <% if (application.jobStatus === "closed" && application.status === "pending") { %>
+        <div class="actions-section">
+          <button id="accept-btn" class="action-btn accept-btn"><%= __("ApplicationDetails.actions.accept") %></button>
+          <button id="reject-btn" class="action-btn reject-btn"><%= __("ApplicationDetails.actions.reject") %></button>
+        </div>
       <% } %>
     </div>
 

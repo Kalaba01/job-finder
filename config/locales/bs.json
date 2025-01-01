@@ -523,5 +523,45 @@
 	"viewButton": "Pregledaj",
 	"noApplicationsFound": "Nijedna prijava nije pronađena.",
 	"noResultsFound": "Nijedna prijava ne zadovoljava kriterije."
+	},
+	"ApplicationDetails": {
+		"title": "Detalji Aplikacije",
+		"header": "Detalji Aplikacije",
+		"candidateInfo": {
+		"title": "Informacije o Kandidatu",
+		"profilePictureAlt": "Profilna Slika Kandidata",
+		"name": "Ime",
+		"about": "O Kandidatu"
+		},
+		"jobInfo": {
+		"title": "Informacije o Poslu",
+		"position": "Pozicija",
+		"description": "Opis",
+		"location": "Lokacija",
+		"remote": "Daljinski",
+		"category": "Kategorija",
+		"general": "Općenito",
+		"status": "Status Posla"
+		},
+		"applicationInfo": {
+		"title": "Detalji Aplikacije",
+		"status": "Status",
+		"submittedOn": "Podneseno",
+		"documents": {
+			"title": "Podneseni Dokumenti",
+			"download": "Preuzmi",
+			"notProvided": "Nije Dostavljeno"
+		},
+		"customAnswers": {
+			"title": "Prilagođeni Odgovori",
+			"noQuestions": "Nema prilagođenih pitanja.",
+			"noAnswerProvided": "Odgovor nije dat"
+		}
+		},
+		"notAvailable": "N/A",
+		"actions": {
+		"accept": "Prihvati",
+		"reject": "Odbij"
+		}
 	}
 }

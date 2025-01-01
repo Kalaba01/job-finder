@@ -534,5 +534,45 @@
 	"viewButton": "View",
 	"noApplicationsFound": "No applications found.",
 	"noResultsFound": "No applications match the filter criteria."
+	},
+	"ApplicationDetails": {
+		"title": "Application Details",
+		"header": "Application Details",
+		"candidateInfo": {
+		"title": "Candidate Information",
+		"profilePictureAlt": "Candidate Profile Picture",
+		"name": "Name",
+		"about": "About"
+		},
+		"jobInfo": {
+		"title": "Job Information",
+		"position": "Position",
+		"description": "Description",
+		"location": "Location",
+		"remote": "Remote",
+		"category": "Category",
+		"general": "General",
+		"status": "Job Status"
+		},
+		"applicationInfo": {
+		"title": "Application Details",
+		"status": "Status",
+		"submittedOn": "Submitted on",
+		"documents": {
+			"title": "Submitted Documents",
+			"download": "Download",
+			"notProvided": "Not Provided"
+		},
+		"customAnswers": {
+			"title": "Custom Answers",
+			"noQuestions": "No custom questions available.",
+			"noAnswerProvided": "No Answer Provided"
+		}
+		},
+		"notAvailable": "N/A",
+		"actions": {
+		"accept": "Accept",
+		"reject": "Reject"
+		}
 	}
 }
