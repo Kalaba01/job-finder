@@ -21,7 +21,7 @@ exports.submitApplication = async (req, res) => {
 exports.showFirmApplications = async (req, res) => {
   try {
     const applications = await applicationService.getApplicationsForFirm(req.user.id);
-    res.render("firm/firm-application", { applications, locale: req.getLocale() });
+    res.render("firm/firm-applications", { applications, locale: req.getLocale() });
   } catch (error) {
     console.error("Error fetching applications:", error);
     res.status(500).render("error", { message: "Failed to load applications." });
@@ -36,5 +36,19 @@ exports.showCandidateApplications = async (req, res) => {
   } catch (error) {
     console.error("Error fetching applications for candidate:", error);
     res.status(500).render("error", { message: "Failed to load applications." });
+  }
+};
+
+exports.showApplicationDetails = async (req, res) => {
+  try {
+    const { applicationId } = req.params;
+    const application = await applicationService.getApplicationDetails(applicationId);
+
+    if (!application) return res.status(404).render("error", { message: "Application not found." });
+
+    res.render("firm/firm-application", { application, locale: req.getLocale() });
+  } catch (error) {
+    console.error("Error fetching application details:", error);
+    res.status(500).render("error", { message: "Failed to load application details." });
   }
 };

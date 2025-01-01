@@ -1,4 +1,4 @@
-const { Candidate, JobAd, Application, Firm } = require("../models");
+const { Candidate, JobAd, Application, Firm, File, Image } = require("../models");
 
 exports.applyForJob = async ({ candidateId, jobAdId, answers }) => {
   const jobAd = await JobAd.findByPk(jobAdId);
@@ -86,4 +86,45 @@ exports.getApplicationsForCandidate = async (candidateId) => {
     status: app.status,
     date: app.createdAt.toISOString().split("T")[0],
   }));
+};
+
+exports.getApplicationDetails = async (applicationId) => {
+  const application = await Application.findByPk(applicationId, {
+    include: [
+      {
+        model: Candidate,
+        attributes: ["first_name", "last_name", "about", "profile_picture_id"],
+        as: "Candidate"
+      },
+      {
+        model: JobAd,
+        attributes: ["title", "status", "custom_questions"],
+        as: "JobAd"
+      },
+    ],
+  });
+
+  if (!application) return null;
+
+  const customQuestions = typeof application.JobAd.custom_questions === "string"
+    ? JSON.parse(application.JobAd.custom_questions)
+    : application.JobAd.custom_questions || [];
+
+  const answers = typeof application.answers === "string"
+    ? JSON.parse(application.answers)
+    : application.answers || {};
+
+  return {
+    id: application.id,
+    candidateName: `${application.Candidate.first_name} ${application.Candidate.last_name}`,
+    candidateAbout: application.Candidate.about,
+    profilePictureId: application.Candidate.profile_picture_id,
+    jobTitle: application.JobAd.title,
+    jobStatus: application.JobAd.status,
+    submittedDocuments: application.submitted_documents || {},
+    answers,
+    customQuestions,
+    status: application.status,
+    date: application.createdAt.toISOString().split("T")[0]
+  };
 };

@@ -1,49 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const searchNameInput = document.getElementById("search-name");
-  const positionFilter = document.getElementById("filter-position");
-  const statusFilter = document.getElementById("filter-status");
-  const applicationsContainer = document.getElementById("applications-container");
-  const allApplications = Array.from(document.querySelectorAll(".application-card"));
+  const acceptBtn = document.getElementById("accept-btn");
+  const rejectBtn = document.getElementById("reject-btn");
 
-  const noResultsMessage = document.createElement("div");
-  noResultsMessage.className = "no-data-container";
-  noResultsMessage.innerHTML = `<p class="no-data">No applications match the criteria.</p>`;
-  applicationsContainer.appendChild(noResultsMessage);
-  noResultsMessage.style.display = "none";
-
-  const filterApplications = () => {
-    const searchQuery = searchNameInput.value.toLowerCase().trim();
-    const selectedPosition = positionFilter.value.trim();
-    const selectedStatus = statusFilter.value.trim();
-
-    let visibleCount = 0;
-
-    allApplications.forEach((card) => {
-      const candidateName = card
-        .querySelector("h2")
-        .textContent.toLowerCase()
-        .trim();
-      const jobTitle = card.getAttribute("data-position").trim();
-      const status = card.getAttribute("data-status").trim();
-
-      const matchesSearch = candidateName.includes(searchQuery);
-      const matchesPosition = selectedPosition
-        ? jobTitle === selectedPosition
-        : true;
-      const matchesStatus = selectedStatus ? status === selectedStatus : true;
-
-      if (matchesSearch && matchesPosition && matchesStatus) {
-        card.style.display = "block";
-        visibleCount++;
-      } else {
-        card.style.display = "none";
-      }
+  if (acceptBtn) {
+    acceptBtn.addEventListener("click", () => {
+      console.log("Application accepted!");
     });
+  }
 
-    noResultsMessage.style.display = visibleCount === 0 ? "block" : "none";
-  };
-
-  searchNameInput.addEventListener("input", filterApplications);
-  positionFilter.addEventListener("change", filterApplications);
-  statusFilter.addEventListener("change", filterApplications);
+  if (rejectBtn) {
+    rejectBtn.addEventListener("click", () => {
+      console.log("Application rejected!");
+    });
+  }
 });

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= __("Applications.title") %></title>
+    <link rel="stylesheet" href="/styles/firm-applications.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+  <body>
+    <%- include('../partials/top-bar') %>
+
+    <div class="container">
+      <h1 class="page-title"><%= __("Applications.header") %></h1>
+      <div class="header-controls">
+        <input
+          type="text"
+          id="search-name"
+          class="search-bar"
+          placeholder="<%= __('Applications.searchPlaceholder') %>"
+        />
+        <select id="filter-position" class="filter-dropdown">
+          <option value=""><%= __("Applications.allPositions") %></option>
+          <% const uniquePositions = applications.map((app) =>
+          app.jobTitle.trim()) .filter((value, index, self) =>
+          self.indexOf(value) === index) .sort();
+          uniquePositions.forEach((position) => { %>
+          <option value="<%= position %>"><%= position %></option>
+          <% }) %>
+        </select>
+        <select id="filter-status" class="filter-dropdown">
+          <option value=""><%= __("Applications.allStatuses") %></option>
+          <option value="pending">
+            <%= __("Applications.statusPending") %>
+          </option>
+          <option value="accepted">
+            <%= __("Applications.statusAccepted") %>
+          </option>
+          <option value="rejected">
+            <%= __("Applications.statusRejected") %>
+          </option>
+        </select>
+      </div>
+
+      <div id="applications-container" class="applications-container">
+        <% if (applications.length === 0) { %>
+        <div class="no-data-container">
+          <p class="no-data"><%= __("Applications.noData") %></p>
+        </div>
+        <% } else { %> <% applications.forEach((app) => { %>
+        <div
+          class="application-card"
+          data-status="<%= app.status %>"
+          data-position="<%= app.jobTitle.trim() %>"
+        >
+          <h2><%= app.candidateName %></h2>
+          <p>
+            <strong><%= __("Applications.labelPosition") %>:</strong> <%=
+            app.jobTitle %>
+          </p>
+          <p>
+            <strong><%= __("Applications.labelStatus") %>:</strong> <%=
+            __("Applications.status_" + app.status) %>
+          </p>
+          <p>
+            <strong><%= __("Applications.labelDate") %>:</strong> <%= app.date
+            %>
+          </p>
+          <button class="view-btn" data-id="<%= app.id %>">
+            <%= __("Applications.viewButton") %>
+          </button>
+        </div>
+        <% }) %> <% } %>
+      </div>
+    </div>
+
+    <script src="/js/firm-applications.js"></script>
+  </body>
+</html>

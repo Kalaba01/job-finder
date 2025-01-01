@@ -35,6 +35,8 @@ router.put("/job-ads/close/:jobAdId", jobAdsController.closeJobAd);
 router.delete("/job-ads/:jobAdId", jobAdsController.deleteJobAd);
 
 // Prikaz stranice za kandidate i njihove aplikacije
+router.get("/applications/:applicationId", applicationController.showApplicationDetails);
+
 router.get("/applications", applicationController.showFirmApplications);
 
 module.exports = router;
