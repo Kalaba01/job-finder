@@ -76,14 +76,16 @@
               <%= __("AdminJobAds.statusFilter." + jobAd.status) %>
             </p>
           </div>
-          <% if (jobAd.status === "open") { %>
-          <button class="close-job-btn">
-            <%= __("AdminJobAds.closeButton") %>
-          </button>
-          <% } %>
-          <button class="delete-job-btn">
-            <%= __("AdminJobAds.deleteButton") %>
-          </button>
+          <div class="job-actions">
+            <% if (jobAd.status === "open") { %>
+            <button class="close-job-btn">
+              <%= __("AdminJobAds.closeButton") %>
+            </button>
+            <% } %>
+            <button class="delete-job-btn">
+              <%= __("AdminJobAds.deleteButton") %>
+            </button>
+          </div>
         </div>
         <% }) %> <% } %>
       </div>
