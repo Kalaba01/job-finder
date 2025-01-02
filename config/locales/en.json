@@ -515,7 +515,8 @@
 		"viewButton": "View Details",
 		"status_pending": "Pending",
 		"status_accepted": "Accepted",
-		"status_rejected": "Rejected"
+		"status_rejected": "Rejected",
+		"noResults": "No applications match the criteria."
 	},
 	"CandidateApplications": {
 		"title": "My Applications",

@@ -4,10 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const confirmNo = document.getElementById("confirm-modal-cancel");
 
   const openConfirmModal = ({ title, message, action, id, onConfirm }) => {
-    document.getElementById("confirm-modal-title").textContent =
-      title || "Are you sure?";
-    document.getElementById("confirm-modal-message").textContent =
-      message || "This action cannot be undone.";
+    document.getElementById("confirm-modal-title").textContent = title || "Are you sure?";
+    document.getElementById("confirm-modal-message").textContent = message || "This action cannot be undone.";
     confirmYes.dataset.action = action || "";
     confirmYes.dataset.id = id || "";
 

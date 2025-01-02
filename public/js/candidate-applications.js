@@ -3,9 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const firmFilter = document.getElementById("firm-filter");
   const statusFilter = document.getElementById("status-filter");
   const applicationsList = document.getElementById("applications-list");
-  const noApplicationsMessage = document.getElementById(
-    "no-applications-message"
-  );
+  const noApplicationsMessage = document.getElementById("no-applications-message");
   const noResultsMessage = document.getElementById("no-results-message");
 
   const filterApplications = () => {

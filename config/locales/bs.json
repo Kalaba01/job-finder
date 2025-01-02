@@ -504,7 +504,8 @@
 		"viewButton": "Pogledaj detalje",
 		"status_pending": "Na čekanju",
 		"status_accepted": "Prihvaćeno",
-		"status_rejected": "Odbijeno"
+		"status_rejected": "Odbijeno",
+		"noResults": "Nijedna aplikacija ne odgovara kriterijima."
 	},
 	"CandidateApplications": {
 	"title": "Moje Prijave",

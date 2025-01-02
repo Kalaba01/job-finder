@@ -6,9 +6,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const allApplications = Array.from(document.querySelectorAll(".application-card"));
   const viewButtons = document.querySelectorAll(".view-btn");
 
+  const localizations = {
+    noResultsMessage: document.body.dataset.noResultsMessage
+  };
+
   const noResultsMessage = document.createElement("div");
   noResultsMessage.className = "no-data-container";
-  noResultsMessage.innerHTML = `<p class="no-data">No applications match the criteria.</p>`;
+  noResultsMessage.innerHTML = `<p class="no-data">${localizations.noResultsMessage}</p>`;
   applicationsContainer.appendChild(noResultsMessage);
   noResultsMessage.style.display = "none";
 
