@@ -11,6 +11,8 @@
     --success-hover-color: #218838;
     --danger-color: #dc3545;
     --danger-hover-color: #c82333;
+    --zip-btn-bg: #007bff;
+    --zip-btn-hover-bg: #0056b3;
 }
 
 /* Dark Theme */
@@ -26,6 +28,8 @@
     --success-hover-color: #28d131;
     --danger-color: #ee3e3b;
     --danger-hover-color: #ec2e2a;
+    --zip-btn-bg: #1694fa;
+    --zip-btn-hover-bg: #0d6efd;
 }
 
 body {
@@ -177,6 +181,25 @@ body {
 
 .reject-btn:hover {
     background-color: var(--danger-hover-color);
+    transform: scale(1.05);
+}
+
+.zip-btn {
+    display: block;
+    background-color: var(--zip-btn-bg);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 0.8rem 0 0 auto;
+}
+
+.zip-btn:hover {
+    background-color: var(--zip-btn-hover-bg);
     transform: scale(1.05);
 }
 

@@ -75,3 +75,19 @@ exports.updateApplicationStatus = async (req, res) => {
     res.status(500).json({ message: "Failed to update application status." });
   }
 };
+
+exports.generateApplicationZip = async (req, res) => {
+  try {
+    const { applicationId } = req.params;
+    const application = await applicationService.getApplicationById(applicationId);
+    const zipFileName = `${application.candidateName}_application.zip`;
+    const zipBuffer = await applicationService.createApplicationZip(applicationId);
+
+    res.setHeader('Content-Type', 'application/zip');
+    res.setHeader('Content-Disposition', `attachment; filename=${zipFileName}`);
+    res.send(zipBuffer);
+  } catch (error) {
+    console.error('Error generating ZIP:', error);
+    res.status(500).json({ message: 'Failed to generate ZIP file.' });
+  }
+};

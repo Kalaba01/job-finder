@@ -518,61 +518,62 @@
 		"status_rejected": "Rejected"
 	},
 	"CandidateApplications": {
-	"title": "My Applications",
-	"pageTitle": "My Applications",
-	"searchPlaceholder": "Search by position name...",
-	"allFirms": "All Firms",
-	"allStatuses": "All Statuses",
-	"status": {
-		"pending": "Pending",
-		"accepted": "Accepted",
-		"rejected": "Rejected"
-	},
-	"firmLabel": "Firm",
-	"statusLabel": "Status",
-	"dateLabel": "Applied on",
-	"viewButton": "View",
-	"noApplicationsFound": "No applications found.",
-	"noResultsFound": "No applications match the filter criteria."
+		"title": "My Applications",
+		"pageTitle": "My Applications",
+		"searchPlaceholder": "Search by position name...",
+		"allFirms": "All Firms",
+		"allStatuses": "All Statuses",
+		"status": {
+			"pending": "Pending",
+			"accepted": "Accepted",
+			"rejected": "Rejected"
+		},
+		"firmLabel": "Firm",
+		"statusLabel": "Status",
+		"dateLabel": "Applied on",
+		"viewButton": "View",
+		"noApplicationsFound": "No applications found.",
+		"noResultsFound": "No applications match the filter criteria."
 	},
 	"ApplicationDetails": {
 		"title": "Application Details",
 		"header": "Application Details",
 		"candidateInfo": {
-		"title": "Candidate Information",
-		"profilePictureAlt": "Candidate Profile Picture",
-		"name": "Name",
-		"about": "About"
+			"title": "Candidate Information",
+			"profilePictureAlt": "Candidate Profile Picture",
+			"name": "Name",
+			"about": "About"
 		},
 		"jobInfo": {
-		"title": "Job Information",
-		"position": "Position",
-		"description": "Description",
-		"location": "Location",
-		"remote": "Remote",
-		"category": "Category",
-		"general": "General",
-		"status": "Job Status"
+			"title": "Job Information",
+			"position": "Position",
+			"description": "Description",
+			"location": "Location",
+			"remote": "Remote",
+			"category": "Category",
+			"general": "General",
+			"status": "Job Status"
 		},
 		"applicationInfo": {
-		"title": "Application Details",
-		"status": "Status",
-		"submittedOn": "Submitted on",
-		"documents": {
-			"title": "Submitted Documents",
-			"download": "Download",
-			"notProvided": "Not Provided"
-		},
-		"customAnswers": {
-			"title": "Custom Answers",
-			"noQuestions": "No custom questions available.",
-			"noAnswerProvided": "No Answer Provided"
-		}
+			"title": "Application Details",
+			"status": "Status",
+			"submittedOn": "Submitted on",
+			"documents": {
+				"title": "Submitted Documents",
+				"download": "Download",
+				"notProvided": "Not Provided"
+			},
+			"customAnswers": {
+				"title": "Custom Answers",
+				"noQuestions": "No custom questions available.",
+				"noAnswerProvided": "No Answer Provided"
+			}
 		},
 		"notAvailable": "N/A",
 		"actions": {
-		"accept": "Accept",
-		"reject": "Reject"
+			"accept": "Accept",
+			"reject": "Reject",
+			"generateZip": "Generate Report"
 		}
 	}
 }

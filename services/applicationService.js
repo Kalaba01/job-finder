@@ -1,4 +1,41 @@
-const { Candidate, JobAd, Application, Firm, File, Image } = require("../models");
+const archiver = require('archiver');
+const fileService = require("./fileService");
+const { PassThrough } = require('stream');
+const { Candidate, JobAd, Application, Firm } = require("../models");
+
+exports.getApplicationById = async (applicationId) => {
+  const application = await Application.findByPk(applicationId, {
+    include: [
+      { model: Candidate, attributes: ['first_name', 'last_name', 'about'], as: 'Candidate' },
+      { model: JobAd, attributes: ['title', 'description', 'location', 'category', 'custom_questions'], as: 'JobAd' }
+    ],
+    attributes: ['id', 'submitted_documents', 'answers', 'status', 'createdAt']
+  });
+
+  if (!application) throw new Error('Application not found.');
+
+  const customQuestions = typeof application.JobAd.custom_questions === "string"
+    ? JSON.parse(application.JobAd.custom_questions)
+    : application.JobAd.custom_questions || [];
+
+  const answers = typeof application.answers === "string"
+    ? JSON.parse(application.answers)
+    : application.answers || {};
+
+  return {
+    id: application.id,
+    candidateName: `${application.Candidate.first_name} ${application.Candidate.last_name}`,
+    candidateAbout: application.Candidate.about,
+    jobTitle: application.JobAd.title,
+    jobDescription: application.JobAd.description,
+    jobLocation: application.JobAd.location,
+    jobCategory: application.JobAd.category,
+    date: application.createdAt.toISOString().split("T")[0],
+    customQuestions,
+    answers,
+    submittedDocuments: application.submitted_documents || {}
+  };
+};
 
 exports.applyForJob = async ({ candidateId, jobAdId, answers }) => {
   const jobAd = await JobAd.findByPk(jobAdId);
@@ -137,4 +174,57 @@ exports.updateApplicationStatus = async (applicationId, status) => {
   await application.save();
 
   return application;
+};
+
+exports.createApplicationZip = async (applicationId) => {
+  const application = await exports.getApplicationById(applicationId);
+
+  // Generate PDF using fileService
+  const pdfBuffer = await fileService.createPDF({
+    candidateName: application.candidateName,
+    candidateAbout: application.candidateAbout,
+    jobTitle: application.jobTitle,
+    jobDescription: application.jobDescription,
+    jobLocation: application.jobLocation,
+    jobCategory: application.jobCategory,
+    date: application.date,
+    customQuestions: application.customQuestions,
+    answers: application.answers
+  });
+
+  // Create ZIP archive
+  const archive = archiver('zip', { zlib: { level: 9 } });
+  const zipBuffer = [];
+  const zipStream = new PassThrough();
+
+  return new Promise((resolve, reject) => {
+    // Collect ZIP chunks
+    zipStream.on('data', (chunk) => zipBuffer.push(chunk));
+    zipStream.on('end', () => resolve(Buffer.concat(zipBuffer)));
+    zipStream.on('error', (err) => reject(err));
+
+    // Pipe archive to the PassThrough stream
+    archive.pipe(zipStream);
+
+    // Add PDF to ZIP
+    archive.append(pdfBuffer, { name: `Report_${application.candidateName}.pdf` });
+
+    // Add submitted documents to ZIP
+    (async () => {
+      try {
+        for (const [docName, fileId] of Object.entries(application.submittedDocuments)) {
+          if (fileId) {
+            const fileData = await fileService.getFileById(fileId);
+            const formattedDocName = `${docName}_${application.candidateName}.pdf`;
+            archive.append(fileData.content, { name: formattedDocName });
+          }
+        }
+
+        // Finalize the ZIP archive
+        await archive.finalize();
+      } catch (err) {
+        archive.emit('error', err);
+      }
+    })();
+  });
 };

@@ -560,8 +560,9 @@
 		},
 		"notAvailable": "N/A",
 		"actions": {
-		"accept": "Prihvati",
-		"reject": "Odbij"
+			"accept": "Prihvati",
+			"reject": "Odbij",
+			"generateZip": "Generiši Izvještaj"
 		}
 	}
 }
