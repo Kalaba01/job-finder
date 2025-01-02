@@ -311,7 +311,8 @@
 		},
 		"categoryLabel": "Category",
 		"createdLabel": "Created",
-		"viewButton": "View"
+		"viewButton": "View",
+		"noTicketsFound": "No tickets found."
 	},
 	"TicketConversation": {
 		"title": "Ticket Conversation - Ticket #{{id}}",

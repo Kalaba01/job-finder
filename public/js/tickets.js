@@ -2,9 +2,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput");
   const statusFilter = document.getElementById("statusFilter");
   const ticketList = document.getElementById("ticketList");
+
+  const localizations = {
+    noTicketsMessage: document.body.dataset.noTicketsMessage,
+  };
+
   const noTicketsMessage = document.createElement("p");
   noTicketsMessage.id = "noTicketsMessage";
-  noTicketsMessage.textContent = "No tickets found.";
+  noTicketsMessage.textContent = localizations.noTicketsMessage;
   noTicketsMessage.style.textAlign = "center";
   noTicketsMessage.style.color = "#999";
   noTicketsMessage.style.fontSize = "16px";

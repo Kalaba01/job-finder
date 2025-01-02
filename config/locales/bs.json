@@ -305,7 +305,8 @@
 		},
 		"categoryLabel": "Kategorija",
 		"createdLabel": "Kreirano",
-		"viewButton": "Prikaži"
+		"viewButton": "Prikaži",
+		"noTicketsFound": "Nijedan tiket nije pronađen."
 	},
 	"TicketConversation": {
 		"title": "Razgovor o Tiketu - Tiket #{{id}}",

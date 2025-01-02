@@ -83,7 +83,7 @@ body {
     border-radius: 6px;
     background-color: var(--input-background);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    color: #fff;
+    color: var(--text-color);
 }
 
 .search-bar:focus {
@@ -93,7 +93,7 @@ body {
 }
 
 .search-bar::placeholder {
-    color: var(--text-color);
+    color: var(--text-color) !important;
 }
 
 .filter-dropdown {
