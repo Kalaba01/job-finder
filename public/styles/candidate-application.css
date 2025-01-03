@@ -1,19 +1,43 @@
+/* Light Mode */
+:root {
+    --background-color: #f8f9fa;
+    --text-color: #343a40;
+    --container-background: #ffffff;
+    --border-color: #ced4da;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --secondary-background: #f1f3f5;
+    --primary-color: #007bff;
+    --hover-color: #0056b3;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --container-background: #1e1e1e;
+    --border-color: #333;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --secondary-background: #292929;
+    --primary-color: #1694fa;
+    --hover-color: #0d6efd;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
-    color: #343a40;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .application-details-container {
     max-width: 900px;
     margin: 40px auto;
     padding: 30px;
-    background-color: #ffffff;
-    border: 1px solid #ced4da;
+    background-color: var(--container-background);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 12px var(--shadow-color);
     animation: fadeIn 0.5s ease-in-out;
 }
 
@@ -22,15 +46,15 @@ body {
     font-weight: bold;
     text-align: center;
     margin-bottom: 30px;
-    color: #007bff;
+    color: var(--primary-color);
 }
 
 .details-section {
     margin-bottom: 30px;
     padding: 20px;
-    background-color: #f1f3f5;
+    background-color: var(--secondary-background);
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px var(--shadow-color);
 }
 
 .details-section:last-of-type {
@@ -40,17 +64,17 @@ body {
 .details-section h3 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-    color: #343a40;
+    color: var(--text-color);
 }
 
 .details-section p {
     margin: 5px 0;
     font-size: 1rem;
-    color: #343a40;
+    color: var(--text-color);
 }
 
 .details-section a {
-    color: #007bff;
+    color: var(--primary-color);
     text-decoration: none;
     font-weight: bold;
     display: inline-flex;
@@ -67,7 +91,7 @@ body {
 
 .file-download-container i {
     font-size: 1.5rem;
-    color: #007bff;
+    color: var(--primary-color);
 }
 
 .file-download-btn {
@@ -75,20 +99,20 @@ body {
     padding: 0.5rem 1.5rem;
     font-size: 1rem;
     font-weight: bold;
-    color: #007bff;
+    color: var(--primary-color);
     text-decoration: none;
     background-color: transparent;
-    border: 2px solid #007bff;
+    border: 2px solid var(--primary-color);
     border-radius: 8px;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--shadow-color);
 }
 
 .file-download-btn:hover {
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 .firm-info .firm-profile {
@@ -103,19 +127,19 @@ body {
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #ced4da;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--border-color);
+    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 .firm-info .firm-details p {
     font-size: 1.1rem;
     line-height: 1.5;
-    color: #343a40;
+    color: var(--text-color);
 }
 
 .generate-report-btn {
     display: block;
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -126,11 +150,11 @@ body {
     transition: background-color 0.3s ease, transform 0.2s ease;
     margin: 20px 0 0 auto;
     text-align: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px var(--shadow-color);
 }
 
 .generate-report-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--hover-color);
     transform: scale(1.05);
 }
 
