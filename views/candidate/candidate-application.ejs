@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="<%= locale %>" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Application Details</title>
+    <title><%= __("CandidateApplication.title") %></title>
     <link rel="stylesheet" href="/styles/candidate-application.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
@@ -11,75 +11,73 @@
     <%- include('../partials/top-bar') %>
 
     <div class="application-details-container">
-      <h1 class="page-title">Application Details</h1>
+      <h1 class="page-title"><%= __("CandidateApplication.header") %></h1>
 
-        <!-- Firm Information -->
-        <div class="details-section firm-info">
-        <h3>Firm Information</h3>
+      <!-- Firm Information -->
+      <div class="details-section firm-info">
+        <h3><%= __("CandidateApplication.firmInfo.title") %></h3>
         <div class="firm-profile">
-        <img
+          <img
             src="/images/<%= application.firmProfilePictureId %>"
-            alt="Firm Profile Picture"
+            alt="<%= __("CandidateApplication.firmInfo.profilePictureAlt") %>"
             class="profile-picture"
-        />
-        <div class="firm-details">
-            <p><strong>Name:</strong> <%= application.firmName %></p>
-            <p><strong>City:</strong> <%= application.firmCity || 'Not Available' %></p>
-            <p><strong>Address:</strong> <%= application.firmAddress || 'Not Available' %></p>
-            <p><strong>About:</strong> <%= application.firmAbout || 'Not Available' %></p>
-            <p><strong>Employees:</strong> <%= application.firmEmployees || 'Not Provided' %></p>
+          />
+          <div class="firm-details">
+            <p><strong><%= __("CandidateApplication.firmInfo.name") %>:</strong> <%= application.firmName %></p>
+            <p><strong><%= __("CandidateApplication.firmInfo.city") %>:</strong> <%= application.firmCity || __("CandidateApplication.notAvailable") %></p>
+            <p><strong><%= __("CandidateApplication.firmInfo.address") %>:</strong> <%= application.firmAddress || __("CandidateApplication.notAvailable") %></p>
+            <p><strong><%= __("CandidateApplication.firmInfo.about") %>:</strong> <%= application.firmAbout || __("CandidateApplication.notAvailable") %></p>
+            <p><strong><%= __("CandidateApplication.firmInfo.employees") %>:</strong> <%= application.firmEmployees || __("CandidateApplication.notProvided") %></p>
+          </div>
         </div>
-        </div>
-    </div>
-  
+      </div>
 
       <!-- Job Information -->
       <div class="details-section">
-        <h3>Job Information</h3>
-        <p><strong>Position:</strong> <%= application.jobTitle %></p>
-        <p><strong>Description:</strong> <%= application.jobDescription || 'Not Available' %></p>
-        <p><strong>Location:</strong> <%= application.jobLocation || 'Remote' %></p>
-        <p><strong>Category:</strong> <%= application.jobCategory || 'General' %></p>
+        <h3><%= __("CandidateApplication.jobInfo.title") %></h3>
+        <p><strong><%= __("CandidateApplication.jobInfo.position") %>:</strong> <%= application.jobTitle %></p>
+        <p><strong><%= __("CandidateApplication.jobInfo.description") %>:</strong> <%= application.jobDescription || __("CandidateApplication.notAvailable") %></p>
+        <p><strong><%= __("CandidateApplication.jobInfo.location") %>:</strong> <%= application.jobLocation || __("CandidateApplication.jobInfo.remote") %></p>
+        <p><strong><%= __("CandidateApplication.jobInfo.category") %>:</strong> <%= application.jobCategory || __("CandidateApplication.jobInfo.general") %></p>
       </div>
 
       <!-- Application Details -->
       <div class="details-section">
-        <h3>Application Details</h3>
-        <p><strong>Submitted On:</strong> <%= application.date %></p>
+        <h3><%= __("CandidateApplication.applicationInfo.title") %></h3>
+        <p><strong><%= __("CandidateApplication.applicationInfo.submittedOn") %>:</strong> <%= application.date %></p>
 
         <!-- Custom Questions and Answers -->
         <% if (application.customQuestions.length > 0) { %>
-          <h3>Custom Questions</h3>
+          <h3><%= __("CandidateApplication.applicationInfo.customQuestions.title") %></h3>
           <% application.customQuestions.forEach((question) => { %>
-            <p><strong><%= question.question %>:</strong> <%= application.answers[question.id] || 'No Answer Provided' %></p>
+            <p><strong><%= question.question %>:</strong> <%= application.answers[question.id] || __("CandidateApplication.applicationInfo.customQuestions.noAnswerProvided") %></p>
           <% }) %>
         <% } else { %>
-          <p>No custom questions were answered.</p>
+          <p><%= __("CandidateApplication.applicationInfo.customQuestions.noQuestions") %></p>
         <% } %>
       </div>
 
       <!-- Submitted Documents -->
       <div class="details-section documents">
-        <h3>Submitted Documents</h3>
+        <h3><%= __("CandidateApplication.documents.title") %></h3>
         <% for (const [docName, fileId] of Object.entries(application.submittedDocuments)) { %>
           <% if (fileId) { %>
             <div class="file-download-container">
               <i class="fas fa-file-alt"></i>
               <a href="/files/<%= fileId %>" class="file-download-btn" download>
-                Download <%= docName %>
+                <%= __("CandidateApplication.documents.download") %> <%= docName %>
               </a>
             </div>
           <% } else { %>
-            <p><strong><%= docName %>:</strong> Not Provided</p>
+            <p><strong><%= docName %>:</strong> <%= __("CandidateApplication.documents.notProvided") %></p>
           <% } %>
         <% } %>
       </div>
-    <div class="actions-section">
-        <button id="generate-report-btn" class="generate-report-btn">Generate Report</button>
-    </div>
+      <div class="actions-section">
+        <button id="generate-report-btn" class="generate-report-btn"><%= __("CandidateApplication.actions.generateReport") %></button>
+      </div>
     </div>
 
     <script src="/js/candidate-application.js"></script>
-    
   </body>
 </html>

@@ -579,33 +579,44 @@
 		}
 	},
 	"CandidateApplication": {
-		"title": "CandidateApplication.title",
-		"header": "CandidateApplication.header",
-		"candidateInfo": {
-			"title": "CandidateApplication.candidateInfo.title",
-			"name": "CandidateApplication.candidateInfo.name",
-			"about": "CandidateApplication.candidateInfo.about"
+		"title": "Application Details",
+		"header": "Application Details",
+		"firmInfo": {
+		"title": "Firm Information",
+		"profilePictureAlt": "Firm Profile Picture",
+		"name": "Name",
+		"city": "City",
+		"address": "Address",
+		"about": "About",
+		"employees": "Employees"
 		},
 		"jobInfo": {
-			"title": "CandidateApplication.jobInfo.title",
-			"position": "CandidateApplication.jobInfo.position",
-			"description": "CandidateApplication.jobInfo.description",
-			"location": "CandidateApplication.jobInfo.location",
-			"remote": "CandidateApplication.jobInfo.remote",
-			"category": "CandidateApplication.jobInfo.category",
-			"general": "CandidateApplication.jobInfo.general"
+		"title": "Job Information",
+		"position": "Position",
+		"description": "Description",
+		"location": "Location",
+		"remote": "Remote",
+		"category": "Category",
+		"general": "General"
 		},
-		"notAvailable": "CandidateApplication.notAvailable",
 		"applicationInfo": {
-			"title": "CandidateApplication.applicationInfo.title",
-			"submittedOn": "CandidateApplication.applicationInfo.submittedOn",
-			"customQuestions": {
-				"title": "CandidateApplication.applicationInfo.customQuestions.title"
-			}
+		"title": "Application Details",
+		"submittedOn": "Submitted On",
+		"customQuestions": {
+			"title": "Custom Questions",
+			"noQuestions": "No custom questions were answered.",
+			"noAnswerProvided": "No Answer Provided"
+		}
 		},
 		"documents": {
-			"title": "CandidateApplication.documents.title",
-			"download": "CandidateApplication.documents.download"
+		"title": "Submitted Documents",
+		"download": "Download",
+		"notProvided": "Not Provided"
+		},
+		"notAvailable": "Not Available",
+		"notProvided": "Not Provided",
+		"actions": {
+		"generateReport": "Generate Report"
 		}
 	}
 }
