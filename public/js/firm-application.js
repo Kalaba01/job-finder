@@ -1,29 +1,62 @@
+import { io } from "/socket.io-client/socket.io.esm.min.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   const acceptBtn = document.getElementById("accept-btn");
   const rejectBtn = document.getElementById("reject-btn");
   const reportBtn = document.getElementById("generate-zip-btn");
 
-  const handleApplicationAction = async (action) => {
-    const applicationId = window.location.pathname.split("/").pop();
-    try {
-      const response = await fetch(`/firm/applications/${applicationId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action }),
-      });
+  const localizations = {
+    acceptTitle: document.body.dataset.acceptTitle,
+    acceptMessage: document.body.dataset.acceptMessage,
+    rejectTitle: document.body.dataset.rejectTitle,
+    rejectMessage: document.body.dataset.rejectMessage,
+  };
 
-      if (response.ok) {
-        alert(`Application ${action}ed successfully!`);
-        location.reload();
-      } else {
-        const error = await response.json();
-        alert(`Failed to ${action} application: ${error.message}`);
-      }
-    } catch (err) {
-      console.error(`Error ${action}ing application:`, err);
-      alert(`Failed to ${action} application.`);
+  const removeActionButtons = () => {
+    const actionsSection = document.querySelector(".actions-section");
+    if (actionsSection) {
+      actionsSection.innerHTML = "";
     }
   };
+
+  const socket = io();
+
+  const handleApplicationAction = async (applicationId, action) => {
+    try {
+      socket.emit("update-application-status", { applicationId, action });
+      removeActionButtons();
+    } catch (error) {
+      console.error("Error handling application action:", error);
+    }
+  };
+
+  socket.on("application-status-updated", ({ applicationId, status }) => {
+    console.log(`Application ${applicationId} has been updated to ${status}.`);
+  });
+
+  if (acceptBtn) {
+    acceptBtn.addEventListener("click", () => {
+      window.openConfirmModal({
+        title: localizations.acceptTitle,
+        message: localizations.acceptMessage,
+        action: "accept",
+        id: window.location.pathname.split("/").pop(),
+        onConfirm: (id, action) => handleApplicationAction(id, action)
+      });
+    });
+  }
+
+  if (rejectBtn) {
+    rejectBtn.addEventListener("click", () => {
+      window.openConfirmModal({
+        title: localizations.rejectTitle,
+        message: localizations.rejectMessage,
+        action: "reject",
+        id: window.location.pathname.split("/").pop(),
+        onConfirm: (id, action) => handleApplicationAction(id, action)
+      });
+    });
+  }
 
   if (reportBtn) {
     reportBtn.addEventListener("click", async () => {
@@ -48,13 +81,5 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Error generating ZIP file.");
       }
     });
-  
-    if (acceptBtn) {
-      acceptBtn.addEventListener("click", () => handleApplicationAction("accept"));
-    }
-  
-    if (rejectBtn) {
-      rejectBtn.addEventListener("click", () => handleApplicationAction("reject"));
-    }
   }
 });

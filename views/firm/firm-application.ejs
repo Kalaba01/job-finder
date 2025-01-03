@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="/styles/firm-application.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
-  <body>
+  <body
+    data-accept-title="<%= __('ApplicationDetails.confirmModal.acceptTitle') %>"
+    data-accept-message="<%= __('ApplicationDetails.confirmModal.acceptMessage') %>"
+    data-reject-title="<%= __('ApplicationDetails.confirmModal.rejectTitle') %>"
+    data-reject-message="<%= __('ApplicationDetails.confirmModal.rejectMessage') %>"
+  >
     <%- include('../partials/top-bar') %>
 
     <div class="application-details-container">
@@ -87,13 +92,14 @@
           <button id="accept-btn" class="action-btn accept-btn"><%= __("ApplicationDetails.actions.accept") %></button>
           <button id="reject-btn" class="action-btn reject-btn"><%= __("ApplicationDetails.actions.reject") %></button>
         </div>
-
-        <button id="generate-zip-btn" class="action-btn zip-btn">
-          <%= __("ApplicationDetails.actions.generateZip") %>
-        </button>
       <% } %>
+
+      <button id="generate-zip-btn" class="action-btn zip-btn">
+        <%= __("ApplicationDetails.actions.generateZip") %>
+      </button>
     </div>
 
-    <script src="/js/firm-application.js"></script>
+    <%- include('../partials/confirm') %>
+    <script type="module" src="/js/firm-application.js"></script>
   </body>
 </html>

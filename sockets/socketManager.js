@@ -2,6 +2,7 @@ const { Server } = require("socket.io");
 const sessionMiddleware = require("../config/sessionConfig");
 const cookieParser = require("cookie-parser");
 const ticketSocket = require("./ticketSocket");
+const applicationSocket = require("./applicationSocket");
 
 let io;
 
@@ -30,6 +31,7 @@ const initializeSocket = (server) => {
 
   io.on("connection", (socket) => {
     ticketSocket(io, socket);
+    applicationSocket(io, socket);
   });
 };
 

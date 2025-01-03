@@ -146,7 +146,11 @@
 	},
 	"ConfirmModal": {
 		"yes": "Yes",
-		"no": "No"
+		"no": "No",
+		"acceptTitle": "ConfirmModal.acceptTitle",
+		"acceptMessage": "ConfirmModal.acceptMessage",
+		"rejectTitle": "ConfirmModal.rejectTitle",
+		"rejectMessage": "ConfirmModal.rejectMessage"
 	},
 	"UserManagement": {
 		"title": "User Management",
@@ -576,47 +580,55 @@
 			"accept": "Accept",
 			"reject": "Reject",
 			"generateZip": "Generate Report"
+		},
+		"confirmModal": {
+			"yes": "Yes",
+			"no": "No",
+			"acceptTitle": "Accept Application",
+			"acceptMessage": "Are you sure you want to accept this application?",
+			"rejectTitle": "Reject Application",
+			"rejectMessage": "Are you sure you want to reject this application?"
 		}
 	},
 	"CandidateApplication": {
 		"title": "Application Details",
 		"header": "Application Details",
 		"firmInfo": {
-		"title": "Firm Information",
-		"profilePictureAlt": "Firm Profile Picture",
-		"name": "Name",
-		"city": "City",
-		"address": "Address",
-		"about": "About",
-		"employees": "Employees"
+			"title": "Firm Information",
+			"profilePictureAlt": "Firm Profile Picture",
+			"name": "Name",
+			"city": "City",
+			"address": "Address",
+			"about": "About",
+			"employees": "Employees"
 		},
 		"jobInfo": {
-		"title": "Job Information",
-		"position": "Position",
-		"description": "Description",
-		"location": "Location",
-		"remote": "Remote",
-		"category": "Category",
-		"general": "General"
+			"title": "Job Information",
+			"position": "Position",
+			"description": "Description",
+			"location": "Location",
+			"remote": "Remote",
+			"category": "Category",
+			"general": "General"
 		},
 		"applicationInfo": {
-		"title": "Application Details",
-		"submittedOn": "Submitted On",
-		"customQuestions": {
-			"title": "Custom Questions",
-			"noQuestions": "No custom questions were answered.",
-			"noAnswerProvided": "No Answer Provided"
-		}
+			"title": "Application Details",
+			"submittedOn": "Submitted On",
+			"customQuestions": {
+				"title": "Custom Questions",
+				"noQuestions": "No custom questions were answered.",
+				"noAnswerProvided": "No Answer Provided"
+			}
 		},
 		"documents": {
-		"title": "Submitted Documents",
-		"download": "Download",
-		"notProvided": "Not Provided"
+			"title": "Submitted Documents",
+			"download": "Download",
+			"notProvided": "Not Provided"
 		},
 		"notAvailable": "Not Available",
 		"notProvided": "Not Provided",
 		"actions": {
-		"generateReport": "Generate Report"
+			"generateReport": "Generate Report"
 		}
 	}
 }

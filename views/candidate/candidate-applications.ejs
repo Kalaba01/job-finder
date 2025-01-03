@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="/styles/candidate-applications.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
-  <body>
+  <body 
+  data-user-id="<%= user.id %>"
+  >
     <%- include('../partials/top-bar') %>
 
     <div class="application-container">
@@ -79,6 +81,6 @@
       </p>
     </div>
 
-    <script src="/js/candidate-applications.js"></script>
+    <script type="module"  src="/js/candidate-applications.js"></script>
   </body>
 </html>

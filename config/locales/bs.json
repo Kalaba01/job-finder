@@ -565,6 +565,14 @@
 			"accept": "Prihvati",
 			"reject": "Odbij",
 			"generateZip": "Generiši Izvještaj"
+		},
+		"confirmModal": {
+			"yes": "Da",
+			"no": "Ne",
+			"acceptTitle": "Prihvati aplikaciju",
+			"acceptMessage": "Jeste li sigurni da želite prihvatiti ovu aplikaciju?",
+			"rejectTitle": "Odbij aplikaciju",
+			"rejectMessage": "Jeste li sigurni da želite odbiti ovu aplikaciju?"
 		}
 	},
 	"CandidateApplication": {

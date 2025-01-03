@@ -1,3 +1,5 @@
+import { io } from "/socket.io-client/socket.io.esm.min.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   const searchBar = document.getElementById("search-bar");
   const firmFilter = document.getElementById("firm-filter");
@@ -5,6 +7,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const applicationsList = document.getElementById("applications-list");
   const noApplicationsMessage = document.getElementById("no-applications-message");
   const noResultsMessage = document.getElementById("no-results-message");
+
+  const socket = io();
+  const candidateId = document.body.dataset.userId;
+
+  socket.emit("join-application", candidateId);
+
+  socket.on("application-status-updated", ({ applicationId, status }) => {
+    const applicationCard = document.querySelector(`.application-card[data-id='${applicationId}']`);
+    if (applicationCard) {
+      const statusElement = applicationCard.querySelector(".application-status");
+      statusElement.textContent = `Status: ${status.charAt(0).toUpperCase() + status.slice(1)}`;
+      applicationCard.dataset.status = status.toLowerCase();
+    }
+  });
 
   applicationsList.addEventListener("click", (event) => {
     const viewButton = event.target.closest(".view-btn");

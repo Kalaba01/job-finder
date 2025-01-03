@@ -32,7 +32,7 @@ exports.showCandidateApplications = async (req, res) => {
   try {
     const applications = await applicationService.getApplicationsForCandidate(req.user.id);
     const firms = Array.from(new Set(applications.map((app) => app.firmName))).sort();
-    res.render("candidate/candidate-applications", { applications, firms, locale: req.getLocale() });
+    res.render("candidate/candidate-applications", { applications, firms, user: req.user, locale: req.getLocale() });
   } catch (error) {
     console.error("Error fetching applications for candidate:", error);
     res.status(500).render("error", { message: "Failed to load applications." });
