@@ -6,6 +6,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const noApplicationsMessage = document.getElementById("no-applications-message");
   const noResultsMessage = document.getElementById("no-results-message");
 
+  applicationsList.addEventListener("click", (event) => {
+    const viewButton = event.target.closest(".view-btn");
+    if (viewButton) {
+      const applicationCard = viewButton.closest(".application-card");
+      const applicationId = applicationCard.dataset.id;
+      if (applicationId) {
+        window.location.href = `/candidate/applications/${applicationId}`;
+      }
+    }
+  });
+
   const filterApplications = () => {
     const searchQuery = searchBar.value.toLowerCase();
     const selectedFirm = firmFilter.value.toLowerCase();

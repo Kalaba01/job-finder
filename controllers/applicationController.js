@@ -39,6 +39,20 @@ exports.showCandidateApplications = async (req, res) => {
   }
 };
 
+exports.showCandidateApplicationDetails = async (req, res) => {
+  try {
+    const { applicationId } = req.params;
+    const application = await applicationService.getApplicationDetails(applicationId);
+
+    if (!application) return res.status(404).render("error", { message: "Application not found." });
+
+    res.render("candidate/candidate-application", { application, locale: req.getLocale() });
+  } catch (error) {
+    console.error("Error fetching application details:", error);
+    res.status(500).render("error", { message: "Failed to load application details." });
+  }
+};
+
 exports.showApplicationDetails = async (req, res) => {
   try {
     const { applicationId } = req.params;
@@ -58,16 +72,12 @@ exports.updateApplicationStatus = async (req, res) => {
     const { applicationId } = req.params;
     const { action } = req.body;
 
-    if (!["accept", "reject"].includes(action)) {
-      return res.status(400).json({ message: "Invalid action." });
-    }
+    if (!["accept", "reject"].includes(action)) return res.status(400).json({ message: "Invalid action." });
 
     const status = action === "accept" ? "accepted" : "rejected";
     const result = await applicationService.updateApplicationStatus(applicationId, status);
 
-    if (!result) {
-      return res.status(404).json({ message: "Application not found." });
-    }
+    if (!result) return res.status(404).json({ message: "Application not found." });
 
     res.status(200).json({ message: `Application ${action}ed successfully.` });
   } catch (error) {

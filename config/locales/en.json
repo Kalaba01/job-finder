@@ -577,5 +577,35 @@
 			"reject": "Reject",
 			"generateZip": "Generate Report"
 		}
+	},
+	"CandidateApplication": {
+		"title": "CandidateApplication.title",
+		"header": "CandidateApplication.header",
+		"candidateInfo": {
+			"title": "CandidateApplication.candidateInfo.title",
+			"name": "CandidateApplication.candidateInfo.name",
+			"about": "CandidateApplication.candidateInfo.about"
+		},
+		"jobInfo": {
+			"title": "CandidateApplication.jobInfo.title",
+			"position": "CandidateApplication.jobInfo.position",
+			"description": "CandidateApplication.jobInfo.description",
+			"location": "CandidateApplication.jobInfo.location",
+			"remote": "CandidateApplication.jobInfo.remote",
+			"category": "CandidateApplication.jobInfo.category",
+			"general": "CandidateApplication.jobInfo.general"
+		},
+		"notAvailable": "CandidateApplication.notAvailable",
+		"applicationInfo": {
+			"title": "CandidateApplication.applicationInfo.title",
+			"submittedOn": "CandidateApplication.applicationInfo.submittedOn",
+			"customQuestions": {
+				"title": "CandidateApplication.applicationInfo.customQuestions.title"
+			}
+		},
+		"documents": {
+			"title": "CandidateApplication.documents.title",
+			"download": "CandidateApplication.documents.download"
+		}
 	}
 }

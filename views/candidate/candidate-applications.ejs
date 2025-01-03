@@ -48,6 +48,7 @@
         <% } else { %> <% applications.forEach((app) => { %>
         <div
           class="application-card"
+          data-id="<%= app.id %>"
           data-title="<%= app.jobTitle.toLowerCase() %>"
           data-firm="<%= app.firmName.toLowerCase() %>"
           data-status="<%= app.status %>"

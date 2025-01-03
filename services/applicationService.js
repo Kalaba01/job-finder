@@ -131,12 +131,19 @@ exports.getApplicationDetails = async (applicationId) => {
       {
         model: Candidate,
         attributes: ["first_name", "last_name", "about", "profile_picture_id"],
-        as: "Candidate"
+        as: "Candidate",
       },
       {
         model: JobAd,
         attributes: ["title", "status", "custom_questions"],
-        as: "JobAd"
+        as: "JobAd",
+        include: [
+          {
+            model: Firm,
+            attributes: ["name", "city", "address", "about", "employees", "profile_picture_id"],
+            as: "Firm",
+          },
+        ],
       },
     ],
   });
@@ -155,7 +162,13 @@ exports.getApplicationDetails = async (applicationId) => {
     id: application.id,
     candidateName: `${application.Candidate.first_name} ${application.Candidate.last_name}`,
     candidateAbout: application.Candidate.about,
-    profilePictureId: application.Candidate.profile_picture_id,
+    candidateProfilePictureId: application.Candidate.profile_picture_id,
+    firmName: application.JobAd.Firm.name,
+    firmCity: application.JobAd.Firm.city,
+    firmAddress: application.JobAd.Firm.address,
+    firmAbout: application.JobAd.Firm.about,
+    firmEmployees: application.JobAd.Firm.employees,
+    firmProfilePictureId: application.JobAd.Firm.profile_picture_id,
     jobTitle: application.JobAd.title,
     jobStatus: application.JobAd.status,
     submittedDocuments: application.submitted_documents || {},

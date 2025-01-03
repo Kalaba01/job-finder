@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application Details</title>
+    <link rel="stylesheet" href="/styles/candidate-application.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+  <body>
+    <%- include('../partials/top-bar') %>
+
+    <div class="application-details-container">
+      <h1 class="page-title">Application Details</h1>
+
+        <!-- Firm Information -->
+        <div class="details-section firm-info">
+        <h3>Firm Information</h3>
+        <div class="firm-profile">
+        <img
+            src="/images/<%= application.firmProfilePictureId %>"
+            alt="Firm Profile Picture"
+            class="profile-picture"
+        />
+        <div class="firm-details">
+            <p><strong>Name:</strong> <%= application.firmName %></p>
+            <p><strong>City:</strong> <%= application.firmCity || 'Not Available' %></p>
+            <p><strong>Address:</strong> <%= application.firmAddress || 'Not Available' %></p>
+            <p><strong>About:</strong> <%= application.firmAbout || 'Not Available' %></p>
+            <p><strong>Employees:</strong> <%= application.firmEmployees || 'Not Provided' %></p>
+        </div>
+        </div>
+    </div>
+  
+
+      <!-- Job Information -->
+      <div class="details-section">
+        <h3>Job Information</h3>
+        <p><strong>Position:</strong> <%= application.jobTitle %></p>
+        <p><strong>Description:</strong> <%= application.jobDescription || 'Not Available' %></p>
+        <p><strong>Location:</strong> <%= application.jobLocation || 'Remote' %></p>
+        <p><strong>Category:</strong> <%= application.jobCategory || 'General' %></p>
+      </div>
+
+      <!-- Application Details -->
+      <div class="details-section">
+        <h3>Application Details</h3>
+        <p><strong>Submitted On:</strong> <%= application.date %></p>
+
+        <!-- Custom Questions and Answers -->
+        <% if (application.customQuestions.length > 0) { %>
+          <h3>Custom Questions</h3>
+          <% application.customQuestions.forEach((question) => { %>
+            <p><strong><%= question.question %>:</strong> <%= application.answers[question.id] || 'No Answer Provided' %></p>
+          <% }) %>
+        <% } else { %>
+          <p>No custom questions were answered.</p>
+        <% } %>
+      </div>
+
+      <!-- Submitted Documents -->
+      <div class="details-section documents">
+        <h3>Submitted Documents</h3>
+        <% for (const [docName, fileId] of Object.entries(application.submittedDocuments)) { %>
+          <% if (fileId) { %>
+            <div class="file-download-container">
+              <i class="fas fa-file-alt"></i>
+              <a href="/files/<%= fileId %>" class="file-download-btn" download>
+                Download <%= docName %>
+              </a>
+            </div>
+          <% } else { %>
+            <p><strong><%= docName %>:</strong> Not Provided</p>
+          <% } %>
+        <% } %>
+      </div>
+    <div class="actions-section">
+        <button id="generate-report-btn" class="generate-report-btn">Generate Report</button>
+    </div>
+    </div>
+
+    <script src="/js/candidate-application.js"></script>
+    
+  </body>
+</html>

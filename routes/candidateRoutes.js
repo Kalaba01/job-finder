@@ -40,4 +40,7 @@ router.post("/apply", uploadMiddleware, applicationController.submitApplication)
 // Ruta za prikaz aplikacija kandidata
 router.get("/applications", applicationController.showCandidateApplications);
 
+// Ruta za prikaz detalja aplikacije kandidata
+router.get("/applications/:applicationId", applicationController.showCandidateApplicationDetails);
+
 module.exports = router;
