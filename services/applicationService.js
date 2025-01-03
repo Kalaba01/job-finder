@@ -193,7 +193,7 @@ exports.createApplicationZip = async (applicationId) => {
   const application = await exports.getApplicationById(applicationId);
 
   // Generate PDF using fileService
-  const pdfBuffer = await fileService.createPDF({
+  const pdfBuffer = await fileService.createForFirmPDF({
     candidateName: application.candidateName,
     candidateAbout: application.candidateAbout,
     jobTitle: application.jobTitle,

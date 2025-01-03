@@ -1,4 +1,5 @@
 const applicationService = require("../services/applicationService");
+const fileService = require("../services/fileService");
 
 exports.submitApplication = async (req, res) => {
   try {
@@ -99,5 +100,28 @@ exports.generateApplicationZip = async (req, res) => {
   } catch (error) {
     console.error('Error generating ZIP:', error);
     res.status(500).json({ message: 'Failed to generate ZIP file.' });
+  }
+};
+
+exports.generateCandidatePDF = async (req, res) => {
+  try {
+    const { applicationId } = req.params;
+    const application = await applicationService.getApplicationDetails(applicationId);
+
+    if (!application) return res.status(404).json({ message: "Application not found." });
+
+    const pdfBuffer = await fileService.createForCandidatePDF(application);
+
+    // Sanitizacija imena fajla
+    const sanitizedFirmName = application.firmName.replace(/[^a-zA-Z0-9]/g, "_");
+    const sanitizedJobTitle = application.jobTitle.replace(/[^a-zA-Z0-9]/g, "_");
+    const fileName = `${sanitizedFirmName}_${sanitizedJobTitle}.pdf`;
+
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", `attachment; filename="${fileName}"`);
+    res.send(pdfBuffer);
+  } catch (error) {
+    console.error("Error generating candidate PDF:", error);
+    res.status(500).json({ message: "Failed to generate candidate PDF." });
   }
 };

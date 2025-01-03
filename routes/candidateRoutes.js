@@ -43,4 +43,7 @@ router.get("/applications", applicationController.showCandidateApplications);
 // Ruta za prikaz detalja aplikacije kandidata
 router.get("/applications/:applicationId", applicationController.showCandidateApplicationDetails);
 
+// Ruta za generisanje PDF izveštaja za kandidata
+router.get("/applications/:applicationId/report", applicationController.generateCandidatePDF);
+
 module.exports = router;

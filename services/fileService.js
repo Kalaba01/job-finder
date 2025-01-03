@@ -27,7 +27,7 @@ exports.saveFile = async (file) => {
   });
 };
 
-exports.createPDF = async (application) => {
+exports.createForFirmPDF = async (application) => {
   const pdfDoc = await PDFDocument.create();
   const page = pdfDoc.addPage();
   const { width, height } = page.getSize();
@@ -71,6 +71,44 @@ exports.createPDF = async (application) => {
       currentY -= 20;
     });
   }
+
+  const pdfBytes = await pdfDoc.save();
+  return Buffer.from(pdfBytes);
+};
+
+exports.createForCandidatePDF = async (application) => {
+  const pdfDoc = await PDFDocument.create();
+  const page = pdfDoc.addPage();
+  const { width, height } = page.getSize();
+  const fontSize = 12;
+  let currentY = height - 50;
+
+  // Firm Information
+  page.drawText("Firm Information", { x: 50, y: currentY, size: 18 });
+  currentY -= 30;
+  page.drawText(`Name: ${application.firmName}`, { x: 50, y: currentY, size: fontSize });
+  currentY -= 20;
+  page.drawText(`City: ${application.firmCity || "N/A"}`, { x: 50, y: currentY, size: fontSize });
+  currentY -= 20;
+  page.drawText(`Address: ${application.firmAddress || "N/A"}`, { x: 50, y: currentY, size: fontSize });
+  currentY -= 20;
+  page.drawText(`About: ${application.firmAbout || "N/A"}`, { x: 50, y: currentY, size: fontSize });
+  currentY -= 20;
+  page.drawText(`Employees: ${application.firmEmployees || "N/A"}`, { x: 50, y: currentY, size: fontSize });
+
+  // Job Information
+  currentY -= 40;
+  page.drawText("Job Information", { x: 50, y: currentY, size: 18 });
+  currentY -= 30;
+  page.drawText(`Position: ${application.jobTitle}`, { x: 50, y: currentY, size: fontSize });
+  currentY -= 20;
+  page.drawText(`Status: ${application.jobStatus}`, { x: 50, y: currentY, size: fontSize });
+
+  // Application Details
+  currentY -= 40;
+  page.drawText("Application Details", { x: 50, y: currentY, size: 18 });
+  currentY -= 30;
+  page.drawText(`Submitted On: ${application.date}`, { x: 50, y: currentY, size: fontSize });
 
   const pdfBytes = await pdfDoc.save();
   return Buffer.from(pdfBytes);
