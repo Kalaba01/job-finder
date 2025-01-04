@@ -628,7 +628,7 @@
 			"generateReport": "Generate Report"
 		}
 	},
-	"HiringProcesses": {
+	"FirmHiringProcesses": {
 		"title": "Hiring Processes",
 		"noProcessesFound": "No processes found matching your criteria.",
 		"searchPlaceholder": "Search by position...",
@@ -640,5 +640,21 @@
 		"currentPhase": "Current Phase",
 		"viewDetails": "View Details",
 		"notAvailable": "N/A"
+	},
+	"CandidateHiringProcesses": {
+		"title": "My Hiring Processes",
+		"heading": "My Hiring Processes",
+		"searchPlaceholder": "Search by job title...",
+		"filterByFirm": "Filter by firm",
+		"filterByPhase": "Filter by phase",
+		"firm": "Firm",
+		"city": "City",
+		"location": "Location",
+		"category": "Category",
+		"currentPhase": "Current Phase",
+		"notAvailable": "N/A",
+		"viewMore": "View More",
+		"noResultsMessage": "No hiring processes found matching your criteria."
 	}
+
 }

@@ -616,7 +616,7 @@
 		"generateReport": "Generiši izvještaj"
 		}
 	},
-	"HiringProcesses": {
+	"FirmHiringProcesses": {
 		"title": "Procesi zapošljavanja",
 		"noProcessesFound": "Nema procesa koji odgovaraju vašim kriterijima.",
 		"searchPlaceholder": "Pretraži po poziciji...",
@@ -628,5 +628,20 @@
 		"currentPhase": "Trenutna faza",
 		"viewDetails": "Pogledaj detalje",
 		"notAvailable": "N/A"
+	},
+	"CandidateHiringProcesses": {
+		"title": "Moji selekcioni procesi",
+		"heading": "Moji selekcioni procesi",
+		"searchPlaceholder": "Pretraži prema nazivu posla...",
+		"filterByFirm": "Filtriraj po firmi",
+		"filterByPhase": "Filtriraj po fazi",
+		"firm": "Firma",
+		"city": "Grad",
+		"location": "Lokacija",
+		"category": "Kategorija",
+		"currentPhase": "Trenutna faza",
+		"notAvailable": "N/A",
+		"viewMore": "Pogledaj detalje",
+		"noResultsMessage": "Nema selekcionih procesa koji odgovaraju vašim kriterijima."
 	}
 }

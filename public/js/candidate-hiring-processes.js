@@ -4,10 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const firmFilter = document.getElementById("firm-filter");
   const processList = document.querySelector(".process-list");
 
+  const localizations = {
+    noResultsMessage: document.body.dataset.noResultsMessage
+  };
+
   const noResultsMessage = document.createElement("p");
   noResultsMessage.id = "no-results-message";
-  noResultsMessage.textContent =
-    "No hiring processes found matching your criteria.";
+  noResultsMessage.textContent = localizations.noResultsMessage;
   noResultsMessage.style.display = "none";
   noResultsMessage.style.textAlign = "center";
   noResultsMessage.style.marginTop = "20px";
