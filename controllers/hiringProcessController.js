@@ -10,3 +10,20 @@ exports.getFirmHiringProcesses = async (req, res) => {
       res.status(500).send("An error occurred while fetching hiring processes.");
     }
 };
+
+exports.getCandidateHiringProcesses = async (req, res) => {
+  try {
+    const candidateId = req.user.id;
+    const { processes, phases, firms } = await hiringProcessService.getCandidateHiringProcesses(candidateId);
+
+    res.render("candidate/candidate-hiring-processes", {
+      locale: req.getLocale(),
+      hiringProcesses: processes,
+      phases,
+      firms
+    });
+  } catch (error) {
+    console.error("Error showing candidate hiring processes:", error.message || error);
+    res.status(500).send("An error occurred while fetching hiring processes.");
+  }
+};

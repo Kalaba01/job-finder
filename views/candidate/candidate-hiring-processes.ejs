@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Hiring Processes</title>
+  <link rel="stylesheet" href="/styles/candidate-hiring-processes.css">
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+</head>
+<body>
+  <%- include('../partials/top-bar') %>
+
+  <main class="hiring-processes">
+    <h1>My Hiring Processes</h1>
+
+    <div class="filters">
+        <input type="text" id="search-bar" placeholder="Search by job title..." />
+        <select id="firm-filter">
+          <option value="">Filter by firm</option>
+          <% firms.forEach((firm) => { %>
+            <option value="<%= firm.toLowerCase() %>"><%= firm %></option>
+          <% }); %>
+        </select>
+        <select id="phase-filter">
+            <option value="">Filter by phase</option>
+            <% phases.forEach((phase) => { %>
+              <option value="<%= phase.toLowerCase() %>"><%= phase %></option>
+            <% }); %>
+        </select>
+    </div>
+      
+    <div class="process-list">
+      <% hiringProcesses.forEach((process) => { %>
+        <div 
+            class="process-card" 
+            data-title="<%= process.jobAd.title %>" 
+            data-phase="<%= process.currentPhase.toLowerCase() %>"
+            data-firm="<%= process.jobAd.firm.name.toLowerCase() %>"
+        >
+          <h2><%= process.jobAd.title %></h2>
+          <p><strong>Firm:</strong> <%= process.jobAd.firm.name %></p>
+          <p><strong>City:</strong> <%= process.jobAd.firm.city || "N/A" %></p>
+          <p><strong>Location:</strong> <%= process.jobAd.location || "N/A" %></p>
+          <p><strong>Category:</strong> <%= process.jobAd.category || "N/A" %></p>
+          <p><strong>Current Phase:</strong> <%= process.currentPhase %></p>
+          <a href="/candidate/hiring-process/<%= process.id %>" class="view-more-btn">View More</a>
+        </div>
+      <% }); %>
+    </div>
+  </main>
+
+  <script src="/js/candidate-hiring-processes.js"></script>
+</body>
+</html>

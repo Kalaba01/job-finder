@@ -5,6 +5,7 @@ const ticketController = require("../controllers/ticketController");
 const jobAdsController = require("../controllers/jobAdsController");
 const firmController = require("../controllers/firmController");
 const applicationController = require("../controllers/applicationController");
+const hiringProcessController= require("../controllers/hiringProcessController");
 const jobAdsService = require("../services/jobAdsService");
 const { authMiddleware, languageMiddleware, setMenuOptions, uploadMiddleware } = require("../middleware");
 
@@ -45,5 +46,8 @@ router.get("/applications/:applicationId", applicationController.showCandidateAp
 
 // Ruta za generisanje PDF izveštaja za kandidata
 router.get("/applications/:applicationId/report", applicationController.generateCandidatePDF);
+
+// Ruta za prikaz selekcionih procesa kandidata
+router.get("/hiring-process", hiringProcessController.getCandidateHiringProcesses);
 
 module.exports = router;
