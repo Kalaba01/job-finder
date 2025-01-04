@@ -3,31 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hiring Processes</title>
+  <title><%= __('HiringProcesses.title') %></title>
   <link rel="stylesheet" href="/styles/firm-hiring-processes.css">
   <link rel="icon" type="image/png" href="/images/logo.png" />
 </head>
-<body>
+<body 
+  data-no-ads-message="<%= __('HiringProcesses.noProcessesFound') %>"
+>
     <%- include('../partials/top-bar') %>
 
   <main class="hiring-processes">
-    <h1>Hiring Processes</h1>
+    <h1><%= __('HiringProcesses.title') %></h1>
 
     <!-- Filters Section -->
     <div class="filters">
         <input
           type="text"
           id="search-bar"
-          placeholder="Search by position..."
+          placeholder="<%= __('HiringProcesses.searchPlaceholder') %>"
         />
         <select id="category-filter">
-          <option value="">Filter by category</option>
+          <option value=""><%= __('HiringProcesses.filterByCategory') %></option>
           <% uniqueCategories.forEach((category) => { %>
             <option value="<%= category.toLowerCase() %>"><%= category %></option>
           <% }); %>
         </select>
         <select id="phase-filter">
-            <option value="">Filter by phase</option>
+            <option value=""><%= __('HiringProcesses.filterByPhase') %></option>
             <% phases.forEach((phase) => { %>
               <option value="<%= phase.toLowerCase() %>"><%= phase %></option>
             <% }); %>
@@ -44,11 +46,11 @@
             data-phase="<%= process.currentPhase.toLowerCase() %>"
           >
             <h2><%= process.jobAd.title %></h2>
-            <p><strong>Location:</strong> <%= process.jobAd.location || "N/A" %></p>
-            <p><strong>Category:</strong> <%= process.jobAd.category || "N/A" %></p>
-            <p><strong>Candidate:</strong> <%= process.candidate.name %></p>
-            <p><strong>Current Phase:</strong> <%= process.currentPhase %></p>
-            <a href="/firm/hiring-process/<%= process.id %>" class="view-details-btn">View Details</a>
+            <p><strong><%= __('HiringProcesses.location') %>:</strong> <%= process.jobAd.location || __('HiringProcesses.notAvailable') %></p>
+            <p><strong><%= __('HiringProcesses.category') %>:</strong> <%= process.jobAd.category || __('HiringProcesses.notAvailable') %></p>
+            <p><strong><%= __('HiringProcesses.candidate') %>:</strong> <%= process.candidate.name %></p>
+            <p><strong><%= __('HiringProcesses.currentPhase') %>:</strong> <%= process.currentPhase %></p>
+            <a href="/firm/hiring-process/<%= process.id %>" class="view-details-btn"><%= __('HiringProcesses.viewDetails') %></a>
           </div>
         <% }); %>
     </div>

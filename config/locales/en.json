@@ -627,5 +627,18 @@
 		"actions": {
 			"generateReport": "Generate Report"
 		}
+	},
+	"HiringProcesses": {
+		"title": "Hiring Processes",
+		"noProcessesFound": "No processes found matching your criteria.",
+		"searchPlaceholder": "Search by position...",
+		"filterByCategory": "Filter by category",
+		"filterByPhase": "Filter by phase",
+		"location": "Location",
+		"category": "Category",
+		"candidate": "Candidate",
+		"currentPhase": "Current Phase",
+		"viewDetails": "View Details",
+		"notAvailable": "N/A"
 	}
 }

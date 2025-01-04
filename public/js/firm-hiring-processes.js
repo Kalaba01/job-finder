@@ -4,9 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const phaseFilter = document.getElementById("phase-filter");
   const processList = document.querySelector(".process-list");
 
+  const localizations = {
+    noAdsMessage: document.body.dataset.noAdsMessage
+  };
+
   const noResultsMessage = document.createElement("p");
   noResultsMessage.id = "no-results-message";
-  noResultsMessage.textContent = "No processes found matching your criteria.";
+  noResultsMessage.textContent = localizations.noAdsMessage;
   noResultsMessage.style.display = "none";
   noResultsMessage.style.textAlign = "center";
   noResultsMessage.style.marginTop = "20px";

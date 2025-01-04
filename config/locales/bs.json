@@ -615,5 +615,18 @@
 		"actions": {
 		"generateReport": "Generiši izvještaj"
 		}
+	},
+	"HiringProcesses": {
+		"title": "Procesi zapošljavanja",
+		"noProcessesFound": "Nema procesa koji odgovaraju vašim kriterijima.",
+		"searchPlaceholder": "Pretraži po poziciji...",
+		"filterByCategory": "Filtriraj po kategoriji",
+		"filterByPhase": "Filtriraj po fazi",
+		"location": "Lokacija",
+		"category": "Kategorija",
+		"candidate": "Kandidat",
+		"currentPhase": "Trenutna faza",
+		"viewDetails": "Pogledaj detalje",
+		"notAvailable": "N/A"
 	}
 }
