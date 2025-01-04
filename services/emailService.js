@@ -18,7 +18,7 @@ exports.sendEmail = async (to, subject, templatePath, templateData, cssPath) => 
       from: process.env.SMTP_FROM,
       to,
       subject,
-      html,
+      html
     });
 
     console.log(`Email sent: ${info.messageId}`);
@@ -94,5 +94,35 @@ exports.sendFirmRejectEmail = async (email, firm_name) => {
   } catch (error) {
     console.error(`Error sending firm rejection email to ${email}:`, error.message || error);
     throw new Error("Failed to send firm rejection email.");
+  }
+};
+
+exports.sendCandidateAcceptedEmail = async (email, first_name, job_title) => {
+  try {
+    const subject = "Your Application Has Been Accepted!";
+    const templatePath = path.join(__dirname, "../views/emails/candidate-accepted.ejs");
+    const cssPath = path.join(__dirname, "../public/styles/emails/candidate-accepted.css");
+    const templateData = { first_name, job_title };
+
+    await this.sendEmail(email, subject, templatePath, templateData, cssPath);
+    console.log(`Candidate accepted email sent to ${email}`);
+  } catch (error) {
+    console.error(`Error sending candidate accepted email to ${email}:`, error.message || error);
+    throw new Error("Failed to send candidate accepted email.");
+  }
+};
+
+exports.sendCandidateRejectedEmail = async (email, first_name, job_title) => {
+  try {
+    const subject = "Your Application Has Been Rejected";
+    const templatePath = path.join(__dirname, "../views/emails/candidate-rejected.ejs");
+    const cssPath = path.join(__dirname, "../public/styles/emails/candidate-rejected.css");
+    const templateData = { first_name, job_title };
+
+    await this.sendEmail(email, subject, templatePath, templateData, cssPath);
+    console.log(`Candidate rejected email sent to ${email}`);
+  } catch (error) {
+    console.error(`Error sending candidate rejected email to ${email}:`, error.message || error);
+    throw new Error("Failed to send candidate rejected email.");
   }
 };

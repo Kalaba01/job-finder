@@ -41,9 +41,6 @@ router.get("/applications/:applicationId", applicationController.showApplication
 // Detaljniji prikaz aplikacije
 router.get("/applications", applicationController.showFirmApplications);
 
-// Ruta za prihvatanje/odbijanje aplikacije
-router.put("/applications/:applicationId", applicationController.updateApplicationStatus);
-
 // Ruta za generisanje izvjestaja
 router.get('/applications/:applicationId/zip', applicationController.generateApplicationZip);
 

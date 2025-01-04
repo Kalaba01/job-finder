@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="candidate-accepted.css" />
+    <title>Application Accepted</title>
+  </head>
+  <body>
+    <div class="email-container">
+      <header class="email-header">
+        <h1>Congratulations, <%= first_name %>!</h1>
+      </header>
+      <main>
+        <p>We are excited to inform you that your application for the position of <strong><%= job_title %></strong> has been <strong>accepted</strong>.</p>
+        <p>You are now advancing to the next stage of our selection process. A member of our team will contact you shortly to discuss the next steps, which may include an interview or additional assessments.</p>
+        <p>We appreciate your enthusiasm and interest in joining us, and we look forward to learning more about you in the upcoming stages!</p>
+      </main>
+      <footer class="email-footer">
+        <p>Thank you,<br />The Job Finder Team</p>
+      </footer>
+    </div>
+  </body>
+</html>

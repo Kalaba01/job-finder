@@ -1,4 +1,5 @@
-const { Application } = require("../models");
+const { Application, Candidate, JobAd, User } = require("../models");
+const emailService = require("../services/emailService");
 
 module.exports = (io, socket) => {
   const userId = socket.request.session.passport.user;
@@ -21,7 +22,27 @@ module.exports = (io, socket) => {
 
       const status = action === "accept" ? "accepted" : "rejected";
 
-      const application = await Application.findByPk(applicationId);
+      const application = await Application.findByPk(applicationId, {
+        include: [
+          {
+            model: Candidate,
+            as: "Candidate",
+            include: [
+              {
+                model: User,
+                as: "CandidateUser",
+                attributes: ["email"]
+              },
+            ],
+          },
+          {
+            model: JobAd,
+            as: "JobAd",
+            attributes: ["title"]
+          },
+        ],
+      });
+
       if (!application) {
         socket.emit("error", { message: "Application not found." });
         return;
@@ -30,12 +51,30 @@ module.exports = (io, socket) => {
       application.status = status;
       await application.save();
 
-      const candidateId = application.candidate_id;
+      const candidate = application.Candidate;
+      const user = candidate?.CandidateUser;
+      const jobAd = application.JobAd;
 
-      io.to(`candidate-${candidateId}`).emit("application-status-updated", {
+      io.to(`candidate-${application.candidate_id}`).emit("application-status-updated", {
         applicationId,
-        status,
+        status
       });
+
+      if (user) {
+        if (status === "accepted") {
+          await emailService.sendCandidateAcceptedEmail(
+            user.email,
+            candidate.first_name,
+            jobAd.title
+          );
+        } else if (status === "rejected") {
+          await emailService.sendCandidateRejectedEmail(
+            user.email,
+            candidate.first_name,
+            jobAd.title
+          );
+        }
+      }
 
       console.log(`Application ${applicationId} updated to ${status}`);
     } catch (error) {

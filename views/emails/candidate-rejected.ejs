@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="candidate-rejected.css" />
+    <title>Application Rejected</title>
+  </head>
+  <body>
+    <div class="email-container">
+      <header class="email-header">
+        <h1>Dear <%= first_name %>,</h1>
+      </header>
+      <main>
+        <p>Thank you for taking the time to apply for the position of <strong><%= job_title %></strong>.</p>
+        <p>We regret to inform you that after careful consideration, your application has not been selected to move forward in our hiring process at this time.</p>
+        <p>We value your interest and encourage you to apply for future opportunities that align with your skills and career goals. Our team is constantly updating job openings, and we believe there may be a perfect fit for you in the future.</p>
+        <p>We wish you success in all your endeavors and hope to see your application again soon.</p>
+      </main>
+      <footer class="email-footer">
+        <p>Sincerely,<br />The Job Finder Team</p>
+      </footer>
+    </div>
+  </body>
+</html>

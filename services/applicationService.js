@@ -179,16 +179,6 @@ exports.getApplicationDetails = async (applicationId) => {
   };
 };
 
-exports.updateApplicationStatus = async (applicationId, status) => {
-  const application = await Application.findByPk(applicationId);
-  if (!application) return null;
-
-  application.status = status;
-  await application.save();
-
-  return application;
-};
-
 exports.createApplicationZip = async (applicationId) => {
   const application = await exports.getApplicationById(applicationId);
 
