@@ -132,14 +132,14 @@
 		"profile": "Profile",
 		"jobAds": "Job Ads",
 		"applications": "Applications",
-		"interviewCalendar": "Interview Calendar",
+		"hiringProcess": "Hiring Process",
 		"reviews": "Reviews",
 		"tickets": "Tickets"
 	},
 	"CandidateMenu": {
 		"profile": "Profile",
 		"myApplications": "My Applications",
-		"interviewCalendar": "Interview Calendar",
+		"hiringProcess": "Hiring Process",
 		"tickets": "Tickets",
 		"companyReviews": "Company Reviews"
 	},

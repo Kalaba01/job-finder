@@ -132,14 +132,14 @@
 		"profile": "Profil",
 		"jobAds": "Oglasi za posao",
 		"applications": "Aplikacije",
-		"interviewCalendar": "Kalendar intervjua",
+		"hiringProcess": "Proces Zapošljavanja",
 		"reviews": "Recenzije",
 		"tickets": "Tiketi"
 	},
 	"CandidateMenu": {
 		"profile": "Profil",
 		"myApplications": "Moje prijave",
-		"interviewCalendar": "Kalendar intervjua",
+		"hiringProcess": "Proces Zapošljavanja",
 		"tickets": "Tiketi",
 		"companyReviews": "Recenzije kompanija"
 	},

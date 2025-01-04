@@ -16,6 +16,7 @@ const Application = require("./Application");
 const HiringPhase = require("./HiringPhase");
 const HiringProcess = require("./HiringProcess");
 const InterviewComment = require("./InterviewComment");
+const InterviewInvite = require("./InterviewInvite");
 
 // Funkcija za definisanje asocijacija
 const defineAssociations = () => {
@@ -78,6 +79,10 @@ const defineAssociations = () => {
   HiringProcess.belongsTo(HiringPhase, { foreignKey: "current_phase", as: "CurrentPhase" });
   HiringPhase.hasMany(HiringProcess, { foreignKey: "current_phase", as: "ProcessesInPhase" });
 
+  // HiringProcess -> JobAd
+  HiringProcess.belongsTo(JobAd, { foreignKey: "job_ad_id", as: "JobAd" });
+  JobAd.hasMany(HiringProcess, { foreignKey: "job_ad_id", as: "HiringProcesses" });
+
   // InterviewComment -> HiringProcess
   InterviewComment.belongsTo(HiringProcess, { foreignKey: "hiring_process_id", as: "HiringProcess" });
   HiringProcess.hasMany(InterviewComment, { foreignKey: "hiring_process_id", as: "Comments" });
@@ -85,6 +90,22 @@ const defineAssociations = () => {
   // InterviewComment -> HiringPhase
   InterviewComment.belongsTo(HiringPhase, { foreignKey: "phase_id", as: "Phase" });
   HiringPhase.hasMany(InterviewComment, { foreignKey: "phase_id", as: "Comments" });
+
+  // InterviewInvite -> Candidate
+  InterviewInvite.belongsTo(Candidate, { foreignKey: "candidate_id", as: "Candidate" });
+  Candidate.hasMany(InterviewInvite, { foreignKey: "candidate_id", as: "InterviewInvites" });
+
+  // InterviewInvite -> Firm
+  InterviewInvite.belongsTo(Firm, { foreignKey: "firm_id", as: "Firm" });
+  Firm.hasMany(InterviewInvite, { foreignKey: "firm_id", as: "InterviewInvites" });
+
+  // InterviewInvite -> JobAd
+  InterviewInvite.belongsTo(JobAd, { foreignKey: "job_ad_id", as: "JobAd" });
+  JobAd.hasMany(InterviewInvite, { foreignKey: "job_ad_id", as: "InterviewInvites" });
+
+  // InterviewInvite -> HiringProcess
+  InterviewInvite.belongsTo(HiringProcess, { foreignKey: "hiring_process_id", as: "HiringProcess" });
+  HiringProcess.hasMany(InterviewInvite, { foreignKey: "hiring_process_id", as: "InterviewInvites" });
 
 };
 
@@ -107,5 +128,6 @@ module.exports = {
   Application,
   HiringPhase,
   HiringProcess,
-  InterviewComment
+  InterviewComment,
+  InterviewInvite
 };

@@ -4,6 +4,7 @@ const firmController = require("../controllers/firmController");
 const ticketController = require("../controllers/ticketController");
 const jobAdsController = require("../controllers/jobAdsController");
 const applicationController = require("../controllers/applicationController");
+const hiringProcessController = require("../controllers/hiringProcessController");
 const { authMiddleware, languageMiddleware, setMenuOptions, uploadMiddleware } = require("../middleware");
 
 // Middleware za postavljanje menuOptions
@@ -43,5 +44,8 @@ router.get("/applications", applicationController.showFirmApplications);
 
 // Ruta za generisanje izvjestaja
 router.get('/applications/:applicationId/zip', applicationController.generateApplicationZip);
+
+// Ruta za prikaz svih procesa selekcije
+router.get("/hiring-process", hiringProcessController.getFirmHiringProcesses);
 
 module.exports = router;

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hiring Processes</title>
+  <link rel="stylesheet" href="/styles/firm-hiring-processes.css">
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+</head>
+<body>
+    <%- include('../partials/top-bar') %>
+
+  <main class="hiring-processes">
+    <h1>Hiring Processes</h1>
+
+    <!-- Filters Section -->
+    <div class="filters">
+        <input
+          type="text"
+          id="search-bar"
+          placeholder="Search by position..."
+        />
+        <select id="category-filter">
+          <option value="">Filter by category</option>
+          <% uniqueCategories.forEach((category) => { %>
+            <option value="<%= category.toLowerCase() %>"><%= category %></option>
+          <% }); %>
+        </select>
+        <select id="phase-filter">
+            <option value="">Filter by phase</option>
+            <% phases.forEach((phase) => { %>
+              <option value="<%= phase.toLowerCase() %>"><%= phase %></option>
+            <% }); %>
+        </select>
+    </div>
+
+    <!-- Process List -->
+    <div class="process-list">
+        <% hiringProcesses.forEach((process) => { %>
+          <div 
+            class="process-card" 
+            data-title="<%= process.jobAd.title %>" 
+            data-category="<%= process.jobAd.category ? process.jobAd.category.toLowerCase() : '' %>" 
+            data-phase="<%= process.currentPhase.toLowerCase() %>"
+          >
+            <h2><%= process.jobAd.title %></h2>
+            <p><strong>Location:</strong> <%= process.jobAd.location || "N/A" %></p>
+            <p><strong>Category:</strong> <%= process.jobAd.category || "N/A" %></p>
+            <p><strong>Candidate:</strong> <%= process.candidate.name %></p>
+            <p><strong>Current Phase:</strong> <%= process.currentPhase %></p>
+            <a href="/firm/hiring-process/<%= process.id %>" class="view-details-btn">View Details</a>
+          </div>
+        <% }); %>
+    </div>
+  </main>
+
+  <script src="/js/firm-hiring-processes.js"></script>
+</body>
+</html>
