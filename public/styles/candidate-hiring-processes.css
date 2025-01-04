@@ -1,10 +1,45 @@
-/* General Styles */
+/* Light Mode */
+:root {
+    --bg-color: #f8f9fa;
+    --text-color: #333;
+    --card-bg-color: #fff;
+    --card-border-color: #ddd;
+    --input-bg-color: #fff;
+    --input-border-color: #ddd;
+    --placeholder-color: #000;
+    --btn-bg-color: #007bff;
+    --btn-hover-bg-color: #0056b3;
+    --btn-text-color: #fff;
+    --alt-btn-bg-color: #28a745;
+    --alt-btn-hover-bg-color: #218838;
+    --box-shadow: rgba(0, 0, 0, 0.1);
+    --hover-box-shadow: rgba(0, 0, 0, 0.2);
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg-color: #1e1e1e;
+    --card-border-color: #333;
+    --input-bg-color: #2e2e2e;
+    --input-border-color: #444;
+    --placeholder-color: #fff;
+    --btn-bg-color: #1e88e5;
+    --btn-hover-bg-color: #1565c0;
+    --btn-text-color: #fff;
+    --alt-btn-bg-color: #43a047;
+    --alt-btn-hover-bg-color: #2e7d32;
+    --box-shadow: rgba(0, 0, 0, 0.5);
+    --hover-box-shadow: rgba(0, 0, 0, 0.7);
+}
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 .hiring-processes {
@@ -17,7 +52,7 @@ h1 {
     font-size: 2rem;
     margin-bottom: 20px;
     text-align: center;
-    color: #333;
+    color: var(--text-color);
 }
 
 /* Filters */
@@ -34,15 +69,15 @@ h1 {
 #firm-filter {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--input-border-color);
     border-radius: 4px;
     font-size: 1rem;
-    background-color: #fff;
-    color: #333;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
 }
 
 #search-bar::placeholder {
-    color: #aaa;
+    color: var(--placeholder-color);
 }
 
 /* Process List */
@@ -53,38 +88,38 @@ h1 {
 }
 
 .process-card {
-    border: 1px solid #ddd;
+    border: 1px solid var(--card-border-color);
     border-radius: 8px;
-    background: #fff;
+    background: var(--card-bg-color);
     padding: 20px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px var(--box-shadow);
     max-width: 350px;
 }
 
 .process-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px var(--hover-box-shadow);
 }
 
 .process-card h2 {
     font-size: 1.4rem;
     margin-bottom: 10px;
-    color: #007bff;
+    color: var(--btn-bg-color);
 }
 
 .process-card p {
     font-size: 0.9rem;
     margin: 5px 0;
-    color: #555;
+    color: var(--text-color);
 }
 
 .view-details-btn {
     display: inline-block;
     margin-top: 15px;
     padding: 10px 15px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
     text-align: center;
     border: none;
     border-radius: 4px;
@@ -94,15 +129,15 @@ h1 {
 }
 
 .view-details-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--btn-hover-bg-color);
 }
 
 .view-more-btn {
     display: block;
     margin: 0.8rem 0 0 auto;
     padding: 8px 12px;
-    background-color: #28a745;
-    color: #fff;
+    background-color: var(--alt-btn-bg-color);
+    color: var(--btn-text-color);
     text-align: center;
     border: none;
     border-radius: 4px;
@@ -113,5 +148,5 @@ h1 {
 }
 
 .view-more-btn:hover {
-    background-color: #218838;
+    background-color: var(--alt-btn-hover-bg-color);
 }
