@@ -138,7 +138,6 @@
 	},
 	"CandidateMenu": {
 		"profile": "Profile",
-		"jobAds": "Job Ads",
 		"myApplications": "My Applications",
 		"interviewCalendar": "Interview Calendar",
 		"tickets": "Tickets",
@@ -146,11 +145,7 @@
 	},
 	"ConfirmModal": {
 		"yes": "Yes",
-		"no": "No",
-		"acceptTitle": "ConfirmModal.acceptTitle",
-		"acceptMessage": "ConfirmModal.acceptMessage",
-		"rejectTitle": "ConfirmModal.rejectTitle",
-		"rejectMessage": "ConfirmModal.rejectMessage"
+		"no": "No"
 	},
 	"UserManagement": {
 		"title": "User Management",
@@ -475,10 +470,12 @@
 		"requiredDocuments": "Required Documents",
 		"customQuestions": "Custom Questions",
 		"applyNow": "Apply Now",
-		"notAvailable": "N/A"
+		"notAvailable": "N/A",
+		"applyUnavailable": "Apply Unavailable"
 	},
 	"FirmDetails": {
 		"title": "{{name}} - Company Details",
+		"city": "City",
 		"address": "Address",
 		"employees": "Employees",
 		"unknown": "Unknown",

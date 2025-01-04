@@ -33,7 +33,6 @@ module.exports = (req, res, next) => {
       case "candidate":
         res.locals.menuOptions = [
           { name: translate("CandidateMenu.profile"), link: "/candidate/profile" },
-          { name: translate("CandidateMenu.jobAds"), link: "/candidate/job-ads" },
           { name: translate("CandidateMenu.myApplications"), link: "/candidate/applications" },
           { name: translate("CandidateMenu.interviewCalendar"), link: "/candidate/calendar" },
           { name: translate("CandidateMenu.tickets"), link: "/candidate/tickets" },

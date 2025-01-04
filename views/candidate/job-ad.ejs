@@ -80,10 +80,22 @@
       <% } %>
 
       <!-- Apply Now Button -->
-      <button class="apply-btn" data-candidate-documents='<%= JSON.stringify(candidateDocuments) %>'>
-        <%= __("JobAd.applyNow") %>
-      </button>      
-
+      <% if (timeLeft > 0) { %>
+        <button 
+          class="apply-btn" 
+          data-candidate-documents='<%= JSON.stringify(candidateDocuments) %>'
+        >
+          <%= __("JobAd.applyNow") %>
+        </button>
+      <% } else { %>
+        <button 
+          class="apply-btn disabled" 
+          disabled
+        >
+          <%= __("JobAd.applyUnavailable") %>
+        </button>
+      <% } %>
+    
       <%- include('apply-form', { jobAd, candidateDocuments }) %>
       <script src="/js/job-ad.js"></script>
 

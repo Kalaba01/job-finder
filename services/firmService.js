@@ -90,7 +90,7 @@ exports.getFirmDetailsWithJobAds = async (firmId) => {
           required: false
         }
       ],
-      attributes: ["name", "address", "about", "employees", "profile_picture_id"]
+      attributes: ["name", "city", "address", "about", "employees", "profile_picture_id"]
     });
 
     if (!firm) throw new Error("Firm not found");
@@ -98,6 +98,7 @@ exports.getFirmDetailsWithJobAds = async (firmId) => {
     return {
       id: firm.id,
       name: firm.name,
+      city: firm.city,
       address: firm.address || "N/A",
       about: firm.about || "No additional information about this company.",
       employees: firm.employees || "N/A",

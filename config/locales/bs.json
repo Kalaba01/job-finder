@@ -138,12 +138,10 @@
 	},
 	"CandidateMenu": {
 		"profile": "Profil",
-		"jobAds": "Oglasi za posao",
 		"myApplications": "Moje prijave",
 		"interviewCalendar": "Kalendar intervjua",
 		"tickets": "Tiketi",
-		"companyReviews": "Recenzije kompanija",
-		"myProfile": "CandidateMenu.myProfile"
+		"companyReviews": "Recenzije kompanija"
 	},
 	"ConfirmModal": {
 		"yes": "Da",
@@ -460,10 +458,12 @@
 		"requiredDocuments": "Potrebni dokumenti",
 		"customQuestions": "Prilagođena pitanja",
 		"applyNow": "Prijavi se",
-		"notAvailable": "Nije dostupno"
+		"notAvailable": "Nije dostupno",
+		"applyUnavailable": "Prijava nije dostupna"
 	},
 	"FirmDetails": {
 		"title": "{{name}} - Detalji o Kompaniji",
+		"city": "Grad",
 		"address": "Adresa",
 		"employees": "Broj Zaposlenih",
 		"unknown": "Nepoznato",

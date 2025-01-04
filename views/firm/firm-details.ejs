@@ -24,11 +24,14 @@
 
         <h1 class="firm-name"><%= firmDetails.name %></h1>
         <p class="firm-about"><%= firmDetails.about || __("FirmDetails.noAboutInfo") %></p>
+        <p class="firm-city">
+          <strong><%= __("FirmDetails.city") %>:</strong> <%= firmDetails.city %>
+        </p>
         <p class="firm-address">
-          <strong><%= __("FirmDetails.address") %>:</strong> <%= firmDetails.address || __("FirmDetails.notAvailable") %>
+          <strong><%= __("FirmDetails.address") %>:</strong> <%= firmDetails.address %>
         </p>
         <p class="firm-employees">
-          <strong><%= __("FirmDetails.employees") %>:</strong> <%= firmDetails.employees || __("FirmDetails.unknown") %>
+          <strong><%= __("FirmDetails.employees") %>:</strong> <%= firmDetails.employees %>
         </p>
       </div>
 

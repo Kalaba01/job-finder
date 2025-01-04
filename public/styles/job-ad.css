@@ -8,6 +8,8 @@
     --shadow-color: rgba(0, 0, 0, 0.1);
     --border-color: #fce4b2;
     --expired-color: red;
+    --disabled-bg-color: #d3d3d3;
+    --disabled-text-color: #8c8c8c;
 }
 
 /* Dark Mode */
@@ -20,6 +22,8 @@
     --shadow-color: rgba(255, 255, 255, 0.1);
     --border-color: #ffcc80;
     --expired-color: #ff6666;
+    --disabled-bg-color: #3a3a3a;
+    --disabled-text-color: #b1b1b1;
 }
 
 /* General Styling */
@@ -164,4 +168,16 @@ body {
 .apply-btn:active {
     background-color: var(--secondary-color);
     transform: scale(0.95);
+}
+
+.apply-btn.disabled {
+    background-color: var(--disabled-bg-color);
+    color: var(--disabled-text-color);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.apply-btn.disabled:hover {
+    background-color: var(--disabled-bg-color);
+    transform: none;
 }
