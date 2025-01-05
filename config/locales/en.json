@@ -655,6 +655,21 @@
 		"notAvailable": "N/A",
 		"viewMore": "View More",
 		"noResultsMessage": "No hiring processes found matching your criteria."
+	},
+	"FirmHiringProcessesDetails": {
+		"title": "Hiring Process Details",
+		"heading": "Hiring Process",
+		"noResultsMessage": "No candidates found for this hiring process.",
+		"searchPlaceholder": "Search by candidate name...",
+		"filterStatus": "Filter by status",
+		"statusPending": "Pending",
+		"statusAccepted": "Accepted",
+		"statusRejected": "Rejected",
+		"about": "About:",
+		"status": "Status:",
+		"acceptButton": "Accept",
+		"rejectButton": "Reject",
+		"applicationButton": "Application",
+		"detailsButton": "Details"
 	}
-
 }

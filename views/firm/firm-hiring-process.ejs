@@ -1,36 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= locale %>">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hiring Process Details</title>
+  <title><%= __('FirmHiringProcessesDetails.title') %></title>
   <link rel="stylesheet" href="/styles/firm-hiring-process.css">
   <link rel="icon" type="image/png" href="/images/logo.png" />
 </head>
-<body>
+<body 
+  data-no-results-message="<%= __('FirmHiringProcessesDetails.noResultsMessage') %>"
+>
   <%- include('../partials/top-bar') %>
 
   <main class="hiring-process">
-    <h1>Hiring Process: <%= processDetails.jobAd %></h1>
+    <h1><%= __('FirmHiringProcessesDetails.heading') %>: <%= processDetails.jobAd %></h1>
 
     <!-- Stepper -->
     <div class="stepper">
       <% ["Screening Interview", "Technical Interview", "Final Interview"].forEach((phase, index) => { %>
         <div class="step <%= processDetails.currentPhase === phase ? "active" : "" %>">
           <span class="step-number"><%= index + 1 %></span>
-          <span class="step-label"><%= phase %></span>
+          <span class="step-label"><%= (phase) %></span>
         </div>
       <% }) %>
     </div>
 
     <!-- Filters -->
     <div class="filters">
-      <input type="text" id="search-bar" placeholder="Search by candidate name..." />
+      <input type="text" id="search-bar" placeholder="<%= __('FirmHiringProcessesDetails.searchPlaceholder') %>" />
       <select id="status-filter">
-        <option value="">Filter by status</option>
-        <option value="pending">Pending</option>
-        <option value="accepted">Accepted</option>
-        <option value="rejected">Rejected</option>
+        <option value=""><%= __('FirmHiringProcessesDetails.filterStatus') %></option>
+        <option value="pending"><%= __('FirmHiringProcessesDetails.statusPending') %></option>
+        <option value="accepted"><%= __('FirmHiringProcessesDetails.statusAccepted') %></option>
+        <option value="rejected"><%= __('FirmHiringProcessesDetails.statusRejected') %></option>
       </select>
     </div>
 
@@ -43,13 +45,13 @@
           data-status="<%= candidate.status.toLowerCase() %>"
         >
           <h2><%= candidate.name %></h2>
-          <p><strong>About:</strong> <%= candidate.about %></p>
-          <p><strong>Status:</strong> <%= candidate.status || "Pending" %></p>
+          <p><strong><%= __('FirmHiringProcessesDetails.about') %></strong> <%= candidate.about %></p>
+          <p><strong><%= __('FirmHiringProcessesDetails.status') %></strong> <%= candidate.status || __('FirmHiringProcessesDetails.statusPending') %></p>
           <div class="actions">
-            <button class="accept-btn" data-id="<%= candidate.id %>">Accept</button>
-            <button class="reject-btn" data-id="<%= candidate.id %>">Reject</button>
-            <a href="/firm/applications/<%= candidate.applicationId %>" class="application-btn">Application</a>
-            <button class="details-btn" data-id="<%= candidate.id %>">Details</button>
+            <button class="accept-btn" data-id="<%= candidate.id %>"><%= __('FirmHiringProcessesDetails.acceptButton') %></button>
+            <button class="reject-btn" data-id="<%= candidate.id %>"><%= __('FirmHiringProcessesDetails.rejectButton') %></button>
+            <a href="/firm/applications/<%= candidate.applicationId %>" class="application-btn"><%= __('FirmHiringProcessesDetails.applicationButton') %></a>
+            <button class="details-btn" data-id="<%= candidate.id %>"><%= __('FirmHiringProcessesDetails.detailsButton') %></button>
           </div>
         </div>
       <% }) %>

@@ -4,10 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const candidatesContainer = document.querySelector(".candidates");
   const allCandidates = Array.from(document.querySelectorAll(".candidate-card"));
 
+  const localizations = {
+    noResultsMessage: document.body.dataset.noResultsMessage
+  };
+
   const noResultsMessage = document.createElement("p");
   noResultsMessage.id = "no-results-message";
   noResultsMessage.className = "no-data-container";
-  noResultsMessage.textContent = "No candidates found for this hiring process.";
+  noResultsMessage.textContent = localizations.noResultsMessage;
   candidatesContainer.appendChild(noResultsMessage);
   noResultsMessage.style.display = "none";
 

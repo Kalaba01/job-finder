@@ -509,56 +509,56 @@
 		"noResults": "Nijedna aplikacija ne odgovara kriterijima."
 	},
 	"CandidateApplications": {
-	"title": "Moje Prijave",
-	"pageTitle": "Moje Prijave",
-	"searchPlaceholder": "Pretraži po nazivu pozicije...",
-	"allFirms": "Sve Firme",
-	"allStatuses": "Svi Statusi",
-	"status": {
-		"pending": "Na čekanju",
-		"accepted": "Prihvaćena",
-		"rejected": "Odbijena"
-	},
-	"firmLabel": "Firma",
-	"statusLabel": "Status",
-	"dateLabel": "Datum prijave",
-	"viewButton": "Pregledaj",
-	"noApplicationsFound": "Nijedna prijava nije pronađena.",
-	"noResultsFound": "Nijedna prijava ne zadovoljava kriterije."
+		"title": "Moje Prijave",
+		"pageTitle": "Moje Prijave",
+		"searchPlaceholder": "Pretraži po nazivu pozicije...",
+		"allFirms": "Sve Firme",
+		"allStatuses": "Svi Statusi",
+		"status": {
+			"pending": "Na čekanju",
+			"accepted": "Prihvaćena",
+			"rejected": "Odbijena"
+		},
+		"firmLabel": "Firma",
+		"statusLabel": "Status",
+		"dateLabel": "Datum prijave",
+		"viewButton": "Pregledaj",
+		"noApplicationsFound": "Nijedna prijava nije pronađena.",
+		"noResultsFound": "Nijedna prijava ne zadovoljava kriterije."
 	},
 	"ApplicationDetails": {
 		"title": "Detalji Aplikacije",
 		"header": "Detalji Aplikacije",
 		"candidateInfo": {
-		"title": "Informacije o Kandidatu",
-		"profilePictureAlt": "Profilna Slika Kandidata",
-		"name": "Ime",
-		"about": "O Kandidatu"
+			"title": "Informacije o Kandidatu",
+			"profilePictureAlt": "Profilna Slika Kandidata",
+			"name": "Ime",
+			"about": "O Kandidatu"
 		},
 		"jobInfo": {
-		"title": "Informacije o Poslu",
-		"position": "Pozicija",
-		"description": "Opis",
-		"location": "Lokacija",
-		"remote": "Daljinski",
-		"category": "Kategorija",
-		"general": "Općenito",
-		"status": "Status Posla"
+			"title": "Informacije o Poslu",
+			"position": "Pozicija",
+			"description": "Opis",
+			"location": "Lokacija",
+			"remote": "Daljinski",
+			"category": "Kategorija",
+			"general": "Općenito",
+			"status": "Status Posla"
 		},
 		"applicationInfo": {
-		"title": "Detalji Aplikacije",
-		"status": "Status",
-		"submittedOn": "Podneseno",
-		"documents": {
-			"title": "Podneseni Dokumenti",
-			"download": "Preuzmi",
-			"notProvided": "Nije Dostavljeno"
-		},
-		"customAnswers": {
-			"title": "Prilagođeni Odgovori",
-			"noQuestions": "Nema prilagođenih pitanja.",
-			"noAnswerProvided": "Odgovor nije dat"
-		}
+			"title": "Detalji Aplikacije",
+			"status": "Status",
+			"submittedOn": "Podneseno",
+			"documents": {
+				"title": "Podneseni Dokumenti",
+				"download": "Preuzmi",
+				"notProvided": "Nije Dostavljeno"
+			},
+			"customAnswers": {
+				"title": "Prilagođeni Odgovori",
+				"noQuestions": "Nema prilagođenih pitanja.",
+				"noAnswerProvided": "Odgovor nije dat"
+			}
 		},
 		"notAvailable": "N/A",
 		"actions": {
@@ -579,41 +579,41 @@
 		"title": "Detalji aplikacije",
 		"header": "Detalji aplikacije",
 		"firmInfo": {
-		"title": "Informacije o firmi",
-		"profilePictureAlt": "Profilna slika firme",
-		"name": "Ime",
-		"city": "Grad",
-		"address": "Adresa",
-		"about": "Opis",
-		"employees": "Broj zaposlenih"
+			"title": "Informacije o firmi",
+			"profilePictureAlt": "Profilna slika firme",
+			"name": "Ime",
+			"city": "Grad",
+			"address": "Adresa",
+			"about": "Opis",
+			"employees": "Broj zaposlenih"
 		},
 		"jobInfo": {
-		"title": "Informacije o poslu",
-		"position": "Pozicija",
-		"description": "Opis",
-		"location": "Lokacija",
-		"remote": "Na daljinu",
-		"category": "Kategorija",
-		"general": "Opšte"
+			"title": "Informacije o poslu",
+			"position": "Pozicija",
+			"description": "Opis",
+			"location": "Lokacija",
+			"remote": "Na daljinu",
+			"category": "Kategorija",
+			"general": "Opšte"
 		},
 		"applicationInfo": {
-		"title": "Detalji aplikacije",
-		"submittedOn": "Poslano",
-		"customQuestions": {
-			"title": "Prilagođena pitanja",
-			"noQuestions": "Nema odgovorenih prilagođenih pitanja.",
-			"noAnswerProvided": "Nije dat odgovor"
-		}
+			"title": "Detalji aplikacije",
+			"submittedOn": "Poslano",
+			"customQuestions": {
+				"title": "Prilagođena pitanja",
+				"noQuestions": "Nema odgovorenih prilagođenih pitanja.",
+				"noAnswerProvided": "Nije dat odgovor"
+			}
 		},
 		"documents": {
-		"title": "Poslani dokumenti",
-		"download": "Preuzmi",
-		"notProvided": "Nije poslano"
+			"title": "Poslani dokumenti",
+			"download": "Preuzmi",
+			"notProvided": "Nije poslano"
 		},
 		"notAvailable": "Nije dostupno",
 		"notProvided": "Nije poslano",
 		"actions": {
-		"generateReport": "Generiši izvještaj"
+			"generateReport": "Generiši izvještaj"
 		}
 	},
 	"FirmHiringProcesses": {
@@ -643,5 +643,21 @@
 		"notAvailable": "N/A",
 		"viewMore": "Pogledaj detalje",
 		"noResultsMessage": "Nema selekcionih procesa koji odgovaraju vašim kriterijima."
+	},
+	"FirmHiringProcessesDetails": {
+		"title": "Detalji procesa zapošljavanja",
+		"heading": "Proces zapošljavanja",
+		"noResultsMessage": "Nijedan kandidat nije pronađen za ovaj proces zapošljavanja.",
+		"searchPlaceholder": "Pretraži po imenu kandidata...",
+		"filterStatus": "Filtriraj po statusu",
+		"statusPending": "Na čekanju",
+		"statusAccepted": "Prihvaćeno",
+		"statusRejected": "Odbijeno",
+		"about": "O kandidatu:",
+		"status": "Status:",
+		"acceptButton": "Prihvati",
+		"rejectButton": "Odbij",
+		"applicationButton": "Aplikacija",
+		"detailsButton": "Detalji"
 	}
 }
