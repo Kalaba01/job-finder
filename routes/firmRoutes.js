@@ -37,15 +37,18 @@ router.put("/job-ads/close/:jobAdId", jobAdsController.closeJobAd);
 router.delete("/job-ads/:jobAdId", jobAdsController.deleteJobAd);
 
 // Prikaz stranice za kandidate i njihove aplikacije
-router.get("/applications/:applicationId", applicationController.showApplicationDetails);
+router.get("/applications", applicationController.showFirmApplications);
 
 // Detaljniji prikaz aplikacije
-router.get("/applications", applicationController.showFirmApplications);
+router.get("/applications/:applicationId", applicationController.showApplicationDetails);
 
 // Ruta za generisanje izvjestaja
 router.get('/applications/:applicationId/zip', applicationController.generateApplicationZip);
 
 // Ruta za prikaz svih procesa selekcije
 router.get("/hiring-process", hiringProcessController.getFirmHiringProcesses);
+
+// Ruta za detaljan prikaz procesa selekcije
+router.get("/hiring-process/:processId", hiringProcessController.getFirmHiringProcessDetails);
 
 module.exports = router;

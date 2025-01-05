@@ -1,4 +1,4 @@
-const { HiringPhase, HiringProcess, JobAd, Candidate, Firm } = require("../models");
+const { HiringPhase, HiringProcess, JobAd, Candidate, Firm, Application } = require("../models");
 
 exports.getFirmHiringProcesses = async (firmId) => {
   try {
@@ -69,6 +69,71 @@ exports.getFirmHiringProcesses = async (firmId) => {
       error.message || error
     );
     throw new Error("Failed to fetch hiring processes.");
+  }
+};
+
+exports.getFirmHiringProcessDetails = async (processId) => {
+  try {
+    const hiringProcess = await HiringProcess.findOne({
+      where: { id: processId },
+      include: [
+        {
+          model: HiringPhase,
+          as: "CurrentPhase",
+          attributes: ["name", "sequence"]
+        },
+        {
+          model: JobAd,
+          as: "JobAd",
+          attributes: ["title"],
+          include: [
+            {
+              model: HiringProcess,
+              as: "RelatedHiringProcesses",
+              attributes: ["phase_status", "candidate_id"],
+              include: [
+                {
+                  model: Candidate,
+                  as: "Candidate",
+                  attributes: ["first_name", "last_name", "user_id", "about"],
+                  include: [
+                    {
+                      model: Application,
+                      as: "Applications",
+                      attributes: ["id"]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    });
+
+    if (!hiringProcess) throw new Error("Hiring process not found.");
+
+    const maxAboutLength = 100;
+
+    const candidates = hiringProcess.JobAd.RelatedHiringProcesses.map((process) => ({
+      id: process.Candidate.user_id,
+      name: `${process.Candidate.first_name} ${process.Candidate.last_name}`,
+      about: process.Candidate.about
+        ? `${process.Candidate.about.slice(0, maxAboutLength)}${process.Candidate.about.length > maxAboutLength ? "..." : ""}`
+        : "No information provided.",
+      status: process.phase_status,
+      applicationId: process.Candidate.Applications?.[0]?.id || null
+    }));
+
+    return {
+      id: hiringProcess.id,
+      currentPhase: hiringProcess.CurrentPhase.name,
+      jobAd: hiringProcess.JobAd.title,
+      candidates
+    };
+  } catch (error) {
+    console.error("Error fetching hiring process details:", error.message);
+    throw new Error("Failed to fetch hiring process details.");
   }
 };
 

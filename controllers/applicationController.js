@@ -57,7 +57,9 @@ exports.showCandidateApplicationDetails = async (req, res) => {
 exports.showApplicationDetails = async (req, res) => {
   try {
     const { applicationId } = req.params;
+    console.log("Kontroler:", applicationId );
     const application = await applicationService.getApplicationDetails(applicationId);
+    console.log("Kontroler vraceno: ", application);
 
     if (!application) return res.status(404).render("error", { message: "Application not found." });
 

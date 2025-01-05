@@ -63,6 +63,10 @@ const defineAssociations = () => {
   JobAd.belongsTo(Firm, { foreignKey: "firm_id", as: "Firm" });
   Firm.hasMany(JobAd, { foreignKey: "firm_id", as: "JobAds" });
 
+  // JobAd -> HiringProcess
+  JobAd.hasMany(HiringProcess, { foreignKey: "job_ad_id", as: "RelatedHiringProcesses" });
+  HiringProcess.belongsTo(JobAd, { foreignKey: "job_ad_id", as: "JobAd" });
+
   // Application -> JobAd
   Application.belongsTo(JobAd, { foreignKey: "job_ad_id", as: "JobAd" });
   JobAd.hasMany(Application, { foreignKey: "job_ad_id", as: "Applications" });
@@ -80,8 +84,8 @@ const defineAssociations = () => {
   HiringPhase.hasMany(HiringProcess, { foreignKey: "current_phase", as: "ProcessesInPhase" });
 
   // HiringProcess -> JobAd
-  HiringProcess.belongsTo(JobAd, { foreignKey: "job_ad_id", as: "JobAd" });
-  JobAd.hasMany(HiringProcess, { foreignKey: "job_ad_id", as: "HiringProcesses" });
+  HiringProcess.belongsTo(JobAd, { foreignKey: "job_ad_id", as: "AssociatedJobAd" });
+  JobAd.hasMany(HiringProcess, { foreignKey: "job_ad_id", as: "ProcessesInJobAd" });
 
   // InterviewComment -> HiringProcess
   InterviewComment.belongsTo(HiringProcess, { foreignKey: "hiring_process_id", as: "HiringProcess" });

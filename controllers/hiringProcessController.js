@@ -11,6 +11,18 @@ exports.getFirmHiringProcesses = async (req, res) => {
     }
 };
 
+exports.getFirmHiringProcessDetails = async (req, res) => {
+  try {
+    const { processId } = req.params;
+    const processDetails = await hiringProcessService.getFirmHiringProcessDetails(processId);
+
+    res.render("firm/firm-hiring-process", { locale: req.getLocale(), processDetails });
+  } catch (error) {
+    console.error("Error fetching hiring process details:", error.message);
+    res.status(500).send("Failed to fetch hiring process details.");
+  }
+};
+
 exports.getCandidateHiringProcesses = async (req, res) => {
   try {
     const candidateId = req.user.id;

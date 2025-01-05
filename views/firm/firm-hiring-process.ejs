@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hiring Process Details</title>
+  <link rel="stylesheet" href="/styles/firm-hiring-process.css">
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+</head>
+<body>
+  <%- include('../partials/top-bar') %>
+
+  <main class="hiring-process">
+    <h1>Hiring Process: <%= processDetails.jobAd %></h1>
+
+    <!-- Stepper -->
+    <div class="stepper">
+      <% ["Screening Interview", "Technical Interview", "Final Interview"].forEach((phase, index) => { %>
+        <div class="step <%= processDetails.currentPhase === phase ? "active" : "" %>">
+          <span class="step-number"><%= index + 1 %></span>
+          <span class="step-label"><%= phase %></span>
+        </div>
+      <% }) %>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+      <input type="text" id="search-bar" placeholder="Search by candidate name..." />
+      <select id="status-filter">
+        <option value="">Filter by status</option>
+        <option value="pending">Pending</option>
+        <option value="accepted">Accepted</option>
+        <option value="rejected">Rejected</option>
+      </select>
+    </div>
+
+    <!-- Candidate List -->
+    <div class="candidates">
+      <% processDetails.candidates.forEach((candidate) => { %>
+        <div 
+          class="candidate-card" 
+          data-name="<%= candidate.name.toLowerCase() %>" 
+          data-status="<%= candidate.status.toLowerCase() %>"
+        >
+          <h2><%= candidate.name %></h2>
+          <p><strong>About:</strong> <%= candidate.about %></p>
+          <p><strong>Status:</strong> <%= candidate.status || "Pending" %></p>
+          <div class="actions">
+            <button class="accept-btn" data-id="<%= candidate.id %>">Accept</button>
+            <button class="reject-btn" data-id="<%= candidate.id %>">Reject</button>
+            <a href="/firm/applications/<%= candidate.applicationId %>" class="application-btn">Application</a>
+            <button class="details-btn" data-id="<%= candidate.id %>">Details</button>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </main>
+
+  <script src="/js/firm-hiring-process.js"></script>
+</body>
+</html>

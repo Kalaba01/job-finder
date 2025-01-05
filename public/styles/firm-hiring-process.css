@@ -1,0 +1,207 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+.hiring-process {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Stepper */
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    gap: 10px;
+}
+
+.step {
+    text-align: center;
+    flex: 1;
+    position: relative;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.step:hover {
+    transform: translateY(-5px);
+}
+
+.step-number {
+    background: #e0e0e0;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.step-label {
+    font-size: 1rem;
+    color: #555;
+}
+
+.step.active .step-number {
+    background: #007bff;
+    color: white;
+}
+
+.step.active .step-label {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+#search-bar, #status-filter {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.2s;
+}
+
+#search-bar:focus, #status-filter:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Candidate Cards */
+.candidates {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+}
+
+.candidate-card {
+    display: block;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: left;
+    max-width: 400px;
+}
+
+.candidate-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.candidate-card h2 {
+    margin: 0 0 10px;
+    font-size: 1.5rem;
+    color: #007bff;
+    text-transform: capitalize;
+}
+
+.candidate-card p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+button, .application-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.accept-btn {
+    background-color: #28a745;
+    color: #fff;
+    box-shadow: 0 3px 6px rgba(40, 167, 69, 0.2);
+}
+
+.accept-btn:hover {
+    background-color: #218838;
+    box-shadow: 0 5px 10px rgba(40, 167, 69, 0.3);
+}
+
+.reject-btn {
+    background-color: #dc3545;
+    color: #fff;
+    box-shadow: 0 3px 6px rgba(220, 53, 69, 0.2);
+}
+
+.reject-btn:hover {
+    background-color: #c82333;
+    box-shadow: 0 5px 10px rgba(220, 53, 69, 0.3);
+}
+
+.details-btn {
+    background-color: #007bff;
+    color: #fff;
+    box-shadow: 0 3px 6px rgba(0, 123, 255, 0.2);
+}
+
+.details-btn:hover {
+    background-color: #0056b3;
+    box-shadow: 0 5px 10px rgba(0, 123, 255, 0.3);
+}
+
+/* Application Button */
+.application-btn {
+    background-color: #ffc107;
+    color: #fff;
+    border: 2px solid #ffc107;
+    box-shadow: 0 3px 6px rgba(255, 193, 7, 0.2);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.application-btn:hover {
+    background-color: #e0a800;
+    border-color: #e0a800;
+    box-shadow: 0 5px 10px rgba(255, 193, 7, 0.3);
+}
+
+#no-results-message {
+    text-align: center;
+    color: #888;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f8f9fa;
+}
