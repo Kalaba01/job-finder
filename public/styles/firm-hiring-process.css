@@ -1,9 +1,35 @@
+/* Light Mode */
+:root {
+    --background-color: #f0f2f5;
+    --text-color: #333;
+    --primary-color: #007bff;
+    --card-background: #fff;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --border-color: #ddd;
+    --input-focus-border: #007bff;
+    --step-active-background: #007bff;
+    --step-active-text: #fff;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --background-color: #1e1e1e;
+    --text-color: #fff;
+    --primary-color: #1a73e8;
+    --card-background: #2c2c2c;
+    --card-shadow: rgba(0, 0, 0, 0.5);
+    --border-color: #444;
+    --input-focus-border: #1a73e8;
+    --step-active-background: #1a73e8;
+    --step-active-text: #fff;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f2f5;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .hiring-process {
@@ -16,7 +42,7 @@ h1 {
     text-align: center;
     margin-bottom: 30px;
     font-size: 2rem;
-    color: #333;
+    color: var(--text-color);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -34,9 +60,9 @@ h1 {
     flex: 1;
     position: relative;
     padding: 10px;
-    background: #f8f9fa;
+    background: var(--card-background);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--card-shadow);
     transition: transform 0.2s;
 }
 
@@ -45,7 +71,7 @@ h1 {
 }
 
 .step-number {
-    background: #e0e0e0;
+    background: var(--border-color);
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -55,21 +81,22 @@ h1 {
     margin: 0 auto 10px;
     font-weight: bold;
     font-size: 1.2rem;
+    color: var(--text-color);
 }
 
 .step-label {
     font-size: 1rem;
-    color: #555;
+    color: var(--text-color);
 }
 
 .step.active .step-number {
-    background: #007bff;
-    color: white;
+    background: var(--step-active-background);
+    color: var(--step-active-text);
 }
 
 .step.active .step-label {
     font-weight: bold;
-    color: #007bff;
+    color: var(--step-active-background);
 }
 
 /* Filters */
@@ -79,18 +106,24 @@ h1 {
     margin-bottom: 30px;
 }
 
+#search-bar::placeholder {
+    color: var(--text-color);
+}
+
 #search-bar, #status-filter {
     flex: 1;
     padding: 12px 15px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     font-size: 1rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.2s;
+    box-shadow: 0 1px 3px var(--card-shadow);
+    background-color: var(--card-background);
+    color: var(--text-color);
+    transition: border-color 0.2s, background-color 0.3s, color 0.3s;
 }
 
 #search-bar:focus, #status-filter:focus {
-    border-color: #007bff;
+    border-color: var(--input-focus-border);
     outline: none;
 }
 
@@ -103,10 +136,10 @@ h1 {
 
 .candidate-card {
     display: block;
-    background: white;
+    background: var(--card-background);
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px var(--card-shadow);
     transition: transform 0.3s, box-shadow 0.3s;
     text-align: left;
     max-width: 400px;
@@ -114,20 +147,20 @@ h1 {
 
 .candidate-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 12px var(--card-shadow);
 }
 
 .candidate-card h2 {
     margin: 0 0 10px;
     font-size: 1.5rem;
-    color: #007bff;
+    color: var(--primary-color);
     text-transform: capitalize;
 }
 
 .candidate-card p {
     margin: 5px 0;
     font-size: 1rem;
-    color: #555;
+    color: var(--text-color);
 }
 
 .actions {
@@ -197,11 +230,11 @@ button, .application-btn {
 
 #no-results-message {
     text-align: center;
-    color: #888;
+    color: var(--text-color);
     font-size: 1.2rem;
     margin-top: 20px;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
-    background: #f8f9fa;
+    background: var(--background-color);
 }
