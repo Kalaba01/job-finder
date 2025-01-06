@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<%= locale %>">
+<html lang="<%= locale %>" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,7 @@
 </head>
 <body 
   data-no-results-message="<%= __('FirmHiringProcessesDetails.noResultsMessage') %>"
+  data-process-id="<%= processDetails.id %>"
 >
   <%- include('../partials/top-bar') %>
 
@@ -40,24 +41,28 @@
     <div class="candidates">
       <% processDetails.candidates.forEach((candidate) => { %>
         <div 
-          class="candidate-card" 
-          data-name="<%= candidate.name.toLowerCase() %>" 
+          class="candidate-card"
+          data-id="<%= candidate.id %>"
+          data-name="<%= candidate.name.toLowerCase() %>"
           data-status="<%= candidate.status.toLowerCase() %>"
         >
           <h2><%= candidate.name %></h2>
           <p><strong><%= __('FirmHiringProcessesDetails.about') %></strong> <%= candidate.about %></p>
-          <p><strong><%= __('FirmHiringProcessesDetails.status') %></strong> <%= candidate.status || __('FirmHiringProcessesDetails.statusPending') %></p>
+          <p class="status-text"><strong><%= __('FirmHiringProcessesDetails.status') %></strong> <%= candidate.status || __('FirmHiringProcessesDetails.statusPending') %></p>
           <div class="actions">
-            <button class="accept-btn" data-id="<%= candidate.id %>"><%= __('FirmHiringProcessesDetails.acceptButton') %></button>
-            <button class="reject-btn" data-id="<%= candidate.id %>"><%= __('FirmHiringProcessesDetails.rejectButton') %></button>
+            <% if (candidate.status === 'pending') { %>
+              <button class="accept-btn" data-id="<%= candidate.id %>"><%= __('FirmHiringProcessesDetails.acceptButton') %></button>
+              <button class="reject-btn" data-id="<%= candidate.id %>"><%= __('FirmHiringProcessesDetails.rejectButton') %></button>
+            <% } %>
             <a href="/firm/applications/<%= candidate.applicationId %>" class="application-btn"><%= __('FirmHiringProcessesDetails.applicationButton') %></a>
             <button class="details-btn" data-id="<%= candidate.id %>"><%= __('FirmHiringProcessesDetails.detailsButton') %></button>
-          </div>
+          </div>          
         </div>
       <% }) %>
     </div>
   </main>
 
-  <script src="/js/firm-hiring-process.js"></script>
+  <%- include('./firm-hiring-process-action') %>
+  <script type="module" src="/js/firm-hiring-process.js"></script>
 </body>
 </html>

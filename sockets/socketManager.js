@@ -3,6 +3,7 @@ const sessionMiddleware = require("../config/sessionConfig");
 const cookieParser = require("cookie-parser");
 const ticketSocket = require("./ticketSocket");
 const applicationSocket = require("./applicationSocket");
+const hiringProcessSocket = require("./hiringProcessSocket");
 
 let io;
 
@@ -10,8 +11,8 @@ const initializeSocket = (server) => {
   io = new Server(server, {
     cors: {
       origin: process.env.CLIENT_URL || "http://localhost:3000",
-      credentials: true,
-    },
+      credentials: true
+    }
   });
 
   io.use((socket, next) => {
@@ -32,10 +33,11 @@ const initializeSocket = (server) => {
   io.on("connection", (socket) => {
     ticketSocket(io, socket);
     applicationSocket(io, socket);
+    hiringProcessSocket(io, socket);
   });
 };
 
 module.exports = {
   initializeSocket,
-  getIo: () => io,
+  getIo: () => io
 };

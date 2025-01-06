@@ -126,7 +126,6 @@ exports.getApplicationsForCandidate = async (candidateId) => {
 };
 
 exports.getApplicationDetails = async (applicationId) => {
-  console.log("Service: ", applicationId);
   const application = await Application.findByPk(applicationId, {
     include: [
       {
@@ -149,11 +148,7 @@ exports.getApplicationDetails = async (applicationId) => {
     ],
   });
 
-  console.log("Pre ifa!");
-
   if (!application) return null;
-
-  console.log("Posle ifa!");
 
   const customQuestions = typeof application.JobAd.custom_questions === "string"
     ? JSON.parse(application.JobAd.custom_questions)
@@ -162,8 +157,6 @@ exports.getApplicationDetails = async (applicationId) => {
   const answers = typeof application.answers === "string"
     ? JSON.parse(application.answers)
     : application.answers || {};
-
-  console.log("Service aplikacija: ", application);
 
   return {
     id: application.id,

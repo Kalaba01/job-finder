@@ -1,5 +1,20 @@
 const { HiringPhase, HiringProcess, JobAd, Candidate, Firm, Application } = require("../models");
 
+exports.findHiringProcessWithDetails = async (processId, candidateId) => {
+  return HiringProcess.findOne({
+    where: { id: processId, candidate_id: candidateId },
+    include: [
+      { model: Candidate, as: "Candidate" },
+      { model: HiringPhase, as: "CurrentPhase" },
+      { model: JobAd, as: "JobAd" }
+    ]
+  });
+};
+
+exports.updatePhaseStatus = async (process, phaseStatus) => {
+  return process.update({ phase_status: phaseStatus });
+};
+
 exports.getFirmHiringProcesses = async (firmId) => {
   try {
     const phasesData = await HiringPhase.findAll({
