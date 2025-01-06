@@ -3,7 +3,7 @@
   <div class="apply-popup-container">
     <button class="apply-popup-close-btn" id="closePopup">&times;</button>
     <h2 class="apply-popup-title"><%= __("ApplyForm.title", { jobTitle: jobAd.title }) %></h2>
-    <% const missingDocuments = jobAd.required_documents.filter(
+    <% const missingDocuments = (jobAd.required_documents || []).filter(
       (doc) => !candidateDocuments[doc]
     ); %>
     <% if (missingDocuments.length > 0) { %>

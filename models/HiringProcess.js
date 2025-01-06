@@ -16,15 +16,6 @@ const HiringProcess = sequelize.define(
       },
       onDelete: "CASCADE"
     },
-    candidate_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: Candidate,
-        key: "user_id"
-      },
-      onDelete: "CASCADE"
-    },
     current_phase: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -34,9 +25,9 @@ const HiringProcess = sequelize.define(
       },
       onDelete: "SET NULL"
     },
-    phase_status: {
-      type: DataTypes.ENUM("pending", "passed", "failed"),
-      defaultValue: "pending"
+    active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
     }
   },
   {

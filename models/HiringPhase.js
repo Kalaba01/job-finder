@@ -11,6 +11,10 @@ const HiringPhase = sequelize.define(
     sequence: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    is_final: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   },
   {

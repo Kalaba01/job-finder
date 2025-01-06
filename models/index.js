@@ -15,6 +15,7 @@ const JobAd = require("./JobAd");
 const Application = require("./Application");
 const HiringPhase = require("./HiringPhase");
 const HiringProcess = require("./HiringProcess");
+const HiringProcessCandidate = require("./HiringProcessCandidate");
 const InterviewComment = require("./InterviewComment");
 const InterviewInvite = require("./InterviewInvite");
 
@@ -75,10 +76,6 @@ const defineAssociations = () => {
   Application.belongsTo(Candidate, { foreignKey: "candidate_id", as: "Candidate" });
   Candidate.hasMany(Application, { foreignKey: "candidate_id", as: "Applications" });
 
-  // HiringProcess -> Candidate
-  HiringProcess.belongsTo(Candidate, { foreignKey: "candidate_id", as: "Candidate" });
-  Candidate.hasMany(HiringProcess, { foreignKey: "candidate_id", as: "HiringProcesses" });
-
   // HiringProcess -> HiringPhase
   HiringProcess.belongsTo(HiringPhase, { foreignKey: "current_phase", as: "CurrentPhase" });
   HiringPhase.hasMany(HiringProcess, { foreignKey: "current_phase", as: "ProcessesInPhase" });
@@ -86,6 +83,18 @@ const defineAssociations = () => {
   // HiringProcess -> JobAd
   HiringProcess.belongsTo(JobAd, { foreignKey: "job_ad_id", as: "AssociatedJobAd" });
   JobAd.hasMany(HiringProcess, { foreignKey: "job_ad_id", as: "ProcessesInJobAd" });
+
+  // HiringProcessCandidate -> HiringProcess
+  HiringProcessCandidate.belongsTo(HiringProcess, { foreignKey: "hiring_process_id", as: "HiringProcess" });
+  HiringProcess.hasMany(HiringProcessCandidate, { foreignKey: "hiring_process_id", as: "CandidatesInProcess" });
+
+  // HiringProcessCandidate -> Candidate
+  HiringProcessCandidate.belongsTo(Candidate, { foreignKey: "candidate_id", as: "Candidate" });
+  Candidate.hasMany(HiringProcessCandidate, { foreignKey: "candidate_id", as: "Processes" });
+
+  // HiringProcessCandidate -> HiringPhase
+  HiringProcessCandidate.belongsTo(HiringPhase, { foreignKey: "phase_id", as: "Phase" });
+  HiringPhase.hasMany(HiringProcessCandidate, { foreignKey: "phase_id", as: "CandidatesInPhase" });
 
   // InterviewComment -> HiringProcess
   InterviewComment.belongsTo(HiringProcess, { foreignKey: "hiring_process_id", as: "HiringProcess" });

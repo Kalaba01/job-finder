@@ -1,10 +1,11 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 const HiringProcess = require("./HiringProcess");
+const Candidate = require("./Candidate");
 const HiringPhase = require("./HiringPhase");
 
-const InterviewComment = sequelize.define(
-  "InterviewComment",
+const HiringProcessCandidate = sequelize.define(
+  "HiringProcessCandidate",
   {
     hiring_process_id: {
       type: DataTypes.INTEGER,
@@ -12,6 +13,15 @@ const InterviewComment = sequelize.define(
       references: {
         model: HiringProcess,
         key: "id"
+      },
+      onDelete: "CASCADE"
+    },
+    candidate_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Candidate,
+        key: "user_id"
       },
       onDelete: "CASCADE"
     },
@@ -24,9 +34,9 @@ const InterviewComment = sequelize.define(
       },
       onDelete: "CASCADE"
     },
-    comment: {
-      type: DataTypes.TEXT,
-      allowNull: false
+    status: {
+      type: DataTypes.ENUM("pending", "passed", "failed"),
+      defaultValue: "pending"
     }
   },
   {
@@ -34,4 +44,4 @@ const InterviewComment = sequelize.define(
   }
 );
 
-module.exports = InterviewComment;
+module.exports = HiringProcessCandidate;
