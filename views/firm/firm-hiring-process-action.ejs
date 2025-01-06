@@ -4,19 +4,19 @@
         <h2 id="popup-title"></h2>
         <form id="action-form">
             <div id="comment-field">
-                <label for="comment">Comment</label>
-                <textarea id="comment" name="comment" rows="4" placeholder="Enter your comment here..." required></textarea>
+                <label for="comment"><%= __('FirmHiringProcessAction.commentLabel') %></label>
+                <textarea id="comment" name="comment" rows="4" placeholder="<%= __('FirmHiringProcessAction.commentPlaceholder') %>" required></textarea>
             </div>
             <div id="date-field" style="display: none;">
-                <label for="next-interview-date">Next Interview Date</label>
+                <label for="next-interview-date"><%= __('FirmHiringProcessAction.nextInterviewDateLabel') %></label>
                 <input type="date" id="next-interview-date" name="nextInterviewDate" />
             </div>
             <div id="note-field" style="display: none;">
-                <label for="note">Note</label>
-                <textarea id="note" name="note" rows="2" placeholder="Optional note for interview"></textarea>
+                <label for="note"><%= __('FirmHiringProcessAction.noteLabel') %></label>
+                <textarea id="note" name="note" rows="2" placeholder="<%= __('FirmHiringProcessAction.notePlaceholder') %>"></textarea>
             </div>
-            <button type="submit" id="submit-action" class="btn-submit">Submit</button>
-            <button type="button" id="close-popup" class="btn-cancel">Cancel</button>
+            <button type="submit" id="submit-action" class="btn-submit"><%= __('FirmHiringProcessAction.submitButton') %></button>
+            <button type="button" id="close-popup" class="btn-cancel"><%= __('FirmHiringProcessAction.cancelButton') %></button>
         </form>
     </div>
 </div>

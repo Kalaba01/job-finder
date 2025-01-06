@@ -659,5 +659,14 @@
 		"rejectButton": "Odbij",
 		"applicationButton": "Aplikacija",
 		"detailsButton": "Detalji"
-	}
+	},
+	"FirmHiringProcessAction": {
+		"commentLabel": "Komentar",
+		"commentPlaceholder": "Unesite vaš komentar ovde...",
+		"nextInterviewDateLabel": "Datum sledećeg intervjua",
+		"noteLabel": "Napomena",
+		"notePlaceholder": "Opcionalna napomena za intervju",
+		"submitButton": "Potvrdi",
+		"cancelButton": "Otkaži"
+  	}
 }

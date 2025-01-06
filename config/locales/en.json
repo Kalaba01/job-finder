@@ -671,5 +671,14 @@
 		"rejectButton": "Reject",
 		"applicationButton": "Application",
 		"detailsButton": "Details"
-	}
+	},
+	"FirmHiringProcessAction": {
+		"commentLabel": "Comment",
+		"commentPlaceholder": "Enter your comment here...",
+		"nextInterviewDateLabel": "Next Interview Date",
+		"noteLabel": "Note",
+		"notePlaceholder": "Optional note for interview",
+		"submitButton": "Submit",
+		"cancelButton": "Cancel"
+  	}
 }
