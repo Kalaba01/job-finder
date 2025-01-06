@@ -60,6 +60,11 @@
         </div>
       <% }) %>
     </div>
+
+    <!-- Move to Next Phase Button -->
+    <% if (processDetails.candidates.every(candidate => candidate.status !== 'pending')) { %>
+      <button id="move-to-next-phase" class="btn-move-phase">Move To Next Phase</button>
+    <% } %>
   </main>
 
   <%- include('./firm-hiring-process-action') %>

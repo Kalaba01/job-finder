@@ -67,6 +67,38 @@ module.exports = (io, socket) => {
     }
   });
 
+  socket.on("move-to-next-phase", async ({ processId }) => {
+    try {
+      const process = await hiringProcessService.findHiringProcessById(processId);
+  
+      if (!process) {
+        socket.emit("error", "Hiring process not found.");
+        return;
+      }
+  
+      const pendingCandidates = await hiringProcessService.hasPendingCandidates(processId);
+  
+      if (pendingCandidates) {
+        socket.emit("error", "All candidates must be accepted or rejected to move to the next phase.");
+        return;
+      }
+  
+      const { nextPhase, updatedProcesses } = await hiringProcessService.moveToNextPhase(process);
+  
+      // Emitovanje događaja o pomeranju faze i ažuriranim kandidatima
+      io.to(`process-${processId}`).emit("phase-moved", {
+        currentPhase: nextPhase.name,
+        updatedCandidates: updatedProcesses,
+        message: "Moved to the next phase successfully."
+      });
+  
+      console.log(`Moved to next phase: ${nextPhase.name}`);
+    } catch (error) {
+      console.error("Error moving to next phase:", error);
+      socket.emit("error", "Failed to move to the next phase.");
+    }
+  });  
+
   socket.on("disconnect", () => {
     console.log(`User disconnected: ${userId} (Socket ID: ${socket.id})`);
   });

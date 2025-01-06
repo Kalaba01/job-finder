@@ -252,3 +252,21 @@ button,
     border-radius: 8px;
     background: var(--background-color);
 }
+
+.btn-move-phase {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.btn-move-phase:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}

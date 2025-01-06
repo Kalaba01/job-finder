@@ -1,5 +1,32 @@
 const { HiringPhase, HiringProcess, JobAd, Candidate, Firm, Application } = require("../models");
 
+exports.findHiringProcessById = async (processId) => {
+  const process = await HiringProcess.findOne({
+    where: { id: processId },
+    include: [
+      {
+        model: Candidate,
+        as: "Candidate",
+        attributes: ["user_id", "first_name", "last_name"]
+      },
+      {
+        model: HiringPhase,
+        as: "CurrentPhase",
+        attributes: ["id", "name"]
+      },
+      {
+        model: JobAd,
+        as: "JobAd",
+        attributes: ["id", "title"]
+      }
+    ]
+  });
+
+  if (!process) throw new Error(`Hiring process with ID ${processId} not found.`);
+
+  return process;
+};
+
 exports.findHiringProcessWithDetails = async (processId, candidateId) => {
   return HiringProcess.findOne({
     where: { id: processId, candidate_id: candidateId },
@@ -13,6 +40,51 @@ exports.findHiringProcessWithDetails = async (processId, candidateId) => {
 
 exports.updatePhaseStatus = async (process, phaseStatus) => {
   return process.update({ phase_status: phaseStatus });
+};
+
+exports.hasPendingCandidates = async (processId) => {
+  const processes = await HiringProcess.findAll({
+    where: { job_ad_id: processId },
+    include: [
+      {
+        model: Candidate,
+        as: "Candidate",
+        attributes: ["user_id"]
+      }
+    ]
+  });
+
+  return processes.some((process) => process.phase_status === "pending");
+};
+
+exports.moveToNextPhase = async (process) => {
+  const currentPhase = process.current_phase;
+
+  // Pronađi sledeću fazu
+  const nextPhase = await HiringPhase.findOne({
+    where: { sequence: currentPhase + 1 }
+  });
+
+  if (!nextPhase) throw new Error("No further phases available.");
+
+  // Ažuriraj sve kandidate u trenutnoj fazi koji imaju status 'passed'
+  const [updatedRows, updatedProcesses] = await HiringProcess.update(
+    { current_phase: nextPhase.id, phase_status: "pending" },
+    {
+      where: {
+        job_ad_id: process.job_ad_id,
+        current_phase: currentPhase,
+        phase_status: "passed"
+      },
+      returning: true
+    }
+  );
+
+  if (updatedRows === 0) {
+    throw new Error("No candidates to move to the next phase.");
+  }
+
+  return { nextPhase, updatedProcesses };
 };
 
 exports.getFirmHiringProcesses = async (firmId) => {

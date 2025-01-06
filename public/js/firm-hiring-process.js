@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const noteField = document.getElementById("note-field");
   const actionForm = document.getElementById("action-form");
   const closePopupButton = document.getElementById("close-popup");
+  const moveToNextPhaseButton = document.getElementById("move-to-next-phase");
 
   const localizations = {
     noResultsMessage: document.body.dataset.noResultsMessage
@@ -34,6 +35,57 @@ document.addEventListener("DOMContentLoaded", () => {
   noResultsMessage.textContent = localizations.noResultsMessage;
   candidatesContainer.appendChild(noResultsMessage);
   noResultsMessage.style.display = "none";
+
+  if (moveToNextPhaseButton) {
+    moveToNextPhaseButton.addEventListener("click", () => {
+      socket.emit("move-to-next-phase", { processId });
+    });
+  }
+
+  socket.on("phase-moved", ({ currentPhase, updatedCandidates }) => {
+    const stepperSteps = document.querySelectorAll(".step");
+    stepperSteps.forEach((step) => step.classList.remove("active"));
+    const activeStep = Array.from(stepperSteps).find(
+      (step) => step.querySelector(".step-label").textContent === currentPhase
+    );
+    if (activeStep) activeStep.classList.add("active");
+  
+    // Ažuriraj informacije o kandidatima u UI
+    updatedCandidates.forEach((candidate) => {
+      const candidateCard = document.querySelector(`.candidate-card[data-id="${candidate.candidate_id}"]`);
+      if (candidateCard) {
+        candidateCard.dataset.status = "pending";
+  
+        const statusElement = candidateCard.querySelector(".status-text");
+        if (statusElement) {
+          statusElement.innerHTML = `<strong>Status:</strong> Pending`;
+        }
+  
+        const actionsContainer = candidateCard.querySelector(".actions");
+        if (actionsContainer) {
+          actionsContainer.innerHTML = `
+            <button class="accept-btn" data-id="${candidate.candidate_id}">Accept</button>
+            <button class="reject-btn" data-id="${candidate.candidate_id}">Reject</button>
+            <a href="/firm/applications/${candidate.candidate_id}" class="application-btn">View Application</a>
+            <button class="details-btn" data-id="${candidate.candidate_id}">Details</button>
+          `;
+  
+          // Ponovo dodaj event listenere na Accept i Reject dugmiće
+          actionsContainer.querySelector(".accept-btn").addEventListener("click", () => {
+            openPopup("accept", candidate.candidate_id);
+          });
+  
+          actionsContainer.querySelector(".reject-btn").addEventListener("click", () => {
+            openPopup("reject", candidate.candidate_id);
+          });
+        }
+      }
+    });
+  });  
+
+  socket.on("error", (message) => {
+    alert(message);
+  });
 
   const openPopup = (action, candidateId) => {
     currentCandidateId = parseInt(candidateId, 10);
