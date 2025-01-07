@@ -163,28 +163,26 @@ exports.getFirmHiringProcessDetails = async (processId) => {
         {
           model: JobAd,
           as: "JobAd",
-          attributes: ["title"],
+          attributes: ["title"]
+        },
+        {
+          model: HiringProcessCandidate,
+          as: "CandidatesInProcess",
           include: [
             {
-              model: HiringProcess,
-              as: "RelatedHiringProcesses",
-              attributes: ["phase_status", "candidate_id"],
+              model: Candidate,
+              as: "Candidate",
+              attributes: ["first_name", "last_name", "user_id", "about"],
               include: [
                 {
-                  model: Candidate,
-                  as: "Candidate",
-                  attributes: ["first_name", "last_name", "user_id", "about"],
-                  include: [
-                    {
-                      model: Application,
-                      as: "Applications",
-                      attributes: ["id"]
-                    }
-                  ]
+                  model: Application,
+                  as: "Applications",
+                  attributes: ["id"]
                 }
               ]
             }
-          ]
+          ],
+          attributes: ["status"]
         }
       ]
     });
@@ -193,14 +191,14 @@ exports.getFirmHiringProcessDetails = async (processId) => {
 
     const maxAboutLength = 100;
 
-    const candidates = hiringProcess.JobAd.RelatedHiringProcesses.map((process) => ({
-      id: process.Candidate.user_id,
-      name: `${process.Candidate.first_name} ${process.Candidate.last_name}`,
-      about: process.Candidate.about
-        ? `${process.Candidate.about.slice(0, maxAboutLength)}${process.Candidate.about.length > maxAboutLength ? "..." : ""}`
+    const candidates = hiringProcess.CandidatesInProcess.map((entry) => ({
+      id: entry.Candidate.user_id,
+      name: `${entry.Candidate.first_name} ${entry.Candidate.last_name}`,
+      about: entry.Candidate.about
+        ? `${entry.Candidate.about.slice(0, maxAboutLength)}${entry.Candidate.about.length > maxAboutLength ? "..." : ""}`
         : "No information provided.",
-      status: process.phase_status,
-      applicationId: process.Candidate.Applications?.[0]?.id || null
+      status: entry.status,
+      applicationId: entry.Candidate.Applications?.[0]?.id || null
     }));
 
     return {
@@ -210,7 +208,7 @@ exports.getFirmHiringProcessDetails = async (processId) => {
       candidates
     };
   } catch (error) {
-    console.error("Error fetching hiring process details:", error.message);
+    console.error("Error fetching hiring process details:", error.message || error);
     throw new Error("Failed to fetch hiring process details.");
   }
 };
