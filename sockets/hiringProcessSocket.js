@@ -20,52 +20,57 @@ module.exports = (io, socket) => {
         socket.emit("error", { message: "Invalid action." });
         return;
       }
-
+  
       const process = await hiringProcessService.findHiringProcessWithDetails(processId, candidateId);
-
-      if (!process) {
+  
+      if (!process || process.CandidatesInProcess.length === 0) {
         socket.emit("error", { message: "Hiring process or candidate not found." });
         return;
       }
-
-      // Updating the hiring process status
+  
+      const candidateEntry = process.CandidatesInProcess[0];
+  
+      // Updating the candidate's phase status
       const phaseStatus = action === "accept" ? "passed" : "failed";
-      await hiringProcessService.updatePhaseStatus(process, phaseStatus);
-
+      await candidateEntry.update({ status: phaseStatus });
+  
       // Adding a comment
       await interviewCommentService.addComment({
         hiringProcessId: process.id,
         phaseId: process.current_phase,
         comment: comment
       });
-
+  
       // If accepted, creating an interview invite
       if (action === "accept" && nextInterviewDate) {
+        console.log("Uslo!")
         await interviewInviteService.createInvite({
-            candidateId,
-            jobAdId: process.job_ad_id,
-            hiringProcessId: process.id,
-            firmId: process.JobAd?.firm_id,
-            scheduledDate: nextInterviewDate,
-            note: note || `Scheduled interview for ${nextInterviewDate}`
+          candidateId,
+          jobAdId: process.JobAd.id,
+          hiringProcessId: process.id,
+          firmId: process.JobAd.firm_id,
+          scheduledDate: nextInterviewDate,
+          note: note || `Scheduled interview for ${nextInterviewDate}`
         });
       }
-
-      // Emiting updated status to all clients in the room
+  
+      // Check if there are still pending candidates
+      const hasPendingCandidates = await hiringProcessService.hasPendingCandidates(processId);
+  
+      // Emit updated status and whether the button should appear
       io.to(`process-${processId}`).emit("candidate-status-updated", {
         candidateId,
         action,
         comment,
-        nextInterviewDate,
-        note
+        canMoveToNextPhase: !hasPendingCandidates
       });
-
+  
       console.log(`Candidate ${candidateId} in process ${processId} updated to ${action}`);
     } catch (error) {
       console.error("Error updating candidate status:", error);
       socket.emit("error", { message: "Failed to update candidate status." });
     }
-  });
+  });  
 
   socket.on("move-to-next-phase", async ({ processId }) => {
     try {

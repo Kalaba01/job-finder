@@ -29,11 +29,35 @@ exports.findHiringProcessById = async (processId) => {
 
 exports.findHiringProcessWithDetails = async (processId, candidateId) => {
   return HiringProcess.findOne({
-    where: { id: processId, candidate_id: candidateId },
+    where: { id: processId },
     include: [
-      { model: Candidate, as: "Candidate" },
-      { model: HiringPhase, as: "CurrentPhase" },
-      { model: JobAd, as: "JobAd" }
+      {
+        model: HiringProcessCandidate,
+        as: "CandidatesInProcess",
+        where: { candidate_id: candidateId },
+        include: [
+          {
+            model: Candidate,
+            as: "Candidate",
+            attributes: ["first_name", "last_name", "user_id"]
+          },
+          {
+            model: HiringPhase,
+            as: "Phase",
+            attributes: ["name", "sequence"]
+          }
+        ]
+      },
+      {
+        model: HiringPhase,
+        as: "CurrentPhase",
+        attributes: ["name", "sequence"]
+      },
+      {
+        model: JobAd,
+        as: "JobAd",
+        attributes: ["id", "title", "firm_id"]
+      }
     ]
   });
 };
@@ -43,18 +67,10 @@ exports.updatePhaseStatus = async (process, phaseStatus) => {
 };
 
 exports.hasPendingCandidates = async (processId) => {
-  const processes = await HiringProcess.findAll({
-    where: { job_ad_id: processId },
-    include: [
-      {
-        model: Candidate,
-        as: "Candidate",
-        attributes: ["user_id"]
-      }
-    ]
+  const pendingCount = await HiringProcessCandidate.count({
+    where: { hiring_process_id: processId, status: "pending" }
   });
-
-  return processes.some((process) => process.phase_status === "pending");
+  return pendingCount > 0;
 };
 
 exports.moveToNextPhase = async (process) => {

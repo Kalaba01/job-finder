@@ -130,18 +130,18 @@ document.addEventListener("DOMContentLoaded", () => {
     closePopup();
   };
 
-  socket.on("candidate-status-updated", ({ candidateId, action, nextInterviewDate, note }) => {
+  socket.on("candidate-status-updated", ({ candidateId, action, canMoveToNextPhase }) => {
     const candidateCard = document.querySelector(`.candidate-card[data-id="${candidateId}"]`);
-    
+  
     if (candidateCard) {
       const statusText = action === "accept" ? "Accepted" : "Rejected";
       candidateCard.dataset.status = statusText.toLowerCase();
-      
+  
       const statusElement = candidateCard.querySelector(".status-text");
       if (statusElement) {
         statusElement.innerHTML = `<strong>Status:</strong> ${statusText}`;
       }
-      
+  
       const actionsContainer = candidateCard.querySelector(".actions");
       if (actionsContainer) {
         actionsContainer.innerHTML = `
@@ -149,9 +149,27 @@ document.addEventListener("DOMContentLoaded", () => {
           <button class="details-btn" data-id="${candidateId}">Details</button>
         `;
       }
-      
     } else {
       console.error(`Candidate card not found for candidateId: ${candidateId}`);
+    }
+  
+    // Update Move to Next Phase button visibility
+    const moveToNextPhaseButton = document.getElementById("move-to-next-phase");
+    if (canMoveToNextPhase) {
+      if (!moveToNextPhaseButton) {
+        const button = document.createElement("button");
+        button.id = "move-to-next-phase";
+        button.className = "btn-move-phase";
+        button.textContent = "Move To Next Phase";
+        button.addEventListener("click", () => {
+          socket.emit("move-to-next-phase", { processId });
+        });
+        document.querySelector(".hiring-process").appendChild(button);
+      }
+    } else {
+      if (moveToNextPhaseButton) {
+        moveToNextPhaseButton.remove();
+      }
     }
   });
 
