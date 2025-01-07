@@ -38,22 +38,21 @@
 
     <!-- Process List -->
     <div class="process-list">
-        <% hiringProcesses.forEach((process) => { %>
-          <div 
-            class="process-card" 
-            data-title="<%= process.jobAd.title %>" 
-            data-category="<%= process.jobAd.category ? process.jobAd.category.toLowerCase() : '' %>" 
-            data-phase="<%= process.currentPhase.toLowerCase() %>"
-          >
-            <h2><%= process.jobAd.title %></h2>
-            <p><strong><%= __('FirmHiringProcesses.location') %>:</strong> <%= process.jobAd.location || __('FirmHiringProcesses.notAvailable') %></p>
-            <p><strong><%= __('FirmHiringProcesses.category') %>:</strong> <%= process.jobAd.category || __('FirmHiringProcesses.notAvailable') %></p>
-            <p><strong><%= __('FirmHiringProcesses.candidate') %>:</strong> <%= process.candidate.name %></p>
-            <p><strong><%= __('FirmHiringProcesses.currentPhase') %>:</strong> <%= process.currentPhase %></p>
-            <a href="/firm/hiring-process/<%= process.id %>" class="view-details-btn"><%= __('FirmHiringProcesses.viewDetails') %></a>
-          </div>
-        <% }); %>
-    </div>
+      <% hiringProcesses.forEach((process) => { %>
+        <div 
+          class="process-card" 
+          data-title="<%= process.jobAd.title %>" 
+          data-category="<%= process.jobAd.category ? process.jobAd.category.toLowerCase() : '' %>" 
+          data-phase="<%= process.currentPhase.toLowerCase() %>"
+        >
+          <h2><%= process.jobAd.title %></h2>
+          <p><strong><%= __('FirmHiringProcesses.location') %>:</strong> <%= process.jobAd.location || __('FirmHiringProcesses.notAvailable') %></p>
+          <p><strong><%= __('FirmHiringProcesses.category') %>:</strong> <%= process.jobAd.category || __('FirmHiringProcesses.notAvailable') %></p>
+          <p><strong><%= __('FirmHiringProcesses.currentPhase') %>:</strong> <%= process.currentPhase %></p>
+          <a href="/firm/hiring-process/<%= process.id %>" class="view-details-btn"><%= __('FirmHiringProcesses.viewDetails') %></a>
+        </div>
+      <% }); %>
+    </div>    
   </main>
 
   <script src="/js/firm-hiring-processes.js"></script>

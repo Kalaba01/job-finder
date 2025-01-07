@@ -1,4 +1,4 @@
-const { HiringPhase, HiringProcess, JobAd, Candidate, Firm, Application } = require("../models");
+const { HiringPhase, HiringProcess, HiringProcessCandidate, JobAd, Candidate, Firm, Application } = require("../models");
 
 exports.findHiringProcessById = async (processId) => {
   const process = await HiringProcess.findOne({
@@ -106,14 +106,9 @@ exports.getFirmHiringProcesses = async (firmId) => {
           as: "JobAd",
           where: { firm_id: firmId },
           attributes: ["id", "title", "location", "category", "status"]
-        },
-        {
-          model: Candidate,
-          as: "Candidate",
-          attributes: ["first_name", "last_name"]
-        },
+        }
       ],
-      attributes: ["id", "current_phase", "phase_status"],
+      attributes: ["id", "current_phase"],
       order: [["createdAt", "DESC"]]
     });
 
@@ -131,11 +126,7 @@ exports.getFirmHiringProcesses = async (firmId) => {
           category: process.JobAd.category,
           status: process.JobAd.status
         },
-        candidate: {
-          name: `${process.Candidate.first_name} ${process.Candidate.last_name}`
-        },
-        currentPhase: currentPhaseName || "Unknown Phase",
-        phaseStatus: process.phase_status
+        currentPhase: currentPhaseName || "Unknown Phase"
       };
     });
 

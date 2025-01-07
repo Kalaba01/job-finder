@@ -1,4 +1,4 @@
-const { Application, Candidate, JobAd, User } = require("../models");
+const { Application, Candidate, JobAd, User, HiringProcess, HiringPhase, HiringProcessCandidate } = require("../models");
 const emailService = require("../services/emailService");
 
 module.exports = (io, socket) => {
@@ -31,14 +31,14 @@ module.exports = (io, socket) => {
               {
                 model: User,
                 as: "CandidateUser",
-                attributes: ["email"]
+                attributes: ["email", "id"]
               },
             ],
           },
           {
             model: JobAd,
             as: "JobAd",
-            attributes: ["title"]
+            attributes: ["id", "title"]
           },
         ],
       });
@@ -54,6 +54,37 @@ module.exports = (io, socket) => {
       const candidate = application.Candidate;
       const user = candidate?.CandidateUser;
       const jobAd = application.JobAd;
+
+      if (status === "accepted") {
+        const hiringProcess = await HiringProcess.findOne({
+          where: { job_ad_id: jobAd.id, active: true }
+        });
+
+        if (!hiringProcess) {
+          console.error("No active hiring process found for job ad:", jobAd.id);
+          socket.emit("error", { message: "No active hiring process found." });
+          return;
+        }
+
+        const initialPhase = await HiringPhase.findOne({
+          where: { id: hiringProcess.current_phase }
+        });
+
+        if (!initialPhase) {
+          console.error("Initial hiring phase not found for process:", hiringProcess.id);
+          socket.emit("error", { message: "Initial phase not found." });
+          return;
+        }
+
+        await HiringProcessCandidate.create({
+          hiring_process_id: hiringProcess.id,
+          candidate_id: candidate.user_id,
+          phase_id: initialPhase.id,
+          status: "pending"
+        });
+
+        console.log(`Candidate ${candidate.user_id} added to hiring process ${hiringProcess.id}`);
+      }
 
       io.to(`candidate-${application.candidate_id}`).emit("application-status-updated", {
         applicationId,

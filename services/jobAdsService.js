@@ -1,4 +1,4 @@
-const { JobAd, Firm, Candidate } = require("../models");
+const { JobAd, Firm, Candidate, HiringPhase, HiringProcess } = require("../models");
 
 exports.getJobAdsWithStatuses = async (firmId) => {
   try {
@@ -126,7 +126,24 @@ exports.editJobAd = async (jobAdData) => {
 
 exports.updateJobAdStatus = async (jobId, status) => {
   try {
-    await JobAd.update({ expiration_date: new Date(), status }, { where: { id: jobId } });
+    await JobAd.update(
+      { expiration_date: new Date(), status },
+      { where: { id: jobId } }
+    );
+
+    if (status === "closed") {
+      const initialPhase = await HiringPhase.findOne({
+        where: { sequence: 1 }
+      });
+
+      if (!initialPhase) throw new Error("Initial phase not found.");
+
+      await HiringProcess.create({
+        job_ad_id: jobId,
+        current_phase: initialPhase.id,
+        active: true
+      });
+    }
   } catch (error) {
     console.error("Error updating job ad status:", error);
     throw new Error("Failed to update job ad status.");

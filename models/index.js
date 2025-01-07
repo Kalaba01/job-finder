@@ -141,6 +141,7 @@ module.exports = {
   Application,
   HiringPhase,
   HiringProcess,
+  HiringProcessCandidate,
   InterviewComment,
   InterviewInvite
 };
