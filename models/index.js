@@ -104,6 +104,10 @@ const defineAssociations = () => {
   InterviewComment.belongsTo(HiringPhase, { foreignKey: "phase_id", as: "Phase" });
   HiringPhase.hasMany(InterviewComment, { foreignKey: "phase_id", as: "Comments" });
 
+  // InterviewComment -> Candidate
+  InterviewComment.belongsTo(Candidate, { foreignKey: "candidate_id", as: "Candidate" });
+  Candidate.hasMany(InterviewComment, { foreignKey: "candidate_id", as: "Comments" });
+
   // InterviewInvite -> Candidate
   InterviewInvite.belongsTo(Candidate, { foreignKey: "candidate_id", as: "Candidate" });
   Candidate.hasMany(InterviewInvite, { foreignKey: "candidate_id", as: "InterviewInvites" });

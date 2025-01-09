@@ -1,4 +1,4 @@
-const { HiringPhase, HiringProcess, HiringProcessCandidate, JobAd, Candidate, Firm, Application } = require("../models");
+const { HiringPhase, HiringProcess, HiringProcessCandidate, JobAd, Candidate, Firm, Application, InterviewComment } = require("../models");
 const sequelize = require("../config/sequelize");
 
 exports.findHiringProcessById = async (processId) => {
@@ -32,41 +32,6 @@ exports.findHiringProcessById = async (processId) => {
   if (!process) throw new Error(`Hiring process with ID ${processId} not found.`);
 
   return process;
-};
-
-exports.findHiringProcessWithDetails = async (processId, candidateId) => {
-  return HiringProcess.findOne({
-    where: { id: processId },
-    include: [
-      {
-        model: HiringProcessCandidate,
-        as: "CandidatesInProcess",
-        where: { candidate_id: candidateId },
-        include: [
-          {
-            model: Candidate,
-            as: "Candidate",
-            attributes: ["first_name", "last_name", "user_id"]
-          },
-          {
-            model: HiringPhase,
-            as: "Phase",
-            attributes: ["name", "sequence"]
-          }
-        ]
-      },
-      {
-        model: HiringPhase,
-        as: "CurrentPhase",
-        attributes: ["name", "sequence"]
-      },
-      {
-        model: JobAd,
-        as: "JobAd",
-        attributes: ["id", "title", "firm_id"]
-      }
-    ]
-  });
 };
 
 exports.hasPendingCandidates = async (processId) => {
@@ -189,20 +154,31 @@ exports.getFirmHiringProcesses = async (firmId) => {
   }
 };
 
-exports.getFirmHiringProcessDetails = async (processId) => {
+exports.getHiringProcessDetails = async (processId, candidateId = null) => {
   try {
+    console.log("Fetching hiring process with ID:", processId);
+    console.log("Candidate ID (if provided):", candidateId);
+
+    const whereCondition = { id: processId };
+
+    const candidateFilter = candidateId
+      ? {
+          where: { candidate_id: candidateId },
+        }
+      : {};
+
     const hiringProcess = await HiringProcess.findOne({
-      where: { id: processId },
+      where: whereCondition,
       include: [
         {
           model: HiringPhase,
           as: "CurrentPhase",
-          attributes: ["id", "name", "sequence"]
+          attributes: ["id", "name", "sequence"],
         },
         {
           model: JobAd,
           as: "JobAd",
-          attributes: ["title"]
+          attributes: ["id", "title", "firm_id"],
         },
         {
           model: HiringProcessCandidate,
@@ -211,50 +187,60 @@ exports.getFirmHiringProcessDetails = async (processId) => {
             sequelize.col("CandidatesInProcess.phase_id"),
             sequelize.col("HiringProcess.current_phase")
           ),
+          ...candidateFilter,
           include: [
             {
               model: Candidate,
               as: "Candidate",
               attributes: ["first_name", "last_name", "user_id", "about"],
-              include: [
-                {
-                  model: Application,
-                  as: "Applications",
-                  attributes: ["id"]
-                }
-              ]
-            }
+            },
           ],
-          attributes: ["status"]
-        }
-      ]
+          attributes: ["status", "phase_id", "candidate_id"],
+        },
+        {
+          model: InterviewComment,
+          as: "Comments",
+          attributes: ["comment", "phase_id", "candidate_id"],
+          include: [
+            {
+              model: HiringPhase,
+              as: "Phase",
+              attributes: ["name"],
+            },
+          ],
+        },
+      ],
     });
 
     if (!hiringProcess) throw new Error("Hiring process not found.");
 
-    const maxAboutLength = 100;
-
     const candidates = hiringProcess.CandidatesInProcess.map((entry) => {
-      const candidateApplications = entry.Candidate.Applications || [];
-      const applicationId = candidateApplications.length > 0
-        ? candidateApplications[0].id
-        : null;
+      const commentsForCandidate = (hiringProcess.Comments || []).filter(
+        (comment) => comment.candidate_id === entry.candidate_id
+      );
+
+      const history = commentsForCandidate.map((comment) => ({
+        phaseName: comment.Phase?.name || "Unknown Phase",
+        status: entry.status,
+        comment: comment.comment || null,
+      }));
 
       return {
-        id: entry.Candidate.user_id,
+        id: entry.candidate_id,
         name: `${entry.Candidate.first_name} ${entry.Candidate.last_name}`,
-        about: entry.Candidate.about
-          ? `${entry.Candidate.about.slice(0, maxAboutLength)}${entry.Candidate.about.length > maxAboutLength ? "..." : ""}`
-          : "No information provided.",
+        about: entry.Candidate.about || "No information provided.",
         status: entry.status,
-        applicationId: applicationId || null
+        history,
       };
     });
 
     return {
       id: hiringProcess.id,
-      currentPhase: hiringProcess.CurrentPhase.name,
-      jobAd: hiringProcess.JobAd.title,
+      currentPhase: {
+        id: hiringProcess.CurrentPhase.id,
+        name: hiringProcess.CurrentPhase.name,
+      },
+      jobAd: hiringProcess.JobAd,
       candidates
     };
   } catch (error) {

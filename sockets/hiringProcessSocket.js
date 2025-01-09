@@ -1,6 +1,7 @@
 const hiringProcessService = require("../services/hiringProcessService");
 const interviewInviteService = require("../services/interviewInviteService");
 const interviewCommentService = require("../services/interviewCommentService");
+const { HiringProcessCandidate } = require("../models");
 
 module.exports = (io, socket) => {
   const userId = socket.request.session.passport.user;
@@ -17,59 +18,61 @@ module.exports = (io, socket) => {
   socket.on("update-candidate-status", async ({ processId, candidateId, action, comment, nextInterviewDate, note }) => {
     try {
       if (!["accept", "reject"].includes(action)) {
-        socket.emit("error", { message: "Invalid action." });
+        socket.emit("error", "Invalid action.");
         return;
       }
-  
-      const process = await hiringProcessService.findHiringProcessWithDetails(processId, candidateId);
-  
-      if (!process || process.CandidatesInProcess.length === 0) {
+
+      const process = await hiringProcessService.getHiringProcessDetails(processId, candidateId);
+
+      if (!process || !process.candidates || process.candidates.length === 0) {
         socket.emit("error", { message: "Hiring process or candidate not found." });
         return;
       }
-  
-      const candidateEntry = process.CandidatesInProcess[0];
-  
-      // Updating the candidate's phase status
+
+      const candidateEntry = process.candidates.find((candidate) => candidate.id === candidateId);
+
+      if (!candidateEntry) {
+        socket.emit("error", { message: "Candidate not found in the current process." });
+        return;
+      }
+
       const phaseStatus = action === "accept" ? "passed" : "failed";
-      await candidateEntry.update({ status: phaseStatus });
-  
-      // Adding a comment
+
+      const updatedCandidate = await HiringProcessCandidate.update(
+        { status: phaseStatus },
+        {
+          where: {
+            hiring_process_id: processId,
+            candidate_id: candidateId
+          }
+        }
+      );
+
+      if (!updatedCandidate[0]) throw new Error("Failed to update candidate status.");
+
       await interviewCommentService.addComment({
         hiringProcessId: process.id,
-        phaseId: process.current_phase,
+        phaseId: process.currentPhase.id,
+        candidateId: candidateId,
         comment: comment
       });
-  
-      // If accepted, creating an interview invite
-      if (action === "accept" && nextInterviewDate) {
-        await interviewInviteService.createInvite({
-          candidateId,
-          jobAdId: process.JobAd.id,
-          hiringProcessId: process.id,
-          firmId: process.JobAd.firm_id,
-          scheduledDate: nextInterviewDate,
-          note: note || `Scheduled interview for ${nextInterviewDate}`
-        });
-      }
-  
-      // Check if there are still pending candidates
-      const hasPendingCandidates = await hiringProcessService.hasPendingCandidates(processId);
-  
-      // Emit updated status and whether the button should appear
+
+      const updatedHistory = await interviewCommentService.getHistoryByCandidate(processId, candidateId);
+
       io.to(`process-${processId}`).emit("candidate-status-updated", {
         candidateId,
         action,
         comment,
-        canMoveToNextPhase: !hasPendingCandidates
+        updatedHistory,
+        canMoveToNextPhase: !(await hiringProcessService.hasPendingCandidates(processId))
       });
-  
+
       console.log(`Candidate ${candidateId} in process ${processId} updated to ${action}`);
     } catch (error) {
       console.error("Error updating candidate status:", error);
       socket.emit("error", { message: "Failed to update candidate status." });
     }
-  });  
+  });
 
   socket.on("move-to-next-phase", async ({ processId }) => {
     try {
@@ -89,9 +92,16 @@ module.exports = (io, socket) => {
   
       const { nextPhase, updatedCandidates } = await hiringProcessService.moveToNextPhase(process);
   
+      const candidatesWithHistory = await Promise.all(
+        updatedCandidates.map(async (candidate) => {
+          const history = await interviewCommentService.getHistoryByCandidate(processId, candidate.candidate_id);
+          return { ...candidate, history };
+        })
+      );
+  
       io.to(`process-${processId}`).emit("phase-moved", {
         currentPhase: nextPhase.name,
-        updatedCandidates,
+        updatedCandidates: candidatesWithHistory,
         message: "Moved to the next phase successfully."
       });
   
@@ -100,7 +110,7 @@ module.exports = (io, socket) => {
       console.error("Error moving to next phase:", error);
       socket.emit("error", "Failed to move to the next phase.");
     }
-  });
+  });  
 
   socket.on("disconnect", () => {
     console.log(`User disconnected: ${userId} (Socket ID: ${socket.id})`);

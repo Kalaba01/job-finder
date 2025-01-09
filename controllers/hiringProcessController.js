@@ -14,7 +14,7 @@ exports.getFirmHiringProcesses = async (req, res) => {
 exports.getFirmHiringProcessDetails = async (req, res) => {
   try {
     const { processId } = req.params;
-    const processDetails = await hiringProcessService.getFirmHiringProcessDetails(processId);
+    const processDetails = await hiringProcessService.getHiringProcessDetails(processId);
 
     res.render("firm/firm-hiring-process", { locale: req.getLocale(), processDetails });
   } catch (error) {

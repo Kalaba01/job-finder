@@ -292,33 +292,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  jobAdsList.addEventListener("click", (event) => {
-    if (event.target.classList.contains("close-job-btn")) {
-    const jobCard = event.target.closest(".job-card");
-    const jobId = jobCard ? jobCard.dataset.id : null;
-    console.log("Close button clicked, jobId:", jobId);
-      window.openConfirmModal({
-        title: localizations.closeTitle,
-        message: localizations.closeMessage,
-        action: "close",
-        id: jobId,
-        onConfirm: handleJobAction
-      });
-    }
-
-    if (event.target.classList.contains("delete-job-btn")) {
+  if(jobAdsList) {
+    jobAdsList.addEventListener("click", (event) => {
+      if (event.target.classList.contains("close-job-btn")) {
       const jobCard = event.target.closest(".job-card");
       const jobId = jobCard ? jobCard.dataset.id : null;
-      console.log("Delete button clicked, jobId:", jobId);
-      window.openConfirmModal({
-        title: localizations.deleteTitle,
-        message: localizations.deleteMessage,
-        action: "delete",
-        id: jobId,
-        onConfirm: handleJobAction
-      });
-    }
-  });
+      console.log("Close button clicked, jobId:", jobId);
+        window.openConfirmModal({
+          title: localizations.closeTitle,
+          message: localizations.closeMessage,
+          action: "close",
+          id: jobId,
+          onConfirm: handleJobAction
+        });
+      }
+  
+      if (event.target.classList.contains("delete-job-btn")) {
+        const jobCard = event.target.closest(".job-card");
+        const jobId = jobCard ? jobCard.dataset.id : null;
+        console.log("Delete button clicked, jobId:", jobId);
+        window.openConfirmModal({
+          title: localizations.deleteTitle,
+          message: localizations.deleteMessage,
+          action: "delete",
+          id: jobId,
+          onConfirm: handleJobAction
+        });
+      }
+    });
+  }
 
   checkboxes.forEach((checkbox) => {
     checkbox.addEventListener("change", () => {

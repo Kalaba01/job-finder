@@ -22,6 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const closePopupButton = document.getElementById("close-popup");
   const moveToNextPhaseButton = document.getElementById("move-to-next-phase");
 
+  const detailsPopup = document.getElementById("details-popup");
+  const detailsContainer = document.getElementById("details-container");
+  const closePopupBtn = detailsPopup.querySelector(".close-popup-btn");
+
   const localizations = {
     noResultsMessage: document.body.dataset.noResultsMessage
   };
@@ -35,6 +39,45 @@ document.addEventListener("DOMContentLoaded", () => {
   noResultsMessage.textContent = localizations.noResultsMessage;
   candidatesContainer.appendChild(noResultsMessage);
   noResultsMessage.style.display = "none";
+
+  const openDetailsPopup = (candidateId) => {
+    const candidateCard = document.querySelector(`.candidate-card[data-id="${candidateId}"]`);
+    
+    if (!candidateCard) {
+      detailsContainer.innerHTML = "<p>No details available for this candidate.</p>";
+      return;
+    }
+  
+    const history = JSON.parse(candidateCard.dataset.history || "[]");
+  
+    detailsContainer.innerHTML = `
+      <h4>Selection History:</h4>
+      ${
+        history.length > 0
+          ? `<ul>${history.map(
+              (item) =>
+                `<li><strong>Phase:</strong> ${item.phaseName}, <strong>Comment:</strong> ${item.comment || "No comment"}</li>`
+            ).join("")}</ul>`
+          : "<p>No selection history available.</p>"
+      }
+    `;
+  
+    detailsPopup.classList.add("visible");
+  };  
+
+  const closeDetailsPopup = () => {
+    detailsPopup.classList.remove("visible");
+    detailsContainer.innerHTML = "";
+  };
+
+  closePopupBtn.addEventListener("click", closeDetailsPopup);
+
+  document.querySelectorAll(".details-btn").forEach((button) => {
+    button.addEventListener("click", () => {
+      const candidateId = button.dataset.id;
+      openDetailsPopup(candidateId);
+    });
+  });
 
   if (moveToNextPhaseButton) {
     moveToNextPhaseButton.addEventListener("click", () => {
@@ -99,6 +142,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (updatedCandidates.length > 0) {
       updatedCandidates.forEach((candidate) => {
         const candidateCard = createCandidateCard(candidate);
+        candidateCard.dataset.history = JSON.stringify(candidate.history || []);
+  
         candidatesContainer.appendChild(candidateCard);
       });
     } else {
@@ -107,7 +152,14 @@ document.addEventListener("DOMContentLoaded", () => {
       noCandidatesMessage.className = "no-candidates-message";
       candidatesContainer.appendChild(noCandidatesMessage);
     }
-  }
+  
+    document.querySelectorAll(".details-btn").forEach((button) => {
+      button.addEventListener("click", () => {
+        const candidateId = button.dataset.id;
+        openDetailsPopup(candidateId);
+      });
+    });
+  }  
 
   function updateMoveToNextPhaseButton(updatedCandidates) {
     const moveToNextPhaseButton = document.getElementById("move-to-next-phase");
@@ -171,46 +223,50 @@ document.addEventListener("DOMContentLoaded", () => {
     closePopup();
   };
 
-  socket.on("candidate-status-updated", ({ candidateId, action, canMoveToNextPhase }) => {
+  socket.on("candidate-status-updated", ({ candidateId, action, updatedHistory, canMoveToNextPhase }) => {
     const candidateCard = document.querySelector(`.candidate-card[data-id="${candidateId}"]`);
-  
+
     if (candidateCard) {
-      const statusText = action === "accept" ? "Accepted" : "Rejected";
-      candidateCard.dataset.status = statusText.toLowerCase();
-  
-      const statusElement = candidateCard.querySelector(".status-text");
-      if (statusElement) {
-        statusElement.innerHTML = `<strong>Status:</strong> ${statusText}`;
-      }
-  
-      const actionsContainer = candidateCard.querySelector(".actions");
-      if (actionsContainer) {
-        actionsContainer.innerHTML = `
-          <a href="/firm/applications/${candidateId}" class="application-btn">View Application</a>
-          <button class="details-btn" data-id="${candidateId}">Details</button>
-        `;
-      }
-    } else {
-      console.error(`Candidate card not found for candidateId: ${candidateId}`);
+        const statusText = action === "accept" ? "Accepted" : "Rejected";
+        candidateCard.dataset.status = statusText.toLowerCase();
+
+        const statusElement = candidateCard.querySelector(".status-text");
+        if (statusElement) {
+            statusElement.innerHTML = `<strong>Status:</strong> ${statusText}`;
+        }
+
+        const actionsContainer = candidateCard.querySelector(".actions");
+        if (actionsContainer) {
+            actionsContainer.innerHTML = `
+                <a href="/firm/applications/${candidateId}" class="application-btn">View Application</a>
+                <button class="details-btn" data-id="${candidateId}">Details</button>
+            `;
+
+            const detailsButton = actionsContainer.querySelector(".details-btn");
+            if (detailsButton) {
+                detailsButton.addEventListener("click", () => {
+                    openDetailsPopup(candidateId);
+                });
+            }
+        }
+
+        candidateCard.dataset.history = JSON.stringify(updatedHistory);
     }
-  
-    // Update Move to Next Phase button visibility
+
     const moveToNextPhaseButton = document.getElementById("move-to-next-phase");
     if (canMoveToNextPhase) {
-      if (!moveToNextPhaseButton) {
-        const button = document.createElement("button");
-        button.id = "move-to-next-phase";
-        button.className = "btn-move-phase";
-        button.textContent = "Move To Next Phase";
-        button.addEventListener("click", () => {
-          socket.emit("move-to-next-phase", { processId });
-        });
-        document.querySelector(".hiring-process").appendChild(button);
-      }
-    } else {
-      if (moveToNextPhaseButton) {
+        if (!moveToNextPhaseButton) {
+            const button = document.createElement("button");
+            button.id = "move-to-next-phase";
+            button.className = "btn-move-phase";
+            button.textContent = "Move To Next Phase";
+            button.addEventListener("click", () => {
+                socket.emit("move-to-next-phase", { processId });
+            });
+            document.querySelector(".hiring-process").appendChild(button);
+        }
+    } else if (moveToNextPhaseButton) {
         moveToNextPhaseButton.remove();
-      }
     }
   });
 

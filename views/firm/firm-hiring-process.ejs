@@ -14,12 +14,12 @@
   <%- include('../partials/top-bar') %>
 
   <main class="hiring-process">
-    <h1><%= __('FirmHiringProcessesDetails.heading') %>: <%= processDetails.jobAd %></h1>
+    <h1><%= __('FirmHiringProcessesDetails.heading') %>: <%= processDetails.jobAd.title %></h1>
 
     <!-- Stepper -->
     <div class="stepper">
       <% ["Screening Interview", "Technical Interview", "Final Interview"].forEach((phase, index) => { %>
-        <div class="step <%= processDetails.currentPhase === phase ? "active" : "" %>">
+        <div class="step <%= processDetails.currentPhase.name === phase ? "active" : "" %>">
           <span class="step-number"><%= index + 1 %></span>
           <span class="step-label"><%= (phase) %></span>
         </div>
@@ -45,7 +45,7 @@
           data-id="<%= candidate.id %>"
           data-name="<%= candidate.name.toLowerCase() %>"
           data-status="<%= candidate.status.toLowerCase() %>"
-          data-application-id="<%= candidate.applicationId || 'null' %>"
+          data-history='<%= JSON.stringify(candidate.history || []) %>'
         >
           <h2><%= candidate.name %></h2>
           <p><strong><%= __('FirmHiringProcessesDetails.about') %></strong> <%= candidate.about %></p>
@@ -55,7 +55,7 @@
               <button class="accept-btn" data-id="<%= candidate.id %>"><%= __('FirmHiringProcessesDetails.acceptButton') %></button>
               <button class="reject-btn" data-id="<%= candidate.id %>"><%= __('FirmHiringProcessesDetails.rejectButton') %></button>
             <% } %>
-            <a href="/firm/applications/<%= candidate.applicationId %>" class="application-btn"><%= __('FirmHiringProcessesDetails.applicationButton') %></a>
+            <a href="/firm/applications/<%= candidate.id %>" class="application-btn"><%= __('FirmHiringProcessesDetails.applicationButton') %></a>
             <button class="details-btn" data-id="<%= candidate.id %>"><%= __('FirmHiringProcessesDetails.detailsButton') %></button>
           </div>          
         </div>
@@ -69,6 +69,7 @@
   </main>
 
   <%- include('./firm-hiring-process-action') %>
+  <%- include('./firm-hiring-process-details') %>
   <script type="module" src="/js/firm-hiring-process.js"></script>
 </body>
 </html>
