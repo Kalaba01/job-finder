@@ -43,7 +43,6 @@ module.exports = (io, socket) => {
   
       // If accepted, creating an interview invite
       if (action === "accept" && nextInterviewDate) {
-        console.log("Uslo!")
         await interviewInviteService.createInvite({
           candidateId,
           jobAdId: process.JobAd.id,
@@ -88,12 +87,11 @@ module.exports = (io, socket) => {
         return;
       }
   
-      const { nextPhase, updatedProcesses } = await hiringProcessService.moveToNextPhase(process);
+      const { nextPhase, updatedCandidates } = await hiringProcessService.moveToNextPhase(process);
   
-      // Emitovanje događaja o pomeranju faze i ažuriranim kandidatima
       io.to(`process-${processId}`).emit("phase-moved", {
         currentPhase: nextPhase.name,
-        updatedCandidates: updatedProcesses,
+        updatedCandidates,
         message: "Moved to the next phase successfully."
       });
   
@@ -102,7 +100,7 @@ module.exports = (io, socket) => {
       console.error("Error moving to next phase:", error);
       socket.emit("error", "Failed to move to the next phase.");
     }
-  });  
+  });
 
   socket.on("disconnect", () => {
     console.log(`User disconnected: ${userId} (Socket ID: ${socket.id})`);

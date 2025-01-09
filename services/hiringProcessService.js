@@ -1,13 +1,20 @@
 const { HiringPhase, HiringProcess, HiringProcessCandidate, JobAd, Candidate, Firm, Application } = require("../models");
+const sequelize = require("../config/sequelize");
 
 exports.findHiringProcessById = async (processId) => {
   const process = await HiringProcess.findOne({
     where: { id: processId },
     include: [
       {
-        model: Candidate,
-        as: "Candidate",
-        attributes: ["user_id", "first_name", "last_name"]
+        model: HiringProcessCandidate,
+        as: "CandidatesInProcess",
+        include: [
+          {
+            model: Candidate,
+            as: "Candidate",
+            attributes: ["user_id", "first_name", "last_name"]
+          }
+        ]
       },
       {
         model: HiringPhase,
@@ -62,10 +69,6 @@ exports.findHiringProcessWithDetails = async (processId, candidateId) => {
   });
 };
 
-exports.updatePhaseStatus = async (process, phaseStatus) => {
-  return process.update({ phase_status: phaseStatus });
-};
-
 exports.hasPendingCandidates = async (processId) => {
   const pendingCount = await HiringProcessCandidate.count({
     where: { hiring_process_id: processId, status: "pending" }
@@ -76,31 +79,45 @@ exports.hasPendingCandidates = async (processId) => {
 exports.moveToNextPhase = async (process) => {
   const currentPhase = process.current_phase;
 
-  // Pronađi sledeću fazu
   const nextPhase = await HiringPhase.findOne({
-    where: { sequence: currentPhase + 1 }
+    where: { sequence: currentPhase + 1 },
   });
 
   if (!nextPhase) throw new Error("No further phases available.");
 
-  // Ažuriraj sve kandidate u trenutnoj fazi koji imaju status 'passed'
-  const [updatedRows, updatedProcesses] = await HiringProcess.update(
-    { current_phase: nextPhase.id, phase_status: "pending" },
+  const [updatedRows, updatedCandidates] = await HiringProcessCandidate.update(
+    { phase_id: nextPhase.id, status: "pending" },
     {
       where: {
-        job_ad_id: process.job_ad_id,
-        current_phase: currentPhase,
-        phase_status: "passed"
+        hiring_process_id: process.id,
+        phase_id: currentPhase,
+        status: "passed",
       },
       returning: true
     }
   );
 
-  if (updatedRows === 0) {
-    throw new Error("No candidates to move to the next phase.");
-  }
+  if (updatedRows === 0) throw new Error("No candidates to move to the next phase.");
 
-  return { nextPhase, updatedProcesses };
+  await process.update({ current_phase: nextPhase.id });
+
+  const candidateDetails = await Promise.all(
+    updatedCandidates.map(async (candidate) => {
+      const user = await Candidate.findOne({
+        where: { user_id: candidate.candidate_id },
+        attributes: ["about", "first_name", "last_name"]
+      });
+      return {
+        candidate_id: candidate.candidate_id,
+        name: `${user.first_name} ${user.last_name}`,
+        about: user.about || "No information provided.",
+        status: candidate.status,
+        applicationId: candidate.application_id || null,
+      };
+    })
+  );
+
+  return { nextPhase, updatedCandidates: candidateDetails };
 };
 
 exports.getFirmHiringProcesses = async (firmId) => {
@@ -174,7 +191,7 @@ exports.getFirmHiringProcessDetails = async (processId) => {
         {
           model: HiringPhase,
           as: "CurrentPhase",
-          attributes: ["name", "sequence"]
+          attributes: ["id", "name", "sequence"]
         },
         {
           model: JobAd,
@@ -184,6 +201,10 @@ exports.getFirmHiringProcessDetails = async (processId) => {
         {
           model: HiringProcessCandidate,
           as: "CandidatesInProcess",
+          where: sequelize.where(
+            sequelize.col("CandidatesInProcess.phase_id"),
+            sequelize.col("HiringProcess.current_phase")
+          ),
           include: [
             {
               model: Candidate,

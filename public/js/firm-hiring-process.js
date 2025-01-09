@@ -42,46 +42,86 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  socket.on("phase-moved", ({ currentPhase, updatedCandidates }) => {
+  function createCandidateCard(candidate) {
+    const candidateCard = document.createElement("div");
+    candidateCard.classList.add("candidate-card");
+    candidateCard.dataset.id = candidate.candidate_id;
+    candidateCard.dataset.name = candidate.name.toLowerCase();
+    candidateCard.dataset.status = candidate.status.toLowerCase();
+  
+    candidateCard.innerHTML = `
+      <h2>${candidate.name}</h2>
+      <p><strong>About:</strong> ${candidate.about}</p>
+      <p><strong>Status:</strong> ${candidate.status}</p>
+      <div class="actions">
+        ${
+          candidate.status === "pending"
+            ? `
+            <button class="accept-btn" data-id="${candidate.candidate_id}">Accept</button>
+            <button class="reject-btn" data-id="${candidate.candidate_id}">Reject</button>
+          `
+            : ""
+        }
+        <a href="/firm/applications/${candidate.applicationId || ""}" class="application-btn">Application</a>
+        <button class="details-btn" data-id="${candidate.candidate_id}">Details</button>
+      </div>
+    `;
+  
+    if (candidate.status === "pending") {
+      candidateCard.querySelector(".accept-btn").addEventListener("click", () => {
+        openPopup("accept", candidate.candidate_id);
+      });
+  
+      candidateCard.querySelector(".reject-btn").addEventListener("click", () => {
+        openPopup("reject", candidate.candidate_id);
+      });
+    }
+  
+    return candidateCard;
+  }
+
+  function updateStepper(currentPhase) {
     const stepperSteps = document.querySelectorAll(".step");
     stepperSteps.forEach((step) => step.classList.remove("active"));
     const activeStep = Array.from(stepperSteps).find(
-      (step) => step.querySelector(".step-label").textContent === currentPhase
+      (step) => step.querySelector(".step-label").textContent.trim() === currentPhase
     );
-    if (activeStep) activeStep.classList.add("active");
+    if (activeStep) {
+      activeStep.classList.add("active");
+    }
+  }
+
+  function updateCandidatesList(updatedCandidates) {
+    const candidatesContainer = document.querySelector(".candidates");
+    candidatesContainer.innerHTML = "";
   
-    // Ažuriraj informacije o kandidatima u UI
-    updatedCandidates.forEach((candidate) => {
-      const candidateCard = document.querySelector(`.candidate-card[data-id="${candidate.candidate_id}"]`);
-      if (candidateCard) {
-        candidateCard.dataset.status = "pending";
+    if (updatedCandidates.length > 0) {
+      updatedCandidates.forEach((candidate) => {
+        const candidateCard = createCandidateCard(candidate);
+        candidatesContainer.appendChild(candidateCard);
+      });
+    } else {
+      const noCandidatesMessage = document.createElement("p");
+      noCandidatesMessage.textContent = "No candidates in this phase.";
+      noCandidatesMessage.className = "no-candidates-message";
+      candidatesContainer.appendChild(noCandidatesMessage);
+    }
+  }
+
+  function updateMoveToNextPhaseButton(updatedCandidates) {
+    const moveToNextPhaseButton = document.getElementById("move-to-next-phase");
+    const hasPendingCandidates = updatedCandidates.some((candidate) => candidate.status === "pending");
   
-        const statusElement = candidateCard.querySelector(".status-text");
-        if (statusElement) {
-          statusElement.innerHTML = `<strong>Status:</strong> Pending`;
-        }
-  
-        const actionsContainer = candidateCard.querySelector(".actions");
-        if (actionsContainer) {
-          actionsContainer.innerHTML = `
-            <button class="accept-btn" data-id="${candidate.candidate_id}">Accept</button>
-            <button class="reject-btn" data-id="${candidate.candidate_id}">Reject</button>
-            <a href="/firm/applications/${candidate.candidate_id}" class="application-btn">View Application</a>
-            <button class="details-btn" data-id="${candidate.candidate_id}">Details</button>
-          `;
-  
-          // Ponovo dodaj event listenere na Accept i Reject dugmiće
-          actionsContainer.querySelector(".accept-btn").addEventListener("click", () => {
-            openPopup("accept", candidate.candidate_id);
-          });
-  
-          actionsContainer.querySelector(".reject-btn").addEventListener("click", () => {
-            openPopup("reject", candidate.candidate_id);
-          });
-        }
-      }
-    });
-  });  
+    if (moveToNextPhaseButton && hasPendingCandidates) {
+      moveToNextPhaseButton.remove();
+    }
+  }
+
+  socket.on("phase-moved", ({ currentPhase, updatedCandidates }) => {
+    updateStepper(currentPhase);
+    updateCandidatesList(updatedCandidates);
+    updateMoveToNextPhaseButton(updatedCandidates);
+  });
 
   socket.on("error", (message) => {
     alert(message);
