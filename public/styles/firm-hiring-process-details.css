@@ -1,10 +1,26 @@
+/* Ligt Mode */
+:root {
+    --background-color: #fff;
+    --text-color: #000;
+    --popup-overlay-color: rgba(0, 0, 0, 0.7);
+    --close-btn-color: #000;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --background-color: #2c2c2c;
+    --text-color: #f5f5f5;
+    --popup-overlay-color: rgba(0, 0, 0, 0.9);
+    --close-btn-color: #f5f5f5;
+}
+
 .popup {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: var(--popup-overlay-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,13 +36,14 @@
 }
 
 .popup-content {
-    background: #fff;
+    background: var(--background-color);
     border-radius: 8px;
     padding: 20px;
     width: 500px;
     max-height: 80%;
     overflow-y: auto;
     position: relative;
+    color: var(--text-color);
 }
 
 .close-popup-btn {
@@ -37,8 +54,10 @@
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
+    color: var(--close-btn-color);
 }
 
 #details-container {
     margin-top: 20px;
+    color: var(--text-color);
 }
