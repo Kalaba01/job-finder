@@ -107,15 +107,21 @@ exports.moveToNextPhase = async (process) => {
         where: { user_id: candidate.candidate_id },
         attributes: ["about", "first_name", "last_name"]
       });
+  
+      const application = await Application.findOne({
+        where: { candidate_id: candidate.candidate_id },
+        attributes: ["id"]
+      });
+  
       return {
         candidate_id: candidate.candidate_id,
         name: `${user.first_name} ${user.last_name}`,
         about: user.about || "No information provided.",
         status: candidate.status,
-        applicationId: candidate.application_id || null,
+        applicationId: application?.id || null
       };
     })
-  );
+  );  
 
   return { nextPhase, updatedCandidates: candidateDetails };
 };
@@ -228,15 +234,22 @@ exports.getFirmHiringProcessDetails = async (processId) => {
 
     const maxAboutLength = 100;
 
-    const candidates = hiringProcess.CandidatesInProcess.map((entry) => ({
-      id: entry.Candidate.user_id,
-      name: `${entry.Candidate.first_name} ${entry.Candidate.last_name}`,
-      about: entry.Candidate.about
-        ? `${entry.Candidate.about.slice(0, maxAboutLength)}${entry.Candidate.about.length > maxAboutLength ? "..." : ""}`
-        : "No information provided.",
-      status: entry.status,
-      applicationId: entry.Candidate.Applications?.[0]?.id || null
-    }));
+    const candidates = hiringProcess.CandidatesInProcess.map((entry) => {
+      const candidateApplications = entry.Candidate.Applications || [];
+      const applicationId = candidateApplications.length > 0
+        ? candidateApplications[0].id
+        : null;
+
+      return {
+        id: entry.Candidate.user_id,
+        name: `${entry.Candidate.first_name} ${entry.Candidate.last_name}`,
+        about: entry.Candidate.about
+          ? `${entry.Candidate.about.slice(0, maxAboutLength)}${entry.Candidate.about.length > maxAboutLength ? "..." : ""}`
+          : "No information provided.",
+        status: entry.status,
+        applicationId: applicationId || null
+      };
+    });
 
     return {
       id: hiringProcess.id,

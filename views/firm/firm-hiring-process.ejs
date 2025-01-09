@@ -45,6 +45,7 @@
           data-id="<%= candidate.id %>"
           data-name="<%= candidate.name.toLowerCase() %>"
           data-status="<%= candidate.status.toLowerCase() %>"
+          data-application-id="<%= candidate.applicationId || 'null' %>"
         >
           <h2><%= candidate.name %></h2>
           <p><strong><%= __('FirmHiringProcessesDetails.about') %></strong> <%= candidate.about %></p>

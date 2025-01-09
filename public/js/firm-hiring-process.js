@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     candidateCard.dataset.id = candidate.candidate_id;
     candidateCard.dataset.name = candidate.name.toLowerCase();
     candidateCard.dataset.status = candidate.status.toLowerCase();
+    candidateCard.dataset.applicationId = candidate.applicationId || "null";
   
     candidateCard.innerHTML = `
       <h2>${candidate.name}</h2>
@@ -62,9 +63,9 @@ document.addEventListener("DOMContentLoaded", () => {
           `
             : ""
         }
-        <a href="/firm/applications/${candidate.applicationId || ""}" class="application-btn">Application</a>
+        <a href="/firm/applications/${candidateCard.dataset.applicationId}" class="application-btn">Application</a>
         <button class="details-btn" data-id="${candidate.candidate_id}">Details</button>
-      </div>
+      </div>  
     `;
   
     if (candidate.status === "pending") {
