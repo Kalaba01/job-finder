@@ -289,16 +289,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchQuery = searchBar.value.toLowerCase().trim();
     const selectedStatus = statusFilter.value.toLowerCase().trim();
     let visibleCount = 0;
-
+  
     allCandidates.forEach((card) => {
       const candidateName = card.dataset.name || "";
       const candidateStatus = card.dataset.status || "";
-
+  
       const matchesSearch = candidateName.includes(searchQuery);
       const matchesStatus = selectedStatus
         ? candidateStatus === selectedStatus
         : true;
-
+  
       if (matchesSearch && matchesStatus) {
         card.style.display = "block";
         visibleCount++;
@@ -306,9 +306,9 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.display = "none";
       }
     });
-
+  
     noResultsMessage.style.display = visibleCount === 0 ? "block" : "none";
-  };
+  };  
 
   acceptButtons.forEach((button) => {
     button.addEventListener("click", () => {
