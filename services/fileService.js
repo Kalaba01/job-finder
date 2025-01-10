@@ -113,3 +113,51 @@ exports.createForCandidatePDF = async (application) => {
   const pdfBytes = await pdfDoc.save();
   return Buffer.from(pdfBytes);
 };
+
+exports.createHiringProcessPDF = async (processData) => {
+  const pdfDoc = await PDFDocument.create();
+  const page = pdfDoc.addPage();
+  const { width, height } = page.getSize();
+  let yPosition = height - 50;
+  const fontSize = 12;
+
+  // Title
+  page.drawText(`Hiring Process Report`, { x: 50, y: yPosition, size: 20 });
+  yPosition -= 30;
+
+  // Job Information
+  page.drawText(`Job Title: ${processData.jobTitle}`, { x: 50, y: yPosition, size: fontSize });
+  yPosition -= 20;
+  page.drawText(`Job Description: ${processData.jobDescription}`, { x: 50, y: yPosition, size: fontSize });
+  yPosition -= 20;
+  page.drawText(`Location: ${processData.jobLocation}`, { x: 50, y: yPosition, size: fontSize });
+  yPosition -= 20;
+  page.drawText(`Start Date: ${new Date(processData.processStartDate).toLocaleString()}`, { x: 50, y: yPosition, size: fontSize });
+  yPosition -= 20;
+  page.drawText(`End Date: ${new Date(processData.processEndDate).toLocaleString()}`, { x: 50, y: yPosition, size: fontSize });
+  yPosition -= 40;
+
+  // Candidates
+  page.drawText(`Candidates:`, { x: 50, y: yPosition, size: 14 });
+  yPosition -= 20;
+  processData.candidates.forEach((candidate, index) => {
+    page.drawText(`${index + 1}. ${candidate.name} - ${candidate.status}`, { x: 50, y: yPosition, size: fontSize });
+    yPosition -= 20;
+    page.drawText(`  About: ${candidate.about}`, { x: 70, y: yPosition, size: fontSize });
+    yPosition -= 20;
+
+    candidate.history.forEach((historyItem) => {
+      page.drawText(
+        `  - ${historyItem.phaseName}: ${historyItem.comment || "No comments"} (${new Date(historyItem.date).toLocaleString()})`,
+        { x: 70, y: yPosition, size: fontSize }
+      );
+      yPosition -= 15;
+    });
+
+    yPosition -= 10;
+  });
+
+  // Save PDF
+  const pdfBytes = await pdfDoc.save();
+  return Buffer.from(pdfBytes);
+};

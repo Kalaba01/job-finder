@@ -14,7 +14,14 @@
   <%- include('../partials/top-bar') %>
 
   <main class="hiring-process">
-    <h1><%= __('FirmHiringProcessesDetails.heading') %>: <%= processDetails.jobAd.title %></h1>
+    <% if (!processDetails.active) { %>
+      <div class="process-completed">
+        <h2>The selection process is completed!</h2>
+        <p>Thank you for using our hiring system.</p>
+        <button id="generate-report" class="btn-generate-report">Generate Report</button>
+      </div>
+    <% } else { %>
+      <h1><%= __('FirmHiringProcessesDetails.heading') %>: <%= processDetails.jobAd.title %></h1>
 
     <!-- Stepper -->
     <div class="stepper">
@@ -69,6 +76,7 @@
       <% } else { %>
         <button id="move-to-next-phase" class="btn-move-phase">Move To Next Phase</button>
       <% } %>
+    <% } %>
     <% } %>
   </main>
 

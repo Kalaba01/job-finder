@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const detailsPopup = document.getElementById("details-popup");
   const detailsContainer = document.getElementById("details-container");
   const closePopupBtn = detailsPopup.querySelector(".close-popup-btn");
+  const generateReportButton = document.getElementById("generate-report");
 
   const localizations = {
     noResultsMessage: document.body.dataset.noResultsMessage
@@ -38,8 +39,29 @@ document.addEventListener("DOMContentLoaded", () => {
   noResultsMessage.id = "no-results-message";
   noResultsMessage.className = "no-data-container";
   noResultsMessage.textContent = localizations.noResultsMessage;
-  candidatesContainer.appendChild(noResultsMessage);
+  if (candidatesContainer) candidatesContainer.appendChild(noResultsMessage);
   noResultsMessage.style.display = "none";
+
+  if (generateReportButton) {
+    generateReportButton.addEventListener("click", async () => {
+      try {
+        const response = await fetch(`/firm/hiring-process/${processId}/report`);
+        if (!response.ok) {
+          throw new Error("Failed to generate the report.");
+        }
+
+        const blob = await response.blob();
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `Hiring_Process_Report_${processId}.pdf`;
+        link.click();
+        URL.revokeObjectURL(link.href);
+      } catch (error) {
+        console.error("Error generating report:", error);
+        alert("Failed to generate the report.");
+      }
+    });
+  }
 
   const openDetailsPopup = (candidateId) => {
     const candidateCard = document.querySelector(`.candidate-card[data-id="${candidateId}"]`);
@@ -94,10 +116,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
   socket.on("process-finalized", () => {
     alert("The hiring process has been successfully finalized.");
+    
     const finalizeButton = document.getElementById("finalize-process");
     if (finalizeButton) finalizeButton.remove();
+    
     const moveToNextPhaseButton = document.getElementById("move-to-next-phase");
     if (moveToNextPhaseButton) moveToNextPhaseButton.remove();
+    
+    const mainContainer = document.querySelector(".hiring-process");
+    mainContainer.innerHTML = `
+      <div class="process-completed">
+        <h2>The selection process is completed!</h2>
+        <p>Thank you for using our hiring system.</p>
+        <button id="generate-report" class="btn-generate-report">Generate Report</button>
+      </div>
+    `;
+  
+    const generateReportButton = document.getElementById("generate-report");
+    if (generateReportButton) {
+      generateReportButton.addEventListener("click", async () => {
+        try {
+          const response = await fetch(`/firm/hiring-process/${processId}/report`);
+          if (!response.ok) {
+            throw new Error("Failed to generate the report.");
+          }
+  
+          const blob = await response.blob();
+          const link = document.createElement("a");
+          link.href = URL.createObjectURL(blob);
+          link.download = `Hiring_Process_Report_${processId}.pdf`;
+          link.click();
+          URL.revokeObjectURL(link.href);
+        } catch (error) {
+          console.error("Error generating report:", error);
+          alert("Failed to generate the report.");
+        }
+      });
+    }
   });
 
   function createCandidateCard(candidate) {
@@ -261,7 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const actionsContainer = candidateCard.querySelector(".actions");
         if (actionsContainer) {
             actionsContainer.innerHTML = `
-                <a href="/firm/applications/${candidateId}" class="application-btn">View Application</a>
+                <a href="/firm/applications/${candidateId}" class="application-btn">Application</a>
                 <button class="details-btn" data-id="${candidateId}">Details</button>
             `;
 
@@ -307,8 +362,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const filterCandidates = () => {
-    const searchQuery = searchBar.value.toLowerCase().trim();
-    const selectedStatus = statusFilter.value.toLowerCase().trim();
+    const searchQuery = searchBar?.value.toLowerCase().trim();
+    const selectedStatus = statusFilter?.value.toLowerCase().trim();
     let visibleCount = 0;
   
     allCandidates.forEach((card) => {
@@ -346,8 +401,8 @@ document.addEventListener("DOMContentLoaded", () => {
   closePopupButton.addEventListener("click", closePopup);
   actionForm.addEventListener("submit", submitAction);
 
-  searchBar.addEventListener("input", filterCandidates);
-  statusFilter.addEventListener("change", filterCandidates);
+  if (searchBar) searchBar.addEventListener("input", filterCandidates);
+  if (statusFilter) statusFilter.addEventListener("change", filterCandidates);
 
   filterCandidates();
 });

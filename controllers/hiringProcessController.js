@@ -39,3 +39,18 @@ exports.getCandidateHiringProcesses = async (req, res) => {
     res.status(500).send("An error occurred while fetching hiring processes.");
   }
 };
+
+exports.generateReport = async (req, res) => {
+  const { processId } = req.params;
+
+  try {
+    const pdfBuffer = await hiringProcessService.generateProcessReport(processId);
+
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", `attachment; filename=Hiring_Process_Report_${processId}.pdf`);
+    res.send(pdfBuffer);
+  } catch (error) {
+    console.error("Error generating report:", error);
+    res.status(500).json({ message: "Failed to generate the report." });
+  }
+};

@@ -1,5 +1,6 @@
 const { HiringPhase, HiringProcess, HiringProcessCandidate, JobAd, Candidate, Firm, Application, InterviewComment } = require("../models");
 const sequelize = require("../config/sequelize");
+const fileService = require("./fileService");
 
 exports.findHiringProcessById = async (processId) => {
   const process = await HiringProcess.findOne({
@@ -318,5 +319,106 @@ exports.getCandidateHiringProcesses = async (candidateId) => {
   } catch (error) {
     console.error("Error fetching candidate hiring processes:", error.message || error);
     throw new Error("Failed to fetch candidate hiring processes.");
+  }
+};
+
+exports.generateProcessReport = async (processId) => {
+  try {
+    const process = await HiringProcess.findOne({
+      where: { id: processId },
+      include: [
+        {
+          model: JobAd,
+          as: "JobAd",
+          attributes: ["title", "description", "location"],
+        },
+        {
+          model: HiringPhase,
+          as: "CurrentPhase",
+          attributes: ["id", "name", "is_final"],
+        },
+        {
+          model: HiringProcessCandidate,
+          as: "CandidatesInProcess",
+          include: [
+            {
+              model: Candidate,
+              as: "Candidate",
+              attributes: ["first_name", "last_name", "about"],
+            },
+            {
+              model: HiringPhase,
+              as: "Phase",
+              attributes: ["name"],
+            },
+          ],
+          attributes: ["status", "phase_id", "candidate_id"],
+        },
+        {
+          model: InterviewComment,
+          as: "Comments",
+          include: [
+            {
+              model: Candidate,
+              as: "Candidate",
+              attributes: ["first_name", "last_name"],
+            },
+            {
+              model: HiringPhase,
+              as: "Phase",
+              attributes: ["name"],
+            },
+          ],
+          attributes: ["comment", "createdAt"],
+        },
+      ],
+    });
+
+    if (!process) {
+      throw new Error("Hiring process not found.");
+    }
+
+    const candidates = process.CandidatesInProcess.map((entry) => {
+      const candidateName = `${entry.Candidate.first_name} ${entry.Candidate.last_name}`;
+      const history = (process.Comments || [])
+        .filter((comment) => comment.candidate_id === entry.candidate_id)
+        .map((comment) => ({
+          phaseName: comment.Phase?.name || "Unknown Phase",
+          comment: comment.comment,
+          date: comment.createdAt,
+        }));
+
+      return {
+        name: candidateName,
+        status: entry.status,
+        about: entry.Candidate.about || "No details provided",
+        history,
+      };
+    });
+
+    const processDuration = {
+      startDate: process.createdAt,
+      endDate: process.updatedAt,
+    };
+
+    const data = {
+      jobTitle: process.JobAd.title,
+      jobDescription: process.JobAd.description,
+      jobLocation: process.JobAd.location,
+      candidates,
+      phases: [
+        {
+          name: process.CurrentPhase.name,
+          isFinal: process.CurrentPhase.is_final,
+        },
+      ],
+      processStartDate: processDuration.startDate,
+      processEndDate: processDuration.endDate,
+    };
+
+    return await fileService.createHiringProcessPDF(data);
+  } catch (error) {
+    console.error("Error generating process report:", error);
+    throw new Error("Failed to generate process report.");
   }
 };
