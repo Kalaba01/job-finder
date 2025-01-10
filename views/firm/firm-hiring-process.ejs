@@ -62,9 +62,13 @@
       <% }) %>
     </div>
 
-    <!-- Move to Next Phase Button -->
-    <% if (processDetails.candidates.every(candidate => candidate.status !== 'pending')) { %>
-      <button id="move-to-next-phase" class="btn-move-phase">Move To Next Phase</button>
+    <!-- Move to Next Phase or Finalize Process Button -->
+    <% if (processDetails.active && processDetails.candidates.every(candidate => candidate.status !== 'pending')) { %>
+      <% if (processDetails.currentPhase.isFinal) { %>
+        <button id="finalize-process" class="btn-finalize-process">Finalize Process</button>
+      <% } else { %>
+        <button id="move-to-next-phase" class="btn-move-phase">Move To Next Phase</button>
+      <% } %>
     <% } %>
   </main>
 

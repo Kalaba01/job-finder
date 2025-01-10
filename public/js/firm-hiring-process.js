@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const actionForm = document.getElementById("action-form");
   const closePopupButton = document.getElementById("close-popup");
   const moveToNextPhaseButton = document.getElementById("move-to-next-phase");
+  const finalizeProcessButton = document.getElementById("finalize-process");
 
   const detailsPopup = document.getElementById("details-popup");
   const detailsContainer = document.getElementById("details-container");
@@ -84,6 +85,20 @@ document.addEventListener("DOMContentLoaded", () => {
       socket.emit("move-to-next-phase", { processId });
     });
   }
+
+  if (finalizeProcessButton) {
+    finalizeProcessButton.addEventListener("click", () => {
+      socket.emit("finalize-process", { processId });
+    });
+  }
+
+  socket.on("process-finalized", () => {
+    alert("The hiring process has been successfully finalized.");
+    const finalizeButton = document.getElementById("finalize-process");
+    if (finalizeButton) finalizeButton.remove();
+    const moveToNextPhaseButton = document.getElementById("move-to-next-phase");
+    if (moveToNextPhaseButton) moveToNextPhaseButton.remove();
+  });
 
   function createCandidateCard(candidate) {
     const candidateCard = document.createElement("div");

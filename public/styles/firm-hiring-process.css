@@ -253,7 +253,8 @@ button,
     background: var(--background-color);
 }
 
-.btn-move-phase {
+.btn-move-phase,
+.btn-finalize-process {
     display: block;
     margin: 20px auto;
     padding: 10px 20px;
@@ -266,7 +267,8 @@ button,
     transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
-.btn-move-phase:hover {
+.btn-move-phase:hover,
+.btn-finalize-process:hover {
     background-color: #0056b3;
     transform: scale(1.05);
 }

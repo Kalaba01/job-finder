@@ -173,7 +173,7 @@ exports.getHiringProcessDetails = async (processId, candidateId = null) => {
         {
           model: HiringPhase,
           as: "CurrentPhase",
-          attributes: ["id", "name", "sequence"],
+          attributes: ["id", "name", "sequence", "is_final"],
         },
         {
           model: JobAd,
@@ -236,9 +236,11 @@ exports.getHiringProcessDetails = async (processId, candidateId = null) => {
 
     return {
       id: hiringProcess.id,
+      active: hiringProcess.active,
       currentPhase: {
         id: hiringProcess.CurrentPhase.id,
         name: hiringProcess.CurrentPhase.name,
+        isFinal: hiringProcess.CurrentPhase.is_final
       },
       jobAd: hiringProcess.JobAd,
       candidates

@@ -1,7 +1,7 @@
 const hiringProcessService = require("../services/hiringProcessService");
 const interviewInviteService = require("../services/interviewInviteService");
 const interviewCommentService = require("../services/interviewCommentService");
-const { HiringProcessCandidate } = require("../models");
+const { HiringProcessCandidate, HiringPhase } = require("../models");
 
 module.exports = (io, socket) => {
   const userId = socket.request.session.passport.user;
@@ -57,6 +57,17 @@ module.exports = (io, socket) => {
         comment: comment
       });
 
+      if (action === "accept" && nextInterviewDate) {
+        await interviewInviteService.createInvite({
+          candidateId,
+          jobAdId: process.jobAd.id,
+          hiringProcessId: process.id,
+          firmId: process.jobAd.firm_id,
+          scheduledDate: nextInterviewDate,
+          note: note || `Scheduled interview for ${nextInterviewDate}`
+        });
+      }
+
       const updatedHistory = await interviewCommentService.getHistoryByCandidate(processId, candidateId);
 
       io.to(`process-${processId}`).emit("candidate-status-updated", {
@@ -109,6 +120,39 @@ module.exports = (io, socket) => {
     } catch (error) {
       console.error("Error moving to next phase:", error);
       socket.emit("error", "Failed to move to the next phase.");
+    }
+  });
+
+  socket.on("finalize-process", async ({ processId }) => {
+    try {
+      const process = await hiringProcessService.findHiringProcessById(processId);
+  
+      if (!process) {
+        socket.emit("error", "Hiring process not found.");
+        return;
+      }
+  
+      const currentPhase = await HiringPhase.findOne({ where: { id: process.current_phase } });
+  
+      if (!currentPhase || !currentPhase.is_final) {
+        socket.emit("error", "Cannot finalize a process that is not in the final phase.");
+        return;
+      }
+  
+      const pendingCandidates = await hiringProcessService.hasPendingCandidates(processId);
+  
+      if (pendingCandidates) {
+        socket.emit("error", "All candidates must be resolved before finalizing the process.");
+        return;
+      }
+  
+      await process.update({ active: false });
+  
+      io.to(`process-${processId}`).emit("process-finalized");
+      console.log(`Process ${processId} finalized.`);
+    } catch (error) {
+      console.error("Error finalizing process:", error);
+      socket.emit("error", "Failed to finalize the process.");
     }
   });  
 
