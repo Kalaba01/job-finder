@@ -658,7 +658,12 @@
 		"acceptButton": "Prihvati",
 		"rejectButton": "Odbij",
 		"applicationButton": "Aplikacija",
-		"detailsButton": "Detalji"
+		"detailsButton": "Detalji",
+		"processCompletedTitle": "Proces selekcije je završen!",
+		"processCompletedMessage": "Hvala vam što koristite naš sistem za zapošljavanje.",
+		"generateReportButton": "Generiši izvještaj",
+		"finalizeProcessButton": "Završi proces",
+		"moveToNextPhaseButton": "Pređi na sljedeću fazu"
 	},
 	"FirmHiringProcessAction": {
 		"commentLabel": "Komentar",

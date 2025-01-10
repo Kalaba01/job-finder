@@ -16,9 +16,9 @@
   <main class="hiring-process">
     <% if (!processDetails.active) { %>
       <div class="process-completed">
-        <h2>The selection process is completed!</h2>
-        <p>Thank you for using our hiring system.</p>
-        <button id="generate-report" class="btn-generate-report">Generate Report</button>
+        <h2><%= __('FirmHiringProcessesDetails.processCompletedTitle') %></h2>
+        <p><%= __('FirmHiringProcessesDetails.processCompletedMessage') %></p>
+        <button id="generate-report" class="btn-generate-report"><%= __('FirmHiringProcessesDetails.generateReportButton') %></button>
       </div>
     <% } else { %>
       <h1><%= __('FirmHiringProcessesDetails.heading') %>: <%= processDetails.jobAd.title %></h1>
@@ -62,7 +62,7 @@
               <button class="accept-btn" data-id="<%= candidate.id %>"><%= __('FirmHiringProcessesDetails.acceptButton') %></button>
               <button class="reject-btn" data-id="<%= candidate.id %>"><%= __('FirmHiringProcessesDetails.rejectButton') %></button>
             <% } %>
-            <a href="/firm/applications/<%= candidate.id %>" class="application-btn"><%= __('FirmHiringProcessesDetails.applicationButton') %></a>
+            <a href="/firm/applications/<%= candidate.applicationId %>" class="application-btn"><%= __('FirmHiringProcessesDetails.applicationButton') %></a>
             <button class="details-btn" data-id="<%= candidate.id %>"><%= __('FirmHiringProcessesDetails.detailsButton') %></button>
           </div>          
         </div>
@@ -72,9 +72,9 @@
     <!-- Move to Next Phase or Finalize Process Button -->
     <% if (processDetails.active && processDetails.candidates.every(candidate => candidate.status !== 'pending')) { %>
       <% if (processDetails.currentPhase.isFinal) { %>
-        <button id="finalize-process" class="btn-finalize-process">Finalize Process</button>
+        <button id="finalize-process" class="btn-finalize-process"><%= __('FirmHiringProcessesDetails.finalizeProcessButton') %></button>
       <% } else { %>
-        <button id="move-to-next-phase" class="btn-move-phase">Move To Next Phase</button>
+        <button id="move-to-next-phase" class="btn-move-phase"><%= __('FirmHiringProcessesDetails.moveToNextPhaseButton') %></button>
       <% } %>
     <% } %>
     <% } %>

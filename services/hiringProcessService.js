@@ -194,6 +194,13 @@ exports.getHiringProcessDetails = async (processId, candidateId = null) => {
               model: Candidate,
               as: "Candidate",
               attributes: ["first_name", "last_name", "user_id", "about"],
+              include: [
+                {
+                  model: Application,
+                  as: "Applications",
+                  attributes: ["id"],
+                },
+              ],
             },
           ],
           attributes: ["status", "phase_id", "candidate_id"],
@@ -216,24 +223,27 @@ exports.getHiringProcessDetails = async (processId, candidateId = null) => {
     if (!hiringProcess) throw new Error("Hiring process not found.");
 
     const candidates = hiringProcess.CandidatesInProcess.map((entry) => {
+      const application = entry.Candidate.Applications?.[0];
+    
       const commentsForCandidate = (hiringProcess.Comments || []).filter(
         (comment) => comment.candidate_id === entry.candidate_id
       );
-
+    
       const history = commentsForCandidate.map((comment) => ({
         phaseName: comment.Phase?.name || "Unknown Phase",
         status: entry.status,
-        comment: comment.comment || null,
+        comment: comment.comment || null
       }));
-
+    
       return {
         id: entry.candidate_id,
         name: `${entry.Candidate.first_name} ${entry.Candidate.last_name}`,
         about: entry.Candidate.about || "No information provided.",
         status: entry.status,
-        history,
+        applicationId: application?.id || null,
+        history
       };
-    });
+    });    
 
     return {
       id: hiringProcess.id,

@@ -670,7 +670,12 @@
 		"acceptButton": "Accept",
 		"rejectButton": "Reject",
 		"applicationButton": "Application",
-		"detailsButton": "Details"
+		"detailsButton": "Details",
+		"processCompletedTitle": "The selection process is completed!",
+		"processCompletedMessage": "Thank you for using our hiring system.",
+		"generateReportButton": "Generate Report",
+		"finalizeProcessButton": "Finalize Process",
+		"moveToNextPhaseButton": "Move To Next Phase"
 	},
 	"FirmHiringProcessAction": {
 		"commentLabel": "Comment",
