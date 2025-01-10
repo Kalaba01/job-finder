@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
     closePopup();
   };
 
-  socket.on("candidate-status-updated", ({ candidateId, action, updatedHistory, canMoveToNextPhase }) => {
+  socket.on("candidate-status-updated", ({ candidateId, action, updatedHistory, canMoveToNextPhase, currentPhase }) => {
     const candidateCard = document.querySelector(`.candidate-card[data-id="${candidateId}"]`);
 
     if (candidateCard) {
@@ -268,20 +268,33 @@ document.addEventListener("DOMContentLoaded", () => {
         candidateCard.dataset.history = JSON.stringify(updatedHistory);
     }
 
+    const processContainer = document.querySelector(".hiring-process");
     const moveToNextPhaseButton = document.getElementById("move-to-next-phase");
+    const finalizeProcessButton = document.getElementById("finalize-process");
+
+    if (moveToNextPhaseButton) moveToNextPhaseButton.remove();
+    if (finalizeProcessButton) finalizeProcessButton.remove();
+
     if (canMoveToNextPhase) {
-        if (!moveToNextPhaseButton) {
-            const button = document.createElement("button");
-            button.id = "move-to-next-phase";
-            button.className = "btn-move-phase";
-            button.textContent = "Move To Next Phase";
-            button.addEventListener("click", () => {
+        if (!currentPhase.isFinal) {
+            const nextPhaseButton = document.createElement("button");
+            nextPhaseButton.id = "move-to-next-phase";
+            nextPhaseButton.className = "btn-move-phase";
+            nextPhaseButton.textContent = "Move To Next Phase";
+            nextPhaseButton.addEventListener("click", () => {
                 socket.emit("move-to-next-phase", { processId });
             });
-            document.querySelector(".hiring-process").appendChild(button);
+            processContainer.appendChild(nextPhaseButton);
+        } else {
+            const finalizeButton = document.createElement("button");
+            finalizeButton.id = "finalize-process";
+            finalizeButton.className = "btn-finalize-process";
+            finalizeButton.textContent = "Finalize Process";
+            finalizeButton.addEventListener("click", () => {
+                socket.emit("finalize-process", { processId });
+            });
+            processContainer.appendChild(finalizeButton);
         }
-    } else if (moveToNextPhaseButton) {
-        moveToNextPhaseButton.remove();
     }
   });
 

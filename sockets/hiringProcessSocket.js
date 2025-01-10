@@ -69,13 +69,15 @@ module.exports = (io, socket) => {
       }
 
       const updatedHistory = await interviewCommentService.getHistoryByCandidate(processId, candidateId);
+      const pendingCandidates = await hiringProcessService.hasPendingCandidates(processId);
 
       io.to(`process-${processId}`).emit("candidate-status-updated", {
         candidateId,
         action,
         comment,
         updatedHistory,
-        canMoveToNextPhase: !(await hiringProcessService.hasPendingCandidates(processId))
+        canMoveToNextPhase: !pendingCandidates,
+        currentPhase: process.currentPhase
       });
 
       console.log(`Candidate ${candidateId} in process ${processId} updated to ${action}`);
