@@ -57,14 +57,14 @@ module.exports = (io, socket) => {
         comment: comment
       });
 
-      if (action === "accept" && nextInterviewDate) {
+      if (action === "accept" && !process.currentPhase.isFinal && nextInterviewDate) {
         await interviewInviteService.createInvite({
-          candidateId,
-          jobAdId: process.jobAd.id,
-          hiringProcessId: process.id,
-          firmId: process.jobAd.firm_id,
-          scheduledDate: nextInterviewDate,
-          note: note || `Scheduled interview for ${nextInterviewDate}`
+            candidateId,
+            jobAdId: process.jobAd.id,
+            hiringProcessId: process.id,
+            firmId: process.jobAd.firm_id,
+            scheduledDate: nextInterviewDate,
+            note: note || `Scheduled interview for ${nextInterviewDate}`
         });
       }
 

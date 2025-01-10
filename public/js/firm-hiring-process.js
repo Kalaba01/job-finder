@@ -204,8 +204,16 @@ document.addEventListener("DOMContentLoaded", () => {
       : "Reject Candidate";
 
     commentField.querySelector("textarea").value = "";
-    dateField.style.display = action === "accept" ? "block" : "none";
-    noteField.style.display = action === "accept" ? "block" : "none";
+
+    const isFinalPhase = document.querySelector(".step.active .step-label").textContent.trim() === "Final Interview";
+
+    if (action === "accept" && isFinalPhase) {
+        dateField.style.display = "none";
+        noteField.style.display = "none";
+    } else {
+        dateField.style.display = action === "accept" ? "block" : "none";
+        noteField.style.display = action === "accept" ? "block" : "none";
+    }
 
     popup.style.display = "flex";
   };
