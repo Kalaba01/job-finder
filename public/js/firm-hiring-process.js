@@ -162,6 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
     candidateCard.dataset.name = candidate.name.toLowerCase();
     candidateCard.dataset.status = candidate.status.toLowerCase();
     candidateCard.dataset.applicationId = candidate.applicationId || null;
+    console.log("FRONTEND: ", candidate.applicationId);
   
     candidateCard.innerHTML = `
       <h2>${candidate.name}</h2>
@@ -301,12 +302,13 @@ document.addEventListener("DOMContentLoaded", () => {
     closePopup();
   };
 
-  socket.on("candidate-status-updated", ({ candidateId, action, updatedHistory, canMoveToNextPhase, currentPhase }) => {
+  socket.on("candidate-status-updated", ({ candidateId, applicationId, action, updatedHistory, canMoveToNextPhase, currentPhase }) => {
     const candidateCard = document.querySelector(`.candidate-card[data-id="${candidateId}"]`);
 
     if (candidateCard) {
         const statusText = action === "accept" ? "Accepted" : "Rejected";
         candidateCard.dataset.status = statusText.toLowerCase();
+        candidateCard.dataset.applicationId = applicationId;
 
         const statusElement = candidateCard.querySelector(".status-text");
         if (statusElement) {
@@ -316,7 +318,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const actionsContainer = candidateCard.querySelector(".actions");
         if (actionsContainer) {
             actionsContainer.innerHTML = `
-                <a href="/firm/applications/${candidateId}" class="application-btn">Application</a>
+                <a href="/firm/applications/${applicationId}" class="application-btn">Application</a>
                 <button class="details-btn" data-id="${candidateId}">Details</button>
             `;
 

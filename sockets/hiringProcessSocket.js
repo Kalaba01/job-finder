@@ -15,6 +15,23 @@ module.exports = (io, socket) => {
     }
   });
 
+  socket.on("join-hiring-processes", async () => {
+    try {
+      const hiringProcesses = await hiringProcessService.getCandidateHiringProcesses(userId);
+  
+      if (hiringProcesses && hiringProcesses.processes.length > 0) {
+        hiringProcesses.processes.forEach((process) => {
+          socket.join(`process-${process.id}`);
+          console.log(`User ${userId} joined room process-${process.id}`);
+        });
+      } else {
+        console.log(`User ${userId} has no hiring processes to join.`);
+      }
+    } catch (error) {
+      console.error("Error joining hiring processes:", error.message || error);
+    }
+  });
+
   socket.on("update-candidate-status", async ({ processId, candidateId, action, comment, nextInterviewDate, note }) => {
     try {
       if (!["accept", "reject"].includes(action)) {
@@ -73,11 +90,20 @@ module.exports = (io, socket) => {
 
       io.to(`process-${processId}`).emit("candidate-status-updated", {
         candidateId,
+        applicationId: candidateEntry.applicationId,
         action,
         comment,
         updatedHistory,
         canMoveToNextPhase: !pendingCandidates,
         currentPhase: process.currentPhase
+      });
+
+      const result = await hiringProcessService.getCandidateHiringProcesses(candidateId);
+
+      io.to(`process-${processId}`).emit("hiring-processes-updated", {
+        processes: result.processes,
+        phases: result.phases,
+        firms: result.firms
       });
 
       console.log(`Candidate ${candidateId} in process ${processId} updated to ${action}`);

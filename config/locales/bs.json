@@ -2,10 +2,7 @@
 	"TopBar": {
 		"userIcon": "Profil",
 		"themeIcon": "Promijeni temu",
-		"languageIcon": "Promijeni jezik",
-		"notifications": "TopBar.notifications",
-		"chat": "TopBar.chat",
-		"logout": "TopBar.logout"
+		"languageIcon": "Promijeni jezik"
 	},
 	"HeroSection": {
 		"title": "Pronađite svoj posao iz snova već danas"
@@ -124,7 +121,6 @@
 		"userManagement": "Upravljanje korisnicima",
 		"companyApprovals": "Odobrenje kompanija",
 		"jobAds": "Oglasi za posao",
-		"reviewsManagement": "Upravljanje recenzijama",
 		"massNotifications": "Masovne obavijesti",
 		"ticketManagement": "Upravljanje tiketima"
 	},
@@ -134,7 +130,6 @@
 		"applications": "Aplikacije",
 		"hiringProcess": "Proces Zapošljavanja",
 		"interviews": "Intervjui",
-		"reviews": "Recenzije",
 		"tickets": "Tiketi"
 	},
 	"CandidateMenu": {
@@ -142,8 +137,7 @@
 		"myApplications": "Moje prijave",
 		"hiringProcess": "Proces Zapošljavanja",
 		"interviews": "Intervjui",
-		"tickets": "Tiketi",
-		"companyReviews": "Recenzije kompanija"
+		"tickets": "Tiketi"
 	},
 	"ConfirmModal": {
 		"yes": "Da",
@@ -475,8 +469,6 @@
 		"category": "Kategorija",
 		"viewDetails": "Detalji",
 		"noActiveJobAds": "Ova kompanija trenutno nema aktivnih oglasa za posao.",
-		"reviews": "Recenzije",
-		"noReviews": "Trenutno nema dostupnih recenzija.",
 		"noAboutInfo": "Nema dodatnih informacija o ovoj kompaniji."
 	},
 	"ApplyForm": {
@@ -642,8 +634,8 @@
 		"location": "Lokacija",
 		"category": "Kategorija",
 		"currentPhase": "Trenutna faza",
+		"status": "Status",
 		"notAvailable": "N/A",
-		"viewMore": "Pogledaj detalje",
 		"noResultsMessage": "Nema selekcionih procesa koji odgovaraju vašim kriterijima."
 	},
 	"FirmHiringProcessesDetails": {

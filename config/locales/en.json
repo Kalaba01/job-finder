@@ -2,10 +2,7 @@
 	"TopBar": {
 		"userIcon": "Profile",
 		"themeIcon": "Change Theme",
-		"languageIcon": "Change Language",
-		"notifications": "TopBar.notifications",
-		"chat": "TopBar.chat",
-		"logout": "TopBar.logout"
+		"languageIcon": "Change Language"
 	},
 	"HeroSection": {
 		"title": "Find Your Dream Job Today"
@@ -124,7 +121,6 @@
 		"userManagement": "User Management",
 		"companyApprovals": "Company Approvals",
 		"jobAds": "Job Ads",
-		"reviewsManagement": "Reviews Management",
 		"massNotifications": "Mass Notifications",
 		"ticketManagement": "Ticket Management"
 	},
@@ -134,7 +130,6 @@
 		"applications": "Applications",
 		"hiringProcess": "Hiring Process",
 		"interviews": "Interviews",
-		"reviews": "Reviews",
 		"tickets": "Tickets"
 	},
 	"CandidateMenu": {
@@ -142,8 +137,7 @@
 		"myApplications": "My Applications",
 		"hiringProcess": "Hiring Process",
 		"interviews": "Interviews",
-		"tickets": "Tickets",
-		"companyReviews": "Company Reviews"
+		"tickets": "Tickets"
 	},
 	"ConfirmModal": {
 		"yes": "Yes",
@@ -487,8 +481,6 @@
 		"category": "Category",
 		"viewDetails": "View Details",
 		"noActiveJobAds": "This company has no active job ads.",
-		"reviews": "Reviews",
-		"noReviews": "No reviews available yet.",
 		"noAboutInfo": "No additional information about this company."
 	},
 	"ApplyForm": {
@@ -654,8 +646,8 @@
 		"location": "Location",
 		"category": "Category",
 		"currentPhase": "Current Phase",
+		"status": "Status",
 		"notAvailable": "N/A",
-		"viewMore": "View More",
 		"noResultsMessage": "No hiring processes found matching your criteria."
 	},
 	"FirmHiringProcessesDetails": {
@@ -697,5 +689,5 @@
 		"noAdditionalNotes": "No additional notes",
 		"accept": "Accept",
 		"reject": "Reject"
-  	}
+	}
 }

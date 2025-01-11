@@ -155,18 +155,3 @@ body {
     color: var(--no-ads-color);
     text-align: center;
 }
-
-.firm-reviews {
-    margin-top: 40px;
-}
-
-.firm-reviews h2 {
-    font-size: 1.8rem;
-    color: var(--header-color);
-    margin-bottom: 20px;
-}
-
-.firm-reviews p {
-    font-size: 1rem;
-    color: var(--subtitle-color);
-}

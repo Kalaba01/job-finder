@@ -53,6 +53,7 @@
           data-name="<%= candidate.name.toLowerCase() %>"
           data-status="<%= candidate.status.toLowerCase() %>"
           data-history='<%= JSON.stringify(candidate.history || []) %>'
+          data-application-id="<%= candidate.applicationId %>"
         >
           <h2><%= candidate.name %></h2>
           <p><strong><%= __('FirmHiringProcessesDetails.about') %></strong> <%= candidate.about %></p>

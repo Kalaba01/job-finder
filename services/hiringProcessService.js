@@ -1,6 +1,7 @@
-const { HiringPhase, HiringProcess, HiringProcessCandidate, JobAd, Candidate, Firm, Application, InterviewComment } = require("../models");
+const { Op } = require("sequelize");
 const sequelize = require("../config/sequelize");
 const fileService = require("./fileService");
+const { HiringPhase, HiringProcess, HiringProcessCandidate, JobAd, Candidate, Firm, Application, InterviewComment } = require("../models");
 
 exports.findHiringProcessById = async (processId) => {
   const process = await HiringProcess.findOne({
@@ -266,17 +267,29 @@ exports.getCandidateHiringProcesses = async (candidateId) => {
   try {
     const phasesData = await HiringPhase.findAll({
       attributes: ["id", "name"],
-      order: [["sequence", "ASC"]],
+      order: [["sequence", "ASC"]]
     });
 
     const phases = phasesData.map((phase) => ({
       id: phase.id,
-      name: phase.name,
+      name: phase.name
     }));
 
     const hiringProcesses = await HiringProcess.findAll({
-      where: { candidate_id: candidateId },
       include: [
+        {
+          model: HiringProcessCandidate,
+          as: "CandidatesInProcess",
+          where: { candidate_id: candidateId },
+          attributes: ["status", "phase_id"],
+          include: [
+            {
+              model: Candidate,
+              as: "Candidate",
+              attributes: ["user_id"],
+            },
+          ],
+        },
         {
           model: JobAd,
           as: "JobAd",
@@ -285,39 +298,44 @@ exports.getCandidateHiringProcesses = async (candidateId) => {
             {
               model: Firm,
               as: "Firm",
-              attributes: ["name", "city"],
+              attributes: ["name", "city"]
             },
           ],
         },
+        {
+          model: HiringPhase,
+          as: "CurrentPhase",
+          attributes: ["name"]
+        },
       ],
-      attributes: ["id", "current_phase", "phase_status"],
-      order: [["createdAt", "DESC"]],
+      attributes: ["id", "current_phase", "active"],
+      order: [["createdAt", "DESC"]]
     });
 
     const processes = hiringProcesses.map((process) => {
-      const currentPhaseName = phases.find(
-        (phase) => phase.id === process.current_phase
-      )?.name;
+      const candidateProcess = process.CandidatesInProcess[0];
+      const currentPhaseName = process.CurrentPhase?.name || "Unknown Phase";
 
       return {
         id: process.id,
         jobAd: {
-          title: process.JobAd.title,
-          location: process.JobAd.location,
-          category: process.JobAd.category,
+          title: process.JobAd?.title || "Unknown Job Ad",
+          location: process.JobAd?.location || "Unknown Location",
+          category: process.JobAd?.category || "Unknown Category",
           firm: {
-            name: process.JobAd.Firm.name,
-            city: process.JobAd.Firm.city,
-          },
+            name: process.JobAd?.Firm?.name || "Unknown Firm",
+            city: process.JobAd?.Firm?.city || "Unknown City"
+          }
         },
-        currentPhase: currentPhaseName || "Unknown Phase",
-        phaseStatus: process.phase_status,
+        candidateStatus: candidateProcess?.status || "Unknown Status",
+        currentPhase: currentPhaseName,
+        active: process.active
       };
     });
 
     const uniqueFirms = [
       ...new Set(
-        hiringProcesses.map((process) => process.JobAd.Firm.name).filter(Boolean)
+        hiringProcesses.map((process) => process.JobAd?.Firm?.name).filter(Boolean)
       ),
     ];
 
