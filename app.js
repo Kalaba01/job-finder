@@ -3,6 +3,7 @@ const express = require("express");
 const { configureApp, configureServer } = require("./config/appConfig");
 const { initDatabase } = require("./config");
 const { authMiddleware, notFoundMiddleware } = require("./middleware");
+const { scheduleJobAdExpirationCheck  } = require("./schedulers/jobScheduler");
 const configureRoutes = require("./config/routesConfig"); // Uvoz ruta
 
 // Inicijalizacija aplikacije
@@ -29,3 +30,5 @@ const { server, port } = configureServer(app);
 server.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
+
+scheduleJobAdExpirationCheck();

@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { JobAd, Firm, Candidate, HiringPhase, HiringProcess } = require("../models");
 
 exports.getJobAdsWithStatuses = async (firmId) => {
@@ -156,5 +157,32 @@ exports.deleteJobAd = async (jobId) => {
   } catch (error) {
     console.error("Error deleting job ad:", error);
     throw new Error("Failed to delete job ad.");
+  }
+};
+
+exports.closeExpiredJobAds = async () => {
+  try {
+    const today = new Date();
+    const startOfDay = new Date(today.setHours(0, 0, 0, 0));
+    const endOfDay = new Date(today.setHours(23, 59, 59, 999));
+
+    const expiredJobAds = await JobAd.findAll({
+      where: {
+        expiration_date: {
+          [Op.between]: [startOfDay, endOfDay]
+        },
+        status: "open"
+      }
+    });
+
+    for (const job of expiredJobAds) {
+      await this.updateJobAdStatus(job.id, "closed");
+      console.log(`JobAd ${job.id} is closed.`);
+    }
+
+    return expiredJobAds.length;
+  } catch (error) {
+    console.error("Error closing ad:", error);
+    throw new Error("Unable to close ads.");
   }
 };
