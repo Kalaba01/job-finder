@@ -1,0 +1,131 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Arial", sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Container for the interviews */
+#interviews-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+#interviews-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* Pending interviews section */
+#interview-list {
+    margin-bottom: 30px;
+}
+
+#interview-list h2 {
+    font-size: 1.5rem;
+    color: #34495e;
+    margin-bottom: 15px;
+}
+
+#interview-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#interview-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f4f4f4;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#interview-list li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+#interview-list li p {
+    margin: 0;
+    flex: 1;
+    padding-right: 10px;
+    font-size: 0.95rem;
+}
+
+#interview-list li button {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#interview-list li .accept-btn {
+    background-color: #27ae60;
+    color: white;
+}
+
+#interview-list li .accept-btn:hover {
+    background-color: #219150;
+}
+
+#interview-list li .reject-btn {
+    background-color: #c0392b;
+    color: white;
+    margin-left: 10px;
+}
+
+#interview-list li .reject-btn:hover {
+    background-color: #a93226;
+}
+
+/* Calendar styles */
+#calendar {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* FullCalendar overrides */
+.fc .fc-button {
+    background-color: #3498db !important;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: background-color 0.2s ease !important;
+}
+
+.fc .fc-button:hover {
+    background-color: #2980b9 !important;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1.5rem;
+    color: #2c3e50;
+}
+
+.fc .fc-daygrid-day {
+    border: 1px solid #e5e5e5;
+}
+
+.fc .fc-daygrid-day:hover {
+    background-color: #f1f1f1;
+}

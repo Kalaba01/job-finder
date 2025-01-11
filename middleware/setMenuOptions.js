@@ -25,6 +25,7 @@ module.exports = (req, res, next) => {
           { name: translate("FirmMenu.jobAds"), link: "/firm/job-ads" },
           { name: translate("FirmMenu.applications"), link: "/firm/applications" },
           { name: translate("FirmMenu.hiringProcess"), link: "/firm/hiring-process" },
+          { name: translate("FirmMenu.interviews"), link: "/firm/interviews" },
           { name: translate("FirmMenu.reviews"), link: "/firm/reviews" },
           { name: translate("FirmMenu.tickets"), link: "/firm/tickets" }
         ];
@@ -35,6 +36,7 @@ module.exports = (req, res, next) => {
           { name: translate("CandidateMenu.profile"), link: "/candidate/profile" },
           { name: translate("CandidateMenu.myApplications"), link: "/candidate/applications" },
           { name: translate("CandidateMenu.hiringProcess"), link: "/candidate/hiring-process" },
+          { name: translate("CandidateMenu.interviews"), link: "/candidate/interviews" },
           { name: translate("CandidateMenu.tickets"), link: "/candidate/tickets" },
           { name: translate("CandidateMenu.companyReviews"), link: "/candidate/reviews" }
         ];

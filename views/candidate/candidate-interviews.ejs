@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Candidate Interviews</title>
+    <link rel="stylesheet" href="/styles/candidate-interviews.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar/main.min.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+  <body data-interviews="<%= JSON.stringify(interviews) %>">
+    <%- include('../partials/top-bar') %>
+
+    <div id="interviews-container">
+      <h1>Your Interviews</h1>
+
+        <div id="interview-list">
+            <% const pendingInvites = interviews.filter((invite) => invite.status === "pending"); %>
+            <% if (pendingInvites.length > 0) { %>
+            <h2>Pending Interview Invitations</h2>
+            <ul>
+                <% pendingInvites.forEach((invite) => { %>
+                <li>
+                    <p>
+                    <strong>Date:</strong> <%= new Date(invite.scheduled_date).toLocaleString(locale) %><br />
+                    <strong>Note:</strong> <%= invite.note || "No additional notes" %>
+                    </p>
+                    <button class="accept-btn" data-id="<%= invite.id %>">Accept</button>
+                    <button class="reject-btn" data-id="<%= invite.id %>">Reject</button>
+                </li>
+                <% }) %>
+            </ul>
+            <% } %>
+        </div>
+
+      <div id="calendar"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar/main.min.js"></script>
+    <script type="module" src="/js/candidate-interviews.js"></script>
+  </body>
+</html>

@@ -1,4 +1,5 @@
 const candidateService = require("../services/candidateService");
+const InterviewInviteService = require("../services/interviewInviteService");
 
 exports.showCandidateProfile = async (req, res) => {
   try {
@@ -32,5 +33,30 @@ exports.updateCandidateProfile = async (req, res) => {
   } catch (error) {
     console.error("Error updating candidate profile:", error);
     res.status(500).json({ message: "Failed to update profile." });
+  }
+};
+
+exports.getCandidateInterviews = async (req, res) => {
+  try {
+    const candidateId = req.user.id;
+    const interviews = await InterviewInviteService.getCandidateInterviews(candidateId);
+    res.render("candidate/candidate-interviews", { interviews, locale: req.getLocale() });
+  } catch (error) {
+    console.error("Error fetching candidate interviews:", error);
+    res.status(500).send("Error fetching candidate interviews.");
+  }
+};
+
+exports.updateInterviewStatus = async (req, res) => {
+  try {
+    const { inviteId } = req.params;
+    const { status } = req.body;
+    const candidateId = req.user.id;
+
+    const updatedInvite = await InterviewInviteService.updateInviteStatus(inviteId, candidateId, status);
+    res.json(updatedInvite);
+  } catch (error) {
+    console.error("Error updating interview status:", error);
+    res.status(500).send("Error updating interview status.");
   }
 };

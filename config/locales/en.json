@@ -133,6 +133,7 @@
 		"jobAds": "Job Ads",
 		"applications": "Applications",
 		"hiringProcess": "Hiring Process",
+		"interviews": "Interviews",
 		"reviews": "Reviews",
 		"tickets": "Tickets"
 	},
@@ -140,6 +141,7 @@
 		"profile": "Profile",
 		"myApplications": "My Applications",
 		"hiringProcess": "Hiring Process",
+		"interviews": "Interviews",
 		"tickets": "Tickets",
 		"companyReviews": "Company Reviews"
 	},
@@ -664,7 +666,7 @@
 		"filterStatus": "Filter by status",
 		"statusPending": "Pending",
 		"statusPassed": "Passed",
-  		"statusFailed": "Failed",
+		"statusFailed": "Failed",
 		"about": "About:",
 		"status": "Status:",
 		"acceptButton": "Accept",

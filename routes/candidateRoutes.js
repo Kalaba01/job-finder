@@ -50,4 +50,10 @@ router.get("/applications/:applicationId/report", applicationController.generate
 // Ruta za prikaz selekcionih procesa kandidata
 router.get("/hiring-process", hiringProcessController.getCandidateHiringProcesses);
 
+// Ruta za prikaz intervjua kandidata
+router.get("/interviews", candidateController.getCandidateInterviews);
+
+// Ruta za ažuriranje statusa poziva na intervju
+router.put("/interviews/:inviteId/status", candidateController.updateInterviewStatus);
+
 module.exports = router;

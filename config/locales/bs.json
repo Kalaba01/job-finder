@@ -133,6 +133,7 @@
 		"jobAds": "Oglasi za posao",
 		"applications": "Aplikacije",
 		"hiringProcess": "Proces Zapošljavanja",
+		"interviews": "Intervjui",
 		"reviews": "Recenzije",
 		"tickets": "Tiketi"
 	},
@@ -140,6 +141,7 @@
 		"profile": "Profil",
 		"myApplications": "Moje prijave",
 		"hiringProcess": "Proces Zapošljavanja",
+		"interviews": "Intervjui",
 		"tickets": "Tiketi",
 		"companyReviews": "Recenzije kompanija"
 	},
