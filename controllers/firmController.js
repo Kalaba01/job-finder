@@ -44,3 +44,15 @@ exports.updateFirmProfile = async (req, res) => {
     res.status(500).json({ success: false, message: "Failed to update profile" });
   }
 };
+
+exports.showFirmInterviews = async (req, res) => {
+  try {
+    const firmId = req.user.id;
+    const interviews = await firmService.getScheduledInterviews(firmId);
+
+    res.render("firm/firm-interviews", { interviews, locale: req.getLocale() });
+  } catch (error) {
+    console.error("Error fetching interviews:", error.message || error);
+    res.status(500).send("An error occurred while fetching interviews.");
+  }
+};

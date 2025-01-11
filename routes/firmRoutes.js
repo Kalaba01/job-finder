@@ -54,4 +54,7 @@ router.get("/hiring-process/:processId", hiringProcessController.getFirmHiringPr
 // Ruta za generisanje izvjestaja o procesu selekcije
 router.get("/hiring-process/:processId/report", hiringProcessController.generateReport);
 
+// Ruta za prikaz zakazanih intervjua firme
+router.get("/interviews", firmController.showFirmInterviews);
+
 module.exports = router;

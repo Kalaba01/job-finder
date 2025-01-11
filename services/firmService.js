@@ -1,6 +1,6 @@
 const imageService = require("./imageService");
 const userService = require("./userService");
-const { User, Firm, JobAd, Image } = require("../models");
+const { User, Firm, JobAd, Image, InterviewInvite, Candidate, HiringProcess } = require("../models");
 
 exports.firmExistsByEmail = async (email) => {
   try {
@@ -188,5 +188,31 @@ exports.updateFirmProfile = async (userId, updatedData) => {
   } catch (error) {
     console.error("Error updating firm profile:", error);
     throw error;
+  }
+};
+
+exports.getScheduledInterviews = async (firmId) => {
+  try {
+    const interviews = await InterviewInvite.findAll({
+      where: { firm_id: firmId },
+      include: [
+        {
+          model: Candidate,
+          as: "Candidate",
+          attributes: ["first_name", "last_name"],
+        },
+      ],
+      attributes: ["id", "scheduled_date"],
+      order: [["scheduled_date", "ASC"]],
+    });
+
+    return interviews.map((interview) => ({
+      id: interview.id,
+      candidateName: `${interview.Candidate?.first_name || "Unknown"} ${interview.Candidate?.last_name || "Unknown"}`,
+      scheduledDate: interview.scheduled_date,
+    }));
+  } catch (error) {
+    console.error("Error fetching scheduled interviews:", error.message || error);
+    throw new Error("Failed to fetch scheduled interviews.");
   }
 };
