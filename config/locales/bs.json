@@ -675,5 +675,15 @@
 		"notePlaceholder": "Opcionalna napomena za intervju",
 		"submitButton": "Potvrdi",
 		"cancelButton": "Otkaži"
-  	}
+  	},
+	"CandidateInterviews": {
+		"title": "Intervjui kandidata",
+		"heading": "Vaši intervjui",
+		"pendingInvitations": "Pozivi za intervjue na čekanju",
+		"date": "Datum",
+		"note": "Napomena",
+		"noAdditionalNotes": "Nema dodatnih napomena",
+		"accept": "Prihvati",
+		"reject": "Odbij"
+	}
 }

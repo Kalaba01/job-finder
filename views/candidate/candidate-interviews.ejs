@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Candidate Interviews</title>
+    <title><%= __('CandidateInterviews.title') %></title>
     <link rel="stylesheet" href="/styles/candidate-interviews.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar/main.min.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
@@ -12,26 +12,26 @@
     <%- include('../partials/top-bar') %>
 
     <div id="interviews-container">
-      <h1>Your Interviews</h1>
+      <h1><%= __('CandidateInterviews.heading') %></h1>
 
-        <div id="interview-list">
-            <% const pendingInvites = interviews.filter((invite) => invite.status === "pending"); %>
-            <% if (pendingInvites.length > 0) { %>
-            <h2>Pending Interview Invitations</h2>
-            <ul>
-                <% pendingInvites.forEach((invite) => { %>
-                <li>
-                    <p>
-                    <strong>Date:</strong> <%= new Date(invite.scheduled_date).toLocaleString(locale) %><br />
-                    <strong>Note:</strong> <%= invite.note || "No additional notes" %>
-                    </p>
-                    <button class="accept-btn" data-id="<%= invite.id %>">Accept</button>
-                    <button class="reject-btn" data-id="<%= invite.id %>">Reject</button>
-                </li>
-                <% }) %>
-            </ul>
-            <% } %>
-        </div>
+      <div id="interview-list">
+        <% const pendingInvites = interviews.filter((invite) => invite.status === "pending"); %>
+        <% if (pendingInvites.length > 0) { %>
+          <h2><%= __('CandidateInterviews.pendingInvitations') %></h2>
+          <ul>
+            <% pendingInvites.forEach((invite) => { %>
+              <li>
+                <p>
+                  <strong><%= __('CandidateInterviews.date') %>:</strong> <%= new Date(invite.scheduled_date).toLocaleString(locale) %><br />
+                  <strong><%= __('CandidateInterviews.note') %>:</strong> <%= invite.note || __('CandidateInterviews.noAdditionalNotes') %>
+                </p>
+                <button class="accept-btn" data-id="<%= invite.id %>"><%= __('CandidateInterviews.accept') %></button>
+                <button class="reject-btn" data-id="<%= invite.id %>"><%= __('CandidateInterviews.reject') %></button>
+              </li>
+            <% }) %>
+          </ul>
+        <% } %>
+      </div>
 
       <div id="calendar"></div>
     </div>

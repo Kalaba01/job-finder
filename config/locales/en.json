@@ -687,5 +687,15 @@
 		"notePlaceholder": "Optional note for interview",
 		"submitButton": "Submit",
 		"cancelButton": "Cancel"
-	}
+	},
+	"CandidateInterviews": {
+		"title": "Candidate Interviews",
+		"heading": "Your Interviews",
+		"pendingInvitations": "Pending Interview Invitations",
+		"date": "Date",
+		"note": "Note",
+		"noAdditionalNotes": "No additional notes",
+		"accept": "Accept",
+		"reject": "Reject"
+  	}
 }
