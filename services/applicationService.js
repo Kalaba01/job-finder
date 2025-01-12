@@ -1,26 +1,43 @@
 const archiver = require('archiver');
 const fileService = require("./fileService");
 const { PassThrough } = require('stream');
-const { Candidate, JobAd, Application, Firm } = require("../models");
+const { Candidate, JobAd, Application, Firm, User } = require("../models");
 
 exports.getApplicationById = async (applicationId) => {
   const application = await Application.findByPk(applicationId, {
     include: [
-      { model: Candidate, attributes: ['first_name', 'last_name', 'about'], as: 'Candidate' },
-      { model: JobAd, attributes: ['title', 'description', 'location', 'category', 'custom_questions'], as: 'JobAd' }
+      {
+        model: Candidate,
+        as: "Candidate",
+        attributes: ["user_id", "first_name", "last_name", "about"],
+        include: [
+          {
+            model: User,
+            as: "CandidateUser",
+            attributes: ["email", "id"]
+          }
+        ]
+      },
+      {
+        model: JobAd,
+        as: "JobAd",
+        attributes: ["id", "title", "description", "location", "category", "custom_questions"]
+      }
     ],
-    attributes: ['id', 'submitted_documents', 'answers', 'status', 'createdAt']
+    attributes: ["id", "submitted_documents", "answers", "status", "createdAt"]
   });
 
-  if (!application) throw new Error('Application not found.');
+  if (!application) throw new Error("Application not found.");
 
-  const customQuestions = typeof application.JobAd.custom_questions === "string"
-    ? JSON.parse(application.JobAd.custom_questions)
-    : application.JobAd.custom_questions || [];
+  const customQuestions =
+    typeof application.JobAd?.custom_questions === "string"
+      ? JSON.parse(application.JobAd.custom_questions)
+      : application.JobAd?.custom_questions || [];
 
-  const answers = typeof application.answers === "string"
-    ? JSON.parse(application.answers)
-    : application.answers || {};
+  const answers =
+    typeof application.answers === "string"
+      ? JSON.parse(application.answers)
+      : application.answers || {};
 
   return {
     id: application.id,
@@ -32,9 +49,32 @@ exports.getApplicationById = async (applicationId) => {
     jobCategory: application.JobAd.category,
     date: application.createdAt.toISOString().split("T")[0],
     customQuestions,
+    status: application.status,
+    submittedDocuments: application.submitted_documents || {},
+    candidate: {
+      id: application.Candidate?.user_id,
+      name: `${application.Candidate?.first_name} ${application.Candidate?.last_name}`,
+      about: application.Candidate?.about,
+      user: application.Candidate?.CandidateUser || null
+    },
+    jobAd: {
+      id: application.JobAd?.id,
+      title: application.JobAd?.title,
+      description: application.JobAd?.description,
+      location: application.JobAd?.location,
+      category: application.JobAd?.category,
+      customQuestions
+    },
     answers,
-    submittedDocuments: application.submitted_documents || {}
+    submittedDocuments: application.submitted_documents || {},
+    createdAt: application.createdAt.toISOString()
   };
+};
+
+exports.updateApplicationStatus = async (applicationId, status) => {
+  const result = await Application.update({ status }, { where: { id: applicationId } });
+  if (result[0] === 0) throw new Error("Failed to update application status.");
+  return result;
 };
 
 exports.applyForJob = async ({ candidateId, jobAdId, answers }) => {

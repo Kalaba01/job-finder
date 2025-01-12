@@ -1,4 +1,3 @@
-const { Op } = require("sequelize");
 const sequelize = require("../config/sequelize");
 const fileService = require("./fileService");
 const { HiringPhase, HiringProcess, HiringProcessCandidate, JobAd, Candidate, Firm, Application, InterviewComment } = require("../models");
@@ -34,6 +33,14 @@ exports.findHiringProcessById = async (processId) => {
   if (!process) throw new Error(`Hiring process with ID ${processId} not found.`);
 
   return process;
+};
+
+exports.findActiveHiringProcess = async (jobAdId) => {
+  const hiringProcess = await HiringProcess.findOne({
+    where: { job_ad_id: jobAdId, active: true }
+  });
+  if (!hiringProcess) throw new Error("No active hiring process found.");
+  return hiringProcess;
 };
 
 exports.hasPendingCandidates = async (processId) => {

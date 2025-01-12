@@ -1,5 +1,8 @@
-const { Application, Candidate, JobAd, User, HiringProcess, HiringPhase, HiringProcessCandidate } = require("../models");
 const emailService = require("../services/emailService");
+const applicationService = require("../services/applicationService")
+const hiringPhaseService = require("../services/hiringPhaseService");
+const hiringProcessService = require("../services/hiringProcessService");
+const hiringProcessCandidateService = require("../services/hiringProcessCandidateService");
 const notificationSocket = require("./notificationSocket");
 
 module.exports = (io, socket) => {
@@ -23,43 +26,21 @@ module.exports = (io, socket) => {
 
       const status = action === "accept" ? "accepted" : "rejected";
 
-      const application = await Application.findByPk(applicationId, {
-        include: [
-          {
-            model: Candidate,
-            as: "Candidate",
-            include: [
-              {
-                model: User,
-                as: "CandidateUser",
-                attributes: ["email", "id"]
-              },
-            ],
-          },
-          {
-            model: JobAd,
-            as: "JobAd",
-            attributes: ["id", "title"]
-          },
-        ],
-      });
+      const application = await applicationService.getApplicationById(applicationId);
 
       if (!application) {
         socket.emit("error", { message: "Application not found." });
         return;
       }
 
-      application.status = status;
-      await application.save();
+      await applicationService.updateApplicationStatus(applicationId, status);
 
-      const candidate = application.Candidate;
-      const user = candidate?.CandidateUser;
-      const jobAd = application.JobAd;
+      const candidate = application.candidate;
+      const user = candidate?.user;
+      const jobAd = application.jobAd;
 
       if (status === "accepted") {
-        const hiringProcess = await HiringProcess.findOne({
-          where: { job_ad_id: jobAd.id, active: true }
-        });
+        const hiringProcess = await hiringProcessService.findActiveHiringProcess(jobAd.id);
 
         if (!hiringProcess) {
           console.error("No active hiring process found for job ad:", jobAd.id);
@@ -67,9 +48,7 @@ module.exports = (io, socket) => {
           return;
         }
 
-        const initialPhase = await HiringPhase.findOne({
-          where: { id: hiringProcess.current_phase }
-        });
+        const initialPhase = await hiringPhaseService.getInitialPhase(hiringProcess.current_phase);
 
         if (!initialPhase) {
           console.error("Initial hiring phase not found for process:", hiringProcess.id);
@@ -77,17 +56,16 @@ module.exports = (io, socket) => {
           return;
         }
 
-        await HiringProcessCandidate.create({
-          hiring_process_id: hiringProcess.id,
-          candidate_id: candidate.user_id,
-          phase_id: initialPhase.id,
-          status: "pending"
-        });
+        await hiringProcessCandidateService.addCandidateToHiringProcess(
+          hiringProcess.id,
+          candidate.id,
+          initialPhase.id
+        );
 
         console.log(`Candidate ${candidate.user_id} added to hiring process ${hiringProcess.id}`);
       }
 
-      io.to(`candidate-${application.candidate_id}`).emit("application-status-updated", {
+      io.to(`candidate-${application.candidate.id}`).emit("application-status-updated", {
         applicationId,
         status
       });
