@@ -18,6 +18,7 @@ const HiringProcess = require("./HiringProcess");
 const HiringProcessCandidate = require("./HiringProcessCandidate");
 const InterviewComment = require("./InterviewComment");
 const InterviewInvite = require("./InterviewInvite");
+const Notification = require("./Notification");
 
 // Funkcija za definisanje asocijacija
 const defineAssociations = () => {
@@ -124,6 +125,10 @@ const defineAssociations = () => {
   InterviewInvite.belongsTo(HiringProcess, { foreignKey: "hiring_process_id", as: "HiringProcess" });
   HiringProcess.hasMany(InterviewInvite, { foreignKey: "hiring_process_id", as: "InterviewInvites" });
 
+  // User -> Notification
+  User.hasMany(Notification, { foreignKey: "user_id", as: "Notifications" });
+  Notification.belongsTo(User, { foreignKey: "user_id", as: "User" });
+
 };
 
 defineAssociations();
@@ -147,5 +152,6 @@ module.exports = {
   HiringProcess,
   HiringProcessCandidate,
   InterviewComment,
-  InterviewInvite
+  InterviewInvite,
+  Notification
 };

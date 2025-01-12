@@ -5,6 +5,7 @@ const ticketSocket = require("./ticketSocket");
 const applicationSocket = require("./applicationSocket");
 const hiringProcessSocket = require("./hiringProcessSocket");
 const candidateSockets = require("./candidateSockets");
+const notificationSocket = require("./notificationSocket");
 
 let io;
 
@@ -36,6 +37,7 @@ const initializeSocket = (server) => {
     applicationSocket(io, socket);
     hiringProcessSocket(io, socket);
     candidateSockets(io, socket);
+    notificationSocket(io, socket);
   });
 };
 

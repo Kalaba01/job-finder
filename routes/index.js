@@ -7,6 +7,7 @@ const passwordResetRoutes = require("./passwordResetRoutes");
 const imageRoutes = require("./imageRoutes");
 const fileRoutes = require("./fileRoutes");
 const ticketRoutes = require("./ticketRoutes");
+const notificationRoutes = require("./notificationRoutes");
 
 module.exports = {
     adminRoutes,
@@ -17,5 +18,6 @@ module.exports = {
     passwordResetRoutes,
     imageRoutes,
     fileRoutes,
-    ticketRoutes
+    ticketRoutes,
+    notificationRoutes
 }

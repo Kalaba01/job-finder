@@ -19,6 +19,7 @@ const configureApp = (app) => {
     app.use("/node_modules", express.static(path.join(__dirname, "../node_modules")));
     app.use("/locales", express.static("./locales"));
     app.use("/socket.io-client", express.static(path.join(__dirname, "../node_modules/socket.io/client-dist")));
+    app.use("/date-fns", express.static(path.join(__dirname, "../node_modules/date-fns")));
 
     // View engine setup
     app.set("view engine", "ejs");

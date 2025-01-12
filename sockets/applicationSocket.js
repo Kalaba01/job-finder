@@ -1,5 +1,6 @@
 const { Application, Candidate, JobAd, User, HiringProcess, HiringPhase, HiringProcessCandidate } = require("../models");
 const emailService = require("../services/emailService");
+const notificationSocket = require("./notificationSocket");
 
 module.exports = (io, socket) => {
   const userId = socket.request.session.passport.user;
@@ -92,6 +93,12 @@ module.exports = (io, socket) => {
       });
 
       if (user) {
+        const message =
+        status === "accepted"
+          ? `Your application for the job ${jobAd.title} has been accepted.`
+          : `Your application for the job ${jobAd.title} has been rejected.`;
+
+        notificationSocket(io, socket).sendNotification(user.id, message, "application-status");
         if (status === "accepted") {
           await emailService.sendCandidateAcceptedEmail(
             user.email,

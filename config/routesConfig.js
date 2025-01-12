@@ -1,4 +1,4 @@
-const { adminRoutes, authRoutes, candidateRoutes, firmRoutes, languageRoutes, passwordResetRoutes, imageRoutes, fileRoutes, ticketRoutes } = require("../routes");
+const { adminRoutes, authRoutes, candidateRoutes, firmRoutes, languageRoutes, passwordResetRoutes, imageRoutes, fileRoutes, ticketRoutes, notificationRoutes } = require("../routes");
 
 const configureRoutes = (app) => {
     app.use("/auth", authRoutes);
@@ -14,6 +14,9 @@ const configureRoutes = (app) => {
 
     // Route for language change
     app.use("/", languageRoutes);
+
+    // Notification route
+    app.use("/notifications", notificationRoutes)
 };
 
 module.exports = configureRoutes;
