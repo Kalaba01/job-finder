@@ -1,11 +1,47 @@
-/* General Styles for Notifications */
+/* Light Mode */
+:root {
+    --notification-bg: #ffffff;
+    --notification-header-bg: #f0f2f5;
+    --notification-header-color: #2c3e50;
+    --notification-border: #d9dee2;
+    --notification-badge-bg: #e63946;
+    --notification-badge-color: #ffffff;
+    --notification-item-bg: #f4f6f8;
+    --notification-item-hover-bg: #e9ecef;
+    --notification-item-unread-bg: #fff8e1;
+    --notification-item-border: #eceff1;
+    --notification-item-hover-shadow: rgba(0, 0, 0, 0.1);
+    --notification-empty-color: #a0a4a8;
+    --scrollbar-bg: #d1d5db;
+    --scrollbar-hover-bg: #a6acb3;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --notification-bg: #2e2e2e;
+    --notification-header-bg: #3e3e3e;
+    --notification-header-color: #d1d1d1;
+    --notification-border: #555;
+    --notification-badge-bg: #ff6666;
+    --notification-badge-color: #ffffff;
+    --notification-item-bg: #444;
+    --notification-item-hover-bg: #555;
+    --notification-item-unread-bg: #524b3a;
+    --notification-item-border: #555;
+    --notification-item-hover-shadow: rgba(0, 0, 0, 0.5);
+    --notification-empty-color: #888;
+    --scrollbar-bg: #555;
+    --scrollbar-hover-bg: #666;
+}
+
+/* General Styles */
 #notifications-container {
     position: absolute;
     top: 60px;
     right: 20px;
     width: 350px;
     max-height: 400px;
-    background-color: #ffffff;
+    background-color: var(--notification-bg);
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     overflow-y: auto;
@@ -14,6 +50,7 @@
     transform: translateY(-15px);
     visibility: hidden;
     transition: opacity 0.3s ease, transform 0.3s ease;
+    border: 1px solid var(--notification-border);
 }
 
 /* Active State for Dropdown */
@@ -26,11 +63,11 @@
 /* Notification Header */
 #notifications-container .header {
     padding: 15px;
-    background-color: #f0f2f5;
-    border-bottom: 1px solid #d9dee2;
+    background-color: var(--notification-header-bg);
+    border-bottom: 1px solid var(--notification-border);
     font-weight: bold;
     font-size: 1.1rem;
-    color: #2c3e50;
+    color: var(--notification-header-color);
     text-align: center;
     border-radius: 12px 12px 0 0;
 }
@@ -40,8 +77,8 @@
     position: relative;
     top: -1rem;
     left: -0.8rem;
-    background-color: #e63946;
-    color: #ffffff;
+    background-color: var(--notification-badge-bg);
+    color: var(--notification-badge-color);
     font-size: 0.8rem;
     font-weight: bold;
     padding: 4px 8px;
@@ -53,7 +90,7 @@
 /* Notification Items */
 .notification-item {
     padding: 15px;
-    border-bottom: 1px solid #eceff1;
+    border-bottom: 1px solid var(--notification-item-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -61,30 +98,31 @@
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     border-radius: 8px;
     margin: 8px;
+    background-color: var(--notification-item-bg);
 }
 
 .notification-item:hover {
-    background-color: #f4f6f8;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--notification-item-hover-bg);
+    box-shadow: 0 2px 8px var(--notification-item-hover-shadow);
 }
 
 .notification-item .message {
     flex: 1;
     font-size: 0.95rem;
-    color: #333;
+    color: var(--notification-header-color);
     line-height: 1.4;
 }
 
 .notification-item .timestamp {
     font-size: 0.75rem;
-    color: #6c757d;
+    color: var(--notification-empty-color);
     margin-left: 10px;
     white-space: nowrap;
 }
 
 /* Unread Notifications */
 .notification-item.unread {
-    background-color: #fff8e1;
+    background-color: var(--notification-item-unread-bg);
     border-left: 5px solid #ffcc00;
 }
 
@@ -92,7 +130,7 @@
 #notifications-container .empty {
     padding: 20px;
     text-align: center;
-    color: #a0a4a8;
+    color: var(--notification-empty-color);
     font-size: 0.9rem;
     font-style: italic;
 }
@@ -103,10 +141,10 @@
 }
 
 #notifications-container::-webkit-scrollbar-thumb {
-    background-color: #d1d5db;
+    background-color: var(--scrollbar-bg);
     border-radius: 4px;
 }
 
 #notifications-container::-webkit-scrollbar-thumb:hover {
-    background-color: #a6acb3;
+    background-color: var(--scrollbar-hover-bg);
 }
