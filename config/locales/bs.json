@@ -677,5 +677,9 @@
 		"noAdditionalNotes": "Nema dodatnih napomena",
 		"accept": "Prihvati",
 		"reject": "Odbij"
+	},
+	"FirmInterviews": {
+		"title": "Intervjui Firme",
+		"heading": "Zakazani Intervjui"
 	}
 }

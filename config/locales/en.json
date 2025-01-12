@@ -689,5 +689,9 @@
 		"noAdditionalNotes": "No additional notes",
 		"accept": "Accept",
 		"reject": "Reject"
+	},
+	"FirmInterviews": {
+		"title": "Firm Interviews",
+		"heading": "Scheduled Interviews"
 	}
 }

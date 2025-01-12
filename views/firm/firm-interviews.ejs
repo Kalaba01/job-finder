@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= locale %>">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Firm Interviews</title>
+  <title><%= __('FirmInterviews.title') %></title>
   <link rel="stylesheet" href="/styles/firm-interviews.css">
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css" rel="stylesheet">
   <link rel="icon" type="image/png" href="/images/logo.png" />
 </head>
 <body>
-    <%- include('../partials/top-bar') %>
+  <%- include('../partials/top-bar') %>
 
   <main>
     <div class="container">
-      <h1>Scheduled Interviews</h1>
+      <h1><%= __('FirmInterviews.heading') %></h1>
       <div id="calendar" data-interviews='<%= JSON.stringify(interviews) %>'></div>
     </div>
   </main>
