@@ -693,5 +693,9 @@
 	"FirmInterviews": {
 		"title": "Firm Interviews",
 		"heading": "Scheduled Interviews"
+	},
+	"Notifications": {
+		"header": "Notifications",
+		"noNew": "No new notifications"
 	}
 }

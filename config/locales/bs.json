@@ -681,5 +681,9 @@
 	"FirmInterviews": {
 		"title": "Intervjui Firme",
 		"heading": "Zakazani Intervjui"
+	},
+	"Notifications": {
+		"header": "Obavještenja",
+		"noNew": "Nema novih obavještenja"
 	}
 }
