@@ -1,5 +1,7 @@
 const { saveMessageToDatabase } = require("../services/ticketService");
 const { Ticket } = require("../models");
+const notificationSocket = require("./notificationSocket");
+const ticketService = require("../services/ticketService");
 
 module.exports = (io, socket) => {
   const userId = socket.request.session.passport.user;
@@ -11,12 +13,25 @@ module.exports = (io, socket) => {
     console.log(`User ${userId} joined room ticket-${ticketId}`);
   });
 
-  socket.on("mark-resolved", (ticketId) => {
+  socket.on("mark-resolved", async (ticketId) => {
     try {
+      const ticket = await ticketService.getTicketById(ticketId);
+
+      if (!ticket) {
+        console.error(`Ticket ${ticketId} not found.`);
+        return;
+      }
+
       io.to(`ticket-${ticketId}`).emit("ticket-resolved", {
         ticketId,
         status: "resolved"
       });
+
+      console.log(`Ticket ${ticketId} resolved.`);
+
+      const message = `Your ticket with ID #${ticket.id} has been resolved.`;
+      notificationSocket(io, socket).sendNotification(ticket.user_id, message, "ticket-status");
+
     } catch (error) {
       console.error("Error emitting ticket resolved event:", error);
     }

@@ -17,14 +17,14 @@ module.exports = (io, socket) => {
       const notification = await Notification.create({
         user_id: userId,
         message,
-        type,
+        type
       });
 
       io.to(`notifications-${userId}`).emit("new-notification", {
         id: notification.id,
         message: notification.message,
         type: notification.type,
-        createdAt: notification.createdAt,
+        createdAt: notification.createdAt
       });
 
       console.log(`Notification sent to user ${userId}: ${message}`);
