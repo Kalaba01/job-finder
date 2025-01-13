@@ -17,6 +17,18 @@ module.exports = (io, socket) => {
     }
   });
 
+  socket.on("application-submitted", async ({ firmId, jobTitle }) => {
+    try {
+      const message = `A new application has been submitted for the job ${jobTitle}.`;
+
+      notificationSocket(io, socket).sendNotification(firmId, message, "new-application");
+
+      console.log(`Notification sent to firm ${firmId} about a new application.`);
+    } catch (error) {
+      console.error("Error notifying firm about application submission:", error.message || error);
+    }
+  });
+
   socket.on("update-application-status", async ({ applicationId, action }) => {
     try {
       if (!["accept", "reject"].includes(action)) {

@@ -1,9 +1,16 @@
+import { io } from "/socket.io-client/socket.io.esm.min.js";
+
 document.addEventListener("DOMContentLoaded", () => {
+  const socket = io();
+
   const applyBtn = document.querySelector(".apply-btn");
   const popupOverlay = document.getElementById("applyPopup");
   const closePopupBtn = document.getElementById("closePopup");
   const submitApplicationBtn = document.getElementById("submitApplication");
   const applicationForm = document.getElementById("applicationForm");
+
+  const firmId = document.body.dataset.firmId;
+  const jobTitle = document.body.dataset.jobTitle;
 
   applyBtn.addEventListener("click", () => {
     popupOverlay.classList.add("active");
@@ -57,6 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
           alert("Application submitted successfully!");
           applicationForm.reset();
           popupOverlay.classList.remove("active");
+
+          socket.emit("application-submitted", { firmId, jobTitle });
         } else {
           const error = await response.text();
           console.error("Error submitting application:", error);

@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="/styles/job-ad.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
-  <body>
+  <body
+    data-firm-id="<%= jobAd.firm_id %>" 
+    data-job-title="<%= jobAd.title %>"
+  >
     <%- include('../partials/top-bar') %>
 
     <div class="job-ad-container">
@@ -97,8 +100,7 @@
       <% } %>
     
       <%- include('apply-form', { jobAd, candidateDocuments }) %>
-      <script src="/js/job-ad.js"></script>
-
+      <script type="module" src="/js/job-ad.js"></script>
     </div>
   </body>
 </html>
