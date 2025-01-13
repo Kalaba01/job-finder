@@ -44,13 +44,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     socket.on("new-notification", (notification) => {
         console.log("New notification received:", notification);
-        addNotificationToUI(notification);
+        addNotificationToUI(notification, true);
 
         const currentCount = parseInt(notificationBadge.textContent || "0", 10);
         updateBadgeCount(currentCount + 1);
     });
 
-    const addNotificationToUI = (notification) => {
+    const addNotificationToUI = (notification, isNew = false) => {
         const newNotification = document.createElement("div");
         newNotification.classList.add("notification-item", notification.read ? "read" : "unread");
         newNotification.innerHTML = `
@@ -62,7 +62,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             await markNotificationAsRead(notification.id, newNotification);
         });
 
-        notificationsContainer.prepend(newNotification);
+        if (isNew) {
+            notificationsContainer.prepend(newNotification);
+        } else {
+            notificationsContainer.appendChild(newNotification);
+        }
     };
 
     const updateBadgeCount = (count) => {

@@ -1,6 +1,7 @@
 const hiringProcessService = require("../services/hiringProcessService");
 const interviewInviteService = require("../services/interviewInviteService");
 const interviewCommentService = require("../services/interviewCommentService");
+const notificationSocket = require("./notificationSocket");
 const { HiringProcessCandidate, HiringPhase } = require("../models");
 
 module.exports = (io, socket) => {
@@ -73,6 +74,12 @@ module.exports = (io, socket) => {
         candidateId: candidateId,
         comment: comment
       });
+
+      const message = action === "accept"
+        ? `You have passed the ${process.currentPhase.name} phase for the job ${process.jobAd.title}.`
+        : `You have failed the ${process.currentPhase.name} phase for the job ${process.jobAd.title}.`;
+
+      notificationSocket(io, socket).sendNotification(candidateId, message, "hiring-process-status");
 
       if (action === "accept" && !process.currentPhase.isFinal && nextInterviewDate) {
         await interviewInviteService.createInvite({
