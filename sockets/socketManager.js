@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser");
 const ticketSocket = require("./ticketSocket");
 const applicationSocket = require("./applicationSocket");
 const hiringProcessSocket = require("./hiringProcessSocket");
-const candidateSockets = require("./candidateSockets");
+const interviewSocket = require("./interviewSocket");
 const notificationSocket = require("./notificationSocket");
 
 let io;
@@ -36,7 +36,7 @@ const initializeSocket = (server) => {
     ticketSocket(io, socket);
     applicationSocket(io, socket);
     hiringProcessSocket(io, socket);
-    candidateSockets(io, socket);
+    interviewSocket(io, socket);
     notificationSocket(io, socket);
   });
 };

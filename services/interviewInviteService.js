@@ -38,7 +38,7 @@ exports.updateInviteStatus = async (inviteId, candidateId, status) => {
 
   const updatedInvite = await InterviewInvite.findOne({
     where: { id: inviteId },
-    attributes: ["id", "scheduled_date", "note", "status"],
+    attributes: ["id", "firm_id", "scheduled_date", "status", "note"],
     include: {
       model: Firm,
       as: "Firm",
