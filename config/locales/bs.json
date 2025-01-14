@@ -646,7 +646,7 @@
 		"filterStatus": "Filtriraj po statusu",
 		"statusPending": "Na čekanju",
 		"statusPassed": "Prošao",
-  		"statusFailed": "Pao",
+		"statusFailed": "Pao",
 		"about": "O kandidatu:",
 		"status": "Status:",
 		"acceptButton": "Prihvati",
@@ -667,7 +667,7 @@
 		"notePlaceholder": "Opcionalna napomena za intervju",
 		"submitButton": "Potvrdi",
 		"cancelButton": "Otkaži"
-  	},
+	},
 	"CandidateInterviews": {
 		"title": "Intervjui kandidata",
 		"heading": "Vaši intervjui",
@@ -685,5 +685,33 @@
 	"Notifications": {
 		"header": "Obavještenja",
 		"noNew": "Nema novih obavještenja"
+	},
+	"AdminMaintenance": {
+		"heading": "Upravljanje fazama zapošljavanja",
+		"addPhase": "Dodaj novu fazu",
+		"phaseName": "Naziv faze",
+		"sequence": "Redoslijed",
+		"isFinal": "Konačna faza",
+		"actions": "Akcije",
+		"noPhases": "Trenutno nema dostupnih faza zapošljavanja.",
+		"deleteTitle": "Brisanje faze",
+		"deleteMessage": "Jeste li sigurni da želite obrisati ovu fazu? Ova akcija je nepovratna.",
+		"closeTitle": "Dodavanje nove faze",
+		"yes": "Da",
+		"no": "Ne",
+		"edit": "Uredi",
+		"delete": "Obriši",
+		"closeMessage": "AdminMaintenance.closeMessage"
+	},
+	"AdminMaintenancePopup": {
+		"addPhaseTitle": "Dodaj novu fazu",
+		"phaseNameLabel": "Naziv faze:",
+		"phaseNamePlaceholder": "Unesite naziv faze",
+		"sequenceLabel": "Redoslijed:",
+		"sequencePlaceholder": "Unesite redoslijed faze",
+		"isFinalLabel": "Da li je konačna faza:",
+		"yes": "Da",
+		"no": "Ne",
+		"save": "Sačuvaj"
 	}
 }

@@ -7,13 +7,18 @@
     <link rel="stylesheet" href="/styles/admin-maintenance.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
-  <body>
+  <body
+    data-confirm-delete-title="<%= __('AdminMaintenance.deleteTitle') %>" 
+    data-confirm-delete-message="<%= __('AdminMaintenance.deleteMessage') %>" 
+    data-confirm-close-title="<%= __('AdminMaintenance.closeTitle') %>" 
+    data-confirm-close-message="<%= __('AdminMaintenance.closeMessage') %>"
+  >
     <%- include("../partials/top-bar") %>
 
     <div class="container">
       <div class="header">
-        <h1>Hiring Phases Management</h1>
-        <button id="add-phase-btn" class="primary-btn">+ Add New Phase</button>
+        <h1><%= __('AdminMaintenance.heading') %></h1>
+        <button id="add-phase-btn" class="primary-btn">+ <%= __('AdminMaintenance.addPhase') %></button>
       </div>
       <div class="table-container">
         <% if (hiringPhases.length > 0) { %>
@@ -21,10 +26,10 @@
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Phase Name</th>
-                <th>Sequence</th>
-                <th>Is Final</th>
-                <th>Actions</th>
+                <th><%= __('AdminMaintenance.phaseName') %></th>
+                <th><%= __('AdminMaintenance.sequence') %></th>
+                <th><%= __('AdminMaintenance.isFinal') %></th>
+                <th><%= __('AdminMaintenance.actions') %></th>
               </tr>
             </thead>
             <tbody>
@@ -33,20 +38,20 @@
                 <td><%= phase.id %></td>
                 <td><%= phase.name %></td>
                 <td><%= phase.sequence %></td>
-                <td><%= phase.is_final ? "Yes" : "No" %></td>
+                <td><%= phase.is_final ? __('AdminMaintenance.yes') : __('AdminMaintenance.no') %></td>
                 <td class="actions">
-                  <button class="edit-btn">Edit</button>
-                  <button class="delete-btn">Delete</button>
+                  <button class="edit-btn"><%= __('AdminMaintenance.edit') %></button>
+                  <button class="delete-btn"><%= __('AdminMaintenance.delete') %></button>
                 </td>
               </tr>
               <% }) %>
             </tbody>
           </table>
         <% } else { %>
-          <p class="no-data-message">No hiring phases available.</p>
+          <p class="no-data-message"><%= __('AdminMaintenance.noPhases') %></p>
         <% } %>
       </div>
-    </div>    
+    </div>
 
     <%- include("./admin-maintenance-popup") %>
     <%- include("../partials/confirm") %>

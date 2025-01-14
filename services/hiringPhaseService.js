@@ -11,7 +11,7 @@ exports.getAllPhases = async () => {
 };
 
 exports.createPhase = async (data) => {
-  return await HiringPhase.create(data);
+  return await HiringPhase.create({ name: data.name, sequence: data.sequence, is_final: data.isFinal });
 };
 
 exports.updatePhase = async (id, data) => {

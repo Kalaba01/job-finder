@@ -11,6 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const editBtns = document.querySelectorAll(".edit-btn");
   const deleteBtns = document.querySelectorAll(".delete-btn");
 
+  const localization = {
+    confirmDeleteTitle: document.body.dataset.confirmDeleteTitle,
+    confirmDeleteMessage: document.body.dataset.confirmDeleteMessage,
+    confirmCloseTitle: document.body.dataset.confirmCloseTitle
+  };
+
   const openModal = (title, phase = null) => {
     document.getElementById("modal-title").textContent = title;
     if (phase) {
@@ -33,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     phaseIdInput.value = "";
   };
 
-  addPhaseBtn.addEventListener("click", () => openModal("Add New Phase"));
+  addPhaseBtn.addEventListener("click", () => openModal(localization.confirmCloseTitle));
   closeModal.addEventListener("click", closeModalHandler);
 
   phaseForm.addEventListener("submit", (event) => {
@@ -77,8 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const id = row.dataset.id;
 
       openConfirmModal({
-        title: "Delete Phase",
-        message: "Are you sure you want to delete this phase? This action cannot be undone.",
+        title: localization.confirmDeleteTitle,
+        message: localization.confirmDeleteMessage,
         action: "delete",
         id: id,
         onConfirm: async (id) => {

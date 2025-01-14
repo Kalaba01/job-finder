@@ -697,5 +697,32 @@
 	"Notifications": {
 		"header": "Notifications",
 		"noNew": "No new notifications"
+	},
+	"AdminMaintenance": {
+		"heading": "Hiring Phases Management",
+		"addPhase": "Add New Phase",
+		"phaseName": "Phase Name",
+		"sequence": "Sequence",
+		"isFinal": "Is Final",
+		"actions": "Actions",
+		"noPhases": "No hiring phases available.",
+		"deleteTitle": "Delete Phase",
+		"deleteMessage": "Are you sure you want to delete this phase? This action cannot be undone.",
+		"closeTitle": "Add New Phase",
+		"yes": "Yes",
+		"no": "No",
+		"edit": "Edit",
+		"delete": "Delete"
+  	},
+	"AdminMaintenancePopup": {
+		"addPhaseTitle": "Add New Phase",
+		"phaseNameLabel": "Phase Name:",
+		"phaseNamePlaceholder": "Enter phase name",
+		"sequenceLabel": "Sequence:",
+		"sequencePlaceholder": "Enter phase sequence",
+		"isFinalLabel": "Is Final Phase:",
+		"yes": "Yes",
+		"no": "No",
+		"save": "Save"
 	}
 }

@@ -2,40 +2,40 @@
 <div id="phase-modal" class="modal">
   <div class="modal-content">
     <span class="close-modal">&times;</span>
-    <h2 id="modal-title">Add New Phase</h2>
+    <h2 id="modal-title"><%= __('AdminMaintenancePopup.addPhaseTitle') %></h2>
     <form id="phase-form">
       <div class="form-group">
-        <label for="phase-name">Phase Name:</label>
+        <label for="phase-name"><%= __('AdminMaintenancePopup.phaseNameLabel') %></label>
         <input
           type="text"
           id="phase-name"
           name="name"
-          placeholder="Enter phase name"
+          placeholder="<%= __('AdminMaintenancePopup.phaseNamePlaceholder') %>"
           required
         />
       </div>
 
       <div class="form-group">
-        <label for="phase-sequence">Sequence:</label>
+        <label for="phase-sequence"><%= __('AdminMaintenancePopup.sequenceLabel') %></label>
         <input
           type="number"
           id="phase-sequence"
           name="sequence"
-          placeholder="Enter phase sequence"
+          placeholder="<%= __('AdminMaintenancePopup.sequencePlaceholder') %>"
           required
         />
       </div>
 
       <div class="form-group">
-        <label for="phase-final">Is Final Phase:</label>
+        <label for="phase-final"><%= __('AdminMaintenancePopup.isFinalLabel') %></label>
         <select id="phase-final" name="isFinal">
-          <option value="false">No</option>
-          <option value="true">Yes</option>
+          <option value="false"><%= __('AdminMaintenancePopup.no') %></option>
+          <option value="true"><%= __('AdminMaintenancePopup.yes') %></option>
         </select>
       </div>
 
       <input type="hidden" id="phase-id" name="id" />
-      <button type="submit" class="primary-btn save-btn">Save</button>
+      <button type="submit" class="primary-btn save-btn"><%= __('AdminMaintenancePopup.save') %></button>
     </form>
   </div>
 </div>
