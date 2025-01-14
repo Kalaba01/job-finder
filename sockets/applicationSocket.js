@@ -22,8 +22,10 @@ module.exports = (io, socket) => {
       const message = `A new application has been submitted for the job ${jobTitle}.`;
 
       notificationSocket(io, socket).sendNotification(firmId, message, "new-application");
-
       console.log(`Notification sent to firm ${firmId} about a new application.`);
+
+      io.emit("update-dashboard");
+      console.log("Dashboard update event emitted.");
     } catch (error) {
       console.error("Error notifying firm about application submission:", error.message || error);
     }

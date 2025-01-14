@@ -10,8 +10,11 @@ const { authMiddleware, languageMiddleware, setMenuOptions } = require("../middl
 router.use(authMiddleware.isAuthenticated, authMiddleware.isAdmin, languageMiddleware, setMenuOptions);
 
 router.get("/", (req, res) => {
-  res.render("admin", { locale: req.getLocale() });
+  res.render("admin/admin", { locale: req.getLocale() });
 });
+
+// Dashboard ruta
+router.get("/dashboard-stats", adminController.getDashboardStats);
 
 // Ruta za prikaz zahteva firmi
 router.get("/company-approvals", adminController.getFirmRequests);

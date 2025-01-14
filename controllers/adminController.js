@@ -1,5 +1,16 @@
 const firmRequestService = require("../services/firmRequestService");
 const userService = require("../services/userService");
+const dashboardService = require("../services/dashboardService");
+
+exports.getDashboardStats = async (req, res) => {
+  try {
+    const stats = await dashboardService.getAdminStats();
+    res.status(200).json(stats);
+  } catch (error) {
+    console.error("Error fetching dashboard stats:", error);
+    res.status(500).json({ message: "Failed to fetch dashboard stats." });
+  }
+};
 
 exports.getFirmRequests = async (req, res) => {
   try {

@@ -725,5 +725,13 @@
 		"yes": "Yes",
 		"no": "No",
 		"save": "Save"
+	},
+	"AdminDashboard": {
+		"title": "Admin Dashboard",
+		"heading": "Admin Dashboard",
+		"candidatesTitle": "Number of Candidates",
+		"firmsTitle": "Number of Firms",
+		"jobAdsTitle": "Job Ads",
+		"applicationsTitle": "Submitted Applications"
 	}
 }

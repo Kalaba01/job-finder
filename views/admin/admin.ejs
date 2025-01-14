@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= __("AdminDashboard.title") %></title>
+    <link rel="stylesheet" href="/styles/admin.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+  <body 
+    data-locale="<%= locale %>" 
+    data-candidates-title="<%= __('AdminDashboard.candidatesTitle') %>" 
+    data-firms-title="<%= __('AdminDashboard.firmsTitle') %>" 
+    data-job-ads-title="<%= __('AdminDashboard.jobAdsTitle') %>" 
+    data-applications-title="<%= __('AdminDashboard.applicationsTitle') %>"
+  >
+    
+    <%- include('../partials/top-bar') %>
+
+    <div class="dashboard-container">
+      <h1><%= __("AdminDashboard.heading") %></h1>
+    
+      <!-- Row for user-related statistics -->
+      <div class="charts-row">
+        <div class="chart">
+          <h2><%= __("AdminDashboard.candidatesTitle") %></h2>
+          <canvas id="candidatesChart"></canvas>
+        </div>
+        <div class="chart">
+          <h2><%= __("AdminDashboard.firmsTitle") %></h2>
+          <canvas id="firmsChart"></canvas>
+        </div>
+      </div>
+    
+      <!-- Row for job-related statistics -->
+      <div class="charts-row">
+        <div class="chart">
+          <h2><%= __("AdminDashboard.jobAdsTitle") %></h2>
+          <canvas id="jobAdsChart"></canvas>
+        </div>
+        <div class="chart">
+          <h2><%= __("AdminDashboard.applicationsTitle") %></h2>
+          <canvas id="applicationsChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="/js/admin.js"></script>
+  </body>
+</html>
