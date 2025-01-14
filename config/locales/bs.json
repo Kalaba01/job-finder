@@ -721,5 +721,14 @@
 		"firmsTitle": "Broj Firmi",
 		"jobAdsTitle": "Oglasi za Posao",
 		"applicationsTitle": "Podnete Aplikacije"
+	},
+	"FirmDashboard": {
+		"title": "Kontrolna tabla firme",
+		"heading": "Kontrolna tabla firme",
+		"jobAds": "Oglasi za posao",
+		"applications": "Aplikacije",
+		"noData": "Nema dostupnih podataka",
+		"jobAdsTitle": "Broj oglasa za posao",
+		"applicationsTitle": "Broj aplikacija"
 	}
 }

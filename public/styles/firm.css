@@ -1,11 +1,23 @@
 :root {
     --background-color: #f8f9fa;
     --text-color: #343a40;
+    --card-background-color: #ffffff;
+    --card-shadow-color: rgba(0, 0, 0, 0.1);
+    --chart-legend-color: #007bff;
+    --empty-card-background-color: #f8d7da;
+    --empty-card-text-color: #721c24;
+    --empty-card-border-color: #f5c6cb;
 }
 
 [data-theme="dark"] {
     --background-color: #121212;
     --text-color: #e0e0e0;
+    --card-background-color: #1f1f1f;
+    --card-shadow-color: rgba(255, 255, 255, 0.1);
+    --chart-legend-color: #17a2b8;
+    --empty-card-background-color: #2e2e2e;
+    --empty-card-text-color: #f5c6cb;
+    --empty-card-border-color: #721c24;
 }
 
 body {
@@ -25,4 +37,48 @@ h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
     text-align: center;
+    color: var(--text-color);
+}
+
+.charts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.chart {
+    padding: 1rem;
+    background-color: var(--card-background-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--card-shadow-color);
+}
+
+.chart h2 {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+canvas {
+    max-width: 100%;
+    height: 300px;
+}
+
+.chart.empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--empty-card-background-color);
+    color: var(--empty-card-text-color);
+    border: 1px solid var(--empty-card-border-color);
+    padding: 20px;
+    text-align: center;
+}
+
+.chart.empty h2 {
+    margin-bottom: 10px;
+    color: var(--empty-card-text-color);
 }

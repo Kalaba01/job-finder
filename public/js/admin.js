@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Fetch data from the server
   const fetchData = async () => {
     try {
-      const response = await fetch("/admin/dashboard-stats");
+      const response = await fetch("/admin/dashboard");
       const data = await response.json();
       console.log("Fetched Stats:", data);
       return data;

@@ -1,4 +1,16 @@
 const firmService = require("../services/firmService");
+const dashboardService = require("../services/dashboardService");
+
+exports.getFirmDashboard = async (req, res) => {
+  try {
+    const firmId = req.user.id;
+    const stats = await dashboardService.getFirmStats(firmId);
+    res.status(200).json(stats);
+  } catch (error) {
+    console.error("Error fetching firm dashboard stats:", error);
+    res.status(500).send("Error loading firm dashboard.");
+  }
+};
 
 exports.showFirmProfile = async (req, res) => {
   try {

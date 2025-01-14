@@ -733,5 +733,14 @@
 		"firmsTitle": "Number of Firms",
 		"jobAdsTitle": "Job Ads",
 		"applicationsTitle": "Submitted Applications"
+	},
+	"FirmDashboard": {
+		"title": "Firm Dashboard",
+		"heading": "Firm Dashboard",
+		"jobAds": "Job Ads",
+		"applications": "Applications",
+		"noData": "No data available",
+		"jobAdsTitle": "Number of Job Ads",
+		"applicationsTitle": "Number of Applications"
 	}
 }

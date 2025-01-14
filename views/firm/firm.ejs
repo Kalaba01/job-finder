@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= __("FirmDashboard.title") %></title>
+    <link rel="stylesheet" href="/styles/firm.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+  <body 
+    data-job-ads-label="<%= __('FirmDashboard.jobAds') %>"
+    data-applications-label="<%= __('FirmDashboard.applications') %>"
+    data-no-data-label="<%= __('FirmDashboard.noData') %>"
+  >
+    <%- include('../partials/top-bar') %>
+
+    <div class="dashboard-container">
+      <h1><%= __("FirmDashboard.heading") %></h1>
+
+      <!-- Charts Container -->
+      <div class="charts-container">
+        <div class="chart">
+          <h2><%= __("FirmDashboard.jobAdsTitle") %></h2>
+          <canvas id="jobAdsChart"></canvas>
+        </div>
+        <div class="chart">
+          <h2><%= __("FirmDashboard.applicationsTitle") %></h2>
+          <canvas id="applicationsChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="/js/firm.js"></script>
+  </body>
+</html>

@@ -11,8 +11,11 @@ const { authMiddleware, languageMiddleware, setMenuOptions, uploadMiddleware } =
 router.use(authMiddleware.isAuthenticated, authMiddleware.isFirm, languageMiddleware, setMenuOptions);
 
 router.get("/", (req, res) => {
-  res.render("firm", { locale: req.getLocale() });
+  res.render("firm/firm", { locale: req.getLocale() });
 });
+
+// Firm dashboard
+router.get("/dashboard", firmController.getFirmDashboard);
 
 // Prikaz profila firme
 router.get("/profile", firmController.showFirmProfile);

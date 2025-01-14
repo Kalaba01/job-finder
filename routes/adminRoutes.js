@@ -13,8 +13,8 @@ router.get("/", (req, res) => {
   res.render("admin/admin", { locale: req.getLocale() });
 });
 
-// Dashboard ruta
-router.get("/dashboard-stats", adminController.getDashboardStats);
+// Admin dashboard
+router.get("/dashboard", adminController.getDashboardStats);
 
 // Ruta za prikaz zahteva firmi
 router.get("/company-approvals", adminController.getFirmRequests);
