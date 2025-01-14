@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
           { name: translate("AdminMenu.userManagement"), link: "/admin/users" },
           { name: translate("AdminMenu.companyApprovals"), link: "/admin/company-approvals" },
           { name: translate("AdminMenu.jobAds"), link: "/admin/job-ads" },
-          { name: translate("AdminMenu.massNotifications"), link: "/admin/notifications" },
+          { name: translate("AdminMenu.maintenance"), link: "/admin/maintenance" },
           { name: translate("AdminMenu.ticketManagement"), link: "/admin/tickets" }
         ];
         break;

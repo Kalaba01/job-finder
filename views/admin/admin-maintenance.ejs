@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maintenance - Hiring Phases</title>
+    <link rel="stylesheet" href="/styles/admin-maintenance.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+  <body>
+    <%- include("../partials/top-bar") %>
+
+    <div class="container">
+      <div class="header">
+        <h1>Hiring Phases Management</h1>
+        <button id="add-phase-btn" class="primary-btn">+ Add New Phase</button>
+      </div>
+      <div class="table-container">
+        <% if (hiringPhases.length > 0) { %>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Phase Name</th>
+                <th>Sequence</th>
+                <th>Is Final</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% hiringPhases.forEach((phase) => { %>
+              <tr data-id="<%= phase.id %>">
+                <td><%= phase.id %></td>
+                <td><%= phase.name %></td>
+                <td><%= phase.sequence %></td>
+                <td><%= phase.is_final ? "Yes" : "No" %></td>
+                <td class="actions">
+                  <button class="edit-btn">Edit</button>
+                  <button class="delete-btn">Delete</button>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <p class="no-data-message">No hiring phases available.</p>
+        <% } %>
+      </div>
+    </div>    
+
+    <%- include("./admin-maintenance-popup") %>
+    <%- include("../partials/confirm") %>
+    <script src="/js/admin-maintenance.js"></script>
+  </body>
+</html>

@@ -24,9 +24,6 @@ const interviewSocket = (io, socket) => {
       );
       socket.emit("status-updated", updatedInvite);
 
-      console.log(updatedInvite);
-
-
       if (updatedInvite && updatedInvite.firm_id) {
         const message = status === "accepted"
             ? `The candidate has accepted your interview invite scheduled on ${new Date(
@@ -42,11 +39,8 @@ const interviewSocket = (io, socket) => {
           "interview-status"
         );
 
-        console.log(
-          `Notification sent to firm ${updatedInvite.firm_id}: ${message}`
-        );
+        console.log(`Notification sent to firm ${updatedInvite.firm_id}: ${message}`);
       }
-
     } catch (error) {
       console.error("Error updating interview status:", error);
     }
