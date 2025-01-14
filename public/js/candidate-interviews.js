@@ -5,6 +5,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const calendarEl = document.getElementById("calendar");
   const body = document.body;
 
+  const localization = {
+    acceptTitle: body.dataset.acceptTitle,
+    acceptMessage: body.dataset.acceptMessage,
+    rejectTitle: body.dataset.rejectTitle,
+    rejectMessage: body.dataset.rejectMessage,
+    noAdditionalNotes: body.dataset.noAdditionalNotes,
+    dateLabel: body.dataset.dateLabel,
+    noteLabel: body.dataset.noteLabel,
+  };
+
   let interviews = JSON.parse(body.dataset.interviews || "[]");
 
   const getAcceptedInterviews = () =>
@@ -29,10 +39,27 @@ document.addEventListener("DOMContentLoaded", () => {
   calendar.render();
 
   document.querySelectorAll(".accept-btn").forEach((button) =>
-    button.addEventListener("click", () => updateInterviewStatus(button.dataset.id, "accepted"))
+    button.addEventListener("click", () => {
+      openConfirmModal({
+        title: localization.acceptTitle,
+        message: localization.acceptMessage,
+        id: button.dataset.id,
+        action: "accepted",
+        onConfirm: (id) => updateInterviewStatus(id, "accepted"),
+      });
+    })
   );
+
   document.querySelectorAll(".reject-btn").forEach((button) =>
-    button.addEventListener("click", () => updateInterviewStatus(button.dataset.id, "rejected"))
+    button.addEventListener("click", () => {
+      openConfirmModal({
+        title: localization.rejectTitle,
+        message: localization.rejectMessage,
+        id: button.dataset.id,
+        action: "rejected",
+        onConfirm: (id) => updateInterviewStatus(id, "rejected"),
+      });
+    })
   );
 
   const updateInterviewStatus = (id, status) => {
@@ -59,17 +86,29 @@ document.addEventListener("DOMContentLoaded", () => {
         const listItem = document.createElement("li");
         listItem.innerHTML = `
           <p>
-            <strong>Date:</strong> ${new Date(invite.scheduled_date).toLocaleString(body.dataset.locale)}<br />
-            <strong>Note:</strong> ${invite.note || "No additional notes"}
+            <strong>${localization.dateLabel}:</strong> ${new Date(invite.scheduled_date).toLocaleString(body.dataset.locale)}<br />
+            <strong>${localization.noteLabel}:</strong> ${invite.note || "No additional notes"}
           </p>
-          <button class="accept-btn" data-id="${invite.id}">Accept</button>
-          <button class="reject-btn" data-id="${invite.id}">Reject</button>
+          <button class="accept-btn" data-id="${invite.id}">${localization.acceptTitle}</button>
+          <button class="reject-btn" data-id="${invite.id}">${localization.rejectTitle}</button>
         `;
         listItem.querySelector(".accept-btn").addEventListener("click", () =>
-          updateInterviewStatus(invite.id, "accepted")
+          openConfirmModal({
+            title: localization.acceptTitle,
+            message: localization.acceptMessage,
+            id: invite.id,
+            action: "accepted",
+            onConfirm: (id) => updateInterviewStatus(id, "accepted"),
+          })
         );
         listItem.querySelector(".reject-btn").addEventListener("click", () =>
-          updateInterviewStatus(invite.id, "rejected")
+          openConfirmModal({
+            title: localization.rejectTitle,
+            message: localization.rejectMessage,
+            id: invite.id,
+            action: "rejected",
+            onConfirm: (id) => updateInterviewStatus(id, "rejected"),
+          })
         );
         list.appendChild(listItem);
       });

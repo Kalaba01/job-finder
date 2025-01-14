@@ -682,13 +682,19 @@
 	},
 	"CandidateInterviews": {
 		"title": "Candidate Interviews",
-		"heading": "Your Interviews",
-		"pendingInvitations": "Pending Interview Invitations",
+		"heading": "Your Interview Invitations",
+		"pendingInvitations": "Pending Invitations",
+		"accept": "Accept",
+		"reject": "Reject",
+		"acceptTitle": "Accept Interview",
+		"acceptMessage": "Are you sure you want to accept this interview?",
+		"rejectTitle": "Reject Interview",
+		"rejectMessage": "Are you sure you want to reject this interview?",
 		"date": "Date",
 		"note": "Note",
 		"noAdditionalNotes": "No additional notes",
-		"accept": "Accept",
-		"reject": "Reject"
+		"no": "No",
+		"yes": "Yes"
 	},
 	"FirmInterviews": {
 		"title": "Firm Interviews",

@@ -8,7 +8,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar/main.min.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
-  <body data-interviews="<%= JSON.stringify(interviews) %>">
+  <body 
+    data-accept-title="<%= __('CandidateInterviews.acceptTitle') %>"
+    data-accept-message="<%= __('CandidateInterviews.acceptMessage') %>"
+    data-reject-title="<%= __('CandidateInterviews.rejectTitle') %>"
+    data-reject-message="<%= __('CandidateInterviews.rejectMessage') %>"
+    data-no-additional-notes="<%= __('CandidateInterviews.noAdditionalNotes') %>"
+    data-date-label="<%= __('CandidateInterviews.date') %>"
+    data-note-label="<%= __('CandidateInterviews.note') %>"
+    data-interviews="<%= JSON.stringify(interviews) %>"
+  >
     <%- include('../partials/top-bar') %>
 
     <div id="interviews-container">
@@ -36,6 +45,7 @@
       <div id="calendar"></div>
     </div>
 
+    <%- include('../partials/confirm') %>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar/main.min.js"></script>
     <script type="module" src="/js/candidate-interviews.js"></script>
   </body>

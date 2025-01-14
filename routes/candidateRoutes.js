@@ -14,7 +14,7 @@ router.use(authMiddleware.isAuthenticated, authMiddleware.isCandidate, languageM
 
 router.get("/", async (req, res) => {
   const { jobAds, categories, locations } = await jobAdsService.getAllJobAdsWithDetails();
-  res.render("candidate", { locale: req.getLocale(), jobAds, categories, locations });
+  res.render("candidate/candidate", { locale: req.getLocale(), jobAds, categories, locations });
 });
 
 // Ruta za prikaz profila kandidata

@@ -669,14 +669,20 @@
 		"cancelButton": "Otkaži"
 	},
 	"CandidateInterviews": {
-		"title": "Intervjui kandidata",
-		"heading": "Vaši intervjui",
-		"pendingInvitations": "Pozivi za intervjue na čekanju",
+		"title": "Kandidatovi intervjui",
+		"heading": "Vaši pozivi na intervju",
+		"pendingInvitations": "Pozivi na čekanju",
+		"accept": "Prihvati",
+		"reject": "Odbij",
+		"acceptTitle": "Prihvati intervju",
+		"acceptMessage": "Da li ste sigurni da želite prihvatiti ovaj intervju?",
+		"rejectTitle": "Odbij intervju",
+		"rejectMessage": "Da li ste sigurni da želite odbiti ovaj intervju?",
 		"date": "Datum",
 		"note": "Napomena",
 		"noAdditionalNotes": "Nema dodatnih napomena",
-		"accept": "Prihvati",
-		"reject": "Odbij"
+		"no": "Ne",
+		"yes": "Da"
 	},
 	"FirmInterviews": {
 		"title": "Intervjui Firme",
