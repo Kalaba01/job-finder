@@ -86,19 +86,29 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const filterRequests = () => {
+    if (cards.length === 0) {
+      if (!document.querySelector(".no-results")) {
+        const noResultsMessage = document.createElement("div");
+        noResultsMessage.classList.add("no-results");
+        noResultsMessage.textContent = "No firm requests available.";
+        requestGrid.appendChild(noResultsMessage);
+      }
+      return;
+    }
+  
     const searchValue = searchInput.value.toLowerCase();
     const statusValue = filterSelect.value;
-
+  
     let hasVisibleCards = false;
-
+  
     cards.forEach((card) => {
       const name = card.querySelector("h3").textContent.toLowerCase();
       const email = card.querySelector("p strong").textContent.toLowerCase();
       const status = card.getAttribute("data-status");
-
+  
       const matchesSearch = name.includes(searchValue) || email.includes(searchValue);
       const matchesStatus = statusValue === "all" || status === statusValue;
-
+  
       if (matchesSearch && matchesStatus) {
         card.style.display = "block";
         hasVisibleCards = true;
@@ -106,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.display = "none";
       }
     });
-
+  
     if (!hasVisibleCards) {
       if (!document.querySelector(".no-results")) {
         const noResultsMessage = document.createElement("div");

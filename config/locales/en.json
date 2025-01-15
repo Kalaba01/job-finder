@@ -115,7 +115,8 @@
 		"approveTitle": "Approve Request",
 		"approveMessage": "Are you sure you want to approve this request?",
 		"rejectTitle": "Reject Request",
-		"rejectMessage": "Are you sure you want to reject this request?"
+		"rejectMessage": "Are you sure you want to reject this request?",
+		"noRequestsMessage": "No firm requests available."
 	},
 	"AdminMenu": {
 		"userManagement": "User Management",

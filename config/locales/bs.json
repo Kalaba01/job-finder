@@ -115,7 +115,8 @@
 		"approveTitle": "Odobri zahtjev",
 		"approveMessage": "Jeste li sigurni da želite odobriti ovaj zahtjev?",
 		"rejectTitle": "Odbij zahtjev",
-		"rejectMessage": "Jeste li sigurni da želite odbiti ovaj zahtjev?"
+		"rejectMessage": "Jeste li sigurni da želite odbiti ovaj zahtjev?",
+		"noRequestsMessage": "Nema dostupnih zahtjeva firmi"
 	},
 	"AdminMenu": {
 		"userManagement": "Upravljanje korisnicima",
