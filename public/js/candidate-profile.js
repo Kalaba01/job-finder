@@ -4,6 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const closePopupBtn = document.getElementById("edit-profile-close-btn");
   const editProfileForm = document.getElementById("edit-profile-form");
 
+  const notyf = new Notyf({
+    position: {
+      x: "right",
+      y: "top"
+    }
+  });
+
   editProfileBtn.addEventListener("click", () => {
     popupOverlay.style.display = "flex";
   });
@@ -25,15 +32,15 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (response.ok) {
-        alert("Profile updated successfully!");
+        notyf.success("Profile updated successfully!");
         location.reload();
       } else {
         const errorData = await response.json();
-        alert(errorData.message || "Failed to update profile.");
+        notyf.error(errorData.message || "Failed to update profile.");
       }
     } catch (error) {
       console.error("Error updating profile:", error);
-      alert("An error occurred while updating the profile.");
+      notyf.error("An error occurred while updating the profile.");
     }
   });
 });

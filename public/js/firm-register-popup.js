@@ -16,6 +16,13 @@ noUiSlider.create(employeeRangeSlider, {
   step: 1
 });
 
+const notyf = new Notyf({
+  position: {
+    x: "right",
+    y: "top"
+  }
+});
+
 // Update the output for the range slider
 employeeRangeSlider.noUiSlider.on("update", (values) => {
   rangeOutput.textContent = `${Math.floor(values[0])} - ${Math.ceil(values[1])}`;
@@ -71,14 +78,14 @@ firmRegisterForm.addEventListener("submit", async (e) => {
     });
 
     if (response.ok) {
-      alert("Request submitted successfully!");
+      notyf.success("Request submitted successfully!");
       closeFirmRegisterPopup();
     } else {
       const errorData = await response.json();
-      alert(`Failed to submit request: ${errorData.error}`);
+      notyf.error(`Failed to submit request: ${errorData.error}`);
     }
   } catch (error) {
     console.error("Error submitting request:", error);
-    alert("An error occurred. Please try again later.");
+    notyf.error("An error occurred. Please try again later.");
   }
 });

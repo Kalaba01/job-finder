@@ -1,6 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   const generateReportButton = document.getElementById("generate-report-btn");
 
+  const notyf = new Notyf({
+    position: {
+      x: "right",
+      y: "top"
+    }
+  });
+
   if (generateReportButton) {
     generateReportButton.addEventListener("click", async () => {
       const applicationId = window.location.pathname.split("/").pop();
@@ -29,12 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
+          notyf.success("Report generated successfully!");
         } else {
-          alert("Failed to generate report.");
+          notyf.error("Failed to generate report.");
         }
       } catch (error) {
         console.error("Error generating report:", error);
-        alert("Error generating report.");
+        notyf.error("Error generating report.");
       }
     });
   }

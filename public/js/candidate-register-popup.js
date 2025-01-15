@@ -10,6 +10,13 @@ const registerConfirmPasswordInput = document.getElementById("register-confirm-p
 const switchToLogin = document.getElementById("switch-to-login");
 const registerForm = document.getElementById("register-form");
 
+const notyf = new Notyf({
+  position: {
+    x: "right",
+    y: "top"
+  }
+});
+
 export function openRegisterPopup() {
   registerPopupOverlay.style.display = "flex";
   registerFirstNameInput.focus();
@@ -38,12 +45,12 @@ registerForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   if (registerPasswordInput.value.length < 6) {
-    console.error("Password must be at least 6 characters long!");
+    notyf.error("Password must be at least 6 characters long!");
     return;
   }
 
   if (registerPasswordInput.value !== registerConfirmPasswordInput.value) {
-    console.error("Passwords do not match!");
+    notyf.error("Passwords do not match!");
     return;
   }
 
@@ -64,15 +71,15 @@ registerForm.addEventListener("submit", async (e) => {
     });
 
     if (response.ok) {
-      console.log("Registration successful! Redirecting to login...");
+      notyf.success("Registration successful! Redirecting to login...");
       registerPopupOverlay.style.display = "none";
       resetRegisterForm();
       openLoginPopup();
     } else {
       const errorData = await response.json();
-      console.error(`Registration failed: ${errorData.error}`);
+      notyf.error(`Registration failed: ${errorData.error}`);
     }
   } catch (error) {
-    console.error("Error during registration:", error);
+    notyf.error("An error occurred. Please try again.");
   }
 });

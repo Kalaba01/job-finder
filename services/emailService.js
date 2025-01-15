@@ -45,7 +45,7 @@ exports.sendCandidateWelcomeEmail = async (email, first_name) => {
 
 exports.sendPasswordResetEmail = async (email, token) => {
   try {
-    const resetPasswordLink = `http://localhost:3000/password/password/reset-password?token=${token}`;
+    const resetPasswordLink = `http://localhost:3000/password/reset-password?token=${token}`;
     const subject = "Reset Your Password";
     const templatePath = path.join(__dirname, "../views/emails/password-reset.ejs");
     const cssPath = path.join(__dirname, "../public/styles/password-reset.css");

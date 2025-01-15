@@ -4,6 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const jobAdsList = document.getElementById("job-ads-list-container");
   const noResultsMessage = document.getElementById("no-results-message");
 
+  const notyf = new Notyf({
+    position: {
+      x: "right",
+      y: "top"
+    }
+  });
+
   const localization = {
     confirmCloseTitle: document.body.dataset.confirmCloseTitle,
     confirmCloseMessage: document.body.dataset.confirmCloseMessage,
@@ -48,11 +55,11 @@ document.addEventListener("DOMContentLoaded", () => {
         method: "PUT",
       });
       if (!response.ok) throw new Error("Failed to close job ad.");
-      alert("Job ad closed successfully.");
+      notyf.success("Job ad closed successfully.");
       location.reload();
     } catch (error) {
       console.error(error);
-      alert("Error closing job ad.");
+      notyf.error("Error closing job ad.");
     }
   };
 
@@ -62,11 +69,11 @@ document.addEventListener("DOMContentLoaded", () => {
         method: "DELETE",
       });
       if (!response.ok) throw new Error("Failed to delete job ad.");
-      alert("Job ad deleted successfully.");
+      notyf.success("Job ad deleted successfully.");
       location.reload();
     } catch (error) {
       console.error(error);
-      alert("Error deleting job ad.");
+      notyf.error("Error deleting job ad.");
     }
   };
 

@@ -13,7 +13,7 @@ const { authMiddleware, languageMiddleware, setMenuOptions, uploadMiddleware } =
 router.use(authMiddleware.isAuthenticated, authMiddleware.isCandidate, languageMiddleware, setMenuOptions);
 
 router.get("/", async (req, res) => {
-  const { jobAds, categories, locations } = await jobAdsService.getAllJobAdsWithDetails();
+  const { jobAds, categories, locations } = await jobAdsService.getAllJobAdsWithDetails(true);
   res.render("candidate/candidate", { locale: req.getLocale(), jobAds, categories, locations });
 });
 

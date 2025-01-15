@@ -28,6 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const closePopupBtn = detailsPopup.querySelector(".close-popup-btn");
   const generateReportButton = document.getElementById("generate-report");
 
+  const notyf = new Notyf({
+    position: {
+      x: "right",
+      y: "top"
+    }
+  });
+
   const localizations = {
     noResultsMessage: document.body.dataset.noResultsMessage
   };
@@ -56,9 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
         link.download = `Hiring_Process_Report_${processId}.pdf`;
         link.click();
         URL.revokeObjectURL(link.href);
+        notyf.success("Report generated successfully!");
       } catch (error) {
         console.error("Error generating report:", error);
-        alert("Failed to generate the report.");
+        notyf.error("Failed to generate the report.");
       }
     });
   }
@@ -105,17 +113,19 @@ document.addEventListener("DOMContentLoaded", () => {
   if (moveToNextPhaseButton) {
     moveToNextPhaseButton.addEventListener("click", () => {
       socket.emit("move-to-next-phase", { processId });
+      notyf.success("Moved to the next phase.");
     });
   }
 
   if (finalizeProcessButton) {
     finalizeProcessButton.addEventListener("click", () => {
       socket.emit("finalize-process", { processId });
+      notyf.success("Finalizing the process...");
     });
   }
 
   socket.on("process-finalized", () => {
-    alert("The hiring process has been successfully finalized.");
+    notyf.success("The hiring process has been successfully finalized.");
     
     const finalizeButton = document.getElementById("finalize-process");
     if (finalizeButton) finalizeButton.remove();
@@ -149,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
           URL.revokeObjectURL(link.href);
         } catch (error) {
           console.error("Error generating report:", error);
-          alert("Failed to generate the report.");
+          notyf.error("Failed to generate the report.");
         }
       });
     }
@@ -248,7 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   socket.on("error", (message) => {
-    alert(message);
+    notyf.error(message);
   });
 
   const openPopup = (action, candidateId) => {
@@ -281,7 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
     popup.style.display = "none";
   };
 
-  const submitAction = (event) => {
+  const submitAction = async (event) => {
     event.preventDefault();
 
     const comment = commentField.querySelector("textarea").value;
@@ -290,16 +300,23 @@ document.addEventListener("DOMContentLoaded", () => {
       : null;
     const note = currentAction === "accept" ? document.getElementById("note").value : null;
 
-    socket.emit("update-candidate-status", {
-      processId,
-      candidateId: currentCandidateId,
-      action: currentAction,
-      comment,
-      nextInterviewDate,
-      note
-    });
+    try {
+      await socket.emit("update-candidate-status", {
+        processId,
+        candidateId: currentCandidateId,
+        action: currentAction,
+        comment,
+        nextInterviewDate,
+        note
+      });
 
-    closePopup();
+      notyf.success(`Candidate ${currentAction === "accept" ? "accepted" : "rejected"} successfully!`);
+    } catch (error) {
+      console.error("Error updating candidate status:", error);
+      notyf.error("Failed to update candidate status.");
+    } finally {
+      closePopup();
+    }
   };
 
   socket.on("candidate-status-updated", ({ candidateId, applicationId, action, updatedHistory, canMoveToNextPhase, currentPhase }) => {

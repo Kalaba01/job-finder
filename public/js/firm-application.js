@@ -5,6 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const rejectBtn = document.getElementById("reject-btn");
   const reportBtn = document.getElementById("generate-zip-btn");
 
+  const socket = io();
+
+  const notyf = new Notyf({
+    position: {
+      x: "right",
+      y: "top"
+    }
+  });
+
   const localizations = {
     acceptTitle: document.body.dataset.acceptTitle,
     acceptMessage: document.body.dataset.acceptMessage,
@@ -19,19 +28,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const socket = io();
-
   const handleApplicationAction = async (applicationId, action) => {
     try {
       socket.emit("update-application-status", { applicationId, action });
       removeActionButtons();
+      notyf.success(`Application ${action === "accept" ? "accepted" : "rejected"} successfully.`);
     } catch (error) {
       console.error("Error handling application action:", error);
+      notyf.error("Failed to update application status.");
     }
   };
 
   socket.on("application-status-updated", ({ applicationId, status }) => {
-    console.log(`Application ${applicationId} has been updated to ${status}.`);
+    notyf.success(`Application has been updated to ${status}.`);
   });
 
   if (acceptBtn) {
@@ -73,12 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
           document.body.appendChild(link);
           link.click();
           link.parentNode.removeChild(link);
+          notyf.success("ZIP file downloaded successfully.");
         } else {
-          alert("Failed to generate ZIP file.");
+          notyf.error("Failed to generate ZIP file.");
         }
       } catch (error) {
         console.error("Error generating ZIP file:", error);
-        alert("Error generating ZIP file.");
+        notyf.error("Error generating ZIP file.");
       }
     });
   }

@@ -10,6 +10,13 @@ const loginPasswordInput = document.getElementById("login-password");
 const switchToRegister = document.getElementById("switch-to-register");
 const forgotPasswordLink = document.getElementById("forgot-password-link");
 
+const notyf = new Notyf({
+  position: {
+    x: "right",
+    y: "top",
+  },
+});
+
 export function openLoginPopup() {
   loginPopupOverlay.style.display = "flex";
   loginEmailInput.focus();
@@ -61,12 +68,13 @@ loginForm.addEventListener("submit", async (e) => {
 
     if (response.ok) {
       const data = await response.json();
+      notyf.success("Login successful! Redirecting...");
       window.location.href = data.redirectUrl;
     } else {
       const errorData = await response.json();
-      console.error("Login failed:", errorData.error);
+      notyf.error(errorData.error || "Login failed. Please try again.");
     }
   } catch (error) {
-    console.error("Error during login:", error);
+    notyf.error("An error occurred during login. Please try again.");
   }
 });

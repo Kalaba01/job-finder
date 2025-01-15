@@ -8,6 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeTicketCreatePopup = document.getElementById("closeTicketCreatePopup");
   const ticketCreateForm = document.getElementById("ticketCreateForm");
 
+  const notyf = new Notyf({
+    position: {
+      x: "right",
+      y: "top"
+    }
+  });
+
   const filterAndSearchTickets = () => {
     const statusValue = statusFilter.value.toLowerCase();
     const searchValue = searchInput.value.toLowerCase();
@@ -47,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = `/${userRole}/tickets/${ticketId}`;
       } else {
         console.error("User role is not defined.");
+        notyf.error("Unable to navigate. User role is not defined.");
       }
     }
   });
@@ -90,16 +98,16 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (response.ok) {
-        alert("Ticket created successfully!");
+        notyf.success("Ticket created successfully!");
         resetFormAndClosePopup();
         location.reload();
       } else {
         const errorData = await response.json();
-        alert(errorData.message || "Failed to create ticket.");
+        notyf.error(errorData.message || "Failed to create ticket.");
       }
     } catch (error) {
       console.error("Error creating ticket:", error);
-      alert("An error occurred while creating the ticket.");
+      notyf.error("An error occurred while creating the ticket.");
     }
   });
 

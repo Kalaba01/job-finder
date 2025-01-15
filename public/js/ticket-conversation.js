@@ -10,6 +10,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const ticketMessageList = document.getElementById("ticketMessageList");
   const resolveTicketButton = document.getElementById("resolveTicketButton");
 
+  const socket = io("/", {
+    withCredentials: true
+  });
+
+  const notyf = new Notyf({
+    position: {
+      x: "right",
+      y: "top"
+    }
+  });
+
   const localizations = {
     resolvedNotice: document.body.dataset.resolvedNotice,
     confirmTitle: document.body.dataset.confirmTitle,
@@ -17,10 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     confirmYes: document.body.dataset.confirmYes,
     confirmNo: document.body.dataset.confirmNo
   };
-
-  const socket = io("/", {
-    withCredentials: true
-  });
 
   socket.emit("join-ticket", ticketId);
 
@@ -56,11 +63,14 @@ document.addEventListener("DOMContentLoaded", () => {
               headers: { "Content-Type": "application/json" }
             });
 
-            if (response.ok) socket.emit("mark-resolved", id);
-            else alert("Failed to mark ticket as resolved.");
+            if (response.ok) {
+              socket.emit("mark-resolved", id);
+              notyf.success("Ticket marked as resolved.");
+            }
+            else notyf.error("Failed to mark ticket as resolved.");
           } catch (error) {
             console.error("Error resolving ticket:", error);
-            alert("An error occurred while marking the ticket as resolved.");
+            notyf.error("An error occurred while marking the ticket as resolved.");
           }
         },
       });

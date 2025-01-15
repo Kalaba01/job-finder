@@ -28,9 +28,12 @@ exports.getJobAdDetailsForEdit = async (jobAdId) => {
   }
 };
 
-exports.getAllJobAdsWithDetails = async () => {
+exports.getAllJobAdsWithDetails = async (filterActiveOnly = false) => {
   try {
+    const whereClause = filterActiveOnly ? { status: "open" } : {};
+
     const jobAds = await JobAd.findAll({
+      where: whereClause,
       include: [
         {
           model: Firm,

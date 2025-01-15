@@ -3,6 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const statusFilter = document.getElementById("statusFilter");
   const ticketList = document.getElementById("ticketList");
 
+  const notyf = new Notyf({
+    position: {
+      x: "right",
+      y: "top",
+    },
+  });
+
   const localizations = {
     noTicketsMessage: document.body.dataset.noTicketsMessage,
   };
@@ -54,6 +61,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (viewButton) {
       const ticketCard = viewButton.closest(".ticket-card");
       const ticketId = ticketCard.dataset.id;
+
+      if (!ticketId) {
+        notyf.error("Error: Ticket ID is missing.");
+        return;
+      }
 
       window.location.href = `/admin/tickets/${ticketId}`;
     }

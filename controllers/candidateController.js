@@ -9,7 +9,7 @@ exports.showCandidateProfile = async (req, res) => {
     res.render("candidate/candidate-profile", { candidate: candidateData, locale: req.getLocale() });
   } catch (error) {
     console.error("Error displaying candidate profile:", error);
-    res.status(500).render("error", { message: "Failed to load candidate profile." });
+    res.status(500).render("shared/error", { message: "Failed to load candidate profile." });
   }
 };
 

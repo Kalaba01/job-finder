@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= jobAd.title %></title>
     <link rel="stylesheet" href="/styles/job-ad.css" />
+    <link rel="stylesheet" href="/node_modules/notyf/notyf.min.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
   <body
@@ -100,6 +101,8 @@
       <% } %>
     
       <%- include('apply-form', { jobAd, candidateDocuments }) %>
+      
+      <script src="/notyf/notyf.min.js"></script>
       <script type="module" src="/js/job-ad.js"></script>
     </div>
   </body>

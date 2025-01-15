@@ -15,7 +15,7 @@ exports.getDashboardStats = async (req, res) => {
 exports.getFirmRequests = async (req, res) => {
   try {
     const firmRequests = await firmRequestService.getAllFirmRequests();
-    res.render("admin/company-approvals", { firmRequests, locale: req.getLocale() });
+    res.render("admin/admin-company-approvals", { firmRequests, locale: req.getLocale() });
   } catch (error) {
     console.error("Error fetching firm requests:", error);
     res.status(500).send("Error fetching firm requests.");
@@ -37,7 +37,7 @@ exports.updateFirmRequest = async (req, res) => {
 exports.getUsers = async (req, res) => {
   try {
     const users = await userService.getAllUsers();
-    res.render("admin/users", { users, locale: req.getLocale() });
+    res.render("admin/admin-users", { users, locale: req.getLocale() });
   } catch (error) {
     console.error("Error fetching users:", error);
     res.status(500).send("Error fetching users.");

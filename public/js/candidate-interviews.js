@@ -5,6 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const calendarEl = document.getElementById("calendar");
   const body = document.body;
 
+  const notyf = new Notyf({
+    position: {
+      x: "right",
+      y: "top"
+    }
+  });
+
   const localization = {
     acceptTitle: body.dataset.acceptTitle,
     acceptMessage: body.dataset.acceptMessage,
@@ -34,6 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
     events: getAcceptedInterviews(),
     eventClick: (info) => {
       const { note, status } = info.event.extendedProps;
+      notyf.success(
+        `Interview Status: ${status}. Note: ${note || localization.noAdditionalNotes}`
+      );
     }
   });
   calendar.render();
@@ -71,6 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (index > -1) {
       interviews[index] = updatedInvite;
     }
+
+    notyf.success(`Interview ${updatedInvite.status === "accepted" ? "accepted" : "rejected"} successfully.`);
   
     refreshPendingInterviews();
     calendar.removeAllEvents();

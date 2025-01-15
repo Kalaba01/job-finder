@@ -6,7 +6,6 @@ const User = require("./User");
 const Admin = require("./Admin");
 const Firm = require("./Firm");
 const Candidate = require("./Candidate");
-const Review = require("./Review");
 const FirmRequest = require("./FirmRequest");
 const PasswordResetToken = require("./PasswordResetToken");
 const Ticket = require("./Ticket");
@@ -57,9 +56,6 @@ const defineAssociations = () => {
 
   // PasswordResetToken -> User
   PasswordResetToken.belongsTo(User, { foreignKey: "user_id", as: "PasswordResetUser" });
-
-  // Review -> Firm
-  Review.belongsTo(Firm, { foreignKey: "reviewed_firm_id", as: "ReviewedFirm" });
 
   // JobAd -> Firm
   JobAd.belongsTo(Firm, { foreignKey: "firm_id", as: "Firm" });
@@ -139,7 +135,6 @@ module.exports = {
   Admin,
   Firm,
   Candidate,
-  Review,
   FirmRequest,
   Image,
   PasswordResetToken,

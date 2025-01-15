@@ -29,6 +29,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const jobEditButtons = document.querySelectorAll(".job-edit-btn");
   const jobAdCreateForm = document.getElementById("job-ad-create-form");
 
+  const notyf = new Notyf({
+    position: {
+      x: "right",
+      y: "top"
+    }
+  });
+
   const localizations = {
     noAdsMessage: document.body.dataset.noAdsMessage,
     remove: document.body.dataset.remove,
@@ -70,11 +77,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!response.ok) {
         throw new Error("Failed to process job action.");
       }
-      alert(`Job ${action}d successfully!`);
+      notyf.success(`Job successfully ${action}d!`);
       location.reload();
     } catch (error) {
       console.error(`Error during job ${action}:`, error);
-      alert(`Failed to ${action} job.`);
+      notyf.error(`Failed to ${action} job.`);
     }
   };
 
@@ -104,13 +111,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (optionInput.value.trim() === "") {
-      alert("Option cannot be empty");
+      notyf.error("Option cannot be empty.");
       return;
     }
 
     const optionItems = optionsList.querySelectorAll(".option-item");
     if (optionItems.length >= 5) {
-      alert("You can add up to 5 options only.");
+      notyf.error("You can add up to 5 options only.");
       return;
     }
 
@@ -190,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
         jobAdCreateModal.style.display = "block";
       } catch (error) {
         console.error("Error fetching job ad details:", error);
-        alert("Failed to load job ad details.");
+        notyf.error("Failed to load job ad details.");
       }
     });
   });
@@ -214,11 +221,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!response.ok) throw new Error(`Failed to ${mode} job ad`);
 
-      alert(`Job ad successfully ${mode === "edit" ? "updated" : "created"}!`);
+      notyf.success(`Job ad successfully ${mode === "edit" ? "updated" : "created"}!`);
       location.reload();
     } catch (error) {
       console.error(`Error during job ad ${mode}:`, error);
-      alert(`Failed to ${mode} job ad.`);
+      notyf.error(`Failed to ${mode} job ad.`);
     }
   });
 

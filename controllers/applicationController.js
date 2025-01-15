@@ -15,7 +15,7 @@ exports.submitApplication = async (req, res) => {
     res.redirect(`/candidate/jobads/${jobAdId}`);
   } catch (error) {
     console.error("Error submitting application:", error);
-    res.status(500).render("error", { message: "Failed to submit application." });
+    res.status(500).render("shared/error", { message: "Failed to submit application." });
   }
 };
 
@@ -25,7 +25,7 @@ exports.showFirmApplications = async (req, res) => {
     res.render("firm/firm-applications", { applications, locale: req.getLocale() });
   } catch (error) {
     console.error("Error fetching applications:", error);
-    res.status(500).render("error", { message: "Failed to load applications." });
+    res.status(500).render("shared/error", { message: "Failed to load applications." });
   }
 };
 
@@ -36,7 +36,7 @@ exports.showCandidateApplications = async (req, res) => {
     res.render("candidate/candidate-applications", { applications, firms, user: req.user, locale: req.getLocale() });
   } catch (error) {
     console.error("Error fetching applications for candidate:", error);
-    res.status(500).render("error", { message: "Failed to load applications." });
+    res.status(500).render("shared/error", { message: "Failed to load applications." });
   }
 };
 
@@ -45,12 +45,12 @@ exports.showCandidateApplicationDetails = async (req, res) => {
     const { applicationId } = req.params;
     const application = await applicationService.getApplicationDetails(applicationId);
 
-    if (!application) return res.status(404).render("error", { message: "Application not found." });
+    if (!application) return res.status(404).render("shared/error", { message: "Application not found." });
 
     res.render("candidate/candidate-application", { application, locale: req.getLocale() });
   } catch (error) {
     console.error("Error fetching application details:", error);
-    res.status(500).render("error", { message: "Failed to load application details." });
+    res.status(500).render("shared/error", { message: "Failed to load application details." });
   }
 };
 
@@ -59,12 +59,12 @@ exports.showApplicationDetails = async (req, res) => {
     const { applicationId } = req.params;
     const application = await applicationService.getApplicationDetails(applicationId);
 
-    if (!application) return res.status(404).render("error", { message: "Application not found." });
+    if (!application) return res.status(404).render("shared/error", { message: "Application not found." });
 
     res.render("firm/firm-application", { application, locale: req.getLocale() });
   } catch (error) {
     console.error("Error fetching application details:", error);
-    res.status(500).render("error", { message: "Failed to load application details." });
+    res.status(500).render("shared/error", { message: "Failed to load application details." });
   }
 };
 

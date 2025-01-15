@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= __("TicketList.title") %></title>
     <link rel="stylesheet" href="/styles/ticket-list.css" />
+    <link rel="stylesheet" href="/node_modules/notyf/notyf.min.css" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
   <body>
-    <%- include('./partials/top-bar') %>
+    <%- include('../partials/top-bar') %>
 
     <div class="ticket-container">
       <h1><%= __("TicketList.heading") %></h1>
@@ -47,8 +48,9 @@
       </button>
     </div>
 
-    <%- include('./partials/ticket-create') %>
+    <%- include('../partials/ticket-create') %>
 
+    <script src="/notyf/notyf.min.js"></script>
     <script src="/js/ticket-list.js"></script>
   </body>
 </html>

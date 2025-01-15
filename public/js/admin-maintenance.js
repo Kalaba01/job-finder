@@ -11,6 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const editBtns = document.querySelectorAll(".edit-btn");
   const deleteBtns = document.querySelectorAll(".delete-btn");
 
+  const notyf = new Notyf({
+    position: {
+      x: "right",
+      y: "top"
+    }
+  });
+
   const localization = {
     confirmDeleteTitle: document.body.dataset.confirmDeleteTitle,
     confirmDeleteMessage: document.body.dataset.confirmDeleteMessage,
@@ -60,8 +67,11 @@ document.addEventListener("DOMContentLoaded", () => {
       body: JSON.stringify({ name, sequence, isFinal }),
     })
       .then((response) => {
-        if (response.ok) location.reload();
-        else alert("Failed to save the phase.");
+        if (response.ok) {
+          notyf.success(id ? "Phase updated successfully!" : "Phase added successfully!");
+          location.reload();
+        }
+        else notyf.error("Failed to save the phase.");
       })
       .catch((error) => console.error("Error:", error));
   });
@@ -90,10 +100,14 @@ document.addEventListener("DOMContentLoaded", () => {
         onConfirm: async (id) => {
           try {
             const response = await fetch(`/admin/maintenance/hiring-phases/${id}`, { method: "DELETE" });
-            if (response.ok) location.reload();
-            else alert("Failed to delete the phase.");
+            if (response.ok) {
+              notyf.success("Phase deleted successfully!");
+              location.reload();
+            }
+            else notyf.error("Failed to delete the phase.");
           } catch (error) {
             console.error("Error deleting phase:", error);
+            notyf.error("An error occurred while deleting the phase.");
           }
         },
       });

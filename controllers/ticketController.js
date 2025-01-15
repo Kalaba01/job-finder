@@ -6,11 +6,11 @@ exports.getTickets = async (req, res) => {
     const userRole = req.user.role;
     const tickets = await ticketService.getTickets({ userId, userRole });
 
-    if (userRole === "admin")res.render("./admin/tickets", { tickets, locale: req.getLocale() });
-    else res.render("./ticket-list", { tickets, userRole, locale: req.getLocale() });
+    if (userRole === "admin")res.render("./admin/admin-tickets", { tickets, locale: req.getLocale() });
+    else res.render("firm-candidate/ticket-list", { tickets, userRole, locale: req.getLocale() });
   } catch (error) {
     console.error("Error fetching tickets:", error);
-    res.status(500).render("error", { message: "Failed to load tickets." });
+    res.status(500).render("shared/error", { message: "Failed to load tickets." });
   }
 };
 
@@ -45,7 +45,7 @@ exports.getTicketConversation = async (req, res) => {
       userRole
     });
 
-    res.render("./ticket-conversation", {
+    res.render("admin-firm-candidate/ticket-conversation", {
       ticket,
       messages,
       userRole,
@@ -54,7 +54,7 @@ exports.getTicketConversation = async (req, res) => {
     });
   } catch (error) {
     console.error("Error fetching ticket conversation:", error);
-    res.status(500).render("error", { message: "Failed to load ticket conversation." });
+    res.status(500).render("shared/error", { message: "Failed to load ticket conversation." });
   }
 };
 

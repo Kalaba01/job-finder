@@ -8,6 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const roleSpecificFields = document.getElementById("role-specific-fields");
   const addUserForm = document.getElementById("add-user-form");
 
+  const notyf = new Notyf({
+    position: {
+      x: "right",
+      y: "top"
+    }
+  });
+
   const localizations = {
     title: document.body.dataset.title,
     addUser: document.body.dataset.addUserTitle,
@@ -178,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const details = await response.json();
           Object.assign(userData, details);
         } else {
-          alert(localizations.errorFetchingUserDetails);
+          notyf.error(localizations.errorFetchingUserDetails);
           return;
         }
       }
@@ -205,15 +212,15 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (response.ok) {
-              alert(localizations.userDeletedSuccessfully);
+              notyf.success(localizations.userDeletedSuccessfully);
               location.reload();
             } else {
               const error = await response.json();
-              alert(`${localizations.failedToDeleteUser}: ${error.message}`);
+              notyf.error(`${localizations.failedToDeleteUser}: ${error.message}`);
             }
           } catch (error) {
             console.error(localizations.errorDeletingUser, error);
-            alert(localizations.anErrorOccurredDeletingUser);
+            notyf.error(localizations.errorDeletingUser);
           }
         },
       });
@@ -313,7 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (roleSelectContainer.style.display !== "none") {
       const roleSelect = document.getElementById("role-select");
       if (!roleSelect.value) {
-        alert(localizations.selectRoleAlert);
+        notyf.error(localizations.selectRoleAlert);
         return;
       }
     }
@@ -335,7 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       if (response.ok) {
-        alert(
+        notyf.success(
           modalTitle.textContent === localizations.addUser
             ? localizations.userAddedSuccessfully
             : localizations.userUpdatedSuccessfully
@@ -344,11 +351,11 @@ document.addEventListener("DOMContentLoaded", () => {
         location.reload();
       } else {
         const error = await response.json();
-        alert(`${localizations.failedToProcessUser}: ${error.message}`);
+        notyf.error(`${localizations.failedToProcessUser}: ${error.message}`);
       }
     } catch (error) {
       console.error(localizations.errorProcessingUser, error);
-      alert(localizations.anErrorOccurredProcessingUser);
+      notyf.error(localizations.anErrorOccurredProcessingUser);
     }
   });
 });

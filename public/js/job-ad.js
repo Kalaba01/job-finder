@@ -2,6 +2,12 @@ import { io } from "/socket.io-client/socket.io.esm.min.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const socket = io();
+  const notyf = new Notyf({
+    position: {
+      x: "right",
+      y: "top"
+    }
+  });
 
   const applyBtn = document.querySelector(".apply-btn");
   const popupOverlay = document.getElementById("applyPopup");
@@ -61,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (response.ok) {
-          alert("Application submitted successfully!");
+          notyf.success("Application submitted successfully!");
           applicationForm.reset();
           popupOverlay.classList.remove("active");
 
@@ -69,11 +75,11 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           const error = await response.text();
           console.error("Error submitting application:", error);
-          alert("Failed to submit application.");
+          notyf.error("Failed to submit application.");
         }
       } catch (error) {
         console.error("Error submitting application:", error);
-        alert("Failed to submit application.");
+        notyf.error("Failed to submit application.");
       }
     });
   }

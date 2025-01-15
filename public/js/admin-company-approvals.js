@@ -4,6 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("search-input");
   const requestGrid = document.querySelector(".request-grid");
 
+  const notyf = new Notyf({
+    position: {
+      x: "right",
+      y: "top"
+    }
+  });
+
   const localizations = {
     approveTitle: document.body.dataset.approveTitle,
     approveMessage: document.body.dataset.approveMessage,
@@ -35,11 +42,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (response.ok) {
+          notyf.success(
+            action === "approved"
+              ? "Company approved successfully!"
+              : "Company rejected successfully!"
+          );
           location.reload();
+        } else {
+          notyf.error("Failed to process the request.");
         }
-
       } catch (error) {
         console.error("Error:", error);
+        notyf.error("An error occurred while processing the request.");
       } finally {
         closeConfirmModal();
       }
@@ -66,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
         titleKey: action === "approved" ? "approveTitle" : "rejectTitle",
         messageKey: action === "approved" ? "approveMessage" : "rejectMessage",
         action,
-        id,
+        id
       });
     });
   });

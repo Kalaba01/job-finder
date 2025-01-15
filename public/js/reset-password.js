@@ -5,9 +5,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const newPassword = document.getElementById("newPassword").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
 
+    const notyf = new Notyf({
+      position: {
+        x: "right",
+        y: "top"
+      }
+    });
+
     if (newPassword !== confirmPassword) {
       event.preventDefault();
-      alert("Passwords do not match!");
+      notyf.error("Passwords do not match!");
     }
   });
 });

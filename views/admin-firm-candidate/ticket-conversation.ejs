@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= __("TicketConversation.title", { id: ticket.id }) %></title>
     <link rel="stylesheet" href="/styles/ticket-conversation.css" />
-    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <link rel="stylesheet" href="/node_modules/notyf/notyf.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
   <body id="ticketData" 
     data-ticket-id="<%= ticket.id %>" 
@@ -18,7 +19,7 @@
     data-confirm-yes="<%= __('TicketConversation.confirmModal.yes') %>"
     data-confirm-no="<%= __('TicketConversation.confirmModal.no') %>"
   >
-    <%- include('./partials/top-bar') %>
+    <%- include('../partials/top-bar') %>
 
     <div class="ticket-conversation-container">
       <h1><%= __("TicketConversation.title", { id: ticket.id }) %></h1>
@@ -75,8 +76,9 @@
       </form>
     </div>
 
-    <%- include('./partials/confirm') %>
+    <%- include('../partials/confirm') %>
 
+    <script src="/notyf/notyf.min.js"></script>
     <script type="module" src="/js/ticket-conversation.js"></script>
   </body>
 </html>
