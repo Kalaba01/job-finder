@@ -17,18 +17,18 @@
 
 /* Dark Mode */
 [data-theme="dark"] {
-  --background-color: #121212;
+  --background-color: #1e1e2f;
   --text-color: #e0e0e0;
-  --top-bar-bg: linear-gradient(to bottom, rgba(34, 34, 34, 1), rgba(0, 0, 0, 0.5));
-  --logo-color: #ffa500;
+  --top-bar-bg: linear-gradient(to bottom, rgba(34, 34, 34, 1), rgba(30, 30, 47, 0.5));
+  --logo-color: #3399ff;
   --icon-color: #e0e0e0;
-  --icon-hover-color: #ff9800;
+  --icon-hover-color: #188bfd;
   --section-bg: #1e1e1e;
   --section-text: #e0e0e0;
-  --btn-bg: #ffa500;
+  --btn-bg: #007bff;
   --btn-text: #121212;
-  --btn-hover-bg: #ff9800;
-  --faq-header-bg: #ffa500;
+  --btn-hover-bg: #0056b3;
+  --faq-header-bg: #007bff;
   --faq-header-text: #121212;
 }
 

@@ -14,7 +14,7 @@
 
 /* Dark Mode */
 [data-theme="dark"] {
-    --background-color: #121212;
+    --background-color: #181818;
     --container-background: #1e1e1e;
     --text-color: #e0e0e0;
     --heading-color: #90caf9;

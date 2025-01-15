@@ -21,20 +21,20 @@
 
 /* Dark Mode */
 [data-theme="dark"] {
-    --background-color: #1e1e1e;
+    --background-color: #181818;
     --text-color: #eaeaea;
-    --container-bg: #2e2e2e;
+    --container-bg: #1e1e1e;
     --container-shadow: rgba(0, 0, 0, 0.5);
     --header-color: #d1d1d1;
     --secondary-color: #c9c9c9;
-    --list-item-bg: #3e3e3e;
+    --list-item-bg: #2e2e2e;
     --list-item-hover-bg: #444;
     --accept-btn-bg: #1f8b4e;
     --accept-btn-hover-bg: #187741;
     --reject-btn-bg: #a93226;
     --reject-btn-hover-bg: #85261c;
     --calendar-border: #555;
-    --calendar-bg: #2e2e2e;
+    --calendar-bg: #1e1e1e;
     --calendar-button-bg: #297fb8;
     --calendar-button-hover-bg: #20689a;
     --calendar-title-color: #d1d1d1;

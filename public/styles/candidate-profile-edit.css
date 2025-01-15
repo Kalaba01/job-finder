@@ -17,12 +17,12 @@
 
 /* Dark Mode */
 [data-theme="dark"] {
-    --background-color: #1e1e1e;
+    --background-color: #181818;
     --text-color: #e4e4e4;
     --overlay-color: rgba(0, 0, 0, 0.8);
     --border-color: #555;
-    --button-bg-color: #4444ff;
-    --button-hover-bg-color: #6666ff;
+    --button-bg-color: #1565c0;
+    --button-hover-bg-color: #0d47a1;
     --input-focus-border: #4444ff;
     --close-icon-color: #aaa;
     --close-icon-hover-color: #fff;

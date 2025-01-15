@@ -14,12 +14,12 @@
 
 /* Dark Mode */
 [data-theme="dark"] {
-    --background-color: #1e1e2f;
+    --background-color: #181818;
     --text-color: #eaeaea;
-    --container-bg: #2c2c3c;
+    --container-bg: #1e1e1e;
     --container-shadow: rgba(0, 0, 0, 0.5);
     --calendar-border: #444;
-    --calendar-bg: #2c2c3c;
+    --calendar-bg: #1e1e1e;
     --calendar-hover-bg: #3a3a4a;
     --calendar-button-bg: #3a86ff;
     --calendar-button-hover-bg: #296ed4;
