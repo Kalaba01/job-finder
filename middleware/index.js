@@ -5,6 +5,7 @@ const userRedirectMiddleware = require("./userRedirectMiddleware");
 const notFoundMiddleware = require("./notFoundMiddleware");
 const setMenuOptions = require("./setMenuOptions");
 const uploadMiddleware = require("./uploadMiddleware");
+const firmApplicationAccessMiddleware = require("./firmApplicationAccessMiddleware");
 
 module.exports = {
     authMiddleware,
@@ -13,5 +14,6 @@ module.exports = {
     userRedirectMiddleware,
     notFoundMiddleware,
     setMenuOptions,
-    uploadMiddleware
+    uploadMiddleware,
+    firmApplicationAccessMiddleware
 }

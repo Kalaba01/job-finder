@@ -5,7 +5,7 @@ const ticketController = require("../controllers/ticketController");
 const jobAdsController = require("../controllers/jobAdsController");
 const applicationController = require("../controllers/applicationController");
 const hiringProcessController = require("../controllers/hiringProcessController");
-const { authMiddleware, languageMiddleware, setMenuOptions, uploadMiddleware } = require("../middleware");
+const { authMiddleware, languageMiddleware, setMenuOptions, uploadMiddleware, firmApplicationAccessMiddleware } = require("../middleware");
 
 // Middleware za postavljanje menuOptions
 router.use(authMiddleware.isAuthenticated, authMiddleware.isFirm, languageMiddleware, setMenuOptions);
@@ -39,11 +39,11 @@ router.put("/job-ads/edit/:jobAdId", uploadMiddleware, jobAdsController.editJobA
 router.put("/job-ads/close/:jobAdId", jobAdsController.closeJobAd);
 router.delete("/job-ads/:jobAdId", jobAdsController.deleteJobAd);
 
-// Prikaz stranice za kandidate i njihove aplikacije
+// Ruta za prikazivanje aplikacija kandidata
 router.get("/applications", applicationController.showFirmApplications);
 
 // Detaljniji prikaz aplikacije
-router.get("/applications/:applicationId", applicationController.showApplicationDetails);
+router.get("/applications/:applicationId", firmApplicationAccessMiddleware, applicationController.showApplicationDetails);
 
 // Ruta za generisanje izvjestaja
 router.get('/applications/:applicationId/zip', applicationController.generateApplicationZip);
