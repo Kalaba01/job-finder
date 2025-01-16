@@ -215,3 +215,135 @@ body {
         transform: translateY(0);
     }
 }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .application-details-container {
+        max-width: 700px;
+        padding: 20px;
+    }
+
+    .page-title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .details-section h3 {
+        font-size: 1.4rem;
+    }
+
+    .details-section p {
+        font-size: 0.95rem;
+    }
+
+    .file-download-btn {
+        padding: 0.4rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .actions-section {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .action-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .application-details-container {
+        max-width: 500px;
+        padding: 15px;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+    }
+
+    .details-section {
+        padding: 15px;
+    }
+
+    .details-section h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .details-section p {
+        font-size: 0.9rem;
+    }
+
+    .file-download-container {
+        gap: 8px;
+    }
+
+    .file-download-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .candidate-info .candidate-profile {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .candidate-info .profile-picture {
+        width: 100px;
+        height: 100px;
+    }
+
+    .actions-section {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .action-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .application-details-container {
+        max-width: 95%;
+        padding: 10px;
+        border-radius: 0;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .details-section {
+        padding: 10px;
+    }
+
+    .details-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .details-section p {
+        font-size: 0.8rem;
+    }
+
+    .file-download-btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .actions-section {
+        gap: 5px;
+    }
+
+    .action-btn {
+        padding: 8px 15px;
+        font-size: 0.8rem;
+    }
+}

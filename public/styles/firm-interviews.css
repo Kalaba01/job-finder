@@ -99,18 +99,95 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
+        max-width: 95%;
         padding: 15px;
+        margin: 20px auto;
     }
 
     .container h1 {
         font-size: 1.5rem;
     }
 
-    .top-bar h1 {
+    #calendar {
+        padding: 8px;
+        border-radius: 6px;
+    }
+
+    .fc .fc-toolbar-title {
         font-size: 1.2rem;
     }
 
-    .top-bar nav a {
+    .fc .fc-button {
+        font-size: 0.8rem !important;
+        padding: 6px 10px !important;
+    }
+
+    .fc .fc-daygrid-day {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        max-width: 100%;
+        padding: 10px;
+        margin: 10px auto;
+        border-radius: 6px;
+        box-shadow: none;
+    }
+
+    .container h1 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    #calendar {
+        padding: 6px;
+        border-radius: 4px;
+    }
+
+    .fc .fc-toolbar-title {
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    .fc .fc-button {
+        font-size: 0.7rem !important;
+        padding: 5px 8px !important;
+    }
+
+    .fc .fc-daygrid-day {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 8px;
+        margin: 5px auto;
         font-size: 0.9rem;
+    }
+
+    .container h1 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    #calendar {
+        padding: 4px;
+        border-radius: 4px;
+    }
+
+    .fc .fc-toolbar-title {
+        font-size: 0.9rem;
+    }
+
+    .fc .fc-button {
+        font-size: 0.6rem !important;
+        padding: 4px 6px !important;
+    }
+
+    .fc .fc-daygrid-day {
+        font-size: 0.6rem;
     }
 }

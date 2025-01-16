@@ -6,7 +6,11 @@ const Image = require("./Image");
 const Firm = sequelize.define('Firm', {
     user_id: {
         type: DataTypes.INTEGER,
-        references: { model: User, key: 'id' },
+        references: { 
+            model: User, 
+            key: 'id' 
+        },
+        onDelete: "CASCADE",
         primaryKey: true
     },
     name: {
@@ -44,7 +48,10 @@ const Firm = sequelize.define('Firm', {
     profile_picture_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
-        references: { model: Image, key: 'id' }
+        references: { 
+            model: Image, 
+            key: 'id' 
+        }
     }
 });
 

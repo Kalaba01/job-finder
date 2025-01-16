@@ -51,7 +51,7 @@ body {
 }
 
 .ticket-container {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
     background: var(--container-background);
@@ -66,11 +66,10 @@ body {
     font-size: 24px;
 }
 
+/* Filters Section */
 .filters {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
     gap: 15px;
     margin-bottom: 20px;
     background-color: var(--filter-background);
@@ -115,25 +114,11 @@ body {
     transform: translateY(-2px);
 }
 
-.filters .filter-group {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    gap: 10px;
-}
-
-.filters .filter-group label {
-    font-size: 16px;
-    font-weight: bold;
-    color: var(--text-color);
-}
-
-.filters .filter-group input {
-    flex: 1;
-}
-
-.filters .filter-group select {
-    flex: 1;
+/* Ticket List with Grid Layout */
+#ticketList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
 }
 
 .ticket-item {
@@ -141,7 +126,6 @@ body {
     border: 1px solid var(--ticket-item-border);
     border-radius: 10px;
     padding: 20px;
-    margin-bottom: 15px;
     box-shadow: 0 2px 4px var(--ticket-item-shadow);
     transition: transform 0.2s ease, box-shadow 0.3s ease;
     cursor: pointer;
@@ -164,12 +148,9 @@ body {
     font-size: 14px;
 }
 
-.ticket-item:hover h3 {
-    color: var(--header-color);
-}
-
 #noTicketsMessage {
     display: none;
+    grid-column: 1 / -1;
     text-align: center;
     color: var(--no-tickets-message-color);
     font-size: 16px;
@@ -181,9 +162,10 @@ body {
     box-shadow: 0 2px 4px var(--container-shadow);
 }
 
+/* Create Ticket Button */
 .create-ticket-btn {
     display: block;
-    margin: 1rem 0 0 auto;
+    margin: 1rem auto 0;
     padding: 12px 20px;
     font-size: 16px;
     font-weight: bold;
@@ -198,4 +180,77 @@ body {
 .create-ticket-btn:hover {
     background-color: var(--filter-button-hover);
     transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .ticket-container {
+        padding: 15px;
+    }
+
+    .filters {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .filters select,
+    .filters input {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .filters button {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    #ticketList {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .ticket-item {
+        padding: 15px;
+    }
+
+    .ticket-item h3 {
+        font-size: 16px;
+    }
+
+    .ticket-item p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ticket-container h1 {
+        font-size: 20px;
+    }
+
+    .filters select,
+    .filters input {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .filters button {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    #ticketList {
+        grid-template-columns: 1fr;
+    }
+
+    .ticket-item {
+        padding: 10px;
+    }
+
+    .ticket-item h3 {
+        font-size: 14px;
+    }
+
+    .ticket-item p {
+        font-size: 12px;
+    }
 }

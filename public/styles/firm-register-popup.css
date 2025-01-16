@@ -103,3 +103,86 @@
     font-weight: bold;
     color: var(--employees-output-color);
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .firm-register-popup-content {
+        width: 80%;
+        padding: 1.5rem;
+        border-radius: 8px;
+    }
+
+    .firm-register-popup-content form {
+        gap: 0.6rem;
+    }
+
+    .firm-register-popup-content form input,
+    .firm-register-popup-content form button {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+
+    .firm-register-close-popup {
+        font-size: 1.2rem;
+        top: 8px;
+        right: 8px;
+    }
+
+    #firm-register-employees-output {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .firm-register-popup-content {
+        width: 90%;
+        padding: 1rem;
+    }
+
+    .firm-register-popup-content form {
+        gap: 0.5rem;
+    }
+
+    .firm-register-popup-content form input,
+    .firm-register-popup-content form button {
+        font-size: 0.8rem;
+        padding: 0.6rem;
+    }
+
+    .firm-register-close-popup {
+        font-size: 1rem;
+        top: 5px;
+        right: 5px;
+    }
+
+    #firm-register-employees-output {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .firm-register-popup-content {
+        width: 95%;
+        padding: 0.8rem;
+    }
+
+    .firm-register-popup-content form {
+        gap: 0.4rem;
+    }
+
+    .firm-register-popup-content form input,
+    .firm-register-popup-content form button {
+        font-size: 0.7rem;
+        padding: 0.5rem;
+    }
+
+    .firm-register-close-popup {
+        font-size: 0.8rem;
+        top: 5px;
+        right: 5px;
+    }
+
+    #firm-register-employees-output {
+        font-size: 0.7rem;
+    }
+}

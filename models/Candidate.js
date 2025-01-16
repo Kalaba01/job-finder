@@ -7,7 +7,11 @@ const File = require("./File");
 const Candidate = sequelize.define("Candidate", {
   user_id: {
     type: DataTypes.INTEGER,
-    references: { model: User, key: "id" },
+    references: { 
+      model: User, 
+      key: "id" 
+    },
+    onDelete: "CASCADE",
     primaryKey: true
   },
   first_name: {
@@ -27,22 +31,38 @@ const Candidate = sequelize.define("Candidate", {
   cv_file_id: {
     type: DataTypes.INTEGER,
     allowNull: true,
-    references: { model: File, key: "id" }
+    references: { 
+      model: File, 
+      key: "id" 
+    },
+    onDelete: "SET NULL"
   },
   motivation_file_id: {
     type: DataTypes.INTEGER,
     allowNull: true,
-    references: { model: File, key: "id" }
+    references: { 
+      model: File, 
+      key: "id" 
+    },
+    onDelete: "SET NULL"
   },
   recommendations_file_id: {
     type: DataTypes.INTEGER,
     allowNull: true,
-    references: { model: File, key: "id" }
+    references: { 
+      model: File, 
+      key: "id" 
+    },
+    onDelete: "SET NULL"
   },
   profile_picture_id: {
     type: DataTypes.INTEGER,
     allowNull: true,
-    references: { model: Image, key: "id" }
+    references: { 
+      model: Image, 
+      key: "id" 
+    },
+    onDelete: "SET NULL"
   }
 });
 

@@ -172,3 +172,98 @@ textarea:focus {
     background-color: var(--button-hover-bg-color);
     transform: translateY(-2px);
 }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .edit-profile-popup-content {
+        padding: 1.5rem;
+        width: 90%;
+    }
+
+    #edit-profile-form {
+        gap: 0.8rem;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    input,
+    textarea {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    .save-profile-btn {
+        font-size: 0.95rem;
+        padding: 0.7rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .edit-profile-popup-content h2 {
+        font-size: 1.4rem;
+        margin-bottom: 0.8rem;
+    }
+
+    input,
+    textarea {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+    }
+
+    .file-upload label {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .save-profile-btn {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    .edit-profile-close-popup {
+        font-size: 1.2rem;
+        top: 8px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .edit-profile-popup-content {
+        padding: 1rem;
+        width: 95%;
+    }
+
+    .edit-profile-popup-content h2 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    input,
+    textarea {
+        font-size: 0.8rem;
+        padding: 0.4rem;
+    }
+
+    .file-upload label {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    .save-profile-btn {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+    }
+
+    .edit-profile-close-popup {
+        font-size: 1rem;
+        top: 5px;
+        right: 8px;
+    }
+}

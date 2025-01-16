@@ -155,3 +155,184 @@ body {
     color: var(--no-ads-color);
     text-align: center;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .firm-details-container {
+        max-width: 90%;
+        margin: 30px auto;
+        padding: 15px;
+    }
+
+    .firm-header {
+        margin-bottom: 20px;
+    }
+
+    .firm-name {
+        font-size: 2rem;
+    }
+
+    .firm-about {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .firm-city,
+    .firm-address,
+    .firm-employees {
+        font-size: 0.9rem;
+    }
+
+    .firm-job-ads h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .job-ads-list {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+    }
+
+    .job-card {
+        padding: 15px;
+        max-width: 300px;
+    }
+
+    .job-title {
+        font-size: 1.3rem;
+    }
+
+    .job-description {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    .job-location,
+    .job-category {
+        font-size: 0.9rem;
+    }
+
+    .view-job-btn {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .firm-details-container {
+        max-width: 95%;
+        margin: 20px auto;
+        padding: 10px;
+    }
+
+    .firm-header {
+        margin-bottom: 15px;
+    }
+
+    .firm-name {
+        font-size: 1.8rem;
+    }
+
+    .firm-about {
+        font-size: 0.9rem;
+    }
+
+    .firm-city,
+    .firm-address,
+    .firm-employees {
+        font-size: 0.8rem;
+    }
+
+    .firm-job-ads h2 {
+        font-size: 1.3rem;
+    }
+
+    .job-ads-list {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+    }
+
+    .job-card {
+        padding: 10px;
+        max-width: 250px;
+    }
+
+    .job-title {
+        font-size: 1.2rem;
+    }
+
+    .job-description {
+        font-size: 0.8rem;
+    }
+
+    .job-location,
+    .job-category {
+        font-size: 0.8rem;
+    }
+
+    .view-job-btn {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+
+    .firm-profile-image {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 10px auto;
+    }
+
+    .no-job-ads {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .firm-details-container {
+        padding: 8px;
+    }
+
+    .firm-name {
+        font-size: 1.6rem;
+    }
+
+    .firm-about {
+        font-size: 0.8rem;
+    }
+
+    .firm-city,
+    .firm-address,
+    .firm-employees {
+        font-size: 0.7rem;
+    }
+
+    .firm-job-ads h2 {
+        font-size: 1.1rem;
+    }
+
+    .job-ads-list {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 8px;
+    }
+
+    .job-card {
+        padding: 8px;
+    }
+
+    .job-title {
+        font-size: 1rem;
+    }
+
+    .job-description {
+        font-size: 0.7rem;
+    }
+
+    .view-job-btn {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+    }
+
+    .firm-profile-image {
+        width: 100px;
+        height: 100px;
+    }
+}

@@ -169,3 +169,141 @@ button.save-btn:hover {
     border: 1px solid var(--border-color);
     border-radius: 8px;
 }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .admin-job-ads-container {
+        padding: 15px;
+    }
+
+    .admin-job-ads-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .search-bar,
+    .filter-dropdown {
+        width: 100%;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .job-ads-list {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 15px;
+    }
+
+    .job-card {
+        padding: 15px;
+    }
+
+    .job-title {
+        font-size: 18px;
+    }
+
+    .job-description {
+        font-size: 13px;
+    }
+
+    .job-meta p {
+        font-size: 13px;
+    }
+
+    .job-actions {
+        position: static;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .close-job-btn,
+    .delete-job-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .no-ads-message p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-job-ads-header {
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .job-ads-list {
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    }
+
+    .job-card {
+        max-width: 100%;
+    }
+
+    .job-title {
+        font-size: 16px;
+    }
+
+    .job-description {
+        font-size: 12px;
+    }
+
+    .job-meta p {
+        font-size: 12px;
+    }
+
+    .job-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .close-job-btn,
+    .delete-job-btn {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .no-ads-message p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-job-ads-container {
+        padding: 10px;
+    }
+
+    .search-bar,
+    .filter-dropdown {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .job-card {
+        padding: 10px;
+    }
+
+    .job-title {
+        font-size: 14px;
+    }
+
+    .job-description {
+        font-size: 11px;
+    }
+
+    .job-meta p {
+        font-size: 11px;
+    }
+
+    .close-job-btn,
+    .delete-job-btn {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .no-ads-message p {
+        font-size: 12px;
+    }
+}

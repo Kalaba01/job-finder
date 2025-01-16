@@ -116,3 +116,98 @@
     text-decoration: underline;
     color: var(--link-hover-color);
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .register-popup-content {
+        width: 80%;
+        padding: 1.5rem;
+        border-radius: 8px;
+    }
+
+    .register-popup-content form {
+        gap: 0.8rem;
+    }
+
+    .register-popup-content form input {
+        font-size: 0.9rem;
+        padding: 0.4rem;
+    }
+
+    .register-popup-content button {
+        font-size: 0.9rem;
+        padding: 0.4rem;
+    }
+
+    .register-close-popup {
+        font-size: 1.2rem;
+        top: 8px;
+        right: 8px;
+    }
+
+    .register-switch-text {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .register-popup-content {
+        width: 90%;
+        padding: 1rem;
+    }
+
+    .register-popup-content form {
+        gap: 0.6rem;
+    }
+
+    .register-popup-content form input {
+        font-size: 0.8rem;
+        padding: 0.3rem;
+    }
+
+    .register-popup-content button {
+        font-size: 0.8rem;
+        padding: 0.3rem;
+    }
+
+    .register-close-popup {
+        font-size: 1rem;
+        top: 5px;
+        right: 5px;
+    }
+
+    .register-switch-text {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .register-popup-content {
+        width: 95%;
+        padding: 0.8rem;
+    }
+
+    .register-popup-content form {
+        gap: 0.5rem;
+    }
+
+    .register-popup-content form input {
+        font-size: 0.7rem;
+        padding: 0.2rem;
+    }
+
+    .register-popup-content button {
+        font-size: 0.7rem;
+        padding: 0.2rem;
+    }
+
+    .register-close-popup {
+        font-size: 0.8rem;
+        top: 5px;
+        right: 5px;
+    }
+
+    .register-switch-text {
+        font-size: 0.6rem;
+    }
+}

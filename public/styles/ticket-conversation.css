@@ -310,3 +310,162 @@ body {
         transform: translateY(0);
     }
 }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .ticket-conversation-container {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .ticket-info {
+        padding: 15px;
+    }
+
+    .resolve-ticket-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .attachment-download {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .ticket-message-list {
+        max-height: 400px;
+    }
+
+    .ticket-message {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .ticket-message-meta {
+        font-size: 12px;
+    }
+
+    .ticket-message-form {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .ticket-message-form textarea {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .ticket-send-btn {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ticket-conversation-container {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .ticket-info {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .ticket-message-list {
+        max-height: 300px;
+        gap: 15px;
+    }
+
+    .ticket-message {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .ticket-message-content {
+        font-size: 13px;
+    }
+
+    .ticket-message-meta {
+        font-size: 11px;
+    }
+
+    .ticket-message-form {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .ticket-message-form textarea {
+        font-size: 13px;
+        padding: 8px;
+        width: 70%;
+    }
+
+    .ticket-send-btn {
+        font-size: 13px;
+        padding: 10px 16px;
+        width: 85%;
+    }
+
+    .attachment-download {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .resolve-ticket-btn {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ticket-conversation-container {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .ticket-info {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .ticket-message-list {
+        max-height: 250px;
+        padding: 10px;
+    }
+
+    .ticket-message {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .ticket-message-meta {
+        font-size: 10px;
+    }
+
+    .ticket-message-content {
+        font-size: 12px;
+    }
+
+    .ticket-message-form textarea {
+        font-size: 12px;
+        padding: 8px;
+        width: 85%;
+    }
+
+    .ticket-send-btn {
+        font-size: 12px;
+        padding: 8px 10px;
+        width: 95%;
+    }
+
+    .attachment-download {
+        font-size: 11px;
+        padding: 6px 8px;
+    }
+
+    .resolve-ticket-btn {
+        font-size: 11px;
+        padding: 6px 8px;
+    }
+}

@@ -143,3 +143,74 @@ body {
     font-size: 1.5rem;
     color: var(--no-data-color);
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .search-bar,
+    .filter-dropdown {
+        width: 100%;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+    }
+
+    .applications-container {
+        grid-template-columns: 1fr;
+    }
+
+    .application-card {
+        max-width: 100%;
+    }
+
+    .view-btn {
+        font-size: 13px;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .header-controls {
+        gap: 10px;
+    }
+
+    .search-bar,
+    .filter-dropdown {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .applications-container {
+        gap: 15px;
+    }
+
+    .application-card {
+        padding: 15px;
+    }
+
+    .application-card h2 {
+        font-size: 1.25rem;
+    }
+
+    .application-card p {
+        font-size: 13px;
+    }
+
+    .view-btn {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .no-data-container {
+        font-size: 1.25rem;
+    }
+}

@@ -8,7 +8,8 @@ const PasswordResetToken = sequelize.define('PasswordResetToken', {
     references: {
       model: 'Users',
       key: 'id'
-    }
+    },
+    onDelete: "CASCADE"
   },
   token: {
     type: DataTypes.STRING,

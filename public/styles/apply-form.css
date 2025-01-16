@@ -148,6 +148,7 @@
     transform: scale(0.95);
 }
 
+/* Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -157,5 +158,99 @@
     to {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .apply-popup-container {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    .apply-popup-title {
+        font-size: 1.8rem;
+    }
+
+    .apply-popup-description {
+        font-size: 1rem;
+    }
+
+    .apply-popup-form {
+        gap: 10px;
+    }
+
+    .apply-popup-input,
+    .apply-popup-dropdown {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .apply-popup-submit-btn {
+        font-size: 1rem;
+        padding: 10px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .apply-popup-container {
+        padding: 15px;
+        width: 95%;
+        border-radius: 8px;
+        box-shadow: none;
+    }
+
+    .apply-popup-title {
+        font-size: 1.5rem;
+    }
+
+    .apply-popup-description {
+        font-size: 0.9rem;
+    }
+
+    .apply-popup-input,
+    .apply-popup-dropdown {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+
+    .apply-popup-form-group {
+        gap: 5px;
+    }
+
+    .apply-popup-submit-btn {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+
+    .apply-popup-close-btn {
+        font-size: 1.2rem;
+        top: 5px;
+        right: 5px;
+    }
+}
+
+@media (max-width: 360px) {
+    .apply-popup-container {
+        padding: 10px;
+    }
+
+    .apply-popup-title {
+        font-size: 1.3rem;
+    }
+
+    .apply-popup-description {
+        font-size: 0.8rem;
+    }
+
+    .apply-popup-input,
+    .apply-popup-dropdown {
+        padding: 6px;
+        font-size: 0.7rem;
+    }
+
+    .apply-popup-submit-btn {
+        font-size: 0.8rem;
+        padding: 8px 12px;
     }
 }

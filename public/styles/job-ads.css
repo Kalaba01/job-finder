@@ -221,14 +221,6 @@ body {
     transform: scale(0.98);
 }
 
-@media (max-width: 768px) {
-    .close-job-btn,
-    .delete-job-btn {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-}
-
 .job-card-actions {
     display: flex;
     justify-content: flex-end;
@@ -244,28 +236,122 @@ body {
     text-align: center;
 }
 
-@media (max-width: 768px) {
-    .job-card-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .job-card-actions .job-edit-btn,
-    .job-card-actions .close-job-btn,
-    .job-card-actions .delete-job-btn {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .job-card-actions .delete-job-btn {
-        margin-bottom: 0;
-    }
-}
-
 .no-ads-message {
     text-align: center;
     font-size: 18px;
     color: var(--no-ads-text-color);
     margin: 50px 0;
     font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .job-ads-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .job-ads-header .search-bar,
+    .job-ads-header .filter-dropdown,
+    .job-ads-header .create-job-ad-btn {
+        width: 65%;
+    }
+
+    .job-card {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .job-ads-header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .job-ads-header .search-bar,
+    .job-ads-header .filter-dropdown,
+    .job-ads-header .create-job-ad-btn {
+        width: 85%;
+        padding: 12px;
+    }
+
+    .job-ads-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .job-card-actions {
+        gap: 10px;
+    }
+
+    .job-card-actions .delete-job-btn:last-child {
+        margin-bottom: 0;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+    }
+
+    .job-card {
+        padding: 15px;
+    }
+
+    .job-title {
+        font-size: 1.5rem;
+    }
+
+    .job-description,
+    .job-location,
+    .job-category,
+    .job-expiration {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .job-ads-header {
+        gap: 10px;
+    }
+
+    .job-ads-header .search-bar,
+    .job-ads-header .filter-dropdown {
+        width: 95%;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .job-card {
+        padding: 10px;
+    }
+
+    .job-title {
+        font-size: 1.25rem;
+    }
+
+    .job-description,
+    .job-location,
+    .job-category,
+    .job-expiration {
+        font-size: 12px;
+    }
+
+    .job-card-actions {
+        gap: 8px;
+    }
+
+    .job-card-actions .job-edit-btn,
+    .job-card-actions .close-job-btn,
+    .job-card-actions .delete-job-btn {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .no-ads-message {
+        font-size: 1rem;
+    }
 }

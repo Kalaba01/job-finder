@@ -7,7 +7,8 @@ const Ticket = sequelize.define(
   {
     user_id: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      onDelete: "CASCADE"
     },
     user_role: {
       type: DataTypes.ENUM("firm", "candidate"),
@@ -27,7 +28,11 @@ const Ticket = sequelize.define(
     },
     attachment_id: {
       type: DataTypes.INTEGER,
-      references: { model: File, key: "id" },
+      references: { 
+        model: File, 
+        key: "id" 
+      },
+      onDelete: "SET NULL",
       allowNull: true
     },
     status: {

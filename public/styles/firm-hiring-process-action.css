@@ -54,17 +54,6 @@
     animation: slideIn 0.3s ease-in-out;
 }
 
-@keyframes slideIn {
-    from {
-        transform: translateY(-20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
 /* Form Labels */
 .popup-content label {
     display: block;
@@ -125,4 +114,86 @@
 .popup-content .btn-cancel:hover {
     background-color: var(--button-cancel-hover-bg);
     transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .popup-content {
+        width: 85%;
+        padding: 15px;
+        font-size: 0.95rem;
+    }
+
+    .popup-content textarea,
+    .popup-content input[type="date"] {
+        width: 95%;
+        font-size: 0.9rem;
+    }
+
+    .popup-content .btn-submit,
+    .popup-content .btn-cancel {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .popup-content .btn-cancel {
+        margin-left: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .popup-content {
+        width: 95%;
+        padding: 10px;
+        border-radius: 6px;
+        text-align: center;
+    }
+
+    .popup-content label {
+        font-size: 0.9rem;
+    }
+
+    .popup-content textarea,
+    .popup-content input[type="date"] {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+
+    .popup-content .btn-submit,
+    .popup-content .btn-cancel {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 360px) {
+    .popup-content {
+        font-size: 0.85rem;
+    }
+
+    .popup-content textarea,
+    .popup-content input[type="date"] {
+        padding: 6px;
+        font-size: 0.8rem;
+    }
+
+    .popup-content .btn-submit,
+    .popup-content .btn-cancel {
+        padding: 6px 8px;
+        font-size: 0.8rem;
+    }
 }

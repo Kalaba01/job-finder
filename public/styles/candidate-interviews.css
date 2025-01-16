@@ -174,3 +174,103 @@ body {
 .fc .fc-daygrid-day:hover {
     background-color: var(--list-item-hover-bg);
 }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    #interviews-container {
+        padding: 15px;
+    }
+
+    #interviews-container h1 {
+        font-size: 1.8rem;
+    }
+
+    #interview-list h2 {
+        font-size: 1.4rem;
+    }
+
+    #interview-list li p {
+        font-size: 0.9rem;
+        padding-right: 8px;
+    }
+
+    #interview-list li button {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+
+    #calendar {
+        padding: 8px;
+    }
+
+    .fc .fc-toolbar-title {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #interviews-container {
+        padding: 10px;
+    }
+
+    #interviews-container h1 {
+        font-size: 1.5rem;
+    }
+
+    #interview-list h2 {
+        font-size: 1.2rem;
+    }
+
+    #interview-list li {
+        gap: 10px;
+    }
+
+    #interview-list li p {
+        padding-right: 0;
+    }
+
+    #interview-list li button {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+
+    #calendar {
+        padding: 5px;
+    }
+
+    .fc .fc-toolbar-title {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #interviews-container h1 {
+        font-size: 1.3rem;
+    }
+
+    #interview-list h2 {
+        font-size: 1.1rem;
+    }
+
+    #interview-list li {
+        padding: 10px;
+    }
+
+    #interview-list li p {
+        font-size: 0.85rem;
+    }
+
+    #interview-list li button {
+        font-size: 0.75rem;
+        padding: 5px 8px;
+    }
+
+    .fc .fc-toolbar-title {
+        font-size: 1rem;
+    }
+
+    #calendar {
+        margin-top: 15px;
+        padding: 5px;
+    }
+}

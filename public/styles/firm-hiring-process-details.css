@@ -61,3 +61,56 @@
     margin-top: 20px;
     color: var(--text-color);
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .popup-content {
+        width: 80%;
+        max-height: 85%;
+        padding: 15px;
+    }
+
+    .close-popup-btn {
+        font-size: 1.3rem;
+    }
+
+    #details-container {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .popup-content {
+        width: 90%;
+        max-height: 90%;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .close-popup-btn {
+        font-size: 1.2rem;
+        top: 5px;
+        right: 5px;
+    }
+
+    #details-container {
+        font-size: 0.85rem;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .popup-content {
+        width: 95%;
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+
+    .close-popup-btn {
+        font-size: 1rem;
+    }
+
+    #details-container {
+        font-size: 0.8rem;
+    }
+}

@@ -295,3 +295,184 @@ button,
     color: var(--text-color);
     margin-bottom: 10px;
 }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hiring-process {
+        max-width: 900px;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .stepper {
+        gap: 5px;
+    }
+
+    .step {
+        padding: 15px;
+        margin: 0 auto;
+    }
+
+    .filters {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    #search-bar,
+    #status-filter {
+        flex: 1 1 100%;
+        font-size: 0.9rem;
+    }
+
+    .candidates {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 15px;
+    }
+
+    .candidate-card {
+        padding: 15px;
+    }
+
+    .candidate-card h2 {
+        font-size: 1.4rem;
+    }
+
+    .actions {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .btn-move-phase,
+    .btn-finalize-process,
+    .btn-generate-report {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hiring-process {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .filters {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #search-bar,
+    #status-filter {
+        width: 95%;
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+
+    .candidates {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .candidate-card {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .candidate-card h2 {
+        font-size: 1.2rem;
+    }
+
+    .candidate-card p {
+        font-size: 0.9rem;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    button {
+        width: 40%;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .application-btn {
+        width: 33%;
+    }
+
+    .btn-move-phase,
+    .btn-finalize-process,
+    .btn-generate-report {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .process-completed h2 {
+        font-size: 1.8rem;
+    }
+
+    .process-completed p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+
+    .stepper {
+        gap: 15px;
+    }
+
+    .step {
+        padding: 10px;
+    }
+
+    .filters {
+        gap: 8px;
+    }
+
+    #search-bar,
+    #status-filter {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .candidate-card h2 {
+        font-size: 1.1rem;
+    }
+
+    .candidate-card p {
+        font-size: 0.85rem;
+    }
+
+    .application-btn {
+        width: 29.5%;
+    }
+
+    .btn-move-phase,
+    .btn-finalize-process,
+    .btn-generate-report {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    .process-completed h2 {
+        font-size: 1.6rem;
+    }
+
+    .process-completed p {
+        font-size: 0.9rem;
+    }
+}

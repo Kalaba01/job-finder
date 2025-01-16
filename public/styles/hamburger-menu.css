@@ -36,3 +36,54 @@
 .hamburger-sidebar.open {
     left: 0;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hamburger-sidebar {
+        width: 180px;
+    }
+
+    .hamburger-sidebar ul li {
+        padding: 12px 15px;
+    }
+
+    .hamburger-sidebar ul li a {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hamburger-sidebar {
+        width: 150px;
+    }
+
+    .hamburger-sidebar ul li {
+        padding: 10px 10px;
+    }
+
+    .hamburger-sidebar ul li a {
+        font-size: 0.85rem;
+    }
+
+    .hamburger-sidebar ul li {
+        border-bottom: 1px solid #ddd;
+    }
+}
+
+@media (max-width: 360px) {
+    .hamburger-sidebar {
+        width: 120px;
+    }
+
+    .hamburger-sidebar ul li {
+        padding: 8px 8px;
+    }
+
+    .hamburger-sidebar ul li a {
+        font-size: 0.8rem;
+    }
+
+    .hamburger-sidebar ul li {
+        border-bottom: 1px solid #eee;
+    }
+}

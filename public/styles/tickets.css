@@ -134,7 +134,7 @@ body {
 /* Ticket List */
 .ticket-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 20px;
 }
 
@@ -147,7 +147,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-width: 400px;
+    max-width: 350px;
 }
 
 .ticket-card:hover {
@@ -236,4 +236,118 @@ body {
     color: var(--no-tickets-text-color);
     font-size: 16px;
     font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .ticket-container {
+        padding: 15px;
+    }
+
+    .ticket-actions {
+        flex-direction: column;
+        gap: 10px;
+        width: 80%;
+    }
+
+    .search-bar,
+    .filter-dropdown {
+        width: 100%;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .filter-btn {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ticket-container {
+        padding: 10px;
+    }
+
+    .ticket-actions {
+        gap: 8px;
+        width: 100%;
+    }
+
+    .ticket-list {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+    }
+
+    .ticket-card {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .ticket-title {
+        font-size: 14px;
+    }
+
+    .ticket-description,
+    .ticket-category {
+        font-size: 12px;
+    }
+
+    .ticket-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .view-btn {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ticket-container h1 {
+        font-size: 20px;
+    }
+
+    .ticket-actions {
+        padding: 10px;
+    }
+
+    .search-bar,
+    .filter-dropdown {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .filter-btn {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .ticket-card {
+        border-radius: 10px;
+        box-shadow: 0 2px 6px var(--container-shadow);
+        padding: 8px;
+    }
+
+    .ticket-title {
+        font-size: 12px;
+    }
+
+    .ticket-description,
+    .ticket-category,
+    .ticket-date {
+        font-size: 10px;
+    }
+
+    .view-btn {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+
+    #noTicketsMessage {
+        font-size: 14px;
+    }
 }

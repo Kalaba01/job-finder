@@ -128,3 +128,114 @@ body {
     color: var(--secondary-text-color);
     margin: 20px 0;
 }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .filters {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .filters input,
+    .filters select {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .applications-list {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .application-card {
+        padding: 10px;
+    }
+
+    .job-title {
+        font-size: 1.15rem;
+    }
+
+    .firm-name,
+    .application-status,
+    .application-date {
+        font-size: 0.85rem;
+    }
+
+    .view-btn {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 1.8rem;
+    }
+
+    .applications-list {
+        grid-template-columns: 1fr;
+    }
+
+    .application-card {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .job-title {
+        font-size: 1.1rem;
+    }
+
+    .filters input,
+    .filters select {
+        font-size: 13px;
+    }
+
+    .view-btn {
+        font-size: 0.8rem;
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .application-container {
+        padding: 10px;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .filters {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .filters input,
+    .filters select {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .application-card {
+        padding: 8px;
+    }
+
+    .job-title {
+        font-size: 1rem;
+    }
+
+    .firm-name,
+    .application-status,
+    .application-date {
+        font-size: 0.8rem;
+    }
+
+    .view-btn {
+        font-size: 0.75rem;
+        padding: 6px 8px;
+    }
+
+    .no-applications-message,
+    .no-results-message {
+        font-size: 1rem;
+    }
+}

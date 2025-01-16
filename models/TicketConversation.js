@@ -12,6 +12,7 @@ const TicketConversation = sequelize.define(
         model: "Tickets",
         key: "id"
       },
+      onDelete: "CASCADE"
     },
     sender_id: {
       type: DataTypes.INTEGER,
@@ -20,6 +21,7 @@ const TicketConversation = sequelize.define(
         model: User,
         key: "id"
       },
+      onDelete: "CASCADE"
     },
     sender_role: {
       type: DataTypes.ENUM("admin", "firm", "candidate"),

@@ -181,3 +181,138 @@ body {
     background-color: var(--disabled-bg-color);
     transform: none;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .job-ad-container {
+        padding: 20px;
+    }
+
+    .job-title {
+        font-size: 2rem;
+    }
+
+    .company-name {
+        font-size: 1rem;
+    }
+
+    .job-location,
+    .job-category,
+    .job-posted {
+        font-size: 0.9rem;
+    }
+
+    .company-info h2 {
+        font-size: 1.5rem;
+    }
+
+    .job-expiration h2,
+    .job-ad-description h2,
+    .job-ad-documents h2,
+    .job-ad-questions h2 {
+        font-size: 1.5rem;
+    }
+
+    .job-ad-description p {
+        font-size: 1rem;
+    }
+
+    .apply-btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .job-ad-container {
+        padding: 15px;
+        box-shadow: none;
+    }
+
+    .job-title {
+        font-size: 1.8rem;
+    }
+
+    .company-name {
+        font-size: 0.9rem;
+    }
+
+    .job-location,
+    .job-category,
+    .job-posted {
+        font-size: 0.8rem;
+    }
+
+    .company-info h2 {
+        font-size: 1.2rem;
+    }
+
+    .company-info p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .job-expiration {
+        margin-top: 15px;
+        padding: 10px;
+    }
+
+    .job-expiration h2 {
+        font-size: 1.2rem;
+    }
+
+    .job-expiration p {
+        font-size: 0.9rem;
+    }
+
+    .job-ad-description p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .apply-btn {
+        font-size: 0.9rem;
+        padding: 10px 18px;
+    }
+}
+
+@media (max-width: 360px) {
+    .job-ad-container {
+        padding: 10px;
+    }
+
+    .job-title {
+        font-size: 1.5rem;
+    }
+
+    .company-name {
+        font-size: 0.8rem;
+    }
+
+    .job-location,
+    .job-category,
+    .job-posted {
+        font-size: 0.7rem;
+    }
+
+    .company-info h2 {
+        font-size: 1rem;
+    }
+
+    .company-info p {
+        font-size: 0.8rem;
+    }
+
+    .job-expiration h2 {
+        font-size: 1rem;
+    }
+
+    .job-ad-description p {
+        font-size: 0.8rem;
+    }
+
+    .apply-btn {
+        font-size: 0.8rem;
+        padding: 8px 16px;
+    }
+}

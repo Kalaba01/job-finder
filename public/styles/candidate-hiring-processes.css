@@ -113,3 +113,104 @@ h1 {
     margin: 5px 0;
     color: var(--text-color);
 }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .filters {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #search-bar,
+    #category-filter,
+    #phase-filter,
+    #firm-filter {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .process-list {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .process-card h2 {
+        font-size: 1.3rem;
+    }
+
+    .process-card p {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .filters {
+        gap: 10px;
+    }
+
+    .process-list {
+        grid-template-columns: 1fr;
+    }
+
+    .process-card {
+        padding: 15px;
+    }
+
+    .process-card h2 {
+        font-size: 1.2rem;
+    }
+
+    .process-card p {
+        font-size: 0.8rem;
+    }
+
+    #search-bar,
+    #category-filter,
+    #phase-filter,
+    #firm-filter {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hiring-processes {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .filters {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    #search-bar,
+    #category-filter,
+    #phase-filter,
+    #firm-filter {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+
+    .process-card {
+        padding: 10px;
+    }
+
+    .process-card h2 {
+        font-size: 1.1rem;
+    }
+
+    .process-card p {
+        font-size: 0.75rem;
+    }
+
+    .process-list {
+        grid-template-columns: 1fr;
+    }
+}

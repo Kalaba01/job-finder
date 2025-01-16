@@ -123,3 +123,120 @@ h1 {
 .view-details-btn:hover {
     background-color: var(--button-hover-bg-color);
 }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hiring-processes {
+        max-width: 900px;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+
+    .filters {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    #search-bar,
+    #category-filter,
+    #phase-filter {
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hiring-processes {
+        max-width: 700px;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .filters {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    #search-bar,
+    #category-filter,
+    #phase-filter {
+        width: 100%;
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .process-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .process-card {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .process-card h2 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .process-card p {
+        font-size: 0.85rem;
+    }
+
+    .view-details-btn {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hiring-processes {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+
+    .filters {
+        gap: 8px;
+    }
+
+    #search-bar,
+    #category-filter,
+    #phase-filter {
+        padding: 6px;
+        font-size: 0.85rem;
+    }
+
+    .process-list {
+        gap: 10px;
+    }
+
+    .process-card {
+        padding: 10px;
+    }
+
+    .process-card h2 {
+        font-size: 1.1rem;
+    }
+
+    .process-card p {
+        font-size: 0.8rem;
+    }
+
+    .view-details-btn {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
+}
