@@ -1,10 +1,12 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  // Localization strings
   const localization = {
     jobAdsLabel: document.body.dataset.jobAdsLabel,
     applicationsLabel: document.body.dataset.applicationsLabel,
-    noDataLabel: document.body.dataset.noDataLabel,
+    noDataLabel: document.body.dataset.noDataLabel
   };
 
+  // Fetch firm statistics
   const fetchStats = async () => {
     try {
       const response = await fetch("/firm/dashboard");
@@ -17,6 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   };
 
+  // Function to render a chart using Chart.js
   const renderChart = (ctx, type, data, label) => {
     return new Chart(ctx, {
       type,
@@ -27,21 +30,23 @@ document.addEventListener("DOMContentLoaded", async () => {
             label: label,
             data,
             backgroundColor: ["#007bff", "#ffc107", "#28a745", "#dc3545"],
-            borderWidth: 1,
-          },
+            borderWidth: 1
+          }
         ],
       },
       options: {
         responsive: true,
         plugins: {
-          legend: { display: true },
-        },
-      },
+          legend: { display: true }
+        }
+      }
     });
   };
 
+  // Fetch firm statistics and wait for the response
   const stats = await fetchStats();
 
+  // Render a bar chart for job ads
   renderChart(
     document.getElementById("jobAdsChart"),
     "bar",
@@ -49,6 +54,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     localization.jobAdsLabel
   );
 
+  // Render a pie chart for applications
   renderChart(
     document.getElementById("applicationsChart"),
     "pie",

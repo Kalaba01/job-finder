@@ -1,10 +1,10 @@
-// Dohvatamo elemente za popup
 const forgotPasswordPopup = document.getElementById("forgot-password-popup-overlay");
 forgotPasswordPopup.style.display = "none";
 const forgotPasswordClose = document.getElementById("forgot-password-close-popup");
 const forgotPasswordForm = document.getElementById("forgot-password-form");
 const forgotPasswordEmailInput = document.getElementById("forgot-password-email");
 
+// Initialize notification system (Notyf)
 const notyf = new Notyf({
   position: {
     x: "right",
@@ -12,23 +12,23 @@ const notyf = new Notyf({
   }
 });
 
-// Funkcija za resetovanje forme
+// Function to reset the forgot-password form
 function resetForgotPasswordForm() {
   forgotPasswordEmailInput.value = "";
 }
 
-// Funkcija za otvaranje forgot-password popupa
+// Function to open the forgot-password popup
 export function openForgotPasswordPopup() {
   forgotPasswordPopup.style.display = "flex";
 }
 
-// Zatvaranje forgot password popupa
+// Close the forgot-password popup
 forgotPasswordClose.addEventListener("click", () => {
   forgotPasswordPopup.style.display = "none";
   resetForgotPasswordForm();
 });
 
-// Slanje e-maila za reset lozinke
+// Event listener for the form submission to send the password reset email
 forgotPasswordForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -38,7 +38,7 @@ forgotPasswordForm.addEventListener("submit", async (e) => {
     const response = await fetch("/password/request", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email })
     });
 
     if (response.ok) {

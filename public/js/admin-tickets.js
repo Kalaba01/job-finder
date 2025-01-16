@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const statusFilter = document.getElementById("statusFilter");
   const ticketList = document.getElementById("ticketList");
 
+  // Initialize notification system (Notyf)
   const notyf = new Notyf({
     position: {
       x: "right",
@@ -10,10 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
+  // Localization strings
   const localizations = {
-    noTicketsMessage: document.body.dataset.noTicketsMessage,
+    noTicketsMessage: document.body.dataset.noTicketsMessage
   };
 
+  // Create and style the "No Tickets" message element
   const noTicketsMessage = document.createElement("p");
   noTicketsMessage.id = "noTicketsMessage";
   noTicketsMessage.textContent = localizations.noTicketsMessage;
@@ -23,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   noTicketsMessage.style.display = "none";
   ticketList.parentElement.appendChild(noTicketsMessage);
 
+  // Function to filter and search tickets based on input and status
   const filterAndSearchTickets = () => {
     const searchValue = searchInput.value.toLowerCase();
     const statusValue = statusFilter.value.toLowerCase();
@@ -50,12 +54,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    // Show or hide the "No Tickets" message based on visibility
     noTicketsMessage.style.display = hasVisibleTickets ? "none" : "block";
   };
 
   searchInput.addEventListener("input", filterAndSearchTickets);
   statusFilter.addEventListener("change", filterAndSearchTickets);
 
+  // Handle ticket view button clicks
   ticketList.addEventListener("click", (event) => {
     const viewButton = event.target.closest(".view-btn");
     if (viewButton) {

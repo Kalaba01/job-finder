@@ -10,6 +10,7 @@ const registerConfirmPasswordInput = document.getElementById("register-confirm-p
 const switchToLogin = document.getElementById("switch-to-login");
 const registerForm = document.getElementById("register-form");
 
+// Initialize notification system (Notyf)
 const notyf = new Notyf({
   position: {
     x: "right",
@@ -17,22 +18,26 @@ const notyf = new Notyf({
   }
 });
 
+// Function to open the register popup
 export function openRegisterPopup() {
   registerPopupOverlay.style.display = "flex";
   registerFirstNameInput.focus();
 }
 
+// Close the register popup and reset the form
 closeRegisterPopup.addEventListener("click", () => {
   registerPopupOverlay.style.display = "none";
   resetRegisterForm();
 });
 
+// Switch to the login popup from the register popup
 switchToLogin.addEventListener("click", () => {
   registerPopupOverlay.style.display = "none";
   resetRegisterForm();
   openLoginPopup();
 });
 
+// Reset all form fields in the register form
 function resetRegisterForm() {
   registerEmailInput.value = "";
   registerFirstNameInput.value = "";
@@ -41,6 +46,7 @@ function resetRegisterForm() {
   registerConfirmPasswordInput.value = "";
 }
 
+// Handle the registration form submission
 registerForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -58,16 +64,16 @@ registerForm.addEventListener("submit", async (e) => {
     email: registerEmailInput.value,
     first_name: registerFirstNameInput.value,
     last_name: registerLastNameInput.value,
-    password: registerPasswordInput.value,
+    password: registerPasswordInput.value
   };
 
   try {
     const response = await fetch("/auth/register/candidate", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(formData)
     });
 
     if (response.ok) {

@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const jobAdsList = document.getElementById("job-ads-list-container");
   const noResultsMessage = document.getElementById("no-results-message");
 
+  // Initialize notification system (Notyf)
   const notyf = new Notyf({
     position: {
       x: "right",
@@ -11,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Localization strings
   const localization = {
     confirmCloseTitle: document.body.dataset.confirmCloseTitle,
     confirmCloseMessage: document.body.dataset.confirmCloseMessage,
@@ -18,12 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
     confirmDeleteMessage: document.body.dataset.confirmDeleteMessage
   };
 
+  // Function to filter job ads based on search and status filter
   const filterJobAds = () => {
     const searchQuery = searchBar.value.toLowerCase();
     const selectedStatus = statusFilter.value.toLowerCase();
 
     let visibleCount = 0;
 
+    // Iterate through each job card in the job ads list
     jobAdsList.childNodes.forEach((jobCard) => {
       if (jobCard.nodeType !== Node.ELEMENT_NODE || jobCard.id === "no-results-message") return;
 
@@ -46,9 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    // Show or hide the "no results" message based on the filtering results
     noResultsMessage.style.display = visibleCount === 0 ? "block" : "none";
   };
 
+   // Function to close a job ad
   const updateJobStatus = async (jobId) => {
     try {
       const response = await fetch(`/admin/job-ads/${jobId}/close`, {
@@ -63,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // Function to delete a job ad
   const deleteJobAd = async (jobId) => {
     try {
       const response = await fetch(`/admin/job-ads/${jobId}`, {
@@ -77,9 +84,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // Attach event listeners for real-time filtering
   searchBar.addEventListener("input", filterJobAds);
   statusFilter.addEventListener("change", filterJobAds);
 
+  // Event listener for actions (close/delete) on job ads
   jobAdsList.addEventListener("click", (event) => {
     if (event.target.classList.contains("close-job-btn")) {
       const jobId = event.target.closest(".job-card").dataset.id;
@@ -88,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
         message: localization.confirmCloseMessage,
         action: "close",
         id: jobId,
-        onConfirm: updateJobStatus,
+        onConfirm: updateJobStatus
       });
     }
 
@@ -99,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         message: localization.confirmDeleteMessage,
         action: "delete",
         id: jobId,
-        onConfirm: deleteJobAd,
+        onConfirm: deleteJobAd
       });
     }
   });

@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeTicketCreatePopup = document.getElementById("closeTicketCreatePopup");
   const ticketCreateForm = document.getElementById("ticketCreateForm");
 
+  // Initialize notification system (Notyf)
   const notyf = new Notyf({
     position: {
       x: "right",
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Function to filter and search tickets
   const filterAndSearchTickets = () => {
     const statusValue = statusFilter.value.toLowerCase();
     const searchValue = searchInput.value.toLowerCase();
@@ -38,12 +40,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    // Show or hide "no tickets" message based on visibility
     noTicketsMessage.style.display = hasVisibleTickets ? "none" : "block";
   };
 
+  // Event listeners for filtering and searching tickets
   statusFilter.addEventListener("change", filterAndSearchTickets);
   searchInput.addEventListener("input", filterAndSearchTickets);
 
+  // Navigate to ticket details page when a ticket is clicked
   ticketList.addEventListener("click", (event) => {
     const ticketItem = event.target.closest(".ticket-item");
     if (ticketItem) {
@@ -75,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Function to reset the form and close the popup
   const resetFormAndClosePopup = () => {
     ticketCreatePopup.style.display = "none";
     ticketCreateForm.reset();
@@ -86,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  // Handle ticket creation form submission
   ticketCreateForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -94,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch("/tickets", {
         method: "POST",
-        body: formData,
+        body: formData
       });
 
       if (response.ok) {
@@ -111,6 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Handle file uploads and update UI accordingly
   window.handleFileUpload = (input) => {
     const label = input.closest(".file-upload").querySelector("label");
     if (input.files.length > 0) {

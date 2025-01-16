@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const roleSpecificFields = document.getElementById("role-specific-fields");
   const addUserForm = document.getElementById("add-user-form");
 
+  // Initialize notification system (Notyf)
   const notyf = new Notyf({
     position: {
       x: "right",
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Localization strings
   const localizations = {
     title: document.body.dataset.title,
     addUser: document.body.dataset.addUserTitle,
@@ -45,10 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
     failedToDeleteUser: document.body.dataset.failedToDeleteUser,
     errorDeletingUser: document.body.dataset.errorDeletingUser,
     errorFetchingUserDetails: document.body.dataset.errorFetchingUserDetails,
-    anErrorOccurredProcessingUser:
-      document.body.dataset.anErrorOccurredProcessingUser,
+    anErrorOccurredProcessingUser: document.body.dataset.anErrorOccurredProcessingUser
   };
 
+  // Function to toggle modal between "Add User" and "Edit User" modes
   const toggleModalForEdit = (isEdit) => {
     if (isEdit) {
       modalTitle.textContent = localizations.editUser;
@@ -61,23 +63,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // Function to close the modal and reset the form
   const closeModal = () => {
     modal.style.display = "none";
     addUserForm.reset();
     roleSpecificFields.innerHTML = "";
   };
 
+  // Open modal for adding a new user
   openModalBtn.addEventListener("click", () => {
     toggleModalForEdit(false);
     modal.style.display = "block";
   });
 
+  // Close modal when clicking close buttons
   closeModalBtns.forEach((btn) =>
     btn.addEventListener("click", () => {
       closeModal();
     })
   );
 
+  // Populate role-specific fields when a role is selected
   roleSelect.addEventListener("change", (event) => {
     const role = event.target.value;
 
@@ -171,6 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Attach click event listener edit button
   document.querySelectorAll(".edit-btn").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const userId = btn.getAttribute("data-id");
@@ -196,6 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Attach click event listener delete button
   document.querySelectorAll(".delete-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const userId = btn.getAttribute("data-id");
@@ -222,11 +230,12 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error(localizations.errorDeletingUser, error);
             notyf.error(localizations.errorDeletingUser);
           }
-        },
+        }
       });
     });
   });
 
+  // Populate role-specific fields in the modal form
   const populateRoleSpecificFields = (userData) => {
     const {
       id,
@@ -237,18 +246,19 @@ document.addEventListener("DOMContentLoaded", () => {
       address = "",
       employees_range = "0-0",
       first_name = "",
-      last_name = "",
+      last_name = ""
     } = userData;
 
     roleSpecificFields.innerHTML = `<input type="hidden" name="id" value="${id}" />`;
 
+    // Add fields specific to the "admin" role
     if (role === "admin") {
       roleSpecificFields.innerHTML += `
         <div class="form-group">
           <label for="admin-email">${localizations.emailLabel}:</label>
           <input type="email" id="admin-email" name="email" value="${email}" required />
         </div>`;
-    } else if (role === "firm") {
+    } else if (role === "firm") { // Add fields specific to the "firm" role
       const [minEmployees, maxEmployees] = employees_range.split("-");
       roleSpecificFields.innerHTML += `
         <div class="form-group">
@@ -278,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>`;
       initializeSlider(minEmployees, maxEmployees);
-    } else if (role === "candidate") {
+    } else if (role === "candidate") { // Add fields specific to the "candidate" role
       roleSpecificFields.innerHTML += `
         <div class="form-group">
           <label for="candidate-email">${localizations.emailLabel}:</label>
@@ -295,13 +305,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // Initialize the employee range slider
   const initializeSlider = (min, max) => {
     const slider = document.getElementById("firm-employees-slider");
     noUiSlider.create(slider, {
       start: [parseInt(min), parseInt(max)],
       connect: true,
       range: { min: 0, max: 500 },
-      step: 1,
+      step: 1
     });
     slider.noUiSlider.on("update", (values) => {
       const minValue = Math.round(values[0]);
@@ -314,6 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  // Handle form submission for adding or editing users
   addUserForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -337,7 +349,7 @@ document.addEventListener("DOMContentLoaded", () => {
           method:
             modalTitle.textContent === localizations.addUser ? "POST" : "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(userData),
+          body: JSON.stringify(userData)
         }
       );
 

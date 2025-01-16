@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const generateReportButton = document.getElementById("generate-report-btn");
 
+  // Initialize notification system (Notyf)
   const notyf = new Notyf({
     position: {
       x: "right",
@@ -8,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // If the "Generate Report" button exists, attach an event listener
   if (generateReportButton) {
     generateReportButton.addEventListener("click", async () => {
       const applicationId = window.location.pathname.split("/").pop();

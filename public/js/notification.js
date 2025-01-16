@@ -2,6 +2,7 @@ import { io } from "/socket.io-client/socket.io.esm.min.js";
 import { formatDistanceToNow } from "/date-fns/index.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
+    // Initialize WebSocket connection
     const socket = io();
 
     const notificationsContainer = document.getElementById("notifications-container");
@@ -9,6 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     let isPopupOpen = false;
 
+    // Fetch notifications
     const fetchNotifications = async () => {
         try {
             const response = await fetch("/notifications");
@@ -32,6 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     fetchNotifications();
 
+    // Event listener for notifications icon click
     document.getElementById("notifications-icon").addEventListener("click", async () => {
         notificationsContainer.classList.toggle("active");
         isPopupOpen = notificationsContainer.classList.contains("active");
@@ -40,8 +43,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             await fetchNotifications();
         }
     });
+
+    // Event listener for notifications icon click
     socket.emit("join-notifications");
 
+    // Handle real-time new notifications
     socket.on("new-notification", (notification) => {
         console.log("New notification received:", notification);
         addNotificationToUI(notification, true);
@@ -50,6 +56,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         updateBadgeCount(currentCount + 1);
     });
 
+    // Add a notification to the UI
     const addNotificationToUI = (notification, isNew = false) => {
         const newNotification = document.createElement("div");
         newNotification.classList.add("notification-item", notification.read ? "read" : "unread");
@@ -69,12 +76,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     };
 
+    // Update the badge count for unread notifications
     const updateBadgeCount = (count) => {
         const newCount = Math.max(count, 0);
         notificationBadge.textContent = newCount > 0 ? newCount : "";
         notificationBadge.style.display = newCount > 0 ? "inline" : "none";
     };    
 
+    // Mark a notification as read
     const markNotificationAsRead = async (id, notificationElement) => {
         try {
             await fetch(`/notifications/${id}/mark-read`, { method: "PUT" });

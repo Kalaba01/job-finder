@@ -1,12 +1,14 @@
 import { io } from "/socket.io-client/socket.io.esm.min.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Initialize WebSocket connection
+  const socket = io();
+
   const acceptBtn = document.getElementById("accept-btn");
   const rejectBtn = document.getElementById("reject-btn");
   const reportBtn = document.getElementById("generate-zip-btn");
-
-  const socket = io();
-
+  
+  // Initialize notification system (Notyf)
   const notyf = new Notyf({
     position: {
       x: "right",
@@ -14,13 +16,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Localization strings
   const localizations = {
     acceptTitle: document.body.dataset.acceptTitle,
     acceptMessage: document.body.dataset.acceptMessage,
     rejectTitle: document.body.dataset.rejectTitle,
-    rejectMessage: document.body.dataset.rejectMessage,
+    rejectMessage: document.body.dataset.rejectMessage
   };
 
+  // Removes the action buttons (accept/reject) from the UI
   const removeActionButtons = () => {
     const actionsSection = document.querySelector(".actions-section");
     if (actionsSection) {
@@ -28,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // Handles the application status update (accept/reject)
   const handleApplicationAction = async (applicationId, action) => {
     try {
       socket.emit("update-application-status", { applicationId, action });
@@ -39,10 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // Listen for application status updates via WebSocket
   socket.on("application-status-updated", ({ applicationId, status }) => {
     notyf.success(`Application has been updated to ${status}.`);
   });
 
+  // Event listener for the "Accept" button
   if (acceptBtn) {
     acceptBtn.addEventListener("click", () => {
       window.openConfirmModal({
@@ -55,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Event listener for the "Reject" button
   if (rejectBtn) {
     rejectBtn.addEventListener("click", () => {
       window.openConfirmModal({
@@ -67,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Event listener for the "Generate ZIP" button
   if (reportBtn) {
     reportBtn.addEventListener("click", async () => {
       const applicationId = window.location.pathname.split("/").pop();

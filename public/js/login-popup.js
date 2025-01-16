@@ -10,13 +10,15 @@ const loginPasswordInput = document.getElementById("login-password");
 const switchToRegister = document.getElementById("switch-to-register");
 const forgotPasswordLink = document.getElementById("forgot-password-link");
 
+// Initialize notification system (Notyf)
 const notyf = new Notyf({
   position: {
     x: "right",
-    y: "top",
+    y: "top"
   },
 });
 
+// Exported function to open the login popup
 export function openLoginPopup() {
   loginPopupOverlay.style.display = "flex";
   loginEmailInput.focus();
@@ -49,21 +51,22 @@ forgotPasswordLink.addEventListener("click", (e) => {
   openForgotPasswordPopup();
 });
 
+// Event listener for form submission
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const formData = {
     email: loginEmailInput.value,
-    password: loginPasswordInput.value,
+    password: loginPasswordInput.value
   };
 
   try {
     const response = await fetch("/auth/login", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(formData)
     });
 
     if (response.ok) {

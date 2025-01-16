@@ -1,7 +1,10 @@
 import { io } from "/socket.io-client/socket.io.esm.min.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Initialize WebSocket connection
   const socket = io();
+
+  // Initialize notification system (Notyf)
   const notyf = new Notyf({
     position: {
       x: "right",
@@ -32,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Handle the submission of the application form
   if (submitApplicationBtn) {
     submitApplicationBtn.addEventListener("click", async () => {
       const rawFormData = new FormData(applicationForm);
@@ -63,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const response = await fetch("/candidate/apply", {
           method: "POST",
-          body: cleanedFormData,
+          body: cleanedFormData
         });
 
         if (response.ok) {

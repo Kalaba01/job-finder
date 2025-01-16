@@ -2,6 +2,7 @@ const languageIcon = document.getElementById("language-icon");
 const languageDropdown = document.getElementById("language-dropdown");
 const languageOptions = document.querySelectorAll(".language-option");
 
+// Add a click event listener to each language option
 languageOptions.forEach((option) => {
   option.addEventListener("click", (e) => {
     const lang = e.target.dataset.lang;

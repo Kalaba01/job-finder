@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const editBtns = document.querySelectorAll(".edit-btn");
   const deleteBtns = document.querySelectorAll(".delete-btn");
 
+  // Initialize notification system (Notyf)
   const notyf = new Notyf({
     position: {
       x: "right",
@@ -18,12 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Localization strings
   const localization = {
     confirmDeleteTitle: document.body.dataset.confirmDeleteTitle,
     confirmDeleteMessage: document.body.dataset.confirmDeleteMessage,
     confirmCloseTitle: document.body.dataset.confirmCloseTitle
   };
 
+  // Function to open the modal and populate it if editing a phase
   const openModal = (title, phase = null) => {
     document.getElementById("modal-title").textContent = title;
     if (phase) {
@@ -40,15 +43,18 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.style.display = "flex";
   };
 
+  // Function to close the modal and reset form inputs
   const closeModalHandler = () => {
     modal.style.display = "none";
     phaseForm.reset();
     phaseIdInput.value = "";
   };
 
+  
   addPhaseBtn.addEventListener("click", () => openModal(localization.confirmCloseTitle));
   closeModal.addEventListener("click", closeModalHandler);
 
+  // Handle form submission for adding or editing a hiring phase
   phaseForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const id = phaseIdInput.value;
@@ -64,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch(url, {
       method,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, sequence, isFinal }),
+      body: JSON.stringify({ name, sequence, isFinal })
     })
       .then((response) => {
         if (response.ok) {
@@ -76,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((error) => console.error("Error:", error));
   });
 
+  // Handle the edit action for a phase
   editBtns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
       const row = event.target.closest("tr");
@@ -87,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Handle the delete action for a phase
   deleteBtns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
       const row = event.target.closest("tr");
@@ -109,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Error deleting phase:", error);
             notyf.error("An error occurred while deleting the phase.");
           }
-        },
+        }
       });
     });
   });

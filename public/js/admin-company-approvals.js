@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("search-input");
   const requestGrid = document.querySelector(".request-grid");
 
+  // Initialize notification system (Notyf)
   const notyf = new Notyf({
     position: {
       x: "right",
@@ -11,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Localization strings
   const localizations = {
     approveTitle: document.body.dataset.approveTitle,
     approveMessage: document.body.dataset.approveMessage,
@@ -20,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     no: document.body.dataset.no
   };
 
+  // Function to open the confirmation modal
   const openConfirmModal = ({ titleKey, messageKey, action, id }) => {
     const confirmModal = document.getElementById("confirm-modal");
     const confirmTitle = document.getElementById("confirm-modal-title");
@@ -33,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     confirmYes.textContent = localizations.yes || "Yes";
     confirmNo.textContent = localizations.no || "No";
 
+    // Add event listener for the "Yes" button
     confirmYes.onclick = async () => {
       try {
         const response = await fetch("/admin/company-approvals/update", {
@@ -59,18 +63,21 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
 
+    // Close the modal when "No" button is clicked
     confirmNo.onclick = closeConfirmModal;
 
     confirmModal.classList.remove("hidden");
     confirmModal.classList.add("show");
   };
 
+  // Function to close the confirmation modal
   const closeConfirmModal = () => {
     const confirmModal = document.getElementById("confirm-modal");
     confirmModal.classList.remove("show");
     confirmModal.classList.add("hidden");
   };
 
+  // Add event listeners to approve and reject buttons
   document.querySelectorAll(".approve-btn, .reject-btn").forEach((button) => {
     button.addEventListener("click", () => {
       const id = button.dataset.id;
@@ -85,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Function to filter requests based on search input and status filter
   const filterRequests = () => {
     if (cards.length === 0) {
       if (!document.querySelector(".no-results")) {
@@ -101,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
     let hasVisibleCards = false;
   
+    // Filter and display cards based on search and status
     cards.forEach((card) => {
       const name = card.querySelector("h3").textContent.toLowerCase();
       const email = card.querySelector("p strong").textContent.toLowerCase();
@@ -117,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   
+    // Handle "No results found" message
     if (!hasVisibleCards) {
       if (!document.querySelector(".no-results")) {
         const noResultsMessage = document.createElement("div");
@@ -132,6 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // Attach event listeners for real-time filtering
   searchInput.addEventListener("input", filterRequests);
   filterSelect.addEventListener("change", filterRequests);
 });

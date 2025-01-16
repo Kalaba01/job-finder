@@ -1,5 +1,6 @@
 const goTopButton = document.getElementById("go-top");
 
+// Add a scroll event listener to the window
 window.addEventListener("scroll", () => {
   if (window.scrollY > 300) {
     goTopButton.classList.remove("hidden");
@@ -10,9 +11,10 @@ window.addEventListener("scroll", () => {
   }
 });
 
+// Add a click event listener to the "Go to Top" button
 goTopButton.addEventListener("click", () => {
   window.scrollTo({
     top: 0,
-    behavior: "smooth",
+    behavior: "smooth"
   });
 });

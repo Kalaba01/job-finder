@@ -10,10 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const ticketMessageList = document.getElementById("ticketMessageList");
   const resolveTicketButton = document.getElementById("resolveTicketButton");
 
+  // Initialize WebSocket connection
   const socket = io("/", {
     withCredentials: true
   });
 
+  // Initialize notification system (Notyf)
   const notyf = new Notyf({
     position: {
       x: "right",
@@ -21,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Localization strings
   const localizations = {
     resolvedNotice: document.body.dataset.resolvedNotice,
     confirmTitle: document.body.dataset.confirmTitle,
@@ -29,16 +32,20 @@ document.addEventListener("DOMContentLoaded", () => {
     confirmNo: document.body.dataset.confirmNo
   };
 
+  // Join the ticket room using WebSocket
   socket.emit("join-ticket", ticketId);
 
+  // Handle incoming new messages from WebSocket
   socket.on("new-message", (message) => {
     displayMessage(message);
   });
 
+  // Handle ticket resolved status updates
   socket.on("ticket-resolved", (data) => {
     if (data.ticketId === ticketId) updateResolvedUI();
   });
 
+  // Event listener for sending a message via the form
   ticketMessageForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -49,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Handle resolving the ticket
   if (resolveTicketButton) {
     resolveTicketButton.addEventListener("click", () => {
       openConfirmModal({
@@ -77,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Function to display a message in the conversation
   const displayMessage = (message) => {
     const messageDiv = document.createElement("div");
     messageDiv.className = `ticket-message ${message.sender_id === parseInt(ticketDataElement.dataset.userId, 10) ? 'sent' : 'received'}`;
@@ -91,6 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ticketMessageList.scrollTop = ticketMessageList.scrollHeight;
   };
 
+  // Function to update the UI when the ticket is resolved
   const updateResolvedUI = () => {
     document.querySelector(".ticket-info .ticket-status").textContent = "resolved";
     if (resolveTicketButton) resolveTicketButton.remove();

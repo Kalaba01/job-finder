@@ -1,6 +1,10 @@
 import { io } from "/socket.io-client/socket.io.esm.min.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  // WebSocket setup
+  const socket = io();
+  const candidateId = document.body.dataset.userId;
+
   const searchBar = document.getElementById("search-bar");
   const firmFilter = document.getElementById("firm-filter");
   const statusFilter = document.getElementById("status-filter");
@@ -8,11 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const noApplicationsMessage = document.getElementById("no-applications-message");
   const noResultsMessage = document.getElementById("no-results-message");
 
-  const socket = io();
-  const candidateId = document.body.dataset.userId;
-
+  // Join the candidate's application room to receive real-time updates
   socket.emit("join-application", candidateId);
 
+  // Update application status in real-time when a relevant WebSocket event is received
   socket.on("application-status-updated", ({ applicationId, status }) => {
     const applicationCard = document.querySelector(`.application-card[data-id='${applicationId}']`);
     if (applicationCard) {
@@ -22,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Handle "View" button click to redirect to the application details page
   applicationsList.addEventListener("click", (event) => {
     const viewButton = event.target.closest(".view-btn");
     if (viewButton) {
@@ -33,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Filter applications based on search input, firm, and status filters
   const filterApplications = () => {
     const searchQuery = searchBar.value.toLowerCase();
     const selectedFirm = firmFilter.value.toLowerCase();
@@ -40,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let visibleCount = 0;
 
+    // Loop through all application cards and apply the filters
     Array.from(applicationsList.children).forEach((card) => {
       if (!card.classList.contains("application-card")) return;
 
@@ -65,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
       applicationsList.children.length === 0 ? "block" : "none";
   };
 
+  // Attach event listeners to search input and filter dropdowns
   searchBar.addEventListener("input", filterApplications);
   firmFilter.addEventListener("change", filterApplications);
   statusFilter.addEventListener("change", filterApplications);

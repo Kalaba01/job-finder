@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closePopupBtn = document.getElementById("edit-profile-close-btn");
   const editProfileForm = document.getElementById("edit-profile-form");
 
+  // Initialize notification system (Notyf)
   const notyf = new Notyf({
     position: {
       x: "right",
@@ -11,15 +12,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Open the edit profile popup
   editProfileBtn.addEventListener("click", () => {
     popupOverlay.style.display = "flex";
   });
 
+  // Close the edit profile popup and reset file inputs
   closePopupBtn.addEventListener("click", () => {
     resetFileUploads();
     popupOverlay.style.display = "none";
   });
 
+  // Handle profile form submission
   editProfileForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -28,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch("/candidate/profile/edit", {
         method: "PUT",
-        body: formData,
+        body: formData
       });
 
       if (response.ok) {
@@ -45,6 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
+// Handle file upload input change
+// Updates the label's appearance based on whether a file is selected
 function handleFileUpload(input) {
   const label = input.closest('.file-upload').querySelector('label');
 
@@ -57,6 +64,7 @@ function handleFileUpload(input) {
   }
 }
 
+// Reset all file upload inputs and their associated labels
 function resetFileUploads() {
   const fileUploads = document.querySelectorAll('.file-upload');
   fileUploads.forEach((fileUpload) => {

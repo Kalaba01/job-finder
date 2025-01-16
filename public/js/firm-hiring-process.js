@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closePopupBtn = detailsPopup.querySelector(".close-popup-btn");
   const generateReportButton = document.getElementById("generate-report");
 
+  // Initialize notification system (Notyf)
   const notyf = new Notyf({
     position: {
       x: "right",
@@ -35,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Localization strings
   const localizations = {
     noResultsMessage: document.body.dataset.noResultsMessage
   };
@@ -42,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentCandidateId = null;
   let currentAction = null;
 
+  // Create and style a "No Results" message element
   const noResultsMessage = document.createElement("p");
   noResultsMessage.id = "no-results-message";
   noResultsMessage.className = "no-data-container";
@@ -71,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Details popup handling
   const openDetailsPopup = (candidateId) => {
     const candidateCard = document.querySelector(`.candidate-card[data-id="${candidateId}"]`);
     
@@ -110,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Move to next phase
   if (moveToNextPhaseButton) {
     moveToNextPhaseButton.addEventListener("click", () => {
       socket.emit("move-to-next-phase", { processId });
@@ -117,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Finalize process
   if (finalizeProcessButton) {
     finalizeProcessButton.addEventListener("click", () => {
       socket.emit("finalize-process", { processId });
@@ -124,6 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Socket event handlers for updates
   socket.on("process-finalized", () => {
     notyf.success("The hiring process has been successfully finalized.");
     
@@ -165,6 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Function to create a candidate card element
   function createCandidateCard(candidate) {
     const candidateCard = document.createElement("div");
     candidateCard.classList.add("candidate-card");
@@ -205,6 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return candidateCard;
   }
 
+  // Function to update the visual stepper to reflect the current phase
   function updateStepper(currentPhase) {
     const stepperSteps = document.querySelectorAll(".step");
     stepperSteps.forEach((step) => step.classList.remove("active"));
@@ -216,6 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Function to update the candidate list
   function updateCandidatesList(updatedCandidates) {
     const candidatesContainer = document.querySelector(".candidates");
     candidatesContainer.innerHTML = "";
@@ -242,6 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }  
 
+  // Function to update the "Move to Next Phase" button
   function updateMoveToNextPhaseButton(updatedCandidates) {
     const moveToNextPhaseButton = document.getElementById("move-to-next-phase");
     const hasPendingCandidates = updatedCandidates.some((candidate) => candidate.status === "pending");
@@ -251,6 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // WebSocket event listener for phase movement
   socket.on("phase-moved", ({ currentPhase, updatedCandidates }) => {
     updateStepper(currentPhase);
     updateCandidatesList(updatedCandidates);
@@ -261,6 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
     notyf.error(message);
   });
 
+  // Function to open the action popup (Accept/Reject)
   const openPopup = (action, candidateId) => {
     currentCandidateId = parseInt(candidateId, 10);
     currentAction = action;
@@ -284,6 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
     popup.style.display = "flex";
   };
 
+  // Function to close the action popup
   const closePopup = () => {
     currentCandidateId = null;
     currentAction = null;
@@ -291,6 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
     popup.style.display = "none";
   };
 
+  // Function to submit an action (Accept/Reject)
   const submitAction = async (event) => {
     event.preventDefault();
 
@@ -319,6 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // WebSocket listener for candidate status updates
   socket.on("candidate-status-updated", ({ candidateId, applicationId, action, updatedHistory, canMoveToNextPhase, currentPhase }) => {
     const candidateCard = document.querySelector(`.candidate-card[data-id="${candidateId}"]`);
 
@@ -380,6 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Filter candidates by name and status
   const filterCandidates = () => {
     const searchQuery = searchBar?.value.toLowerCase().trim();
     const selectedStatus = statusFilter?.value.toLowerCase().trim();
@@ -420,6 +437,7 @@ document.addEventListener("DOMContentLoaded", () => {
   closePopupButton.addEventListener("click", closePopup);
   actionForm.addEventListener("submit", submitAction);
 
+  // Event listeners for filtering
   if (searchBar) searchBar.addEventListener("input", filterCandidates);
   if (statusFilter) statusFilter.addEventListener("change", filterCandidates);
 

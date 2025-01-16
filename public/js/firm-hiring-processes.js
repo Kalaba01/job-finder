@@ -4,10 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const phaseFilter = document.getElementById("phase-filter");
   const processList = document.querySelector(".process-list");
 
+  // Localization strings
   const localizations = {
     noAdsMessage: document.body.dataset.noAdsMessage
   };
 
+  // Create and style a "No Results" message element
   const noResultsMessage = document.createElement("p");
   noResultsMessage.id = "no-results-message";
   noResultsMessage.textContent = localizations.noAdsMessage;
@@ -16,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   noResultsMessage.style.marginTop = "20px";
   processList.parentElement.insertBefore(noResultsMessage, processList);
 
+  // Function to filter and display processes based on search and filters
   const filterProcesses = () => {
     const searchInput = searchBar.value.toLowerCase();
     const selectedCategory = categoryFilter.value.toLowerCase();
@@ -48,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // Attach event listeners to filter elements
   searchBar.addEventListener("input", filterProcesses);
   categoryFilter.addEventListener("change", filterProcesses);
   phaseFilter.addEventListener("change", filterProcesses);

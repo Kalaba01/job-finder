@@ -16,6 +16,7 @@ noUiSlider.create(employeeRangeSlider, {
   step: 1
 });
 
+// Initialize notification system (Notyf)
 const notyf = new Notyf({
   position: {
     x: "right",
@@ -65,7 +66,7 @@ firmRegisterForm.addEventListener("submit", async (e) => {
     name,
     city,
     address,
-    employees_range: `${Math.floor(employeesRange[0])}-${Math.ceil(employeesRange[1])}`,
+    employees_range: `${Math.floor(employeesRange[0])}-${Math.ceil(employeesRange[1])}`
   };
 
   try {

@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closePopupBtn = document.getElementById("closeEditPopup");
   const editForm = document.querySelector("#editProfilePopup form");
 
+  // Initialize notification system (Notyf)
   const notyf = new Notyf({
     position: {
       x: "right",
@@ -26,32 +27,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Elements for handling employee range slider
   const employeeSlider = document.getElementById("employeeRange");
   const employeesInput = document.getElementById("employees");
   const selectedRange = document.getElementById("selectedRange");
   const employeeRange = employeesInput.value.split("-").map(Number);
 
-  // Inicijalizacija noUiSlider-a
+  // Initialize the noUiSlider for selecting employee range
   noUiSlider.create(employeeSlider, {
     start: employeeRange,
     connect: true,
     range: {
       min: 0,
-      max: 1000,
+      max: 1000
     },
     step: 1,
     format: {
       to: (value) => Math.round(value),
-      from: (value) => Math.round(value),
+      from: (value) => Math.round(value)
     },
   });
 
+  // Update the input field and displayed range when the slider changes
   employeeSlider.noUiSlider.on("update", (values) => {
     employeesInput.value = `${values[0]}-${values[1]}`;
     const rangeLabel = selectedRange.getAttribute("data-i18n");
     selectedRange.textContent = `${rangeLabel}: ${values[0]} - ${values[1]}`;
-});
+  });
 
+  // Handle form submission for editing the profile
   editForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -60,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch("/firm/profile/edit", {
         method: "POST",
-        body: formData,
+        body: formData
       });
 
       if (response.ok) {
@@ -77,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// Handle visual feedback for file uploads
 function handleFileUpload(input) {
   const label = input.closest('.file-upload').querySelector('label');
 
@@ -89,6 +94,7 @@ function handleFileUpload(input) {
   }
 }
 
+// Reset file input fields and their labels
 function resetFileUploads() {
   const fileUploads = document.querySelectorAll('.file-upload');
   fileUploads.forEach((fileUpload) => {

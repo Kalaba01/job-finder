@@ -1,10 +1,13 @@
 import { io } from "/socket.io-client/socket.io.esm.min.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Initialize WebSocket connection
   const socket = io();
+
   const calendarEl = document.getElementById("calendar");
   const body = document.body;
 
+  // Initialize notification system (Notyf)
   const notyf = new Notyf({
     position: {
       x: "right",
@@ -12,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Localization strings
   const localization = {
     acceptTitle: body.dataset.acceptTitle,
     acceptMessage: body.dataset.acceptMessage,
@@ -19,11 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
     rejectMessage: body.dataset.rejectMessage,
     noAdditionalNotes: body.dataset.noAdditionalNotes,
     dateLabel: body.dataset.dateLabel,
-    noteLabel: body.dataset.noteLabel,
+    noteLabel: body.dataset.noteLabel
   };
 
   let interviews = JSON.parse(body.dataset.interviews || "[]");
 
+  // Retrieve accepted interviews and format them for FullCalendar
   const getAcceptedInterviews = () =>
     interviews
       .filter((invite) => invite.status === "accepted")
@@ -36,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }));
 
+  // Initialize FullCalendar    
   const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: "dayGridMonth",
     events: getAcceptedInterviews(),
@@ -48,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   calendar.render();
 
+   // Add event listeners for "Accept" button
   document.querySelectorAll(".accept-btn").forEach((button) =>
     button.addEventListener("click", () => {
       openConfirmModal({
@@ -55,11 +62,12 @@ document.addEventListener("DOMContentLoaded", () => {
         message: localization.acceptMessage,
         id: button.dataset.id,
         action: "accepted",
-        onConfirm: (id) => updateInterviewStatus(id, "accepted"),
+        onConfirm: (id) => updateInterviewStatus(id, "accepted")
       });
     })
   );
 
+  // Add event listeners for "Reject" button
   document.querySelectorAll(".reject-btn").forEach((button) =>
     button.addEventListener("click", () => {
       openConfirmModal({
@@ -67,15 +75,17 @@ document.addEventListener("DOMContentLoaded", () => {
         message: localization.rejectMessage,
         id: button.dataset.id,
         action: "rejected",
-        onConfirm: (id) => updateInterviewStatus(id, "rejected"),
+        onConfirm: (id) => updateInterviewStatus(id, "rejected")
       });
     })
   );
 
+  // Emit event to update the interview status
   const updateInterviewStatus = (id, status) => {
     socket.emit("update-status", { inviteId: id, status });
   };
 
+  // Handle status updates from the server
   socket.on("status-updated", (updatedInvite) => {
     const index = interviews.findIndex((invite) => invite.id === updatedInvite.id);
     if (index > -1) {
@@ -89,6 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     calendar.addEventSource(getAcceptedInterviews());
   });  
 
+  // Refresh the list of pending interviews in the DOM
   const refreshPendingInterviews = () => {
     const list = document.querySelector("#interview-list ul");
     list.innerHTML = "";

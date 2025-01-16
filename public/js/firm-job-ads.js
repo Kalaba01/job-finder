@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const jobEditButtons = document.querySelectorAll(".job-edit-btn");
   const jobAdCreateForm = document.getElementById("job-ad-create-form");
 
+  // Initialize notification system (Notyf)
   const notyf = new Notyf({
     position: {
       x: "right",
@@ -36,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Localization strings
   const localizations = {
     noAdsMessage: document.body.dataset.noAdsMessage,
     remove: document.body.dataset.remove,
@@ -45,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     deleteMessage: document.body.dataset.deleteMessage
   };
 
+  // Create and style a "No Results" message element
   const noAdsMessage = document.createElement("p");
   noAdsMessage.id = "no-ads-message";
   noAdsMessage.className = "no-ads-message";
@@ -56,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     questionModal.style.display = "block";
   });
 
+  // Show or hide options input based on question type
   questionType.addEventListener("change", () => {
     if (["dropdown", "radio", "checkbox"].includes(questionType.value)) {
       optionsContainer.style.display = "block";
@@ -65,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Handle job actions (close or delete)
   const handleJobAction = async (jobId, action) => {
     const url =
       action === "close"
@@ -85,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // Save the custom question
   saveQuestionBtn.addEventListener("click", () => {
     const options = Array.from(
       optionsList.querySelectorAll(".option-item")
@@ -103,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     questionModal.style.display = "none";
   });
 
+  // Add a new option to the question
   addOptionBtn.addEventListener("click", () => {
     const optionInput = optionsContainer.querySelector("#option-input");
     if (!optionInput) {
@@ -140,6 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
     optionInput.value = "";
   });
 
+  // Reset the question form
   function clearQuestionForm() {
     questionText.value = "";
     questionType.value = "text";
@@ -166,6 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
     questionModal.style.display = "none";
   });
 
+  // Fetch and populate job ad data for editing
   jobEditButtons.forEach((button) => {
     button.addEventListener("click", async () => {
       const jobId = button.dataset.id;
@@ -202,6 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Create or update job ad
   jobAdCreateForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -229,6 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Update displayed custom questions
   function updateQuestionsDisplay() {
     customQuestionsContainer.innerHTML = "";
     questions.forEach((q, index) => {
@@ -262,11 +273,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Remove a custom question
   function removeQuestion(index) {
     questions.splice(index, 1);
     updateQuestionsDisplay();
   }
 
+  // Reset the create job ad modal
   function resetCreateModal() {
     jobAdCreateForm.dataset.mode = "create";
     jobAdCreateForm.dataset.jobId = "";
@@ -299,6 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Close or delete job ads with confirmation modal
   if(jobAdsList) {
     jobAdsList.addEventListener("click", (event) => {
       if (event.target.classList.contains("close-job-btn")) {
@@ -329,6 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Update selected required documents
   checkboxes.forEach((checkbox) => {
     checkbox.addEventListener("change", () => {
       const selectedDocuments = Array.from(checkboxes)
@@ -338,6 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Filter job ads based on search and status
   const filterJobAds = () => {
     const searchQuery = searchBar.value.toLowerCase();
     const selectedStatus = statusFilter.value;

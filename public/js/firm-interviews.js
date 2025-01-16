@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const calendarEl = document.getElementById("calendar");
   const interviews = JSON.parse(calendarEl.dataset.interviews || "[]");
 
+  // Filter and map interview data into events for the calendar
   const events = interviews
   .filter((interview) => interview.status === "accepted")
   .map((interview) => ({
@@ -10,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     start: interview.scheduledDate
   }));
 
+  // Initialize FullCalendar with the events and default view
   const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: "dayGridMonth",
     events: events,
@@ -17,5 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
+  // Render the calendar
   calendar.render();
 });

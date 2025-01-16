@@ -1,8 +1,10 @@
 import { io } from "/socket.io-client/socket.io.esm.min.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
+  // Initialize WebSocket connection
   const socket = io();
 
+  // Localization strings
   const localization = {
     candidatesTitle: document.body.dataset.candidatesTitle,
     firmsTitle: document.body.dataset.firmsTitle,
@@ -22,6 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   };
 
+  // Render a chart on the given canvas context
   const renderChart = (ctx, type, data, labelKey) => {
     if (!ctx) {
       console.error("Canvas context is not available for rendering chart.");
@@ -38,16 +41,16 @@ document.addEventListener("DOMContentLoaded", async () => {
             label: label,
             data: Array.isArray(data) ? data : [0],
             backgroundColor: ["#007bff", "#ffc107", "#28a745", "#dc3545"],
-            borderWidth: 1,
-          },
+            borderWidth: 1
+          }
         ],
       },
       options: {
         responsive: true,
         plugins: {
-          legend: { display: true },
-        },
-      },
+          legend: { display: true }
+        }
+      }
     });
   };  
 

@@ -6,16 +6,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const allApplications = Array.from(document.querySelectorAll(".application-card"));
   const viewButtons = document.querySelectorAll(".view-btn");
 
+  // Localization strings
   const localizations = {
     noResultsMessage: document.body.dataset.noResultsMessage
   };
 
+  // Create and style the "No Tickets" message element
   const noResultsMessage = document.createElement("div");
   noResultsMessage.className = "no-data-container";
   noResultsMessage.innerHTML = `<p class="no-data">${localizations.noResultsMessage}</p>`;
   applicationsContainer.appendChild(noResultsMessage);
   noResultsMessage.style.display = "none";
 
+  // Function to filter applications based on search input and selected filters
   const filterApplications = () => {
     const searchQuery = searchNameInput.value.toLowerCase().trim();
     const selectedPosition = positionFilter.value.trim();
@@ -45,9 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    // Show or hide "no results" message based on visible cards
     noResultsMessage.style.display = visibleCount === 0 ? "block" : "none";
   };
 
+   // Add event listeners to "View" button
   viewButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const applicationId = button.dataset.id;
@@ -57,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Add event listeners to filter inputs to trigger filtering
   searchNameInput.addEventListener("input", filterApplications);
   positionFilter.addEventListener("change", filterApplications);
   statusFilter.addEventListener("change", filterApplications);
