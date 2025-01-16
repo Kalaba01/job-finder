@@ -1,6 +1,7 @@
 const { Op } = require("sequelize");
 const { JobAd, Firm, Candidate, HiringPhase, HiringProcess } = require("../models");
 
+// Fetch all job ads for a specific firm
 exports.getJobAdsWithStatuses = async (firmId) => {
   try {
     const jobAds = await JobAd.findAll({
@@ -17,6 +18,7 @@ exports.getJobAdsWithStatuses = async (firmId) => {
   }
 };
 
+// Fetch job ad details for editing
 exports.getJobAdDetailsForEdit = async (jobAdId) => {
   try {
     const jobAd = await JobAd.findOne({ where: { id: jobAdId } });
@@ -28,6 +30,7 @@ exports.getJobAdDetailsForEdit = async (jobAdId) => {
   }
 };
 
+// Fetch all job ads with details
 exports.getAllJobAdsWithDetails = async (filterActiveOnly = false) => {
   try {
     const whereClause = filterActiveOnly ? { status: "open" } : {};
@@ -69,6 +72,7 @@ exports.getAllJobAdsWithDetails = async (filterActiveOnly = false) => {
   }
 };
 
+// Create a new job ad
 exports.createJobAd = async (jobAdData) => {
   try {
     await JobAd.create(jobAdData);
@@ -78,6 +82,7 @@ exports.createJobAd = async (jobAdData) => {
   }
 };
 
+// Fetch job ad details
 exports.getJobAdDetails = async (jobAdId, candidateId) => {
   try {
     const jobAd = await JobAd.findOne({
@@ -115,6 +120,7 @@ exports.getJobAdDetails = async (jobAdId, candidateId) => {
   }
 };
 
+// Edit an existing job ad
 exports.editJobAd = async (jobAdData) => {
   try {
     const { jobAdId, firmId, ...updates } = jobAdData;
@@ -128,6 +134,7 @@ exports.editJobAd = async (jobAdData) => {
   }
 };
 
+// Update the status of a job ad and create a hiring process if the ad is closed
 exports.updateJobAdStatus = async (jobId, status) => {
   try {
     await JobAd.update(
@@ -154,6 +161,7 @@ exports.updateJobAdStatus = async (jobId, status) => {
   }
 };
 
+// Delete a job ad
 exports.deleteJobAd = async (jobId) => {
   try {
     await JobAd.destroy({ where: { id: jobId } });
@@ -163,6 +171,7 @@ exports.deleteJobAd = async (jobId) => {
   }
 };
 
+// Automatically close expired job ads
 exports.closeExpiredJobAds = async () => {
   try {
     const today = new Date();

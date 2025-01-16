@@ -1,5 +1,6 @@
 const passwordResetService = require("../services/passwordResetService");
 
+// Renders the reset password form after validating the reset token
 exports.showResetPasswordForm = async (req, res) => {
   try {
     const { token } = req.query;
@@ -11,6 +12,7 @@ exports.showResetPasswordForm = async (req, res) => {
   }
 };
 
+// Handles password reset requests by sending a reset link to the user's email
 exports.requestPasswordReset = async (req, res) => {
   try {
     const { email } = req.body;
@@ -22,6 +24,7 @@ exports.requestPasswordReset = async (req, res) => {
   }
 };
 
+// Handles the password reset process after the user submits a new password
 exports.handlePasswordReset = async (req, res) => {
   try {
     const result = await passwordResetService.resetPassword(req.body);

@@ -1,6 +1,7 @@
 const cron = require("node-cron");
 const jobAdsService = require("../services/jobAdsService");
 
+// Schedule a daily task to check for expired job ads
 exports.scheduleJobAdExpirationCheck = () => {
   cron.schedule("0 0 * * *", async () => {
     console.log("Running an ad expiration check...");

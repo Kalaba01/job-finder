@@ -5,6 +5,7 @@ const candidateService = require("./candidateService");
 const sequelize = require("../config/sequelize");
 const { User } = require("../models");
 
+// Find a user by their email address
 exports.findUserByEmail = async (email) => {
   try {
     if (!email) throw new Error("Email is required for verification.");
@@ -17,18 +18,7 @@ exports.findUserByEmail = async (email) => {
   }
 };
 
-exports.createUser = async (email, password, role, transaction = null) => {
-  try {
-    if (await this.findUserByEmail(email)) throw new Error("Email is already in use.");
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    return await User.create({ email, password: hashedPassword, role }, { transaction });
-  } catch (error) {
-    console.error("Error creating user:", error.message || error);
-    throw new Error("Failed to create user.");
-  }
-};
-
+// Find a user by their ID
 exports.findUserById = async (id) => {
   try {
     const user = await User.findByPk(id);
@@ -41,10 +31,24 @@ exports.findUserById = async (id) => {
   }
 };
 
+// Create a new user
+exports.createUser = async (email, password, role, transaction = null) => {
+  try {
+    if (await this.findUserByEmail(email)) throw new Error("Email is already in use.");
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    return await User.create({ email, password: hashedPassword, role }, { transaction });
+  } catch (error) {
+    console.error("Error creating user:", error.message || error);
+    throw new Error("Failed to create user.");
+  }
+};
+
+// Retrieve all users with basic information
 exports.getAllUsers = async () => {
   try {
     return await User.findAll({
-      attributes: ["id", "email", "role", "createdAt", "updatedAt"],
+      attributes: ["id", "email", "role", "createdAt", "updatedAt"]
     });
   } catch (error) {
     console.error("Error fetching users:", error);
@@ -52,6 +56,7 @@ exports.getAllUsers = async () => {
   }
 };
 
+// Get detailed information about a specific user
 exports.getUserDetails = async (userId) => {
   try {
     const user = await this.findUserById(userId);
@@ -76,6 +81,7 @@ exports.getUserDetails = async (userId) => {
   }
 };
 
+// Add a new user
 exports.addUser = async (userData) => {
   const transaction = await sequelize.transaction();
   try {
@@ -112,6 +118,7 @@ exports.addUser = async (userData) => {
   }
 };
 
+// Update user details
 exports.updateUser = async (userId, updatedData) => {
   try {
     const user = await this.findUserById(userId);
@@ -138,6 +145,7 @@ exports.updateUser = async (userId, updatedData) => {
   }
 };
 
+// Delete a user
 exports.deleteUser = async (userId) => {
   try {
     const user = await this.findUserById(userId);

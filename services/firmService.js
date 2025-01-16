@@ -2,6 +2,7 @@ const imageService = require("./imageService");
 const userService = require("./userService");
 const { User, Firm, JobAd, Image, InterviewInvite, Candidate, HiringProcess } = require("../models");
 
+// Check if a firm exists based on the email
 exports.firmExistsByEmail = async (email) => {
   try {
     const user = await User.findOne({ where: { email, role: "firm" } });
@@ -13,6 +14,7 @@ exports.firmExistsByEmail = async (email) => {
   }
 };
 
+// Check if a firm exists based on the name
 exports.firmExistsByName = async (name) => {
   try {
     const firm = await Firm.findOne({ where: { name } });
@@ -24,6 +26,7 @@ exports.firmExistsByName = async (name) => {
   }
 };
 
+// Check if a firm exists based on ID
 exports.firmExistsByUserId = async(userId) => {
   try {
     const firm = await Firm.findOne({ where: { user_id: userId } });
@@ -35,10 +38,10 @@ exports.firmExistsByUserId = async(userId) => {
   }
 }
 
+// Create a new firm account
 exports.createFirmAccount = async ( email, password, name, city, address, employees, transaction = null ) => {
   try {
     if (await this.firmExistsByEmail(email)) throw new Error("A user with this email already exists.");
-
     if (await this.firmExistsByName(name)) throw new Error("A firm with this name already exists.");
 
     const user = await userService.createUser(email, password, "firm", transaction);
@@ -51,7 +54,7 @@ exports.createFirmAccount = async ( email, password, name, city, address, employ
         city,
         address,
         employees,
-        profile_picture_id: defaultImage.id,
+        profile_picture_id: defaultImage.id
       },
       { transaction }
     );
@@ -63,6 +66,7 @@ exports.createFirmAccount = async ( email, password, name, city, address, employ
   }
 };
 
+// Get firm details
 exports.getFirmDetails = async (userId, userDetails) => {
   try {
     const firm = await this.firmExistsByUserId(userId);
@@ -79,6 +83,7 @@ exports.getFirmDetails = async (userId, userDetails) => {
   }
 };
 
+// Fetch firm details
 exports.getFirmDetailsWithJobAds = async (firmId) => {
   try {
     const firm = await Firm.findByPk(firmId, {
@@ -111,6 +116,7 @@ exports.getFirmDetailsWithJobAds = async (firmId) => {
   }
 };
 
+// Update details of an existing firm
 exports.updateFirm = async (firm, updatedData) => {
   try {
     const { name, city, address, employees_range } = updatedData;
@@ -119,7 +125,7 @@ exports.updateFirm = async (firm, updatedData) => {
       name: name || firm.name,
       city: city || firm.city,
       address: address || firm.address,
-      employees: employees_range || firm.employees,
+      employees: employees_range || firm.employees
     });
 
     return firm;
@@ -129,6 +135,7 @@ exports.updateFirm = async (firm, updatedData) => {
   }
 };
 
+// Delete a firm
 exports.deleteFirm = async (userId) => {
   try {
     const firm = await Firm.findOne({ where: { user_id: userId } });
@@ -142,6 +149,7 @@ exports.deleteFirm = async (userId) => {
   }
 };
 
+// Fetch a firm's profile
 exports.getFirmProfile = async (userId) => {
   try {
     const firm = await this.firmExistsByUserId(userId);
@@ -154,7 +162,7 @@ exports.getFirmProfile = async (userId) => {
       address: firm.address || "N/A",
       about: firm.about || "N/A",
       employees: firm.employees || "N/A",
-      profile_picture_id: firm.profile_picture_id || null,
+      profile_picture_id: firm.profile_picture_id || null
     };
 
     return firmData;
@@ -164,6 +172,7 @@ exports.getFirmProfile = async (userId) => {
   }
 };
 
+// Update a firm's profile
 exports.updateFirmProfile = async (userId, updatedData) => {
   try {
     const { name, city, address, about, employees_range, profilePicture } = updatedData;
@@ -191,6 +200,7 @@ exports.updateFirmProfile = async (userId, updatedData) => {
   }
 };
 
+// Fetch scheduled interviews for a firm
 exports.getScheduledInterviews = async (firmId) => {
   try {
     const interviews = await InterviewInvite.findAll({
@@ -199,17 +209,17 @@ exports.getScheduledInterviews = async (firmId) => {
         {
           model: Candidate,
           as: "Candidate",
-          attributes: ["first_name", "last_name"],
+          attributes: ["first_name", "last_name"]
         },
       ],
       attributes: ["id", "scheduled_date"],
-      order: [["scheduled_date", "ASC"]],
+      order: [["scheduled_date", "ASC"]]
     });
 
     return interviews.map((interview) => ({
       id: interview.id,
       candidateName: `${interview.Candidate?.first_name || "Unknown"} ${interview.Candidate?.last_name || "Unknown"}`,
-      scheduledDate: interview.scheduled_date,
+      scheduledDate: interview.scheduled_date
     }));
   } catch (error) {
     console.error("Error fetching scheduled interviews:", error.message || error);

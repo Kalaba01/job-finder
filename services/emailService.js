@@ -4,6 +4,7 @@ const path = require("path");
 const juice = require("juice");
 const transporter = require("../config/transporterConfig");
 
+// Sends an email with EJS templates and optional inline CSS
 exports.sendEmail = async (to, subject, templatePath, templateData, cssPath) => {
   try {
     const rawHtml = await ejs.renderFile(templatePath, templateData);
@@ -28,6 +29,7 @@ exports.sendEmail = async (to, subject, templatePath, templateData, cssPath) => 
   }
 };
 
+// Sends a welcome email to a new candidate
 exports.sendCandidateWelcomeEmail = async (email, first_name) => {
   try {
     const subject = "Welcome to Job Finder!";
@@ -43,6 +45,7 @@ exports.sendCandidateWelcomeEmail = async (email, first_name) => {
   }
 };
 
+// Sends a password reset email with a reset link
 exports.sendPasswordResetEmail = async (email, token) => {
   try {
     const resetPasswordLink = `http://localhost:3000/password/reset-password?token=${token}`;
@@ -61,6 +64,7 @@ exports.sendPasswordResetEmail = async (email, token) => {
   }
 };
 
+// Sends an email to a firm when their registration is approved
 exports.sendFirmApprovedEmail = async (email, firm_name, token) => {
   try {
     const resetPasswordLink = `http://localhost:3000/password/reset-password?token=${token}`;
@@ -80,6 +84,7 @@ exports.sendFirmApprovedEmail = async (email, firm_name, token) => {
   }
 };
 
+// Sends an email to a firm when their registration is rejected
 exports.sendFirmRejectEmail = async (email, firm_name) => {
   try {
     const subject = "Firm Registration Rejected";
@@ -97,6 +102,7 @@ exports.sendFirmRejectEmail = async (email, firm_name) => {
   }
 };
 
+// Sends an email to a candidate notifying them of their application acceptance
 exports.sendCandidateAcceptedEmail = async (email, first_name, job_title) => {
   try {
     const subject = "Your Application Has Been Accepted!";
@@ -112,6 +118,7 @@ exports.sendCandidateAcceptedEmail = async (email, first_name, job_title) => {
   }
 };
 
+// Sends an email to a candidate notifying them of their application rejection
 exports.sendCandidateRejectedEmail = async (email, first_name, job_title) => {
   try {
     const subject = "Your Application Has Been Rejected";

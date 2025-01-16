@@ -1,5 +1,6 @@
 const notificationService = require("../services/notificationService");
 
+// Fetches all notifications for the logged-in user
 exports.getNotifications = async (req, res) => {
   try {
     const notifications = await notificationService.getNotifications(req.user.id);
@@ -9,6 +10,7 @@ exports.getNotifications = async (req, res) => {
   }
 };
 
+// Marks a specific notification as read
 exports.markAsRead = async (req, res) => {
   try {
     const { id } = req.params;

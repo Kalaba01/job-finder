@@ -5,11 +5,10 @@ const passwordResetService = require("./passwordResetService");
 const { sequelize } = require("../models");
 const { FirmRequest } = require("../models");
 
+// Check if a firm request with the given email and "pending" status already exists
 exports.checkPendingFirmRequest = async (email) => {
   try {
-    const existingPendingRequest = await FirmRequest.findOne({
-      where: { email, status: "pending" },
-    });
+    const existingPendingRequest = await FirmRequest.findOne({ where: { email, status: "pending" }});
 
     if (existingPendingRequest) throw new Error("You already have a pending registration request.");
   } catch (error) {
@@ -18,6 +17,7 @@ exports.checkPendingFirmRequest = async (email) => {
   }
 };
 
+// Fetch a firm request by its ID
 exports.getFirmRequestById = async (id) => {
   try {
     const firmRequest = await FirmRequest.findByPk(id);
@@ -31,6 +31,7 @@ exports.getFirmRequestById = async (id) => {
   }
 };
 
+// Create a new firm registration request
 exports.createFirmRequest = async (firmData) => {
   try {
     const { email, name, city, address, employees_range } = firmData;
@@ -52,6 +53,7 @@ exports.createFirmRequest = async (firmData) => {
   }
 };
 
+// Fetch all firm requests ordered by creation date
 exports.getAllFirmRequests = async () => {
   try {
     return await FirmRequest.findAll({ order: [["createdAt", "DESC"]] });
@@ -61,6 +63,7 @@ exports.getAllFirmRequests = async () => {
   }
 };
 
+// Update the status of a firm request
 exports.updateFirmRequestStatus = async (id, status, transaction = null) => {
   try {
     return await FirmRequest.update(
@@ -73,6 +76,7 @@ exports.updateFirmRequestStatus = async (id, status, transaction = null) => {
   }
 };
 
+// Handle the approval or rejection of a firm request
 exports.handleFirmRequestUpdate = async (id, status) => {
   const transaction = await sequelize.transaction();
   try {

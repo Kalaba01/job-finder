@@ -1,3 +1,4 @@
+// Set the home URL for the logged-in user based on their type
 module.exports = (req, res, next) => {
   const userType = req.user?.type;
 

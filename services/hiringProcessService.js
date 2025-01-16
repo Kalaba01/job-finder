@@ -2,6 +2,7 @@ const sequelize = require("../config/sequelize");
 const fileService = require("./fileService");
 const { HiringPhase, HiringProcess, HiringProcessCandidate, JobAd, Candidate, Firm, Application, InterviewComment } = require("../models");
 
+// Fetch a hiring process by its ID with details
 exports.findHiringProcessById = async (processId) => {
   const process = await HiringProcess.findOne({
     where: { id: processId },
@@ -35,14 +36,14 @@ exports.findHiringProcessById = async (processId) => {
   return process;
 };
 
+// Find an active hiring process
 exports.findActiveHiringProcess = async (jobAdId) => {
-  const hiringProcess = await HiringProcess.findOne({
-    where: { job_ad_id: jobAdId, active: true }
-  });
+  const hiringProcess = await HiringProcess.findOne({ where: { job_ad_id: jobAdId, active: true }});
   if (!hiringProcess) throw new Error("No active hiring process found.");
   return hiringProcess;
 };
 
+// Check if there are pending candidates in the specified hiring process
 exports.hasPendingCandidates = async (processId) => {
   const pendingCount = await HiringProcessCandidate.count({
     where: { hiring_process_id: processId, status: "pending" }
@@ -50,12 +51,11 @@ exports.hasPendingCandidates = async (processId) => {
   return pendingCount > 0;
 };
 
+// Move candidates who passed the current phase to the next phase in the hiring process
 exports.moveToNextPhase = async (process) => {
   const currentPhase = process.current_phase;
 
-  const nextPhase = await HiringPhase.findOne({
-    where: { sequence: currentPhase + 1 },
-  });
+  const nextPhase = await HiringPhase.findOne({ where: { sequence: currentPhase + 1 }});
 
   if (!nextPhase) throw new Error("No further phases available.");
 
@@ -65,7 +65,7 @@ exports.moveToNextPhase = async (process) => {
       where: {
         hiring_process_id: process.id,
         phase_id: currentPhase,
-        status: "passed",
+        status: "passed"
       },
       returning: true
     }
@@ -100,6 +100,7 @@ exports.moveToNextPhase = async (process) => {
   return { nextPhase, updatedCandidates: candidateDetails };
 };
 
+// Retrieve all hiring processes for a specific firm
 exports.getFirmHiringProcesses = async (firmId) => {
   try {
     const phasesData = await HiringPhase.findAll({
@@ -163,6 +164,7 @@ exports.getFirmHiringProcesses = async (firmId) => {
   }
 };
 
+// Retrieve detailed information about a specific hiring process
 exports.getHiringProcessDetails = async (processId, candidateId = null) => {
   try {
     console.log("Fetching hiring process with ID:", processId);
@@ -171,9 +173,7 @@ exports.getHiringProcessDetails = async (processId, candidateId = null) => {
     const whereCondition = { id: processId };
 
     const candidateFilter = candidateId
-      ? {
-          where: { candidate_id: candidateId },
-        }
+      ? { where: { candidate_id: candidateId }}
       : {};
 
     const hiringProcess = await HiringProcess.findOne({
@@ -182,12 +182,12 @@ exports.getHiringProcessDetails = async (processId, candidateId = null) => {
         {
           model: HiringPhase,
           as: "CurrentPhase",
-          attributes: ["id", "name", "sequence", "is_final"],
+          attributes: ["id", "name", "sequence", "is_final"]
         },
         {
           model: JobAd,
           as: "JobAd",
-          attributes: ["id", "title", "firm_id"],
+          attributes: ["id", "title", "firm_id"]
         },
         {
           model: HiringProcessCandidate,
@@ -206,10 +206,10 @@ exports.getHiringProcessDetails = async (processId, candidateId = null) => {
                 {
                   model: Application,
                   as: "Applications",
-                  attributes: ["id"],
-                },
-              ],
-            },
+                  attributes: ["id"]
+                }
+              ]
+            }
           ],
           attributes: ["status", "phase_id", "candidate_id"],
         },
@@ -221,11 +221,11 @@ exports.getHiringProcessDetails = async (processId, candidateId = null) => {
             {
               model: HiringPhase,
               as: "Phase",
-              attributes: ["name"],
-            },
-          ],
-        },
-      ],
+              attributes: ["name"]
+            }
+          ]
+        }
+      ]
     });
 
     if (!hiringProcess) throw new Error("Hiring process not found.");
@@ -270,6 +270,7 @@ exports.getHiringProcessDetails = async (processId, candidateId = null) => {
   }
 };
 
+// Retrieve all hiring processes a candidate is participating in
 exports.getCandidateHiringProcesses = async (candidateId) => {
   try {
     const phasesData = await HiringPhase.findAll({
@@ -293,8 +294,8 @@ exports.getCandidateHiringProcesses = async (candidateId) => {
             {
               model: Candidate,
               as: "Candidate",
-              attributes: ["user_id"],
-            },
+              attributes: ["user_id"]
+            }
           ],
         },
         {
@@ -306,14 +307,14 @@ exports.getCandidateHiringProcesses = async (candidateId) => {
               model: Firm,
               as: "Firm",
               attributes: ["name", "city"]
-            },
+            }
           ],
         },
         {
           model: HiringPhase,
           as: "CurrentPhase",
           attributes: ["name"]
-        },
+        }
       ],
       attributes: ["id", "current_phase", "active"],
       order: [["createdAt", "DESC"]]
@@ -341,9 +342,7 @@ exports.getCandidateHiringProcesses = async (candidateId) => {
     });
 
     const uniqueFirms = [
-      ...new Set(
-        hiringProcesses.map((process) => process.JobAd?.Firm?.name).filter(Boolean)
-      ),
+      ...new Set(hiringProcesses.map((process) => process.JobAd?.Firm?.name).filter(Boolean))
     ];
 
     return {
@@ -357,6 +356,7 @@ exports.getCandidateHiringProcesses = async (candidateId) => {
   }
 };
 
+// Generate a detailed PDF report for a specific hiring process
 exports.generateProcessReport = async (processId) => {
   try {
     const process = await HiringProcess.findOne({
@@ -365,12 +365,12 @@ exports.generateProcessReport = async (processId) => {
         {
           model: JobAd,
           as: "JobAd",
-          attributes: ["title", "description", "location"],
+          attributes: ["title", "description", "location"]
         },
         {
           model: HiringPhase,
           as: "CurrentPhase",
-          attributes: ["id", "name", "is_final"],
+          attributes: ["id", "name", "is_final"]
         },
         {
           model: HiringProcessCandidate,
@@ -379,12 +379,12 @@ exports.generateProcessReport = async (processId) => {
             {
               model: Candidate,
               as: "Candidate",
-              attributes: ["first_name", "last_name", "about"],
+              attributes: ["first_name", "last_name", "about"]
             },
             {
               model: HiringPhase,
               as: "Phase",
-              attributes: ["name"],
+              attributes: ["name"]
             },
           ],
           attributes: ["status", "phase_id", "candidate_id"],
@@ -396,22 +396,20 @@ exports.generateProcessReport = async (processId) => {
             {
               model: Candidate,
               as: "Candidate",
-              attributes: ["first_name", "last_name"],
+              attributes: ["first_name", "last_name"]
             },
             {
               model: HiringPhase,
               as: "Phase",
-              attributes: ["name"],
+              attributes: ["name"]
             },
           ],
-          attributes: ["comment", "createdAt"],
-        },
-      ],
+          attributes: ["comment", "createdAt"]
+        }
+      ]
     });
 
-    if (!process) {
-      throw new Error("Hiring process not found.");
-    }
+    if (!process) throw new Error("Hiring process not found.");
 
     const candidates = process.CandidatesInProcess.map((entry) => {
       const candidateName = `${entry.Candidate.first_name} ${entry.Candidate.last_name}`;
@@ -420,21 +418,18 @@ exports.generateProcessReport = async (processId) => {
         .map((comment) => ({
           phaseName: comment.Phase?.name || "Unknown Phase",
           comment: comment.comment,
-          date: comment.createdAt,
+          date: comment.createdAt
         }));
 
       return {
         name: candidateName,
         status: entry.status,
         about: entry.Candidate.about || "No details provided",
-        history,
+        history
       };
     });
 
-    const processDuration = {
-      startDate: process.createdAt,
-      endDate: process.updatedAt,
-    };
+    const processDuration = { startDate: process.createdAt, endDate: process.updatedAt };
 
     const data = {
       jobTitle: process.JobAd.title,
@@ -444,11 +439,11 @@ exports.generateProcessReport = async (processId) => {
       phases: [
         {
           name: process.CurrentPhase.name,
-          isFinal: process.CurrentPhase.is_final,
-        },
+          isFinal: process.CurrentPhase.is_final
+        }
       ],
       processStartDate: processDuration.startDate,
-      processEndDate: processDuration.endDate,
+      processEndDate: processDuration.endDate
     };
 
     return await fileService.createHiringProcessPDF(data);

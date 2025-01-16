@@ -19,7 +19,7 @@ const InterviewComment = require("./InterviewComment");
 const InterviewInvite = require("./InterviewInvite");
 const Notification = require("./Notification");
 
-// Funkcija za definisanje asocijacija
+// Defining associations
 const defineAssociations = () => {
   // TicketConversation -> User
   TicketConversation.belongsTo(User, { foreignKey: "sender_id", as: "Sender" });

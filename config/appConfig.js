@@ -22,7 +22,7 @@ const configureApp = (app) => {
     app.use("/date-fns", express.static(path.join(__dirname, "../node_modules/date-fns")));
     app.use("/notyf", express.static(path.join(__dirname, "../node_modules/notyf")));
 
-    // View engine setup
+    // Template engine
     app.set("view engine", "ejs");
     app.set("views", "./views");
 

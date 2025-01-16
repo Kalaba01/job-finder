@@ -1,5 +1,6 @@
 const { Ticket, TicketConversation, User, Firm, Candidate, File } = require("../models");
 
+// Fetch a ticket by its ID
 exports.getTicketById = async(ticketId) => {
     try{
       const ticket = Ticket.findOne({ where: { id: ticketId } });
@@ -11,6 +12,7 @@ exports.getTicketById = async(ticketId) => {
     }
 }
 
+// Fetch all tickets for a specific user
 exports.getTickets = async ({ userId, userRole }) => {
   try {
     const query = {
@@ -18,9 +20,9 @@ exports.getTickets = async ({ userId, userRole }) => {
         {
           model: File,
           as: "Attachment",
-          attributes: ["id", "file_name", "file_mime"],
-        },
-      ],
+          attributes: ["id", "file_name", "file_mime"]
+        }
+      ]
     };
 
     if (userRole !== "admin") query.where = { user_id: userId };
@@ -40,6 +42,7 @@ exports.getTickets = async ({ userId, userRole }) => {
   }
 };
 
+// Create a new ticket
 exports.createTicket = async (ticketData) => {
   try {
     const { title, description, category, attachment } = ticketData;
@@ -52,7 +55,7 @@ exports.createTicket = async (ticketData) => {
       fileRecord = await File.create({
         file: attachment.buffer,
         file_name: attachment.originalname,
-        file_mime: attachment.mimetype,
+        file_mime: attachment.mimetype
       });
     }
 
@@ -72,6 +75,7 @@ exports.createTicket = async (ticketData) => {
   }
 };
 
+// Helper function to determine the sender's name
 const getSenderName = async (user, userId, userRole) => {
   if (!user) return "Unknown";
 
@@ -98,6 +102,7 @@ const getSenderName = async (user, userId, userRole) => {
   }
 };
 
+// Retrieve the conversation history for a specific ticket
 exports.getTicketConversation = async ({ ticketId, userId, userRole }) => {
   try {
     const ticket = await this.getTicketById(ticketId);
@@ -132,10 +137,7 @@ exports.getTicketConversation = async ({ ticketId, userId, userRole }) => {
     const mappedMessages = await Promise.all(
       messages.map(async (message) => {
         const senderName = await getSenderName(message.Sender, userId, userRole);
-        return {
-          ...message.toJSON(),
-          sender_name: senderName
-        };
+        return {  ...message.toJSON(), sender_name: senderName};
       })
     );
 
@@ -146,13 +148,14 @@ exports.getTicketConversation = async ({ ticketId, userId, userRole }) => {
   }
 };
 
+// Save a new message to the database
 exports.saveMessageToDatabase = async (ticketId, message, senderRole, senderId) => {
   try {
     const newMessage = await TicketConversation.create({
       ticket_id: ticketId,
       sender_id: senderId,
       message: message,
-      sender_role: senderRole,
+      sender_role: senderRole
     });
 
     const fullMessage = await TicketConversation.findOne({
@@ -166,16 +169,16 @@ exports.saveMessageToDatabase = async (ticketId, message, senderRole, senderId) 
             {
               model: Firm,
               as: "Firm",
-              attributes: ["name"],
+              attributes: ["name"]
             },
             {
               model: Candidate,
               as: "Candidate",
-              attributes: ["first_name", "last_name"],
-            },
-          ],
-        },
-      ],
+              attributes: ["first_name", "last_name"]
+            }
+          ]
+        }
+      ]
     });
 
     return fullMessage;
@@ -185,6 +188,7 @@ exports.saveMessageToDatabase = async (ticketId, message, senderRole, senderId) 
   }
 };
 
+// Mark a ticket as resolved
 exports.markAsResolved = async (ticketId) => {
   try {
     const ticket = await this.getTicketById(ticketId);

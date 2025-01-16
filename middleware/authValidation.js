@@ -1,5 +1,6 @@
 const { body, validationResult } = require("express-validator");
 
+// Validate candidate registration data
 exports.validateCandidateRegistration = [
   body("email").isEmail().withMessage("Invalid email format"),
   body("password")
@@ -16,6 +17,7 @@ exports.validateCandidateRegistration = [
   },
 ];
 
+// Validate firm registration requests
 exports.validateFirmRequest = (req, res, next) => {
   const { email, name, address, employees_range } = req.body;
 
@@ -27,10 +29,10 @@ exports.validateFirmRequest = (req, res, next) => {
   if (!employeeRangeRegex.test(employees_range)) {
     return res.status(400).json({ error: 'Invalid employees range format. Use format like "10-50"' });
   }
-
   next();
 };
 
+// Validate login data
 exports.validateLogin = [
   body("email").isEmail().withMessage("Invalid email format"),
   body("password")
@@ -42,5 +44,5 @@ exports.validateLogin = [
       return res.status(400).json({ errors: errors.array() });
     }
     next();
-  },
+  }
 ];

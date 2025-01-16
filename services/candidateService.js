@@ -2,16 +2,12 @@ const emailService = require("../services/emailService");
 const userService = require("./userService");
 const imageService = require("./imageService");
 const fileService = require("./fileService");
-const { User, Candidate, Image, File } = require("../models");
+const { User, Candidate, Image } = require("../models");
 
+// Check if a candidate with the given email already exists
 exports.checkIfCandidateWithEmailExists = async (email) => {
   try {
-    const user = await User.findOne({
-      where: {
-        email: email,
-        role: "candidate",
-      },
-    });
+    const user = await User.findOne({ where: { email: email, role: "candidate" } });
 
     if (user) throw new Error("User with this email already exists as a candidate.");
   } catch (error) {
@@ -20,6 +16,7 @@ exports.checkIfCandidateWithEmailExists = async (email) => {
   }
 };
 
+// Finds a candidate by their user ID
 exports.findCandidateByUserId = async(userId) => {
   try {
     const candidate = await Candidate.findOne({ where: { user_id: userId } });
@@ -31,6 +28,7 @@ exports.findCandidateByUserId = async(userId) => {
   }
 }
 
+// // Register a new candidate, including user creation and welcome email
 exports.registerCandidate = async (email, password, first_name, last_name, transaction=null) => {
   try {
     await this.checkIfCandidateWithEmailExists(email);
@@ -42,7 +40,7 @@ exports.registerCandidate = async (email, password, first_name, last_name, trans
       user_id: user.id,
       first_name,
       last_name,
-      profile_picture_id: defaultImage.id,
+      profile_picture_id: defaultImage.id
     }, { transaction });
 
     await emailService.sendCandidateWelcomeEmail(email, first_name);
@@ -53,6 +51,7 @@ exports.registerCandidate = async (email, password, first_name, last_name, trans
   }
 };
 
+// Fetches candidate details for a given user ID
 exports.getCandidateDetails = async (userId, userDetails) => {
   try {
     const candidate = await this.findCandidateByUserId(userId);
@@ -67,13 +66,14 @@ exports.getCandidateDetails = async (userId, userDetails) => {
   }
 };
 
+// // Updates candidate's informations
 exports.updateCandidate = async (candidate, updatedData) => {
   try {
     const { email, first_name, last_name } = updatedData;
 
     await candidate.update({
       first_name: first_name || candidate.first_name,
-      last_name: last_name || candidate.last_name,
+      last_name: last_name || candidate.last_name
     });
 
     const user = await userService.findUserByEmail(email);
@@ -86,6 +86,7 @@ exports.updateCandidate = async (candidate, updatedData) => {
   }
 };
 
+// Deletes a candidate
 exports.deleteCandidate = async (userId) => {
   try {
     const candidate = await Candidate.findOne({ where: { user_id: userId } });
@@ -99,6 +100,7 @@ exports.deleteCandidate = async (userId) => {
   }
 };
 
+// Retrieves a candidate's profile
 exports.getCandidateProfile = async (userId) => {
   try {
     const candidate = await this.findCandidateByUserId(userId);
@@ -111,7 +113,7 @@ exports.getCandidateProfile = async (userId) => {
       cv_file_id: candidate?.cv_file_id || null,
       motivation_file_id: candidate?.motivation_file_id || null,
       recommendations_file_id: candidate?.recommendations_file_id || null,
-      profile_picture_id: candidate?.profile_picture_id || null,
+      profile_picture_id: candidate?.profile_picture_id || null
     };
 
     return candidateData;
@@ -121,6 +123,7 @@ exports.getCandidateProfile = async (userId) => {
   }
 };
 
+// Updates candidate profile
 exports.updateCandidateProfile = async (userId, { first_name, last_name, about, cv, motivation_letter, recommendations, profilePicture }) => {
   try {
     const candidate = await Candidate.findOne({ where: { user_id: userId } });

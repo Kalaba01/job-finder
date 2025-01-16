@@ -1,5 +1,6 @@
 const { Candidate, Firm, JobAd, Application } = require("../models");
 
+// Retrieve admin statistics
 exports.getAdminStats = async () => {
   const candidatesCount = await Candidate.count();
   const firmsCount = await Firm.count();
@@ -14,6 +15,7 @@ exports.getAdminStats = async () => {
   };
 };
 
+// Retrieve statistics specific to a firm
 exports.getFirmStats = async (firmId) => {
   const jobAdsCount = await JobAd.count({ where: { firm_id: firmId } });
   const applicationsCount = await Application.count({

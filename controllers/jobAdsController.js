@@ -1,5 +1,6 @@
 const jobAdsService = require("../services/jobAdsService");
 
+// Fetches and displays all job ads for the logged-in firm
 exports.showJobAds = async (req, res) => {
   try {
     const firmId = req.user.id;
@@ -12,6 +13,7 @@ exports.showJobAds = async (req, res) => {
   }
 };
 
+// Fetches job ad details for editing
 exports.getJobAdDetailsForEdit = async (req, res) => {
   try {
     const jobAd = await jobAdsService.getJobAdDetailsForEdit(req.params.jobAdId);
@@ -23,6 +25,7 @@ exports.getJobAdDetailsForEdit = async (req, res) => {
   }
 };
 
+// Fetches and displays detailed information about a job ad for a candidate
 exports.showJobAdDetails = async (req, res) => {
   try {
     const { jobAd, timeLeft, candidateDocuments } = await jobAdsService.getJobAdDetails(req.params.jobAdId, req.user.id);
@@ -35,6 +38,7 @@ exports.showJobAdDetails = async (req, res) => {
   }
 };
 
+// Fetches all job ads for admin
 exports.getAllJobAds = async (req, res) => {
   try {
     const { jobAds, statuses } = await jobAdsService.getAllJobAdsWithDetails();
@@ -46,6 +50,7 @@ exports.getAllJobAds = async (req, res) => {
   }
 };
 
+// Creates a new job ad for the firm
 exports.createJobAd = async (req, res) => {
   try {
     const firmId = req.user.id;
@@ -69,6 +74,7 @@ exports.createJobAd = async (req, res) => {
   }
 };
 
+// Updates an existing job ad for the firm
 exports.editJobAd = async (req, res) => {
   try {
     const jobAdId = req.params.jobAdId;
@@ -94,6 +100,7 @@ exports.editJobAd = async (req, res) => {
   }
 };
 
+// Closes an open job ad
 exports.closeJobAd = async (req, res) => {
   try {
     const jobId = req.params.jobAdId;
@@ -105,6 +112,7 @@ exports.closeJobAd = async (req, res) => {
   }
 };
 
+// Deletes a job ad
 exports.deleteJobAd = async (req, res) => {
   try {
     const jobId = req.params.jobAdId;

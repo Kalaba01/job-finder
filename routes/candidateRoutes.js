@@ -12,48 +12,39 @@ const { authMiddleware, languageMiddleware, setMenuOptions, uploadMiddleware } =
 // Middleware za postavljanje menuOptions
 router.use(authMiddleware.isAuthenticated, authMiddleware.isCandidate, languageMiddleware, setMenuOptions);
 
+// Candidate home
 router.get("/", async (req, res) => {
   const { jobAds, categories, locations } = await jobAdsService.getAllJobAdsWithDetails(true);
   res.render("candidate/candidate", { locale: req.getLocale(), jobAds, categories, locations });
 });
 
-// Ruta za prikaz profila kandidata
+// Profile routes
 router.get("/profile", candidateController.showCandidateProfile);
-
-// Ruta za editovanje profila kandidata
 router.put("/profile/edit", uploadMiddleware, candidateController.updateCandidateProfile);
 
-// Ruta za prikaz ticketa kandidata
+// Tickets routes
 router.get("/tickets", ticketController.getTickets);
-
-// Ruta za prikazivanje konverzacije tiketa
 router.get("/tickets/:ticketId", ticketController.getTicketConversation);
 
-// Ruta za prikaz pojedinačnog oglasa
+// JobAd route
 router.get("/jobads/:jobAdId", jobAdsController.showJobAdDetails);
 
-// Ruta za prikaz detalja firme
+// Firm details route
 router.get("/company/:firmId", firmController.getFirmDetails);
 
-// Ruta za apliciranje na oglas
+// JobAd applying route
 router.post("/apply", uploadMiddleware, applicationController.submitApplication);
 
-// Ruta za prikaz aplikacija kandidata
+// Application routes
 router.get("/applications", applicationController.showCandidateApplications);
-
-// Ruta za prikaz detalja aplikacije kandidata
 router.get("/applications/:applicationId", applicationController.showCandidateApplicationDetails);
-
-// Ruta za generisanje PDF izveštaja za kandidata
 router.get("/applications/:applicationId/report", applicationController.generateCandidatePDF);
 
-// Ruta za prikaz selekcionih procesa kandidata
+// Hiring Process route
 router.get("/hiring-process", hiringProcessController.getCandidateHiringProcesses);
 
-// Ruta za prikaz intervjua kandidata
+// Interview route
 router.get("/interviews", candidateController.getCandidateInterviews);
-
-// Ruta za ažuriranje statusa poziva na intervju
 router.put("/interviews/:inviteId/status", candidateController.updateInterviewStatus);
 
 module.exports = router;

@@ -1,6 +1,7 @@
 const applicationService = require("../services/applicationService");
 const fileService = require("../services/fileService");
 
+// Handles job application submission by a candidate
 exports.submitApplication = async (req, res) => {
   try {
     const candidateId = req.user.id;
@@ -19,6 +20,7 @@ exports.submitApplication = async (req, res) => {
   }
 };
 
+// Renders the list of applications for a specific firm
 exports.showFirmApplications = async (req, res) => {
   try {
     const applications = await applicationService.getApplicationsForFirm(req.user.id);
@@ -29,6 +31,7 @@ exports.showFirmApplications = async (req, res) => {
   }
 };
 
+// Renders the list of applications submitted by a specific candidate
 exports.showCandidateApplications = async (req, res) => {
   try {
     const applications = await applicationService.getApplicationsForCandidate(req.user.id);
@@ -40,6 +43,7 @@ exports.showCandidateApplications = async (req, res) => {
   }
 };
 
+// Renders detailed information about a specific application for a candidate
 exports.showCandidateApplicationDetails = async (req, res) => {
   try {
     const { applicationId } = req.params;
@@ -54,6 +58,7 @@ exports.showCandidateApplicationDetails = async (req, res) => {
   }
 };
 
+// Renders detailed information about a specific application for a firm
 exports.showApplicationDetails = async (req, res) => {
   try {
     const { applicationId } = req.params;
@@ -68,6 +73,7 @@ exports.showApplicationDetails = async (req, res) => {
   }
 };
 
+// Generates a ZIP file containing all relevant documents for a specific application
 exports.generateApplicationZip = async (req, res) => {
   try {
     const { applicationId } = req.params;
@@ -84,6 +90,7 @@ exports.generateApplicationZip = async (req, res) => {
   }
 };
 
+// Generates a PDF file containing detailed information about a specific application
 exports.generateCandidatePDF = async (req, res) => {
   try {
     const { applicationId } = req.params;

@@ -3,6 +3,7 @@ const fileService = require("./fileService");
 const { PassThrough } = require('stream');
 const { Candidate, JobAd, Application, Firm, User } = require("../models");
 
+// Retrieves application details by its ID
 exports.getApplicationById = async (applicationId) => {
   const application = await Application.findByPk(applicationId, {
     include: [
@@ -71,12 +72,14 @@ exports.getApplicationById = async (applicationId) => {
   };
 };
 
+// Updates the status of an application
 exports.updateApplicationStatus = async (applicationId, status) => {
   const result = await Application.update({ status }, { where: { id: applicationId } });
   if (result[0] === 0) throw new Error("Failed to update application status.");
   return result;
 };
 
+// Validates a candidate's application for a specific job ad
 exports.applyForJob = async ({ candidateId, jobAdId, answers }) => {
   const jobAd = await JobAd.findByPk(jobAdId);
   const candidate = await Candidate.findByPk(candidateId);
@@ -105,27 +108,28 @@ exports.applyForJob = async ({ candidateId, jobAdId, answers }) => {
     candidate_id: candidateId,
     submitted_documents: submittedDocuments,
     answers,
-    status: "pending",
+    status: "pending"
   });
 
   return newApplication;
 };
 
+// Fetches all applications for a specific firm
 exports.getApplicationsForFirm = async (firmId) => {
   const applications = await Application.findAll({
     include: [
       {
         model: Candidate,
         attributes: ["first_name", "last_name"],
-        as: "Candidate",
+        as: "Candidate"
       },
       {
         model: JobAd,
         attributes: ["title"],
         as: "JobAd",
-        where: { firm_id: firmId },
-      },
-    ],
+        where: { firm_id: firmId }
+      }
+    ]
   });
 
   return applications.map((app) => ({
@@ -133,10 +137,11 @@ exports.getApplicationsForFirm = async (firmId) => {
     candidateName: `${app.Candidate.first_name} ${app.Candidate.last_name}`,
     jobTitle: app.JobAd.title,
     status: app.status,
-    date: app.createdAt.toISOString().split("T")[0],
+    date: app.createdAt.toISOString().split("T")[0]
   }));
 };
 
+// Fetches all applications submitted by a specific candidate
 exports.getApplicationsForCandidate = async (candidateId) => {
   const applications = await Application.findAll({
     where: { candidate_id: candidateId },
@@ -149,11 +154,11 @@ exports.getApplicationsForCandidate = async (candidateId) => {
           {
             model: Firm,
             attributes: ["name"],
-            as: "Firm",
-          },
-        ],
-      },
-    ],
+            as: "Firm"
+          }
+        ]
+      }
+    ]
   });
 
   return applications.map((app) => ({
@@ -161,17 +166,18 @@ exports.getApplicationsForCandidate = async (candidateId) => {
     jobTitle: app.JobAd.title,
     firmName: app.JobAd.Firm.name,
     status: app.status,
-    date: app.createdAt.toISOString().split("T")[0],
+    date: app.createdAt.toISOString().split("T")[0]
   }));
 };
 
+// Provides detailed information about an application
 exports.getApplicationDetails = async (applicationId) => {
   const application = await Application.findByPk(applicationId, {
     include: [
       {
         model: Candidate,
         attributes: ["first_name", "last_name", "about", "profile_picture_id"],
-        as: "Candidate",
+        as: "Candidate"
       },
       {
         model: JobAd,
@@ -181,11 +187,11 @@ exports.getApplicationDetails = async (applicationId) => {
           {
             model: Firm,
             attributes: ["name", "city", "address", "about", "employees", "profile_picture_id"],
-            as: "Firm",
-          },
-        ],
-      },
-    ],
+            as: "Firm"
+          }
+        ]
+      }
+    ]
   });
 
   if (!application) return null;
@@ -219,6 +225,7 @@ exports.getApplicationDetails = async (applicationId) => {
   };
 };
 
+// Creates a ZIP file containing a PDF report and submitted documents
 exports.createApplicationZip = async (applicationId) => {
   const application = await exports.getApplicationById(applicationId);
 

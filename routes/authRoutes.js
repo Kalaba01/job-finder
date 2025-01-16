@@ -3,16 +3,14 @@ const authController = require('../controllers/authController');
 const { authValidation } = require("../middleware");
 const router = express.Router();
 
-// Route for candidate registration
+// Registration routes
 router.post('/register/candidate', authValidation.validateCandidateRegistration, authController.registerCandidate);
-
-// Route for firm registration request
 router.post('/register/firm', authValidation.validateFirmRequest, authController.registerFirmRequest);
 
-// Route for login
+// Login route
 router.post("/login", authValidation.validateLogin, authController.login);
 
-// Route for logout
+// Logout route
 router.post("/logout", authController.logout);
 
 module.exports = router;

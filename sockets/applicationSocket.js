@@ -5,11 +5,13 @@ const hiringProcessService = require("../services/hiringProcessService");
 const hiringProcessCandidateService = require("../services/hiringProcessCandidateService");
 const notificationSocket = require("./notificationSocket");
 
+// Handles application-related socket events for the connected user
 module.exports = (io, socket) => {
   const userId = socket.request.session.passport.user;
 
   console.log(`User connected: ${userId} (Socket ID: ${socket.id})`);
 
+  // Allows the user to join a room specific to their candidate ID
   socket.on("join-application", (candidateId) => {
     if (candidateId) {
       socket.join(`candidate-${candidateId}`);
@@ -17,6 +19,7 @@ module.exports = (io, socket) => {
     }
   });
 
+  // Sends a notification to the firm when a new application is submitted and emits a dashboard update event
   socket.on("application-submitted", async ({ firmId, jobTitle }) => {
     try {
       const message = `A new application has been submitted for the job ${jobTitle}.`;
@@ -31,6 +34,7 @@ module.exports = (io, socket) => {
     }
   });
 
+  // Updates the status of an application and sends relevant notifications and emails
   socket.on("update-application-status", async ({ applicationId, action }) => {
     try {
       if (!["accept", "reject"].includes(action)) {

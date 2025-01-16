@@ -1,5 +1,6 @@
 const hiringProcessService = require("../services/hiringProcessService");
 
+// Retrieves and renders the list of hiring processes for the logged-in firm
 exports.getFirmHiringProcesses = async (req, res) => {
     try {
       const { processes, uniqueCategories, phases } = await hiringProcessService.getFirmHiringProcesses(req.user.id);
@@ -11,6 +12,7 @@ exports.getFirmHiringProcesses = async (req, res) => {
     }
 };
 
+// Retrieves and renders detailed information about a specific hiring process for the firm
 exports.getFirmHiringProcessDetails = async (req, res) => {
   try {
     const { processId } = req.params;
@@ -23,6 +25,7 @@ exports.getFirmHiringProcessDetails = async (req, res) => {
   }
 };
 
+// Retrieves and renders the list of hiring processes associated with the logged-in candidate
 exports.getCandidateHiringProcesses = async (req, res) => {
   try {
     const candidateId = req.user.id;
@@ -40,6 +43,7 @@ exports.getCandidateHiringProcesses = async (req, res) => {
   }
 };
 
+// Generates a PDF report for a specific hiring process
 exports.generateReport = async (req, res) => {
   const { processId } = req.params;
 

@@ -1,5 +1,6 @@
 const imageService = require("../services/imageService");
 
+// Fetches an image by its ID
 exports.getImageById = async (req, res) => {
   try {
     const { id } = req.params;

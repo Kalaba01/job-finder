@@ -3,6 +3,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const authService = require("../services/authService");
 const userService = require("../services/userService");
 
+// Configure Passport to use the local authentication strategy
 passport.use(
   new LocalStrategy(
     {
@@ -25,10 +26,12 @@ passport.use(
   )
 );
 
+// Serialize the user ID into the session
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user.id); // Store only the user's ID in the session
 });
 
+// Deserialize the user object from the session using the stored ID
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await userService.findUserById(id);

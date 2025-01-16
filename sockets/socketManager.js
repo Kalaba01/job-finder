@@ -9,6 +9,7 @@ const notificationSocket = require("./notificationSocket");
 
 let io;
 
+// Initializes the Socket.IO server and sets up middleware for session handling and authentication
 const initializeSocket = (server) => {
   io = new Server(server, {
     cors: {
@@ -32,6 +33,7 @@ const initializeSocket = (server) => {
     }
   });
 
+  // Define event handlers for various socket namespaces
   io.on("connection", (socket) => {
     ticketSocket(io, socket);
     applicationSocket(io, socket);

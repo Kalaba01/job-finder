@@ -9,6 +9,7 @@ const { authMiddleware, languageMiddleware, setMenuOptions } = require("../middl
 // Middleware za postavljanje menuOptions
 router.use(authMiddleware.isAuthenticated, authMiddleware.isAdmin, languageMiddleware, setMenuOptions);
 
+// Admin home
 router.get("/", (req, res) => {
   res.render("admin/admin", { locale: req.getLocale() });
 });
@@ -16,31 +17,27 @@ router.get("/", (req, res) => {
 // Admin dashboard
 router.get("/dashboard", adminController.getDashboardStats);
 
-// Ruta za prikaz zahteva firmi
+// Firm approvals routes
 router.get("/company-approvals", adminController.getFirmRequests);
-
-// Ruta za ažuriranje statusa zahteva
 router.post("/company-approvals/update", adminController.updateFirmRequest);
 
-// User Management rute
+// User Management routes
 router.get("/users", adminController.getUsers);
 router.post("/users/add", adminController.addUser);
 router.get("/users/details/:id", adminController.getUserDetails);
 router.put("/users/edit/:id", adminController.editUser);
 router.delete("/users/delete/:id", adminController.deleteUser);
 
-// Prikaz svih tiketa
+// Tickets routes
 router.get("/tickets", ticketController.getTickets);
-
-// Ruta za prikazivanje konverzacije tiketa
 router.get("/tickets/:ticketId", ticketController.getTicketConversation);
 
-// JobAds ruta
+// JobAds routes
 router.get("/job-ads", jobAdsController.getAllJobAds);
 router.put("/job-ads/:jobAdId/close", jobAdsController.closeJobAd);
 router.delete("/job-ads/:jobAdId", jobAdsController.deleteJobAd);
 
-// Maintenance ruta
+// Maintenance route
 router.get("/maintenance/", hiringPhaseController.getHiringPhases);
 router.post("/maintenance/hiring-phases", hiringPhaseController.createHiringPhase);
 router.put("/maintenance/hiring-phases/:id", hiringPhaseController.editHiringPhase);

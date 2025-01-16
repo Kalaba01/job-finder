@@ -1,10 +1,12 @@
 const { Notification } = require("../models");
 
+// Manages real-time notifications for connected users
 module.exports = (io, socket) => {
   const userId = socket.request.session.passport.user;
 
   console.log(`User connected for notifications: ${userId} (Socket ID: ${socket.id})`);
 
+  // Joins the user to their specific notification room for real-time updates
   socket.on("join-notifications", () => {
     if (userId) {
       socket.join(`notifications-${userId}`);
@@ -12,6 +14,7 @@ module.exports = (io, socket) => {
     }
   });
 
+  // Sends a notification to a specific user and emits it to their notification room
   const sendNotification = async (userId, message, type) => {
     try {
       const notification = await Notification.create({

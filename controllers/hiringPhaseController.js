@@ -1,5 +1,6 @@
 const hiringPhaseService = require("../services/hiringPhaseService");
 
+// Retrieves all hiring phases
 exports.getHiringPhases = async (req, res) => {
   try {
     const hiringPhases = await hiringPhaseService.getAllPhases();
@@ -10,6 +11,7 @@ exports.getHiringPhases = async (req, res) => {
   }
 };
 
+// Creates a new hiring phase
 exports.createHiringPhase = async (req, res) => {
   try {
     const { name, sequence, isFinal } = req.body;
@@ -21,6 +23,7 @@ exports.createHiringPhase = async (req, res) => {
   }
 };
 
+// Updates an existing hiring phase by its ID
 exports.editHiringPhase = async (req, res) => {
   try {
     const { id } = req.params;
@@ -33,6 +36,7 @@ exports.editHiringPhase = async (req, res) => {
   }
 };
 
+// Deletes a hiring phase by its ID
 exports.deleteHiringPhase = async (req, res) => {
   try {
     const { id } = req.params;

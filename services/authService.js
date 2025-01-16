@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 const userService = require("./userService");
 
+// Authenticates a user by email and password
 exports.authenticateUser = async (email, password) => {
   try {
     const user = await userService.findUserByEmail(email);
@@ -17,6 +18,7 @@ exports.authenticateUser = async (email, password) => {
   }
 };
 
+// Handles user login using Passport's local strategy
 exports.login = (req, res, next) => {
   return new Promise((resolve, reject) => {
     passport.authenticate("local", (err, user, info) => {

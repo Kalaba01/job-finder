@@ -2,13 +2,9 @@ const express = require("express");
 const passwordResetController = require("../controllers/passwordResetController");
 const router = express.Router();
 
-// Route for showing password reset form
+// Routes for handling password resets
 router.get("/reset-password", passwordResetController.showResetPasswordForm);
-
-// Route for forgot password form
 router.post("/request", passwordResetController.requestPasswordReset);
-
-// Route for processing password reset form
 router.post("/reset-password", passwordResetController.handlePasswordReset);
 
 module.exports = router;

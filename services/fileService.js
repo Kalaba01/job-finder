@@ -1,6 +1,7 @@
 const { PDFDocument } = require('pdf-lib');
 const { File } = require("../models");
 
+// Retrieves file by its ID
 exports.getFileById = async (fileId) => {
   try {
     const file = await File.findOne({ where: { id: fileId } });
@@ -18,6 +19,7 @@ exports.getFileById = async (fileId) => {
   }
 };
 
+// Saves a file
 exports.saveFile = async (file) => {
   if (!file) throw new Error("File is required.");
   return await File.create({
@@ -27,6 +29,7 @@ exports.saveFile = async (file) => {
   });
 };
 
+// Creates a PDF for a firm with details of a candidate's application
 exports.createForFirmPDF = async (application) => {
   const pdfDoc = await PDFDocument.create();
   const page = pdfDoc.addPage();
@@ -76,6 +79,7 @@ exports.createForFirmPDF = async (application) => {
   return Buffer.from(pdfBytes);
 };
 
+// Creates a PDF for a candidate with details of the hiring process
 exports.createForCandidatePDF = async (application) => {
   const pdfDoc = await PDFDocument.create();
   const page = pdfDoc.addPage();
@@ -114,6 +118,7 @@ exports.createForCandidatePDF = async (application) => {
   return Buffer.from(pdfBytes);
 };
 
+// Creates a PDF summarizing the hiring process
 exports.createHiringProcessPDF = async (processData) => {
   const pdfDoc = await PDFDocument.create();
   const page = pdfDoc.addPage();

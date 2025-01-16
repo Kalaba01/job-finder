@@ -1,5 +1,6 @@
 const { Notification } = require("../models");
 
+// Fetch all notifications for a specific user
 exports.getNotifications = async (userId) => {
   return Notification.findAll({
     where: { user_id: userId },
@@ -7,6 +8,7 @@ exports.getNotifications = async (userId) => {
   });
 };
 
+// Mark a specific notification as read
 exports.markAsRead = async (notificationId, userId) => {
   const notification = await Notification.findOne({
     where: { id: notificationId, user_id: userId }

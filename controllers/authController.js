@@ -2,6 +2,7 @@ const authService = require('../services/authService');
 const candidateService = require("../services/candidateService");
 const firmRequestService = require("../services/firmRequestService");
 
+// Handles the registration of a new candidate
 exports.registerCandidate = async (req, res) => {
   try {
     const { email, password, first_name, last_name } = req.body;
@@ -13,6 +14,7 @@ exports.registerCandidate = async (req, res) => {
   }
 };
 
+// Handles the submission of a firm registration request
 exports.registerFirmRequest = async (req, res) => {
   try {
     const firmData = req.body;
@@ -24,6 +26,7 @@ exports.registerFirmRequest = async (req, res) => {
   }
 };
 
+// Handles user login and provides the appropriate redirect URL
 exports.login = async (req, res, next) => {
   try {
     const { redirectUrl } = await authService.login(req, res, next);
@@ -34,6 +37,7 @@ exports.login = async (req, res, next) => {
   }
 };
 
+// Handles user logout, destroys the session, and clears cookies
 exports.logout = (req, res) => {
   req.logout((err) => {
     if (err) {

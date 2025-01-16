@@ -1,6 +1,7 @@
 const userService = require("./userService");
 const { Admin } = require("../models");
 
+// Create a new admin account
 exports.createAdminAccount = async (email, password, transaction=null) => {
   try {
     const newUser = await userService.createUser(email, password, "admin", transaction);
@@ -13,6 +14,7 @@ exports.createAdminAccount = async (email, password, transaction=null) => {
   }
 };
 
+// Delete an admin account
 exports.deleteAdmin = async (userId) => {
   try {
     await Admin.destroy({ where: { user_id: userId } });

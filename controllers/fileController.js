@@ -1,5 +1,6 @@
 const fileService = require("../services/fileService");
 
+// Fetches a file by its ID
 exports.getFile = async (req, res) => {
   try {
     const { fileId } = req.params;

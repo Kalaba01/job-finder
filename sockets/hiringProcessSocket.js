@@ -4,11 +4,13 @@ const interviewCommentService = require("../services/interviewCommentService");
 const notificationSocket = require("./notificationSocket");
 const { HiringProcessCandidate, HiringPhase } = require("../models");
 
+// Handles hiring process-related socket events for the connected user
 module.exports = (io, socket) => {
   const userId = socket.request.session.passport.user;
 
   console.log(`User connected: ${userId} (Socket ID: ${socket.id})`);
 
+  // Allows the user to join a room for a specific hiring process
   socket.on("join-hiring-process", (processId) => {
     if (processId) {
       socket.join(`process-${processId}`);
@@ -16,6 +18,7 @@ module.exports = (io, socket) => {
     }
   });
 
+  // Automatically joins all rooms for hiring processes associated with the candidate
   socket.on("join-hiring-processes", async () => {
     try {
       const hiringProcesses = await hiringProcessService.getCandidateHiringProcesses(userId);
@@ -33,6 +36,7 @@ module.exports = (io, socket) => {
     }
   });
 
+  // Updates the status of a candidate in a hiring process and creates an interview invite if applicable
   socket.on("update-candidate-status", async ({ processId, candidateId, action, comment, nextInterviewDate, note }) => {
     try {
       if (!["accept", "reject"].includes(action)) {
@@ -120,6 +124,7 @@ module.exports = (io, socket) => {
     }
   });
 
+  // Moves the hiring process to the next phase if all candidates have been resolved in the current phase
   socket.on("move-to-next-phase", async ({ processId }) => {
     try {
       const process = await hiringProcessService.findHiringProcessById(processId);
@@ -158,6 +163,7 @@ module.exports = (io, socket) => {
     }
   });
 
+  // Finalizes the hiring process if it is in the final phase and all candidates are resolved
   socket.on("finalize-process", async ({ processId }) => {
     try {
       const process = await hiringProcessService.findHiringProcessById(processId);

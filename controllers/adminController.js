@@ -2,6 +2,7 @@ const firmRequestService = require("../services/firmRequestService");
 const userService = require("../services/userService");
 const dashboardService = require("../services/dashboardService");
 
+// Fetch statistics for the admin dashboard
 exports.getDashboardStats = async (req, res) => {
   try {
     const stats = await dashboardService.getAdminStats();
@@ -12,6 +13,7 @@ exports.getDashboardStats = async (req, res) => {
   }
 };
 
+// Fetch all firm requests
 exports.getFirmRequests = async (req, res) => {
   try {
     const firmRequests = await firmRequestService.getAllFirmRequests();
@@ -22,6 +24,7 @@ exports.getFirmRequests = async (req, res) => {
   }
 };
 
+// Update the status of a firm request
 exports.updateFirmRequest = async (req, res) => {
   const { id, status } = req.body;
 
@@ -34,6 +37,7 @@ exports.updateFirmRequest = async (req, res) => {
   }
 };
 
+// Fetch all users for admin
 exports.getUsers = async (req, res) => {
   try {
     const users = await userService.getAllUsers();
@@ -44,6 +48,7 @@ exports.getUsers = async (req, res) => {
   }
 };
 
+// Add a new user
 exports.addUser = async (req, res) => {
   try {
     const { email, password, role, city, employees_range, ...extraData } = req.body;
@@ -64,6 +69,7 @@ exports.addUser = async (req, res) => {
   }
 };
 
+// Fetch detailed information about a specific user
 exports.getUserDetails = async (req, res) => {
   try {
     const userId = req.params.id;
@@ -76,6 +82,7 @@ exports.getUserDetails = async (req, res) => {
   }
 };
 
+// Edit an existing user's information
 exports.editUser = async (req, res) => {
   try {
     const userId = req.body.id;
@@ -92,6 +99,7 @@ exports.editUser = async (req, res) => {
   }
 };
 
+// Delete a user
 exports.deleteUser = async (req, res) => {
   try {
     const userId = req.params.id;

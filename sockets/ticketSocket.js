@@ -3,16 +3,19 @@ const { Ticket } = require("../models");
 const notificationSocket = require("./notificationSocket");
 const ticketService = require("../services/ticketService");
 
+// Handles real-time ticket-related events for connected users
 module.exports = (io, socket) => {
   const userId = socket.request.session.passport.user;
 
   console.log(`User connected: ${userId} (Socket ID: ${socket.id})`);
 
+  // Joins the user to a specific ticket room for real-time updates
   socket.on("join-ticket", (ticketId) => {
     socket.join(`ticket-${ticketId}`);
     console.log(`User ${userId} joined room ticket-${ticketId}`);
   });
 
+  // Marks a ticket as resolved and notifies the user
   socket.on("mark-resolved", async (ticketId) => {
     try {
       const ticket = await ticketService.getTicketById(ticketId);
@@ -37,6 +40,7 @@ module.exports = (io, socket) => {
     }
   });
 
+  // Sends a message in a ticket conversation
   socket.on("send-message", async ({ ticketId, message, senderRole }) => {
     try {
       const ticket = await Ticket.findOne({ where: { id: ticketId } });
@@ -67,6 +71,7 @@ module.exports = (io, socket) => {
   });
 };
 
+// Extracts the sender's name from the ticket conversation message
 const getSenderNameFromMessage = (message) => {
   const sender = message.Sender;
 

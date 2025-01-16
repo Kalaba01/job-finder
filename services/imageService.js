@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { Image } = require("../models");
 
+// Find an image by its ID
 exports.findImageById = async (imageId) => {
   try {
     const image = await Image.findByPk(imageId);
@@ -12,6 +13,7 @@ exports.findImageById = async (imageId) => {
   }
 };
 
+// Set a default profile picture for a specific user type
 exports.setDefaultPicture = async (type, transaction = null) => {
   const validTypes = ["candidate", "firm", "admin"];
   if (!validTypes.includes(type)) throw new Error(`Invalid type provided for default picture: ${type}`);
@@ -26,6 +28,7 @@ exports.setDefaultPicture = async (type, transaction = null) => {
   return defaultImage;
 };
 
+// Replace an existing image with a new one
 exports.replaceImage = async (file, imageId) => {
   try {
     if (!file) throw new Error("No file provided for upload");

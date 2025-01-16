@@ -4,7 +4,7 @@ const { authMiddleware } = require("../middleware");
 
 const router = express.Router();
 
-// Ruta za preuzimanje fajlova
+// File serving route
 router.get("/:fileId", authMiddleware.isAuthenticated, fileController.getFile);
 
 module.exports = router;

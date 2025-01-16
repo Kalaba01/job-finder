@@ -5,7 +5,7 @@ async function initDatabase() {
     await sequelize.authenticate();
     console.log('Connected to the database successfully!');
 
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: false }); // Set `force: true` to drop and recreate tables on every start
     console.log('Database synced successfully!');
   } catch (error) {
     console.error('Database initialization failed:', error);

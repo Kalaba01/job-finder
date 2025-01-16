@@ -1,6 +1,7 @@
 const candidateService = require("../services/candidateService");
 const InterviewInviteService = require("../services/interviewInviteService");
 
+// Displays the candidate's profile page with their data
 exports.showCandidateProfile = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -13,6 +14,7 @@ exports.showCandidateProfile = async (req, res) => {
   }
 };
 
+// Updates the candidate's profile with new data and files
 exports.updateCandidateProfile = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -36,6 +38,7 @@ exports.updateCandidateProfile = async (req, res) => {
   }
 };
 
+// Retrieves the list of interviews for the candidate
 exports.getCandidateInterviews = async (req, res) => {
   try {
     const candidateId = req.user.id;
@@ -47,6 +50,7 @@ exports.getCandidateInterviews = async (req, res) => {
   }
 };
 
+// Updates the status of a candidate's interview invitation
 exports.updateInterviewStatus = async (req, res) => {
   try {
     const { inviteId } = req.params;

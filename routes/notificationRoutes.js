@@ -5,10 +5,8 @@ const { authMiddleware } = require("../middleware");
 
 router.use(authMiddleware.isAuthenticated);
 
-// Dohvatanje svih notifikacija
+// Notification routes
 router.get("/", notificationController.getNotifications);
-
-// Obeležavanje notifikacije kao pročitane
 router.put("/:id/mark-read", notificationController.markAsRead);
 
 module.exports = router;

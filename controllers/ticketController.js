@@ -1,5 +1,6 @@
 const ticketService = require("../services/ticketService");
 
+// Fetches and displays tickets for the logged-in user
 exports.getTickets = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -14,6 +15,7 @@ exports.getTickets = async (req, res) => {
   }
 };
 
+// Creates a new ticket submitted by the logged-in user
 exports.createTicket = async (req, res) => {
   try {
     const ticketData = {
@@ -33,6 +35,7 @@ exports.createTicket = async (req, res) => {
   }
 };
 
+// Fetches and displays the conversation for a specific ticket
 exports.getTicketConversation = async (req, res) => {
   try {
     const { ticketId } = req.params;
@@ -58,6 +61,7 @@ exports.getTicketConversation = async (req, res) => {
   }
 };
 
+// Marks a ticket as resolved
 exports.resolveTicket = async (req, res) => {
   try {
     const { ticketId } = req.params;

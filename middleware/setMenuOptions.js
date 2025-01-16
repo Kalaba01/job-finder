@@ -1,3 +1,4 @@
+// Set the menu options for the logged-in user based on their role
 module.exports = (req, res, next) => {
     if (!req.user) {
       res.locals.menuOptions = [];
@@ -43,6 +44,5 @@ module.exports = (req, res, next) => {
         res.locals.menuOptions = [];
         break;
     }
-  
     next();
 };

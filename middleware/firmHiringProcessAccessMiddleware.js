@@ -1,5 +1,6 @@
 const { HiringProcess, JobAd } = require("../models");
 
+// Restrict access to hiring processes only to the owning firm
 const firmHiringProcessAccessMiddleware = async (req, res, next) => {
   try {
     const firmId = req.user.id;

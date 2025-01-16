@@ -1,9 +1,11 @@
 const InterviewInviteService = require("../services/interviewInviteService");
 const notificationSocket = require("./notificationSocket");
 
+// Handles interview-related socket events for the connected user (candidate)
 const interviewSocket = (io, socket) => {
   const candidateId = socket.request.session.passport.user;
 
+  // Fetches and emits all interview invites for the candidate when they join the interviews room
   socket.on("join-interviews", async () => {
     try {
       const interviews = await InterviewInviteService.getCandidateInterviews(
@@ -15,6 +17,7 @@ const interviewSocket = (io, socket) => {
     }
   });
 
+  // Updates the status of an interview invite and sends notifications to the firm
   socket.on("update-status", async ({ inviteId, status }) => {
     try {
       const updatedInvite = await InterviewInviteService.updateInviteStatus(

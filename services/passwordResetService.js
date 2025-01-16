@@ -5,6 +5,7 @@ const { User, PasswordResetToken } = require("../models");
 const userService = require("./userService");
 const emailService = require("./emailService");
 
+// Create a password reset token
 exports.createPasswordResetToken = async (userId, transaction = null) => {
   try {
     const token = uuidv4();
@@ -14,7 +15,7 @@ exports.createPasswordResetToken = async (userId, transaction = null) => {
       {
         user_id: userId,
         token,
-        expires_at: expiresAt,
+        expires_at: expiresAt
       },
       { transaction }
     );
@@ -26,27 +27,25 @@ exports.createPasswordResetToken = async (userId, transaction = null) => {
   }
 };
 
+// Validate the provided password reset token
 exports.validateResetPasswordToken = async (token) => {
-  const resetToken = await PasswordResetToken.findOne({
-    where: { token, expires_at: { [Op.gt]: new Date() } },
-  });
+  const resetToken = await PasswordResetToken.findOne({ where: { token, expires_at: { [Op.gt]: new Date() } }});
 
   if (!resetToken) throw new Error("Invalid or expired token");
-
   return resetToken;
 };
 
+// Send a password reset link to the user's email
 exports.sendResetPasswordLink = async (email) => {
   const user = await userService.findUserByEmail(email);
   if (!user) throw new Error("No account found with that email.");
-
   const { token } = await this.createPasswordResetToken(user.id);
 
   await emailService.sendPasswordResetEmail(email, token);
-
   return { message: "Password reset link sent successfully" };
 };
 
+// Reset the user's password using the provided token and new password
 exports.resetPassword = async ({ token, newPassword, confirmPassword }) => {
   if (!token || !newPassword || !confirmPassword) throw new Error("Token, new password, and confirm password are required");
 
