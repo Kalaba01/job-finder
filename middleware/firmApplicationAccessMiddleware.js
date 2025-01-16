@@ -5,6 +5,8 @@ const firmApplicationAccessMiddleware = async (req, res, next) => {
     const firmId = req.user.id;
     const applicationId = req.params.applicationId;
 
+    if (!applicationId) return res.status(400).render("400", { message: "Invalid application ID" });
+
     const application = await Application.findOne({
       where: { id: applicationId },
       include: {

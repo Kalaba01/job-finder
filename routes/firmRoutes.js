@@ -5,7 +5,7 @@ const ticketController = require("../controllers/ticketController");
 const jobAdsController = require("../controllers/jobAdsController");
 const applicationController = require("../controllers/applicationController");
 const hiringProcessController = require("../controllers/hiringProcessController");
-const { authMiddleware, languageMiddleware, setMenuOptions, uploadMiddleware, firmApplicationAccessMiddleware } = require("../middleware");
+const { authMiddleware, languageMiddleware, setMenuOptions, uploadMiddleware, firmApplicationAccessMiddleware, firmHiringProcessAccessMiddleware } = require("../middleware");
 
 // Middleware za postavljanje menuOptions
 router.use(authMiddleware.isAuthenticated, authMiddleware.isFirm, languageMiddleware, setMenuOptions);
@@ -52,7 +52,7 @@ router.get('/applications/:applicationId/zip', applicationController.generateApp
 router.get("/hiring-process", hiringProcessController.getFirmHiringProcesses);
 
 // Ruta za detaljan prikaz procesa selekcije
-router.get("/hiring-process/:processId", hiringProcessController.getFirmHiringProcessDetails);
+router.get("/hiring-process/:processId", firmHiringProcessAccessMiddleware, hiringProcessController.getFirmHiringProcessDetails);
 
 // Ruta za generisanje izvjestaja o procesu selekcije
 router.get("/hiring-process/:processId/report", hiringProcessController.generateReport);
