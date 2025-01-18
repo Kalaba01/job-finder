@@ -159,12 +159,20 @@ npm install
 
 Create a .env file in the root directory and set up the following:
 ```
-DATABASE_URL=your_database_url
+DB_HOST=your_database_host
+DB_USER=your_database_user
+DB_PASSWORD=your_database_password
+DB_NAME=your_database_name
+DB_PORT=your_database_port
+
+PORT=your_application_port
+
 SESSION_SECRET=your_session_secret
-SMTP_HOST=smtp.your-email-provider.com
-SMTP_PORT=587
-SMTP_USER=your_email_user
-SMTP_PASS=your_email_password
+
+EMAIL_SERVICE=your_email_service
+EMAIL_USER=your_email_user
+EMAIL_PASS=your_email_password
+SMTP_FROM=your_email_from_address
 ```
 4) Run the Server
 ```
